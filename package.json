@@ -8,10 +8,18 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.1.5",
     "next": "10.0.9",
     "next-compose-plugins": "^2.2.1",
     "next-optimized-images": "^3.0.0-canary.10",
     "react": "17.0.1",
     "react-dom": "17.0.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.2.5",
+    "postcss": "^8.2.8",
+    "tailwindcss": "^2.0.4",
+    "xwind": "^0.8.0"
   }
 }
