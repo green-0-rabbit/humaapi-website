@@ -1,0 +1,25 @@
+[
+
+{
+    "language":"fr",
+    "content":{
+            "title":"Découvrez les nouvelles idées",
+            "subtitle":"Pour votre entreprise!",
+            "text":"Le morceau standard de Lorem utilisé depuis les années 1500 est reproduit ci-dessous pour les intéressés Le morceau standard de Lorem utilisé depuis les années 1500 est reproduit ci-dessous pour les personnes intéressées"
+
+    }
+
+},
+{
+    "language":"en",
+    "content":{
+            "title":"Discover the new ideas",
+            "subtitle":"For Your Business !",
+            "text":"The standard chunk of Lorem used since the 1500s is reproduced below for those interested The standard chunk of Lorem used since the 1500s is reproduced below for those interested"
+
+    }
+
+}
+
+
+]

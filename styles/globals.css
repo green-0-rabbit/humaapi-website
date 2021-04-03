@@ -9,16 +9,21 @@
   h2 {
     @apply text-xl;
   }
+
+  @font-face {
+    font-family: 'Bahnschrift';
+    src: url(/fonts/BAHNSCHRIFT.TTF) format('truetype');
+  }
 }
 
 html,
 body {
+  background-color: #e6e7ee;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
-
 a {
   color: inherit;
   text-decoration: none;
@@ -26,6 +31,9 @@ a {
 
 * {
   box-sizing: border-box;
+  
 }
+
+
 
 
