@@ -2,7 +2,9 @@ import Head from 'next/head'
 import styles from 'styles/Home.module.css'
 import Button from 'components/elements/Button'
 import Navlink from 'components/elements/Navlink'
-import Card from 'components/elements/Card'
+import Card from 'components/modules/Card'
+import NavBar from 'components/modules/NavBar'
+
 
 
 export default function Home() {
@@ -13,14 +15,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      
+        <NavBar>
+        </NavBar>
+
       <main className={styles.main}>
         <Card>
-          <Navlink css={{ color: 'yellow' }}>Link</Navlink>
-          <Navlink css={{ color: 'yellow' }}>Link</Navlink>
-          <Button>Text</Button>
+          <Navlink target="_blank" >Get started</Navlink>
         </Card>
-
-        <Button>Text</Button>
         <Navlink css={{ color: 'yellow' }}>Link</Navlink>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>

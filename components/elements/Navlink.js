@@ -12,6 +12,7 @@ const styles = {
     color: #EA6F66;
     background: #e6e7ee;
     box-shadow: 2px 2px 5px #5c5c5f, -3px -3px 7px #ffffff;
+
 /*----------------hover---------------*/
    :hover {
     background-color:#EA6F66;
@@ -30,12 +31,10 @@ const styles = {
 
 `,
   tailwindcss: xw`
-    flex
     m-1.5
-    py-1 px-4
+    py-1.5 px-4
     border-transparent
-    text-xl font-medium leading-normal
-    items-center
+    text-lg font-medium leading-normal
     rounded-2xl
     focus[outline-none] 
   `
