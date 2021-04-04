@@ -10,10 +10,14 @@
     @apply text-xl;
   }
 
+  
+
   @font-face {
-    font-family: 'Bahnschrift';
+    font-family: 'bahnschrift-light';
     src: url(/fonts/Bahnschrift/BAHNSCHRIFT.TTF) format('truetype');
+    font-weight: lighter;
   }
+  
 }
 
 html,
