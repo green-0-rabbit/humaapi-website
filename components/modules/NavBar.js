@@ -6,8 +6,7 @@ import Navlink from 'components/elements/Navlink'
 const styles = {
   standard: css`
   /*-------------standard----------------*/
-    font-family:'Bahnschrift';
-    font-weight:lighter;
+    
     background: #e6e7ee;
 
     @media (min-width: 640px) { 

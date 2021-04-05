@@ -8,7 +8,7 @@ const styles = {
 
   /*-------------standard----------------*/
     font-family:'Bahnschrift';
-    font-weight:lighter;
+    font-weight:100;
     color: #EA6F66;
     background: #e6e7ee;
     box-shadow: 2px 2px 5px #5c5c5f, -3px -3px 7px #ffffff;
@@ -31,10 +31,10 @@ const styles = {
 
 `,
   tailwindcss: xw`
-    m-1.5
-    py-1.5 px-4
+    
+    py-1.5 px-4 m-1.5
     border-transparent
-    text-lg font-bold leading-normal
+    text-lg leading-normal
     rounded-2xl
     focus[outline-none] 
   `
