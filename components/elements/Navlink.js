@@ -34,7 +34,7 @@ const styles = {
     m-1.5
     py-1.5 px-4
     border-transparent
-    text-lg font-medium leading-normal
+    text-lg font-bold leading-normal
     rounded-2xl
     focus[outline-none] 
   `
