@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import styles from 'styles/Home.module.css'
-import Button from 'components/elements/Button'
 import Navlink from 'components/elements/Navlink'
 import Card from 'components/modules/Card'
 import NavBar from 'components/modules/NavBar'

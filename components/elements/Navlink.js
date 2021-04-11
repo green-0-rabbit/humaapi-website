@@ -1,9 +1,12 @@
 /* Example with @emotion/react */
 import xw from 'xwind'
 import { css, Global, keyframes } from '@emotion/react'
+import Img from 'react-optimized-image';
 
 
-const styles = {
+
+
+const styles = Object.values({
   standard: css`
 
   /*-------------standard----------------*/
@@ -31,21 +34,55 @@ const styles = {
 
 `,
   tailwindcss: xw`
-    
     py-1.5 px-4 m-1.5
     border-transparent
     text-lg leading-normal
     rounded-2xl
     focus[outline-none] 
   `
-}
+});
 
-export default function Navlink({ children, ...props }) {
+const stylesImg =Object.values( {
+  standard: css`
+  /*-------------standard----------------*/
+  font-family:'Bahnschrift';
+  background-color:none;
+  /*------------active-----------------*/
+  :active {
+    outline: none;
+  }
+`,
+  tailwindcss: xw`
+  focus[outline-none] 
+`
+
+
+});
+
+
+
+export default function Navlink({ children, imgName, ...props }) {
 
   return (
-    <a css={[styles.tailwindcss, styles.standard]} {...props}>
-      {children}
+      <>
+    <a css={imgName ? [...stylesImg] : [...styles]} {...props}>
+      {imgName ?(
+        <>
+        <Img
+          priority ="true"
+          src={require(`public/images/${imgName}`)}
+          sizes={[100,150]}
+          webp
+          breakpoints={[768, 769]}
+          alt={'humaapi logo'}  
+        />
+        </>
+        )
+        :<>{children}</>
+}
     </a>
+    </>
+
   )
 
 }
