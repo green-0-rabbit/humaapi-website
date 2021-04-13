@@ -22,6 +22,10 @@ export default function Home() {
         <Card>
           <Navlink target="_blank" >Get started</Navlink>
         </Card>
+        <Card>
+          <Navlink target="_blank" >Get started</Navlink>
+        </Card>
+
         <Navlink css={{ color: 'yellow' }}>Link</Navlink>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>

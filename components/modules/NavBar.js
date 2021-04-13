@@ -3,11 +3,12 @@ import xw from 'xwind'
 import { css } from '@emotion/react'
 import Navlink from 'components/elements/Navlink'
 import { useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 
 
 
-const styles = {
+const styles = Object.values({
   standard: css`
   /*-------------standard----------------*/
     background: #e6e7ee;
@@ -19,28 +20,39 @@ const styles = {
     mx-auto m-1.5
     py-2 px-2
   `
-};
+});
 
 const stylesLinkButton = Object.values({
   standard: css`
     color :black;
 `,
   tailwindcss: xw`
+  relative
   md:m-auto
+
 `
-
-
 });
 
 const stylesLinkGroup = Object.values({
   standard: css`
   color:black; 
-  transition: height 2s;
+  transition: height 1S cubic-bezier(0.4, 0, 0.2, 1);
 `,
   tailwindcss: xw`
   order-last flex flex-col md:flex-row
+  invisible overflow-hidden md:visible md:overflow-auto
   md:space-x-3
-  text-center  
+  text-center
+  h-0 md:h-auto
+`
+});
+const stylesLinkGroupVisible = Object.values({
+  standard: css`
+`,
+  tailwindcss: xw`
+  visible overflow-hidden
+  h-60
+  
 `
 });
 const stylesNav = Object.values({
@@ -59,6 +71,7 @@ const stylesBrandToggle = Object.values({
   flex text-center flex-row justify-between md:order-first
 `
 });
+
 
 const stylesBrand = Object.values({
   standard: css`
@@ -79,6 +92,7 @@ export default function NavBar({ children, ...props }) {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isHidden, setIsHidden] = useState('hidden');
+  const divRef = useRef(null);
 
 
   const handleClick = () => {
@@ -87,7 +101,7 @@ export default function NavBar({ children, ...props }) {
   };
 
   return (
-    <header css={[styles.tailwindcss, styles.standard]} {...props}>
+    <header css={[...styles]} {...props}>
       <nav css={[...stylesNav]}>
         <div css={[...stylesBrandToggle]}>
           <div css={[...stylesBrand]}>
@@ -97,15 +111,18 @@ export default function NavBar({ children, ...props }) {
             <button >{isOpen ? 'true' : 'false'}</button>
           </div>
         </div>
-        <div css={[...stylesLinkGroup]}>
+        <div ref={divRef} css={[...stylesLinkGroup, isOpen?[...stylesLinkGroupVisible]:css``]}>
+
           <Navlink target="_blank" href="#" css={[...stylesLinkButton]}>Company</Navlink>
           <Navlink target="_blank" css={[...stylesLinkButton]}>Pricing</Navlink>
           <Navlink target="_blank" css={[...stylesLinkButton]}>Projects</Navlink>
           <Navlink target="_blank" css={[...stylesLinkButton]}>Services</Navlink>
           <Navlink target="_blank" css={[xw`md:m-auto`]}>Contact us</Navlink>
+          
         </div>
       </nav>
     </header>
   )
 
 }
+

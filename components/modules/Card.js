@@ -33,7 +33,7 @@ export default function Card({ children,...props}) {
       <div css={[ xw`text-center sm:text-left`]}>
         <h2 css={[css`font-weight:bolder;`, xw`block text-2xl`]}> {frData.content.title}</h2>
         <h3 css={[css`font-weight:200;`, xw`block text-xl`]}> {frData.content.subtitle}</h3>
-        <br />
+        <br/>
         <p css={[css`font-weight:100;`, xw`block mb-7`]}>
           {frData.content.text}
         </p>

@@ -11,8 +11,6 @@ const styles = {
     color: #EA6F66;
     background: #e6e7ee;
     box-shadow: 2px 2px 5px #5c5c5f, -3px -3px 7px #ffffff;
-
-    
 /*----------------hover---------------*/
    :hover {
     background-color:#EA6F66;
