@@ -3,6 +3,7 @@ import styles from 'styles/Home.module.css'
 import Navlink from 'components/elements/Navlink'
 import Card from 'components/modules/Card'
 import NavBar from 'components/modules/NavBar'
+import Onglet from 'components/elements/Onglet'
 
 
 
@@ -25,6 +26,9 @@ export default function Home() {
         <Card>
           <Navlink target="_blank" >Get started</Navlink>
         </Card>
+
+        <Onglet imgName='ads.png'></Onglet>
+        <Onglet imgName='content.png'></Onglet>
 
         <Navlink css={{ color: 'yellow' }}>Link</Navlink>
         <h1 className={styles.title}>
