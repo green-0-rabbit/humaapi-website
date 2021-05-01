@@ -1,10 +1,9 @@
-import Head from 'next/head'
-import styles from 'styles/Home.module.css'
-import Navlink from 'components/elements/Navlink'
-import Card from 'components/modules/Card'
-import NavBar from 'components/modules/NavBar'
-
-
+import Head from 'next/head';
+import styles from 'styles/Home.module.css';
+import Navlink from 'components/elements/Navlink';
+import Card from 'components/modules/Card';
+import NavBar from 'components/modules/NavBar';
+import React from 'react';
 
 export default function Home() {
   return (
@@ -14,21 +13,21 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      
-        <NavBar>
-        </NavBar>
+      <NavBar />
 
       <main className={styles.main}>
         <Card>
-          <Navlink target="_blank" >Get started</Navlink>
+          <Navlink target="_blank">Get started</Navlink>
         </Card>
         <Card>
-          <Navlink target="_blank" >Get started</Navlink>
+          <Navlink target="_blank">Get started</Navlink>
         </Card>
 
         <Navlink css={{ color: 'yellow' }}>Link</Navlink>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to
+          {' '}
+          <a href="https://nextjs.org">Next.js!</a>
         </h1>
       </main>
 
@@ -38,10 +37,11 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by
+          {' '}
           <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
         </a>
       </footer>
     </div>
-  )
+  );
 }

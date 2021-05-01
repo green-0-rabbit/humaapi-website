@@ -1,7 +1,6 @@
 /* Example with @emotion/react */
-import xw from 'xwind'
-import { css } from '@emotion/react'
-
+import xw from 'xwind';
+import { css } from '@emotion/react';
 
 const styles = {
   standard: css`
@@ -37,13 +36,13 @@ const styles = {
     rounded-2xl
     focus[outline-none] 
   `
+};
+
+export default function Button({ children, ...props }) {
+  return (
+    // eslint-disable-next-line react/button-has-type
+    <button css={[styles.tailwindcss, styles.standard]} {...props}>
+      {children}
+    </button>
+  );
 }
-
-export default function Button({ children,...props}) {
-  return(
-  <button css={[styles.tailwindcss, styles.standard]} {...props}>
-    {children}
-  </button>
-  )
-
-} 

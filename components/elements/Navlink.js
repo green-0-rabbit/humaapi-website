@@ -1,14 +1,11 @@
 /* Example with @emotion/react */
-import xw from 'xwind'
-import { css, Global, keyframes } from '@emotion/react'
+import xw from 'xwind';
+import { css, Global, keyframes } from '@emotion/react';
+
 import Img from 'react-optimized-image';
-
-
-
 
 const styles = Object.values({
   standard: css`
-
   /*-------------standard----------------*/
     font-family:'Bahnschrift';
     font-weight:100;
@@ -42,7 +39,7 @@ const styles = Object.values({
   `
 });
 
-const stylesImg =Object.values( {
+const stylesImg = Object.values({
   standard: css`
   /*-------------standard----------------*/
   font-family:'Bahnschrift';
@@ -55,34 +52,27 @@ const stylesImg =Object.values( {
   tailwindcss: xw`
   focus[outline-none] 
 `
-
-
 });
 
-
-
 export default function Navlink({ children, imgName, ...props }) {
-
   return (
-      <>
-    <a css={imgName ? [...stylesImg] : [...styles]} {...props}>
-      {imgName ?(
-        <>
-        <Img
-          priority ="true"
-          src={require(`public/images/${imgName}`)}
-          sizes={[100,150]}
-          webp
-          breakpoints={[768, 769]}
-          alt={'humaapi logo'}  
-        />
-        </>
+    <>
+      <a css={imgName ? [...stylesImg] : [...styles]} {...props}>
+        {imgName ? (
+          <>
+            <Img
+              priority="true"
+              src={require(`public/images/${imgName}`)}
+              sizes={[100, 150]}
+              webp
+              breakpoints={[768, 769]}
+              alt="humaapi logo"
+            />
+          </>
         )
-        :<>{children}</>
-}
-    </a>
+          : <>{children}</>}
+      </a>
     </>
 
-  )
-
+  );
 }

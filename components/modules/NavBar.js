@@ -1,64 +1,65 @@
+import xw from 'xwind';
+import { css } from '@emotion/react';
+import Navlink from 'components/elements/Navlink';
 
-import xw from 'xwind'
-import { css } from '@emotion/react'
-import Navlink from 'components/elements/Navlink'
-import { useState } from 'react';
-import React, { useRef, useEffect } from 'react';
-
-
-
+import React, { useState, useRef, useEffect } from 'react';
 
 const styles = Object.values({
   standard: css`
   /*-------------standard----------------*/
-    background: #e6e7ee;
-    @media (min-width: 640px) { 
-}
- 
+    background: #e6e7ee; 
 `,
   tailwindcss: xw`
     mx-auto m-1.5
     py-2 px-2
+  
   `
 });
-
 const stylesLinkButton = Object.values({
   standard: css`
     color :black;
 `,
   tailwindcss: xw`
   relative
-  md:m-auto
-
+  md:m-auto 
 `
 });
-
 const stylesLinkGroup = Object.values({
   standard: css`
-  color:black; 
-  transition: height 1S cubic-bezier(0.4, 0, 0.2, 1);
+  color:black;
 `,
   tailwindcss: xw`
-  order-last flex flex-col md:flex-row
-  invisible overflow-hidden md:visible md:overflow-auto
-  md:space-x-3
+  flex flex-col md:flex-row
+  md:space-x-3 
   text-center
-  h-0 md:h-auto
 `
 });
-const stylesLinkGroupVisible = Object.values({
+const stylesCollapseDefault = Object.values({
+  standard: css`
+  color:black; 
+ 
+`,
+  tailwindcss: xw`
+  invisible overflow-hidden md:visible md:overflow-auto
+  md:space-x-3 md:px-2
+  text-center
+  md:h-auto
+  py-1.5
+`
+});
+const stylesCollapse = Object.values({
   standard: css`
 `,
   tailwindcss: xw`
   visible overflow-hidden
-  h-60
-  
+  h-60 
 `
 });
 const stylesNav = Object.values({
   standard: css`
 `,
   tailwindcss: xw`
+  md:items-center
   flex flex-col md:flex-row justify-between
    space-y-5 md:space-y-0  
 `
@@ -71,7 +72,6 @@ const stylesBrandToggle = Object.values({
   flex text-center flex-row justify-between md:order-first
 `
 });
-
 
 const stylesBrand = Object.values({
   standard: css`
@@ -89,15 +89,17 @@ const stylesToggle = Object.values({
 });
 
 export default function NavBar({ children, ...props }) {
-
   const [isOpen, setIsOpen] = useState(false);
-  const [isHidden, setIsHidden] = useState('hidden');
-  const divRef = useRef(null);
+  const collapsedRef = useRef(null);
 
+  useEffect(() => {
+    if (collapsedRef.current) {
+      console.log(collapsedRef.current.offsetHeight);
+    }
+  }, [collapsedRef]);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
-    setIsHidden(isOpen ? 'visible' : 'hidden');
   };
 
   return (
@@ -105,24 +107,22 @@ export default function NavBar({ children, ...props }) {
       <nav css={[...stylesNav]}>
         <div css={[...stylesBrandToggle]}>
           <div css={[...stylesBrand]}>
-            <Navlink target="_blank" href="#" imgName='headerLogo.png' />
+            <Navlink target="_blank" href="#" imgName="headerLogo.png" />
           </div>
-          <div css={[...stylesToggle]} onClick={() => handleClick()} >
-            <button >{isOpen ? 'true' : 'false'}</button>
+          <div css={[...stylesToggle]} onClick={() => handleClick()}>
+            <button>{isOpen ? 'true' : 'false'}</button>
           </div>
         </div>
-        <div ref={divRef} css={[...stylesLinkGroup, isOpen?[...stylesLinkGroupVisible]:css``]}>
-
-          <Navlink target="_blank" href="#" css={[...stylesLinkButton]}>Company</Navlink>
-          <Navlink target="_blank" css={[...stylesLinkButton]}>Pricing</Navlink>
-          <Navlink target="_blank" css={[...stylesLinkButton]}>Projects</Navlink>
-          <Navlink target="_blank" css={[...stylesLinkButton]}>Services</Navlink>
-          <Navlink target="_blank" css={[xw`md:m-auto`]}>Contact us</Navlink>
-          
+        <div css={[[...stylesCollapseDefault], isOpen ? [...stylesCollapse] : css``]}>
+          <div ref={collapsedRef} css={[...stylesLinkGroup]}>
+            <Navlink target="_blank" href="#" css={[...stylesLinkButton]}>Company</Navlink>
+            <Navlink target="_blank" css={[...stylesLinkButton]}>Pricing</Navlink>
+            <Navlink target="_blank" css={[...stylesLinkButton]}>Projects</Navlink>
+            <Navlink target="_blank" css={[...stylesLinkButton]}>Services</Navlink>
+            <Navlink target="_blank" css={[xw`md:m-auto`]}>Contact us</Navlink>
+          </div>
         </div>
       </nav>
     </header>
-  )
-
+  );
 }
-

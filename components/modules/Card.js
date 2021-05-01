@@ -1,9 +1,10 @@
 /* Example with @emotion/react */
-import xw from 'xwind'
-import {css} from '@emotion/react'
-import data from 'static_data/Home/home-card.data.json'
+import xw from 'xwind';
+import { css } from '@emotion/react';
+// eslint-disable-next-line import/no-unresolved
+import data from 'static_data/Home/home-card.data.json';
 
-const frData = data.find(row =>row.language ==="en");
+const frData = data.find((row) => row.language === 'en');
 const styles = {
   standard: css`
   /*-------------standard----------------*/
@@ -25,23 +26,24 @@ const styles = {
   `
 };
 
-export default function Card({ children,...props}) {
-
-  return(
+export default function Card({ children, ...props }) {
+  return (
     <div css={[styles.tailwindcss, styles.standard]} {...props}>
-
-      <div css={[ xw`text-center sm:text-left`]}>
-        <h2 css={[css`font-weight:bolder;`, xw`block text-2xl`]}> {frData.content.title}</h2>
-        <h3 css={[css`font-weight:200;`, xw`block text-xl`]}> {frData.content.subtitle}</h3>
-        <br/>
+      <div css={[xw`text-center sm:text-left`]}>
+        <h2 css={[css`font-weight:bolder;`, xw`block text-2xl`]}>
+          {frData.content.title}
+        </h2>
+        <h3 css={[css`font-weight:200;`, xw`block text-xl`]}>
+          {frData.content.subtitle}
+        </h3>
+        <br />
         <p css={[css`font-weight:100;`, xw`block mb-7`]}>
           {frData.content.text}
         </p>
       </div>
-      <div css={[ xw`text-center`]}> 
-      {children}
+      <div css={[xw`text-center`]}>
+        {children}
       </div>
     </div>
-  )
-
-} 
+  );
+}
