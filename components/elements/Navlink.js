@@ -1,6 +1,6 @@
 /* Example with @emotion/react */
 import xw from 'xwind';
-import { css, Global, keyframes } from '@emotion/react';
+import { css } from '@emotion/react';
 
 import Img from 'react-optimized-image';
 
@@ -35,7 +35,6 @@ const styles = Object.values({
     border-transparent
     text-lg leading-normal
     rounded-2xl
-    focus[outline-none] 
   `
 });
 
