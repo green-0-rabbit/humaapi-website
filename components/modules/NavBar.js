@@ -46,14 +46,13 @@ const stylesLinkGroup = Object.values({
 `,
   tailwindcss: xw`
   flex flex-col md:flex-row
-  md:space-x-3 
+  md:space-x-3
   text-center
 `
 });
 const stylesCollapseDefault = Object.values({
   standard: css`
   color:black; 
-  transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 `,
   tailwindcss: xw`
   invisible overflow-hidden md:visible md:overflow-auto
@@ -61,7 +60,6 @@ const stylesCollapseDefault = Object.values({
   h-0 md:h-full
   text-center
   py-1.5
-  my-auto
 `
 });
 const stylesCollapsed = Object.values({
@@ -153,7 +151,7 @@ export default function NavBar({ children, ...props }) {
           </div>
         </div>
         <div css={[[...stylesCollapseDefault],
-          isOpen && isSmall ? [...stylesCollapsed, css`height:${collapsedHeight}px;`] : css``]}
+          isOpen && isSmall ? [...stylesCollapsed, css`height:${collapsedHeight}px;transition: height 0.3s cubic-bezier(0.2, 0, 0.1, 1);`] : css``]}
         >
           <div ref={collapsedRef} css={[...stylesLinkGroup]}>
             <Navlink target="_blank" href="#" css={[...stylesLinkButton]}>Company</Navlink>

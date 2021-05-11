@@ -1,7 +1,11 @@
 import Head from 'next/head';
+// eslint-disable-next-line import/no-unresolved
 import styles from 'styles/Home.module.css';
+// eslint-disable-next-line import/no-unresolved
 import Navlink from 'components/elements/Navlink';
+// eslint-disable-next-line import/no-unresolved
 import Card from 'components/modules/Card';
+// eslint-disable-next-line import/no-unresolved
 import NavBar from 'components/modules/NavBar';
 
 export default function Home() {
@@ -21,9 +25,6 @@ export default function Home() {
         <Card>
           <Navlink target="_blank">Get started</Navlink>
         </Card>
-
-        <Onglet imgName='ads.png'></Onglet>
-        <Onglet imgName='content.png'></Onglet>
 
         <Navlink css={{ color: 'yellow' }}>Link</Navlink>
         <h1 className={styles.title}>
