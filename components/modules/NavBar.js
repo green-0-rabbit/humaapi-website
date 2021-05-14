@@ -3,9 +3,11 @@ import { css } from '@emotion/react';
 // eslint-disable-next-line import/no-unresolved
 import Navlink from 'components/elements/Navlink';
 import useResizeObserver from '@react-hook/resize-observer';
+import { Img } from 'react-optimized-image';
 
 // eslint-disable-next-line object-curly-newline
 import React, { useState, useRef, useEffect } from 'react';
+// eslint-disable-next-line import/no-unresolved
 
 const useSize = (target) => {
   const [size, setSize] = useState();
@@ -147,7 +149,9 @@ export default function NavBar({ children, ...props }) {
             tabIndex="-1"
             aria-expanded={isOpen}
           >
-            <button type="button">{isOpen ? 'true' : 'false'}</button>
+            <button type="button">
+              <Img src={require('public/images/home/stacked-bar.svg')} />
+            </button>
           </div>
         </div>
         <div css={[[...stylesCollapseDefault],
