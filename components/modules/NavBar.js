@@ -1,5 +1,5 @@
-import xw from 'xwind';
-import { css } from '@emotion/react';
+/* eslint-disable import/no-unresolved */
+import tw, { css } from 'twin.macro';
 // eslint-disable-next-line import/no-unresolved
 import Navlink from 'components/elements/Navlink';
 import useResizeObserver from '@react-hook/resize-observer';
@@ -27,7 +27,7 @@ const styles = Object.values({
   /*-------------standard----------------*/
     background: #e6e7ee; 
 `,
-  tailwindcss: xw`
+  tailwindcss: tw`
     mx-auto m-1.5
     py-2 px-2
   
@@ -37,7 +37,7 @@ const stylesLinkButton = Object.values({
   standard: css`
     color :black;
 `,
-  tailwindcss: xw`
+  tailwindcss: tw`
   relative
   md:m-auto 
 `
@@ -46,7 +46,7 @@ const stylesLinkGroup = Object.values({
   standard: css`
   color:black;
 `,
-  tailwindcss: xw`
+  tailwindcss: tw`
   flex flex-col md:flex-row
   md:space-x-3
   text-center
@@ -56,7 +56,7 @@ const stylesCollapseDefault = Object.values({
   standard: css`
   color:black; 
 `,
-  tailwindcss: xw`
+  tailwindcss: tw`
   invisible overflow-hidden md:visible md:overflow-auto
   md:space-x-3 md:px-2
   h-0 md:h-full
@@ -67,37 +67,37 @@ const stylesCollapseDefault = Object.values({
 const stylesCollapsed = Object.values({
   standard: css`
 `,
-  tailwindcss: xw`
+  tailwindcss: tw`
   visible overflow-hidden
 `
 });
 const stylesNav = Object.values({
   standard: css`
 `,
-  tailwindcss: xw`
-  md:items-center
-  flex flex-col md:flex-row justify-between
+  tailwindcss: tw`
+  md:(items-center flex-row)
+  flex flex-col  justify-between
    space-y-5 md:space-y-0  
 `
 });
 const stylesBrandToggle = Object.values({
   standard: css`
 `,
-  tailwindcss: xw`
+  tailwindcss: tw`
   flex text-center flex-row justify-between md:order-first
 `
 });
 const stylesBrand = Object.values({
   standard: css`
 `,
-  tailwindcss: xw`
+  tailwindcss: tw`
   order-first md:m-auto
 `
 });
 const stylesToggle = Object.values({
   standard: css`
 `,
-  tailwindcss: xw`
+  tailwindcss: tw`
   order-last my-auto md:hidden
 `
 });
@@ -149,8 +149,8 @@ export default function NavBar({ children, ...props }) {
             tabIndex="-1"
             aria-expanded={isOpen}
           >
-            <button type="button" css = {[css`background: #e6e7ee;box-shadow: 2px 2px 5px #5c5c5f, -3px -3px 7px #ffffff;  :active {box-shadow: inset -3px -3px 7px #ffffffb0, inset 3px 3px 5px rgba(94, 104, 121, 0.692);outline: none;}`, xw`p-2.5`]}>
-              <Svg src={require('public/images/home/Groupe 22.svg?width=10&height=10')} />
+            <button type="button" css={[css`background: #e6e7ee;box-shadow: 2px 2px 5px #5c5c5f, -3px -3px 7px #ffffff;  :active {box-shadow: inset -3px -3px 7px #ffffffb0, inset 3px 3px 5px rgba(94, 104, 121, 0.692);outline: none;}`, tw`p-2.5`]}>
+              <Svg src={require('public/images/home/Groupe 22.svg')} />
             </button>
           </div>
         </div>
@@ -162,7 +162,7 @@ export default function NavBar({ children, ...props }) {
             <Navlink target="_blank" href="#" css={[...stylesLinkButton]}>Pricing</Navlink>
             <Navlink target="_blank" href="#" css={[...stylesLinkButton]}>Projects</Navlink>
             <Navlink target="_blank" href="#" css={[...stylesLinkButton]}>Services</Navlink>
-            <Navlink target="_blank" href="#" css={[xw`md:m-auto`]}>Contact us</Navlink>
+            <Navlink target="_blank" href="#" css={[tw`md:m-auto`]}>Contact us</Navlink>
           </div>
         </div>
       </nav>

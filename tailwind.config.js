@@ -8,8 +8,6 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require("xwind/plugins/base")],
-  xwind: {
-    mode: "objectstyles",
-  },
+  plugins: [],
+
 }

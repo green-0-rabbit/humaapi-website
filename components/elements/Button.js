@@ -1,6 +1,5 @@
 /* Example with @emotion/react */
-import xw from 'xwind';
-import { css } from '@emotion/react';
+import tw, { css } from 'twin.macro';
 
 const styles = {
   standard: css`
@@ -27,14 +26,15 @@ const styles = {
 }
 
 `,
-  tailwindcss: xw`
-    m-1.5
+  tailwindcss: tw`
+    
     py-1 px-4
     border-transparent
     text-xl font-light leading-normal
     items-center
     rounded-2xl
-    focus[outline-none] 
+    focus[outline-none]
+  
   `
 };
 

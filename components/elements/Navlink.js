@@ -1,6 +1,5 @@
 /* Example with @emotion/react */
-import xw from 'xwind';
-import { css } from '@emotion/react';
+import tw, { css } from 'twin.macro';
 
 import Img from 'react-optimized-image';
 
@@ -30,7 +29,7 @@ const styles = Object.values({
 }
 
 `,
-  tailwindcss: xw`
+  tailwindcss: tw`
     py-1.5 px-4 m-1.5
     border-transparent
     text-lg leading-normal
@@ -48,7 +47,7 @@ const stylesImg = Object.values({
     outline: none;
   }
 `,
-  tailwindcss: xw`
+  tailwindcss: tw`
   focus[outline-none] 
 `
 });

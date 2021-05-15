@@ -10,5 +10,5 @@
       }
     ]
   ],
-    "plugins": ["react-optimized-image/plugin","@emotion/babel-plugin","xwind/babel"]
+    "plugins": ["react-optimized-image/plugin","@emotion/babel-plugin", "babel-plugin-macros"]
   }
