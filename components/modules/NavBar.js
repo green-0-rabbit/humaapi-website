@@ -3,10 +3,10 @@ import { css } from '@emotion/react';
 // eslint-disable-next-line import/no-unresolved
 import Navlink from 'components/elements/Navlink';
 import useResizeObserver from '@react-hook/resize-observer';
-import { Img } from 'react-optimized-image';
+import { Svg } from 'react-optimized-image';
 
 // eslint-disable-next-line object-curly-newline
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 // eslint-disable-next-line import/no-unresolved
 
 const useSize = (target) => {
@@ -149,8 +149,8 @@ export default function NavBar({ children, ...props }) {
             tabIndex="-1"
             aria-expanded={isOpen}
           >
-            <button type="button">
-              <Img src={require('public/images/home/stacked-bar.svg')} />
+            <button type="button" css = {[css`background: #e6e7ee;box-shadow: 2px 2px 5px #5c5c5f, -3px -3px 7px #ffffff;  :active {box-shadow: inset -3px -3px 7px #ffffffb0, inset 3px 3px 5px rgba(94, 104, 121, 0.692);outline: none;}`, xw`p-2.5`]}>
+              <Svg src={require('public/images/home/Groupe 22.svg?width=10&height=10')} />
             </button>
           </div>
         </div>
