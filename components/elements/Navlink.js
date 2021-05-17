@@ -34,6 +34,7 @@ const styles = Object.values({
     border-transparent
     text-lg leading-normal
     rounded-2xl
+    focus:(ring-2 ring-red-400 outline-none)
   `
 });
 

@@ -2,6 +2,8 @@
 import tw, { css } from 'twin.macro';
 // eslint-disable-next-line import/no-unresolved
 import data from 'static_data/Home/home-card.data.json';
+// eslint-disable-next-line import/no-unresolved
+import NeuBlocOut from 'components/elements/NeuBlocOut';
 
 const frData = data.find((row) => row.language === 'en');
 const styles = {
@@ -27,7 +29,7 @@ const styles = {
 
 export default function Card({ children, ...props }) {
   return (
-    <div css={[styles.tailwindcss, styles.standard]} {...props}>
+    <NeuBlocOut css={[tw`py-10 px-5`]} {...props}>
       <div css={[tw`text-center sm:text-left`]}>
         <h2 css={[css`font-weight:bolder;`, tw`block text-2xl`]}>
           {frData.content.title}
@@ -43,6 +45,6 @@ export default function Card({ children, ...props }) {
       <div css={[tw`text-center`]}>
         {children}
       </div>
-    </div>
+    </NeuBlocOut>
   );
 }

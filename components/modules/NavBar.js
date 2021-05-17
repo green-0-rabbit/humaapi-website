@@ -1,9 +1,9 @@
 /* eslint-disable import/no-unresolved */
 import tw, { css } from 'twin.macro';
-// eslint-disable-next-line import/no-unresolved
 import Navlink from 'components/elements/Navlink';
 import useResizeObserver from '@react-hook/resize-observer';
 import { Svg } from 'react-optimized-image';
+import NavMenuToggler from 'components/elements/Button';
 
 // eslint-disable-next-line object-curly-newline
 import { useState, useRef, useEffect } from 'react';
@@ -22,17 +22,6 @@ const useSize = (target) => {
   useResizeObserver(target, (entry) => setSize(entry.contentRect));
   return size;
 };
-const styles = Object.values({
-  standard: css`
-  /*-------------standard----------------*/
-    background: #e6e7ee; 
-`,
-  tailwindcss: tw`
-    mx-auto m-1.5
-    py-2 px-2
-  
-  `
-});
 const stylesLinkButton = Object.values({
   standard: css`
     color :black;
@@ -92,13 +81,7 @@ const stylesBrand = Object.values({
 `,
   tailwindcss: tw`
   order-first md:m-auto
-`
-});
-const stylesToggle = Object.values({
-  standard: css`
-`,
-  tailwindcss: tw`
-  order-last my-auto md:hidden
+  focus:(ring-2 ring-red-400 outline-none)
 `
 });
 
@@ -131,7 +114,7 @@ export default function NavBar({ children, ...props }) {
   };
 
   return (
-    <header css={[...styles]} {...props}>
+    <header css={[tw`mx-auto m-1.5 py-2 px-2`]} {...props}>
       <nav css={[...stylesNav]}>
         <div ref={divBrandRef} css={[...stylesBrandToggle]}>
           <div
@@ -139,19 +122,19 @@ export default function NavBar({ children, ...props }) {
             tabIndex={0}
             role="button"
           >
-            <Navlink target="_blank" href="#" imgName="headerLogo.png" />
+            <Navlink tabIndex="-1" target="_blank" href="#" imgName="headerLogo.png" />
           </div>
           <div
-            css={[...stylesToggle]}
+            css={tw`order-last my-auto md:hidden`}
             onClick={() => handleClick()}
             onKeyDown={() => handleKeyDown()}
             role="button"
             tabIndex="-1"
             aria-expanded={isOpen}
           >
-            <button type="button" css={[css`background: #e6e7ee;box-shadow: 2px 2px 5px #5c5c5f, -3px -3px 7px #ffffff;  :active {box-shadow: inset -3px -3px 7px #ffffffb0, inset 3px 3px 5px rgba(94, 104, 121, 0.692);outline: none;}`, tw`p-2.5`]}>
+            <NavMenuToggler css={[tw`p-3 rounded-md hover:bg-transparent focus:(ring-2 ring-red-400 outline-none)`]}>
               <Svg src={require('public/images/home/Groupe 22.svg')} />
-            </button>
+            </NavMenuToggler>
           </div>
         </div>
         <div css={[[...stylesCollapseDefault],

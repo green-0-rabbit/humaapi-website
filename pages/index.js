@@ -7,6 +7,8 @@ import Navlink from 'components/elements/Navlink';
 import Card from 'components/modules/Card';
 // eslint-disable-next-line import/no-unresolved
 import NavBar from 'components/modules/NavBar';
+// eslint-disable-next-line import/no-unresolved
+import NeuBlocOut from 'components/elements/NeuBlocOut';
 
 export default function Home() {
   return (
@@ -25,6 +27,9 @@ export default function Home() {
         <Card>
           <Navlink target="_blank">Get started</Navlink>
         </Card>
+        <NeuBlocOut>
+          Hello
+        </NeuBlocOut>
 
         <Navlink css={{ color: 'yellow' }}>Link</Navlink>
         <h1 className={styles.title}>

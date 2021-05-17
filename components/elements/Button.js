@@ -27,21 +27,19 @@ const styles = {
 
 `,
   tailwindcss: tw`
-    
     py-1 px-4
     border-transparent
     text-xl font-light leading-normal
     items-center
     rounded-2xl
-    focus[outline-none]
-  
+    focus:ring-2 focus:ring-blue-600
   `
 };
 
 export default function Button({ children, ...props }) {
   return (
-    // eslint-disable-next-line react/button-has-type
-    <button css={[styles.tailwindcss, styles.standard]} {...props}>
+
+    <button type="button" css={[styles.tailwindcss, styles.standard]} {...props}>
       {children}
     </button>
   );
