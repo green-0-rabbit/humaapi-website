@@ -1,14 +1,14 @@
+/* eslint-disable import/no-unresolved */
 import Head from 'next/head';
-// eslint-disable-next-line import/no-unresolved
-import styles from 'styles/Home.module.css';
-// eslint-disable-next-line import/no-unresolved
-import Navlink from 'components/elements/Navlink';
-// eslint-disable-next-line import/no-unresolved
-import Card from 'components/modules/Card';
-// eslint-disable-next-line import/no-unresolved
-import NavBar from 'components/modules/NavBar';
-// eslint-disable-next-line import/no-unresolved
-import NeuBlocOut from 'components/elements/NeuBlocOut';
+import styles from '@styles/Home.module.css';
+import Navlink from '@elements/Navlink';
+import Card from '@modules/Card';
+import NavBar from '@modules/NavBar';
+import FigureCard from '@modules/FigureCard';
+import BlocOutset from '@elements/BlocOutset';
+import BlocInset from '@elements/BlocInset';
+import BlocRidge from '@elements/BlocRidge';
+import Hublot from '@modules/Hublot';
 
 export default function Home() {
   return (
@@ -27,10 +27,21 @@ export default function Home() {
         <Card>
           <Navlink target="_blank">Get started</Navlink>
         </Card>
-        <NeuBlocOut>
+        <BlocOutset>
           Hello
-        </NeuBlocOut>
-
+        </BlocOutset>
+        <BlocRidge>
+          Hello
+        </BlocRidge>
+        <Hublot imgRelPath="ellipse/support.png" />
+        <FigureCard
+          number="99%"
+          text="Satisfaction Rate"
+          color="purple"
+        />
+        <BlocInset>
+          Test
+        </BlocInset>
         <Navlink css={{ color: 'yellow' }}>Link</Navlink>
         <h1 className={styles.title}>
           Welcome to

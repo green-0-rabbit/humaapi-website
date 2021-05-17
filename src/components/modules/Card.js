@@ -1,35 +1,15 @@
 /* Example with @emotion/react */
 import tw, { css } from 'twin.macro';
 // eslint-disable-next-line import/no-unresolved
-import data from 'static_data/Home/home-card.data.json';
+import data from 'public/json/Home/home-card.data.json';
 // eslint-disable-next-line import/no-unresolved
-import NeuBlocOut from 'components/elements/NeuBlocOut';
+import BlocOutset from '@components/elements/BlocOutset';
 
 const frData = data.find((row) => row.language === 'en');
-const styles = {
-  standard: css`
-  /*-------------standard----------------*/
-    font-family:'Bahnschrift';
-    font-weight:lighter;
-    background: #e6e7ee;
-
-    @media (min-width: 640px) { 
-      box-shadow: 2px 2px 5px #5c5c5f, -3px -3px 7px #ffffff;
-}
- 
-`,
-  tailwindcss: tw`
-    block 
-    mx-auto m-1.5 max-w-xs
-    py-10 px-5
-    border-transparent rounded-2xl
-    focus[outline-none] 
-  `
-};
 
 export default function Card({ children, ...props }) {
   return (
-    <NeuBlocOut css={[tw`py-10 px-5`]} {...props}>
+    <BlocOutset css={[tw`py-10 px-5`]} {...props}>
       <div css={[tw`text-center sm:text-left`]}>
         <h2 css={[css`font-weight:bolder;`, tw`block text-2xl`]}>
           {frData.content.title}
@@ -45,6 +25,6 @@ export default function Card({ children, ...props }) {
       <div css={[tw`text-center`]}>
         {children}
       </div>
-    </NeuBlocOut>
+    </BlocOutset>
   );
 }

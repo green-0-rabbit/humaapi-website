@@ -6,9 +6,7 @@ const styles = Object.values({
   /*-------------standard----------------*/
     font-family:'Bahnschrift';
     background: #e6e7ee;
-    box-shadow: 2px 2px 5px #5c5c5f, -3px -3px 7px #ffffff;
-
-
+    box-shadow: inset -1px -1px 2px #ffffff, inset 1px 1px 3px #5c5c5f;
 `,
   tailwindcss: tw`
     p-4 m-1.5
@@ -20,7 +18,7 @@ const styles = Object.values({
   `
 });
 
-export default function NeuBlocOut({ children, ...props }) {
+export default function BlocInset({ children, ...props }) {
   return (
     <div css={[...styles]} {...props}>
       {children}

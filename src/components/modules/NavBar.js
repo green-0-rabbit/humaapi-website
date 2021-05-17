@@ -1,9 +1,9 @@
 /* eslint-disable import/no-unresolved */
 import tw, { css } from 'twin.macro';
-import Navlink from 'components/elements/Navlink';
+import Navlink from 'src/components/elements/Navlink';
 import useResizeObserver from '@react-hook/resize-observer';
 import { Svg } from 'react-optimized-image';
-import NavMenuToggler from 'components/elements/Button';
+import NavMenuToggler from 'src/components/elements/Button';
 
 // eslint-disable-next-line object-curly-newline
 import { useState, useRef, useEffect } from 'react';
