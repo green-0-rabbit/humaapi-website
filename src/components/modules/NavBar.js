@@ -4,8 +4,6 @@ import Navlink from '@elements/Navlink';
 import { Svg } from 'react-optimized-image';
 import NavMenuToggler from '@elements/Button';
 import useWindowDimensions from '@hooks/useWindowDimensions';
-
-// eslint-disable-next-line object-curly-newline
 import { useState, useRef, useEffect } from 'react';
 // eslint-disable-next-line import/no-unresolved
 
