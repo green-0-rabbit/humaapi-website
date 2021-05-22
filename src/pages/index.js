@@ -35,9 +35,31 @@ export default function Home() {
         </BlocRidge>
         <Hublot imgRelPath="ellipse/support.png" />
         <FigureCard
-          number="99%"
+          number="122"
           text="Satisfaction Rate"
           color="purple"
+          symbol="%"
+        />
+        <FigureCard
+          number="122"
+          text="Projects"
+        />
+        <FigureCard
+          number="12"
+          text="Marketing Strategies Deployed"
+          color="purple"
+        />
+        <FigureCard
+          number="50"
+          text="Customers"
+          color="saumon"
+          symbol="+"
+        />
+        <FigureCard
+          number="40"
+          text="Followers"
+          color="saumon"
+          symbol="K"
         />
         <BlocInset>
           Test
