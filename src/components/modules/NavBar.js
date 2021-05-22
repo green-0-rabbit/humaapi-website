@@ -1,27 +1,14 @@
 /* eslint-disable import/no-unresolved */
 import tw, { css } from 'twin.macro';
-import Navlink from 'src/components/elements/Navlink';
-import useResizeObserver from '@react-hook/resize-observer';
+import Navlink from '@elements/Navlink';
 import { Svg } from 'react-optimized-image';
-import NavMenuToggler from 'src/components/elements/Button';
+import NavMenuToggler from '@elements/Button';
+import useWindowDimensions from '@hooks/useWindowDimensions';
 
 // eslint-disable-next-line object-curly-newline
 import { useState, useRef, useEffect } from 'react';
 // eslint-disable-next-line import/no-unresolved
 
-const useSize = (target) => {
-  const [size, setSize] = useState();
-
-  useEffect(() => {
-    if (target) {
-      setSize(target.current.getBoundingClientRect());
-    }
-  }, [target]);
-
-  // Where the magic happens
-  useResizeObserver(target, (entry) => setSize(entry.contentRect));
-  return size;
-};
 const stylesLinkButton = Object.values({
   standard: css`
     color :black;
@@ -86,25 +73,23 @@ const stylesBrand = Object.values({
 });
 
 export default function NavBar({ children, ...props }) {
+  const { width } = useWindowDimensions();
   const [isOpen, setIsOpen] = useState(false);
   const [collapsedHeight, setCollapsedHeight] = useState(0);
   const [isSmall, setIsSmall] = useState(false);
   const collapsedRef = useRef(null);
-  const divBrandRef = useRef(null);
-  const headerWidth = useSize(divBrandRef);
 
   useEffect(() => {
-    if (divBrandRef.current.offsetWidth) {
+    if (width) {
       setCollapsedHeight(collapsedRef.current.offsetHeight + 28);
-      const screenMedium = divBrandRef.current.offsetWidth + 12;
-      if (screenMedium < 768) {
-        setIsSmall(screenMedium);
+      if (width < 768) {
+        setIsSmall(width);
       } else {
         setIsOpen(false);
       }
       // console.log(isSmall);
     }
-  }, [headerWidth]);
+  }, [width]);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -116,7 +101,7 @@ export default function NavBar({ children, ...props }) {
   return (
     <header css={[tw`mx-auto m-1.5 py-2 px-2`]} {...props}>
       <nav css={[...stylesNav]}>
-        <div ref={divBrandRef} css={[...stylesBrandToggle]}>
+        <div css={[...stylesBrandToggle]}>
           <div
             css={[...stylesBrand]}
             tabIndex={0}
@@ -149,6 +134,7 @@ export default function NavBar({ children, ...props }) {
           </div>
         </div>
       </nav>
+
     </header>
   );
 }

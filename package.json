@@ -12,6 +12,7 @@
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
     "@react-hook/resize-observer": "^1.2.0",
+    "animated-number-react": "^0.1.2",
     "next": "10.0.9",
     "next-compose-plugins": "^2.2.1",
     "next-optimized-images": "^3.0.0-canary.10",

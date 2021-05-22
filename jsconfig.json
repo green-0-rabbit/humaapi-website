@@ -6,7 +6,8 @@
       "@styles/*": ["src/styles/*"],
       "@elements/*":["src/components/elements/*"],
       "@modules/*":["src/components/modules/*"],
-      "@sections/*":["src/components/sections/*"]
+      "@sections/*":["src/components/sections/*"],
+      "@hooks/*":["src/hooks//*"]
 
     }
   },
