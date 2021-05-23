@@ -35,19 +35,23 @@ export default function Home() {
         </BlocRidge>
         <Hublot imgRelPath="ellipse/support.png" />
         <FigureCard
-          number="122"
+          number="99.9"
           text="Satisfaction Rate"
           color="purple"
           symbol="%"
+          rounded="10"
+          propEasing="steps(1000)"
         />
         <FigureCard
           number="122"
           text="Projects"
+          propEasing="steps(1000)"
         />
         <FigureCard
           number="12"
           text="Marketing Strategies Deployed"
           color="purple"
+          propEasing="steps(1000)"
         />
         <FigureCard
           number="50"
@@ -60,6 +64,8 @@ export default function Home() {
           text="Followers"
           color="saumon"
           symbol="K"
+          rounded="10"
+          propEasing="steps(1000)"
         />
         <BlocInset>
           Test
