@@ -19,7 +19,7 @@ export default function Card({
           src={require('public/images/home/CardLine.svg')}
           height="150"
           stroke="#EA6F66"
-          css={[tw` absolute max-h-48`, css`bottom:27%;right:-1px;`]}
+          css={[tw`absolute max-h-48 bottom-24 -right-0`]}
         />
       </div>
       <BlocOutset css={[tw`px-10 py-6 rounded-3xl`, css`min-width:500px;`, current ? css`` : css`background-color:#EA6F66; color:white;`]} {...props}>
