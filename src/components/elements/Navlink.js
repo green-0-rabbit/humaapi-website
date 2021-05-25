@@ -31,7 +31,7 @@ const styles = Object.values({
   tailwindcss: tw`
     py-1.5 px-4 m-1.5
     border-transparent
-    font-normal
+    font-light
     text-lg leading-normal
     rounded-2xl
     focus:(ring-2 ring-red-400 outline-none)

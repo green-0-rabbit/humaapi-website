@@ -11,10 +11,10 @@ export default function Card({ children, ...props }) {
   return (
     <BlocOutset css={[tw`py-10 px-5`]} {...props}>
       <div css={[tw`text-center sm:text-left`]}>
-        <h2 css={[css`font-weight:bolder;`, tw`block text-2xl`]}>
+        <h2 css={[tw`block font-normal text-2xl`]}>
           {frData.content.title}
         </h2>
-        <h3 css={[css`font-weight:200;`, tw`block text-xl`]}>
+        <h3 css={[tw`block font-light text-xl`]}>
           {frData.content.subtitle}
         </h3>
         <br />

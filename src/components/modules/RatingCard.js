@@ -13,7 +13,7 @@ export default function Card({
 }) {
   const listItems = [1, 2, 3, 4, 5].map((index) => <Svg src={require('public/images/home/Star.svg')} key={index} height="30" css={tw`pl-0.5`} fill={index <= parseInt(ratingStars, 10) ? '#f0bd19' : '#DAD9D9'} />);
   return (
-    <div css={tw`inline-flex relative`}>
+    <div css={tw`inline-flex relative`} {...props}>
       <div css={tw`m-auto`}>
         <Svg
           src={require('public/images/home/CardLine.svg')}
@@ -22,7 +22,7 @@ export default function Card({
           css={[tw`absolute max-h-48 bottom-24 -right-0`]}
         />
       </div>
-      <BlocOutset css={[tw`px-10 py-6 rounded-3xl`, css`min-width:500px;`, current ? css`` : css`background-color:#EA6F66; color:white;`]} {...props}>
+      <BlocOutset css={[tw`px-10 py-6 rounded-3xl`, css`min-width:500px;`, current ? css`` : css`background-color:#EA6F66; color:white;`]}>
         <div css={[tw`flex flex-col`]}>
           <div css={[tw`flex`]}>
             <div css={tw`flex flex-col text-center`}>

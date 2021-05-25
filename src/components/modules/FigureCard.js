@@ -62,7 +62,7 @@ export default function FigureCard({
   });
 
   return (
-    <BlocRidge onClick={() => setisAutoPlay(!isAutoPlay)} css={[tw` flex flex-col justify-center items-center text-center`]} {...props}>
+    <BlocRidge onClick={() => setisAutoPlay(!isAutoPlay)} css={[tw` flex flex-col justify-center items-center text-center `]} {...props}>
       <div css={[tw`text-5xl pt-2 font-normal`, css` max-width:180px;`]}>
         {symbolFunction(symbol) === 'left' ? (
           <>
@@ -76,7 +76,7 @@ export default function FigureCard({
           </>
         ) : null}
       </div>
-      <p css={[tw`font-thin overflow-ellipsis`]}>
+      <p css={[tw`overflow-ellipsis`]}>
         {text}
       </p>
       <BlocInset css={[tw`mx-5 py-2.5`, colorFunction(color)]} />

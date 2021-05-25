@@ -5,6 +5,11 @@ import Navlink from '@elements/Navlink';
 import Card from '@modules/Card';
 import RatingCard from '@modules/RatingCard';
 import NavBar from '@modules/NavBar';
+import FigureCard from '@modules/FigureCard';
+import BlocOutset from '@elements/BlocOutset';
+import BlocInset from '@elements/BlocInset';
+import BlocRidge from '@elements/BlocRidge';
+import Hublot from '@modules/Hublot';
 
 export default function Home() {
   return (
@@ -24,6 +29,58 @@ export default function Home() {
           imgRelPath="home/customer_rating.png"
           ratingStars="4"
         />
+        <Card>
+          <Navlink target="_blank">Get started</Navlink>
+        </Card>
+        <BlocOutset>
+          Hello
+        </BlocOutset>
+        <BlocRidge>
+          Hello
+        </BlocRidge>
+        <Hublot imgRelPath="ellipse/support.png" />
+        <FigureCard
+          number="99%"
+          text="Satisfaction Rate"
+          color="purple"
+        />
+        <FigureCard
+          number="99.9"
+          text="Satisfaction Rate"
+          color="purple"
+          symbol="%"
+          rounded="10"
+          propEasing="steps(1000)"
+        />
+        <FigureCard
+          number="122"
+          text="Projects"
+          propEasing="steps(1000)"
+        />
+        <FigureCard
+          number="12"
+          text="Marketing Strategies Deployed"
+          color="purple"
+          propEasing="steps(1000)"
+        />
+        <FigureCard
+          number="50"
+          text="Customers"
+          color="saumon"
+          symbol="+"
+        />
+        <FigureCard
+          number="40"
+          text="Followers"
+          color="saumon"
+          symbol="K"
+          rounded="10"
+          propEasing="steps(1000)"
+        />
+        <BlocInset>
+          Test
+        </BlocInset>
+        <Navlink css={{ color: 'yellow' }}>Link</Navlink>
         <h1 className={styles.title}>
           Welcome to
           {' '}
