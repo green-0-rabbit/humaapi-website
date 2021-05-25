@@ -4,7 +4,7 @@ import tw, { css } from 'twin.macro';
 const styles = Object.values({
   standard: css`
   /*-------------standard----------------*/
-    font-family:'Bahnschrift';
+    font-family:'Inter';
     background: #e6e7ee;
     box-shadow: inset -1px -1px 2px #ffffff, inset 1px 1px 3px #5c5c5f;
 `,

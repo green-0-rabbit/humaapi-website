@@ -18,7 +18,7 @@ export default function Card({ children, ...props }) {
           {frData.content.subtitle}
         </h3>
         <br />
-        <p css={[css`font-weight:100;`, tw`block mb-7`]}>
+        <p css={[css``, tw`block mb-7 font-light `]}>
           {frData.content.text}
         </p>
       </div>

@@ -4,7 +4,6 @@ import tw, { css } from 'twin.macro';
 const styles = {
   standard: css`
   /*-------------standard----------------*/
-    font-family:'Bahnschrift';
     font-weight:lighter;
     color: #EA6F66;
     background: #e6e7ee;

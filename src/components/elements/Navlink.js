@@ -6,8 +6,7 @@ import Img from 'react-optimized-image';
 const styles = Object.values({
   standard: css`
   /*-------------standard----------------*/
-    font-family:'Bahnschrift';
-    font-weight:100;
+    font-family:'Inter';
     color: #EA6F66;
     background: #e6e7ee;
     box-shadow: 2px 2px 5px #5c5c5f, -3px -3px 7px #ffffff;
@@ -32,6 +31,7 @@ const styles = Object.values({
   tailwindcss: tw`
     py-1.5 px-4 m-1.5
     border-transparent
+    font-normal
     text-lg leading-normal
     rounded-2xl
     focus:(ring-2 ring-red-400 outline-none)
