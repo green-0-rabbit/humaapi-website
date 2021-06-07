@@ -9,7 +9,9 @@ import FigureCard from '@modules/FigureCard';
 import BlocOutset from '@elements/BlocOutset';
 import BlocInset from '@elements/BlocInset';
 import BlocRidge from '@elements/BlocRidge';
+import LandingSection from '@sections/LandingSection';
 import Hublot from '@modules/Hublot';
+import tw, { css } from 'twin.macro';
 
 export default function Home() {
   return (
@@ -21,7 +23,8 @@ export default function Home() {
 
       <NavBar />
 
-      <main className={styles.main}>
+      <main css={[tw`flex flex-col justify-center`]}>
+        <LandingSection />
         <Card>
           <Navlink target="_blank">Get started</Navlink>
         </Card>
@@ -38,7 +41,9 @@ export default function Home() {
         <BlocRidge>
           Hello
         </BlocRidge>
-        <Hublot imgRelPath="ellipse/support.png" />
+        <div css={[tw`p-6`, css`background-color: black;`]}>
+          <Hublot imgRelPath="ellipse/support.png" />
+        </div>
         <FigureCard
           number="99%"
           text="Satisfaction Rate"

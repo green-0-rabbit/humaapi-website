@@ -7,7 +7,9 @@ const styles = Object.values({
     font-family:'Inter';
     background: #e6e7ee;
     box-shadow: inset -1px -1px 2px #ffffff, inset 1px 1px 3px #5c5c5f;
-`,
+    -moz-box-shadow:inset -1px -1px 2px #ffffff, inset 1px 1px 3px #5c5c5f;
+    -webkit-box-shadow:inset -1px -1px 2px #ffffff, inset 1px 1px 3px #5c5c5f;
+    `,
   tailwindcss: tw`
     p-4 m-1.5
     block
