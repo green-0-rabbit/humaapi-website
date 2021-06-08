@@ -7,7 +7,7 @@
       "@elements/*":["src/components/elements/*"],
       "@modules/*":["src/components/modules/*"],
       "@sections/*":["src/components/sections/*"],
-      "@hooks/*":["src/hooks//*"]
+      "@hooks/*":["src/hooks/*"]
 
     }
   },

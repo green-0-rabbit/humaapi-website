@@ -97,7 +97,7 @@ export default function NavBar({ children, ...props }) {
   };
 
   return (
-    <header css={[tw`mx-auto m-1.5 py-2 px-2`]} {...props}>
+    <header css={[tw`mx-auto m-1.5 py-2 px-2 z-10`]} {...props}>
       <nav css={[...stylesNav]}>
         <div css={[...stylesBrandToggle]}>
           <div

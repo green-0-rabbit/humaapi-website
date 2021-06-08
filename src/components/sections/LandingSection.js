@@ -7,6 +7,7 @@ import Navlink from '@elements/Navlink';
 import { Img, Svg } from 'react-optimized-image';
 
 const frData = data.find((row) => row.language === 'en');
+const imgWidth = 600;
 const styles = Object.values({
   standard: css`
     /*-------------standard----------------*/
@@ -20,31 +21,29 @@ const styles = Object.values({
 
 export default function LandingSection({ children, ...props }) {
   return (
-    <div css={[tw`flex justify-between items-center py-4`]} {...props}>
+    <div css={[tw`flex justify-between items-center py-4 relative`]} {...props}>
 
       <div css={tw`px-6 mx-auto flex-shrink-0 z-10`}>
         <Card css={[tw` shadow-lg `, [...styles]]}>
           <Navlink target="_blank">Get started</Navlink>
         </Card>
       </div>
-      <div css={tw`hidden md:block `}>
+      <div css={tw`hidden md:block z-10`}>
         <Img
           priority="true"
           src={require('public/images/services-images/Services_Social_Media.svg')}
           sizes={[400, 500, 600, 700, 900]}
-          webp
           breakpoints={[768, 960, 1024, 1280]}
-          alt="humaapi logo"
+          alt="Social Media services"
+          width={`${imgWidth}px`}
+          height={`${imgWidth * 0.91307}px`}
         />
-        {/* <Svg
-          src={require('public/images/services-images/Services_Social_Media.svg')}
-          css={[css`height:800px;`]}
-        /> */}
       </div>
-      <Svg
-        src={require('public/images/home/Wave.svg')}
-        css={[tw`absolute z-0 w-screen h-auto md:hidden`]}
-      />
+      <div css={[tw`absolute z-0 w-full h-auto xl:h-full xl:`]}>
+        <Svg
+          src={require('public/images/home/Wave.svg')}
+        />
+      </div>
     </div>
   );
 }
