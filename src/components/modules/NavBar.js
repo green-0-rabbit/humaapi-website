@@ -13,7 +13,19 @@ const stylesLinkButton = Object.values({
 `,
   tailwindcss: tw`
   relative
-  md:m-auto 
+  md:my-auto md:mr-2 
+`
+});
+const stylesContactUs = Object.values({
+  standard: css`
+  background:#EA6F66;
+  :hover{
+    background: #e6e7ee;
+  }
+`,
+  tailwindcss: tw`
+  text-white hover:text-red-500
+  md:(m-auto md:ml-2)
 `
 });
 const stylesLinkGroup = Object.values({
@@ -22,7 +34,6 @@ const stylesLinkGroup = Object.values({
 `,
   tailwindcss: tw`
   flex flex-col md:flex-row
-  md:space-x-3
   text-center
 `
 });
@@ -128,7 +139,7 @@ export default function NavBar({ children, ...props }) {
             <Navlink target="_blank" href="#" css={[...stylesLinkButton]}>Pricing</Navlink>
             <Navlink target="_blank" href="#" css={[...stylesLinkButton]}>Projects</Navlink>
             <Navlink target="_blank" href="#" css={[...stylesLinkButton]}>Services</Navlink>
-            <Navlink target="_blank" href="#" css={[tw`md:m-auto`]}>Contact us</Navlink>
+            <Navlink target="_blank" href="#" css={[...stylesContactUs]}>Contact us</Navlink>
           </div>
         </div>
       </nav>
