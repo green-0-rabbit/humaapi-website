@@ -28,10 +28,10 @@ export default function Home() {
         <Card>
           <Navlink target="_blank">Get started</Navlink>
         </Card>
-        <RatingCard
+        {/* <RatingCard
           imgRelPath="home/customer_rating.png"
           ratingStars="4"
-        />
+        /> */}
         <Card>
           <Navlink target="_blank">Get started</Navlink>
         </Card>
