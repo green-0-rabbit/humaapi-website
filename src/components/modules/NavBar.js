@@ -18,13 +18,14 @@ const stylesLinkButton = Object.values({
 });
 const stylesContactUs = Object.values({
   standard: css`
+  color:white;
   background:#EA6F66;
   :hover{
     background: #e6e7ee;
+    color: #EA6F66;
   }
 `,
   tailwindcss: tw`
-  text-white hover:text-red-500
   md:(m-auto md:ml-2)
 `
 });
