@@ -6,8 +6,8 @@ import Img from 'react-optimized-image';
 
 export default function Hublot({ imgRelPath, ...props }) {
   return (
-    <div css={[tw`flex justify-center text-center rounded-full`, css`background: #e6e7ee;`]}>
-      <BlocOutset css={[tw` px-8 py-6 m-3 rounded-full`]} {...props}>
+    <div css={[tw`flex justify-center text-center rounded-full`, css`background: #e6e7ee;`]} {...props}>
+      <BlocOutset css={[tw` px-8 py-6 m-3 rounded-full`]}>
         <Img
           priority="true"
           src={require(`public/images/${imgRelPath}`)}
