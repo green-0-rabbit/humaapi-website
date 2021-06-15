@@ -3,7 +3,7 @@ import Head from 'next/head';
 import styles from '@styles/Home.module.css';
 import Navlink from '@elements/Navlink';
 import Card from '@modules/Card';
-import RatingCard from '@modules/RatingCard';
+// import RatingCard from '@modules/RatingCard';
 import NavBar from '@modules/NavBar';
 import FigureCard from '@modules/FigureCard';
 import BlocOutset from '@elements/BlocOutset';
@@ -12,6 +12,7 @@ import BlocRidge from '@elements/BlocRidge';
 import LandingSection from '@sections/LandingSection';
 import Hublot from '@modules/Hublot';
 import tw, { css } from 'twin.macro';
+import Carousel from '@modules/Carousel';
 
 export default function Home() {
   return (
@@ -25,6 +26,14 @@ export default function Home() {
 
       <main css={[tw`flex flex-col justify-center`]}>
         <LandingSection />
+        <Carousel>
+          <Hublot tw="flex-none ml-2" imgRelPath="ellipse/support.png" />
+          <Hublot tw="flex-none ml-2" imgRelPath="ellipse/support.png" />
+          <Hublot tw="flex-none ml-2" imgRelPath="ellipse/support.png" />
+          <Hublot tw="flex-none ml-2" imgRelPath="ellipse/support.png" />
+          <Hublot tw="flex-none ml-2" imgRelPath="ellipse/support.png" />
+          <Hublot tw="flex-none ml-2 mr-2" imgRelPath="ellipse/support.png" />
+        </Carousel>
         <Card>
           <Navlink target="_blank">Get started</Navlink>
         </Card>
