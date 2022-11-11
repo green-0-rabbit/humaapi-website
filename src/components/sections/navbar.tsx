@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { createStyles, Header, Container, Group, Burger, Paper, Transition } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { MantineLogo } from '@mantine/ds';
+import Logo from '../elements/logo-humaapi';
 
 const HEADER_HEIGHT = 60;
 
@@ -75,11 +75,11 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-interface HeaderResponsiveProps {
+interface IHeaderResponsiveProps {
   links: { link: string; label: string }[];
 }
 
-const Navbar  = ({ links }: HeaderResponsiveProps) => {
+const Navbar  = ({ links }: IHeaderResponsiveProps) => {
   const [opened, { toggle, close }] = useDisclosure(false);
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
@@ -102,8 +102,8 @@ const Navbar  = ({ links }: HeaderResponsiveProps) => {
   return (
     <Header height={HEADER_HEIGHT} mb={120} className={classes.root}>
       <Container className={classes.header}>
-        <MantineLogo size={28} />
-        <Group spacing={5} className={classes.links}>
+            <Logo />
+          <Group spacing={5} className={classes.links}>
           {items}
         </Group>
 
