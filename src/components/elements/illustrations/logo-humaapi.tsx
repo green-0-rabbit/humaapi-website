@@ -1,5 +1,5 @@
 
-const Logo = () => {
+const LogoHumaapi = () => {
     return(
         <svg width="112" height="38" viewBox="0 0 112 38" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_274_236)">
@@ -25,4 +25,4 @@ const Logo = () => {
 </svg>
     )
 } 
-export default Logo
+export default LogoHumaapi

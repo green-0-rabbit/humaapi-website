@@ -1,15 +1,27 @@
-
 import { useState } from 'react';
-import { createStyles, Header, Container, Group, Burger, Paper, Transition } from '@mantine/core';
+import {
+  createStyles,
+  Header,
+  Container,
+  Group,
+  Burger,
+  Paper,
+  Transition,
+} from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import Logo from '../elements/logo-humaapi';
+import LogoHumaapi from '../elements/illustrations/logo-humaapi';
+
 
 const HEADER_HEIGHT = 60;
 
 const useStyles = createStyles((theme) => ({
+  customColor: {
+    color: '#EA6F66'
+  },
   root: {
     position: 'relative',
     zIndex: 1,
+    background: theme.fn.rgba('#ffffff', 0.4)
   },
 
   dropdown: {
@@ -24,27 +36,27 @@ const useStyles = createStyles((theme) => ({
     overflow: 'hidden',
 
     [theme.fn.largerThan('sm')]: {
-      display: 'none',
-    },
+      display: 'none'
+    }
   },
 
   header: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: '100%',
+    height: '100%'
   },
 
   links: {
     [theme.fn.smallerThan('sm')]: {
-      display: 'none',
-    },
+      display: 'none'
+    }
   },
 
   burger: {
     [theme.fn.largerThan('sm')]: {
-      display: 'none',
-    },
+      display: 'none'
+    }
   },
 
   link: {
@@ -53,61 +65,65 @@ const useStyles = createStyles((theme) => ({
     padding: '8px 12px',
     borderRadius: theme.radius.sm,
     textDecoration: 'none',
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
-    fontSize: theme.fontSizes.sm,
-    fontWeight: 500,
-
-    '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-    },
 
     [theme.fn.smallerThan('sm')]: {
       borderRadius: 0,
-      padding: theme.spacing.md,
+      padding: theme.spacing.md
     },
+    '&:hover': {
+      color: '#ff9900'
+    }
   },
 
   linkActive: {
     '&, &:hover': {
-      backgroundColor: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).background,
-      color: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).color,
-    },
-  },
+       backgroundColor: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).background,
+      color:'#ff9900'
+    }
+  }
 }));
 
 interface IHeaderResponsiveProps {
   links: { link: string; label: string }[];
 }
 
-const Navbar  = ({ links }: IHeaderResponsiveProps) => {
+const Navbar = ({ links }: IHeaderResponsiveProps) => {
   const [opened, { toggle, close }] = useDisclosure(false);
-  const [active, setActive] = useState(links[0].link);
+  const [active, setActive] = useState(links[links.length - 1].link);
   const { classes, cx } = useStyles();
-
   const items = links.map((link) => (
     <a
       key={link.label}
       href={link.link}
-      className={cx(classes.link, { [classes.linkActive]: active === link.link })}
+      className={`${cx(classes.link, {
+        [classes.linkActive]: active === link.link
+      })}`}
       onClick={(event) => {
         event.preventDefault();
         setActive(link.link);
         close();
-      }}
-    >
+      }}>
       {link.label}
     </a>
   ));
 
   return (
-    <Header height={HEADER_HEIGHT} mb={120} className={classes.root}>
+    <Header
+      height={HEADER_HEIGHT}
+      mb={120}
+      className={`${classes.root} rounded-[30px]`}>
       <Container className={classes.header}>
-            <Logo />
-          <Group spacing={5} className={classes.links}>
+        <LogoHumaapi />
+        <Group spacing={4} className={`${classes.links} hearder-style  items-center`}>
           {items}
         </Group>
 
-        <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
+        <Burger
+          opened={opened}
+          onClick={toggle}
+          className={classes.burger}
+          size="sm"
+        />
 
         <Transition transition="pop-top-right" duration={200} mounted={opened}>
           {(styles) => (
@@ -119,5 +135,5 @@ const Navbar  = ({ links }: IHeaderResponsiveProps) => {
       </Container>
     </Header>
   );
-}
-export default Navbar
+};
+export default Navbar;

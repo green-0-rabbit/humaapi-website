@@ -5,8 +5,10 @@ interface ICopywritting {
 const Copywritting: FC<ICopywritting> = (props) => {
 const { text } = props;
   return (
-    <div>
-      <svg
+      <div className='flex'>
+       
+           <svg
+           className='mt-2'
         width="12"
         height="12"
         viewBox="0 0 12 12"
@@ -34,8 +36,11 @@ const { text } = props;
           </clipPath>
         </defs>
       </svg>
-      <span>{text}</span>
-    </div>
-  );
+       <span className='mx-1 text-fblack footer-style'>
+       {text}
+       </span>
+      
+      </div>
+          );
 };
 export default Copywritting;
