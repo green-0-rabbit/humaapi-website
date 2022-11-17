@@ -11,7 +11,6 @@ import {
 import { useDisclosure } from '@mantine/hooks';
 import LogoHumaapi from '../elements/illustrations/logo-humaapi';
 
-
 const HEADER_HEIGHT = 60;
 
 const useStyles = createStyles((theme) => ({
@@ -19,9 +18,13 @@ const useStyles = createStyles((theme) => ({
     color: '#EA6F66'
   },
   root: {
-    position: 'relative',
+    position: 'fixed',
     zIndex: 1,
-    background: theme.fn.rgba('#ffffff', 0.4)
+    background: theme.fn.rgba('#ffffff', 0.4),
+    borderStyle:'none',
+    marginLeft:10,
+    marginRight:10,
+    marginTop:10
   },
 
   dropdown: {
@@ -44,7 +47,7 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: '100%'
+    height: '100%'   
   },
 
   links: {
@@ -63,7 +66,7 @@ const useStyles = createStyles((theme) => ({
     display: 'block',
     lineHeight: 1,
     padding: '8px 12px',
-    borderRadius: theme.radius.sm,
+    borderRadius: theme.radius.xl,
     textDecoration: 'none',
 
     [theme.fn.smallerThan('sm')]: {
@@ -71,14 +74,15 @@ const useStyles = createStyles((theme) => ({
       padding: theme.spacing.md
     },
     '&:hover': {
-      color: '#ff9900'
+      color: '#EA6F66'
     }
   },
 
   linkActive: {
     '&, &:hover': {
-       backgroundColor: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).background,
-      color:'#ff9900'
+       backgroundColor: '#EA6F66',
+       color:'white'
+      
     }
   }
 }));
@@ -110,7 +114,7 @@ const Navbar = ({ links }: IHeaderResponsiveProps) => {
   return (
     <Header
       height={HEADER_HEIGHT}
-      mb={120}
+      ///mb={120}
       className={`${classes.root} rounded-[30px]`}>
       <Container className={classes.header}>
         <LogoHumaapi />

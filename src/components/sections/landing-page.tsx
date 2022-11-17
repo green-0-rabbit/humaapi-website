@@ -1,45 +1,52 @@
 import styled from '@emotion/styled';
 import { Box, Button, Text } from '@mantine/core';
 import { FC } from 'react';
-import ButtonCustom from '../elements/button';
 import IllustrationLandingPage from '../elements/illustrations/illustration-landing-page';
-import bgImage from '../../public/assets/img/gradientcircleglassmorphism.png';
-import Image from 'next/image';
-
+import HearderBanner from './hearder-banner';
+import Description from '../modules/description';
+import Searchbar from '../elements/search-bar';
+import OursService from './ours-service';
+import DomaineActivity from './domaine-activity';
 
 interface ILandingPage {}
 
-const Description = styled.div``;
 const Illustration = styled.div``;
-
-const Background = styled.div``;
-const GradientMask = styled.div``;
+const HearderBannerContain = styled.div``;
+const Contain = styled.div``;
+const ContainHeaderBanner = styled.div``;
+const ContainOursService = styled.div``;
+const ContainDomaineActivity = styled.div``;
 
 const LandingPage: FC<ILandingPage> = () => {
   return (
-    <Box className="w-4/5 flex flex-col md:flex-row">
-      {/* <Image src={bgImage} alt={''} /> */}
-      <Background className=" overflow-hidden text-center">
-        <GradientMask className=" absolute bg-black top-0 left-0 w-full h-full opacity-60 z-20" />
-        <Image
-          src={bgImage}
-          alt={'backgroundImage'}
-          layout="fill"
-          quality={40}
-          className="object-cover z-0"
-        />
-      </Background>
-      <Description>
-        <Text>Make your app idea a reality with us.</Text>
-        <Text>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut
-          voluptatibus fuga, dolores quisquam quibusdam rem!
-        </Text>
-        <ButtonCustom link={'/'} content={'Get in touch'} />
-      </Description>
-      <Illustration className="hidden md:block">
-        <IllustrationLandingPage />
-      </Illustration>
+    <Box className='space-y-[8rem]'>
+      <ContainHeaderBanner>
+        <HearderBanner>
+          <HearderBannerContain className="h-screen grid place-items-center">
+            <Contain className="grid grid-cols-1 mt-10 md:gap-10 text-center md:text-left lg:max-w-[50rem] md:grid-cols-2 md:m-20">
+              <Box className="col-span-1 grid gap-8 md:gap-10 xs:col-span-2 md:col-span-1">
+                <Description
+                  title={' Make your app idea a reality with us.'}
+                  content={' Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut voluptatibus fuga, dolores quisquam quibusdam rem!'}
+                  classe={'text-[40px] description-title  font-extrabold leading-[3rem]'} space={4}                />
+                <Box className="mx-5 my-2 md:m-0">
+                  <Searchbar />
+                </Box>
+              </Box>
+              <Illustration className="hidden md:block">
+                <IllustrationLandingPage />
+              </Illustration>
+            </Contain>
+          </HearderBannerContain>
+        </HearderBanner>
+      </ContainHeaderBanner>
+      <ContainOursService>
+      <OursService />
+       
+      </ContainOursService>
+      <ContainDomaineActivity>
+      <DomaineActivity />
+      </ContainDomaineActivity>
     </Box>
   );
 };

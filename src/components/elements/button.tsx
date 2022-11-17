@@ -12,6 +12,7 @@ const ButtonCustom: FC<IButton> = (props) => {
     <Link href={link}>
      <Button
       className="btn-custom"
+      radius="xl"
        >
       {content}
     </Button>

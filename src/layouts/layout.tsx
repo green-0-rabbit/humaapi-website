@@ -1,8 +1,6 @@
 import Navbar from '../components/sections/navbar';
 import Footer from '../components/sections/footer';
 import { FC, ReactNode } from 'react';
-import bgImage from '../../public/assets/img/gradientcircleglassmorphism.png';
-import Image from 'next/image';
 import styled from '@emotion/styled';
 
 interface ILayout {
@@ -20,29 +18,14 @@ const Layout: FC<ILayout> = ({ children }) => {
     { text: 'Privacy notice' },
     { text: 'Moderne slavery statement' }
   ];
-  const Bgresponsive = styled.div`
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-  `;
-  const Background = styled.div``;
-  const GradientMask = styled.div``;
-  return (
-    <div className="">
-         
-        <GradientMask className=" absolute h-screen bg-cover max-w-full z-50" />
-        <Image
-          src={bgImage}
-          alt={'backgroundImage'}
-          layout="fill"
-          quality={40}
-          className="object-center blur-3xl relative z-0"
-        />
-             {/* <Image src={bgImage} alt={'backgroundImage'} className="absolute  object-center w-full  h-screen"/> relative max-w-full bg-cover*/}
+ 
+  const Container = styled.div``;
+   return (
+    <Container> 
       <Navbar links={links} />
       {children}
       <Footer texts={texts} />
-    </div>
+    </Container>
   );
 };
 export default Layout;
