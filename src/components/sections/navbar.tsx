@@ -24,7 +24,7 @@ const useStyles = createStyles((theme) => ({
     borderStyle:'none',
     marginLeft:10,
     marginRight:10,
-    marginTop:10
+    marginTop:10,
   },
 
   dropdown: {
@@ -82,8 +82,7 @@ const useStyles = createStyles((theme) => ({
     '&, &:hover': {
        backgroundColor: '#EA6F66',
        color:'white'
-      
-    }
+      }
   }
 }));
 

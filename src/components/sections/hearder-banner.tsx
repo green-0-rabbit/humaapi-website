@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import { Box } from '@mantine/core';
 import Image from 'next/image';
 import { FC, ReactNode } from 'react';
@@ -9,7 +8,7 @@ interface IHearderBanner {
 }
 const HearderBanner: FC<IHearderBanner> = ({ children }) => {
   return (
-    <Box className="h-screen bg-gradient-to-r from-[#fff7f7]">
+    <Box className="h-screen bg-gradient-to-b from-[#fff9f9]">
       <Image
         src={bgImage}
         alt={'backgroundImage'}

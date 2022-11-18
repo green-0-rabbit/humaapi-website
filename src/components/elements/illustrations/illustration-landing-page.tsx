@@ -6,7 +6,7 @@ const IllustrationLandingPage = () => {
       viewBox="0 0 380 248"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
-      <g clip-path="url(#clip0_253_450)">
+      <g clipPath="url(#clip0_253_450)">
         <path
           d="M21.5 54.8C21.5 53.6 21.7 50.2 21.7 48.8C21.7 42.7 19.5 40 13.9 39.8C11.2 39.6 9.69995 38.1 9.69995 35.8C9.69995 33.6 11.3 32 13.9 31.8C19.6 31.6 21.7 28.9 21.7 22.7C21.7 21.3 21.5 18 21.5 16.7C21.5 8.60001 24.9 3.50001 37.7999 0.600011C40.3999 1.08331e-05 42.4 1.60001 42.4 4.00001C42.4 6.00001 41.0999 7.10001 40.0999 7.40001C31.9999 9.90001 30.9 12.5 30.9 18.1C30.9 19.8 31.1 22.5 31.1 24.3C31.1 30.8 27.9 34 22.4 35.7C28 37.7 31 40.7 31 47.2C31 48.9 30.7999 51.7 30.7999 53.4C30.7999 59.1 32 61.6 40 64.1C41 64.4 42.2999 65.5 42.2999 67.5C42.2999 69.9 40.3 71.5 37.7 70.9C25 68.1 21.5 63 21.5 54.8Z"
           fill="#DEDEDE"
@@ -22,8 +22,8 @@ const IllustrationLandingPage = () => {
         <path
           d="M136.8 150H62.2C56.8 150 52.5 145.6 52.5 140.3V54.3C52.5 48.9 56.9 44.6 62.2 44.6H136.9C142.3 44.6 146.6 49 146.6 54.3V140.3C146.5 145.7 142.2 150 136.8 150Z"
           stroke="#C2C2C2"
-          stroke-width="0.8"
-          stroke-miterlimit="10"
+          strokeWidth="0.8"
+          strokeMiterlimit="10"
         />
         <path
           opacity="0.34"
@@ -139,31 +139,31 @@ const IllustrationLandingPage = () => {
           d="M59.2 162.2H138.6"
           stroke="#C6C6C6"
           strokeWidth="0.25"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
         />
         <path
           d="M59.2 171.8H138.6"
           stroke="#C6C6C6"
           strokeWidth="0.25"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
         />
         <path
           d="M59.2 181.4H138.6"
           stroke="#C6C6C6"
           strokeWidth="0.25"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
         />
         <path
           d="M59.2 191H138.6"
           stroke="#C6C6C6"
           strokeWidth="0.25"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
         />
         <path
           d="M59.2 200.6H138.6"
           stroke="#C6C6C6"
           strokeWidth="0.25"
-          stroke-miterlimit="10"
+          strokeMiterlimit="10"
         />
         <path d="M71.3001 179.2H61.3V202.6H71.3001V179.2Z" fill="#EBEBEB" />
         <path d="M71.3001 187.4H61.3V202.6H71.3001V187.4Z" fill="#EA6F66" />
@@ -195,14 +195,14 @@ const IllustrationLandingPage = () => {
         <path
           d="M199.7 90.9L198.4 86.5L196.4 84.5L204.2 76.7L206.2 78.8L210.6 80.1L215.6 96.1L199.7 90.9Z"
           stroke="#C6C6C6"
-          stroke-width="0.25"
-          stroke-miterlimit="10"
+          strokeWidth="0.25"
+          strokeMiterlimit="10"
         />
         <path
           d="M215.6 96.1L207.9 88.3"
           stroke="#C6C6C6"
-          stroke-width="0.25"
-          stroke-miterlimit="10"
+          strokeWidth="0.25"
+          strokeMiterlimit="10"
         />
         <path
           d="M206.6 89.6C208.036 89.6 209.2 88.4359 209.2 87C209.2 85.5641 208.036 84.4 206.6 84.4C205.164 84.4 204 85.5641 204 87C204 88.4359 205.164 89.6 206.6 89.6Z"
@@ -215,8 +215,8 @@ const IllustrationLandingPage = () => {
         <path
           d="M227.6 84.3L203.4 108.2"
           stroke="#9D9D9C"
-          stroke-width="0.5"
-          stroke-miterlimit="10"
+          strokeWidth="0.5"
+          strokeMiterlimit="10"
         />
         <path
           d="M203.4 107.7C203.5 107.6 203.8 107.6 203.9 107.7C204 107.8 204 108.1 203.9 108.2C203.8 108.3 203.5 108.3 203.4 108.2C203.3 108 203.3 107.8 203.4 107.7Z"

@@ -7,12 +7,10 @@ const Searchbar = () => {
    
    <Box>
         <Input
-        className='block'
-      placeholder="Write your message"
+        placeholder="Write your message"
       radius="xl"
-      variant='filled'
       size="lg"
-      style={{ width: 350}}
+      style={{ width: '100%'}}
       rightSection={
         <ButtonCustom link={'/'} content={'Get in touch'} />
       }

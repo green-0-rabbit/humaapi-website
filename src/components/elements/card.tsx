@@ -10,10 +10,10 @@ const Card : FC<ICard>= (props) => {
     const {classe,children,styleCard} = props
     return(
         <Box>
-            <Paper shadow="lg"
-             radius="xl"
+            <Paper 
+             radius={28}
               p="xl"
-               className={`${classe}`}
+               className={`${classe}  shadow-[#ececec] shadow-lg`}
                style={{...styleCard}}
                >
                 {children}

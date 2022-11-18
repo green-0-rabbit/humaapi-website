@@ -7,7 +7,14 @@ import LinkedinLogo from '../elements/illustrations/linkedin-logo';
 
 const useStyles = createStyles((theme) => ({
   footer: {
-    marginTop: 120,
+   
+    [theme.fn.smallerThan('sm')]: {
+      marginTop: 50,
+    },
+   
+    [theme.fn.largerThan('sm')]: {
+      marginTop: 120,
+    },
   },
 
   inner: {
