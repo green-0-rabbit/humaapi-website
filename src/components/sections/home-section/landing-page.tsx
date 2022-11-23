@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 import { Box } from '@mantine/core';
 import { FC } from 'react';
-import IllustrationLandingPage from '../elements/illustrations/illustration-landing-page';
-import HearderBanner from './hearder-banner';
-import Description from '../modules/description';
-import Searchbar from '../elements/search-bar';
+import IllustrationLandingPage from '../../elements/illustrations/logo-icon/illustration-landing-page';
+import HearderBanner from './../hearder-banner';
+import Description from '../../modules/description';
+import Searchbar from '../../elements/search-bar';
 
 interface ILandingPage {}
 
@@ -12,7 +12,6 @@ const Illustration = styled.div``;
 const HearderBannerContain = styled.div``;
 const Contain = styled.div``;
 const ContainHeaderBanner = styled.div``;
-
 const LandingPage: FC<ILandingPage> = () => {
   return (
     <ContainHeaderBanner>

@@ -1,9 +1,9 @@
-import { createStyles, Container, Anchor, Group, Box} from '@mantine/core';
-import Copywritting from '../elements/illustrations/copywritting-icon'
+import { createStyles, Container, Group, Box} from '@mantine/core';
+import Copywritting from '../elements/illustrations/logo-icon/copywritting-icon'
 import styled from '@emotion/styled'
-import React, { ReactNode } from 'react';
-import TwitterLogo from '../elements/illustrations/twitter-logo';
-import LinkedinLogo from '../elements/illustrations/linkedin-logo';
+import React from 'react';
+import TwitterLogo from '../elements/illustrations/logo-icon/twitter-logo';
+import LinkedinLogo from '../elements/illustrations/logo-icon/linkedin-logo';
 
 const useStyles = createStyles((theme) => ({
   footer: {

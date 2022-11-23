@@ -22,6 +22,9 @@ module.exports = {
         UbuntuMediumItalic: 'Ubuntu-MediumItalic',
         UbuntuRegular: 'Ubuntu-Regular'
       },
+      screens:{
+        'xs':'420px'
+      }
     }
   },
   plugins: [],

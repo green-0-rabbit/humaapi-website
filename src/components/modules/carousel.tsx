@@ -53,7 +53,7 @@ const TemplateCarousel: FC<ITemplateCarousel> = (props) => {
         {dataCourousel.map((el, index) => (
           <Carousel.Slide key={index}>
               <Card
-              classe={'grid gap-3  place-items-center '}
+              classe={'grid gap-3  place-items-center snap-center'}
               key={index}
               styleCard={{ width: 205, height: 150, left: 288, top: 858 }}>
               {el.icon}

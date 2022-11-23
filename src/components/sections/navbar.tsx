@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   createStyles,
   Header,
@@ -6,10 +6,11 @@ import {
   Group,
   Burger,
   Paper,
-  Transition,
+  Transition
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import LogoHumaapi from '../elements/illustrations/logo-humaapi';
+import LogoHumaapi from '../elements/illustrations/logo-icon/logo-humaapi';
+import Link from 'next/link';
 
 const HEADER_HEIGHT = 60;
 
@@ -21,10 +22,12 @@ const useStyles = createStyles((theme) => ({
     position: 'fixed',
     zIndex: 1,
     background: theme.fn.rgba('#ffffff', 0.4),
-    borderStyle:'none',
-    marginLeft:10,
-    marginRight:10,
-    marginTop:10,
+    borderStyle: 'none',
+    marginLeft: 6,
+    marginRight: 6,
+    marginTop: 6,
+    borderRadius: 20,
+    backdropFilter: 'blur(64px)'
   },
 
   dropdown: {
@@ -37,6 +40,8 @@ const useStyles = createStyles((theme) => ({
     borderTopLeftRadius: 0,
     borderTopWidth: 0,
     overflow: 'hidden',
+    borderRadius: 18,
+    backgroundColor: '#f8f8f8',
 
     [theme.fn.largerThan('sm')]: {
       display: 'none'
@@ -47,12 +52,13 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: '100%'   
+    height: '100%'
   },
 
   links: {
     [theme.fn.smallerThan('sm')]: {
-      display: 'none'
+      display: 'none',
+      alignItems: 'center'
     }
   },
 
@@ -73,6 +79,13 @@ const useStyles = createStyles((theme) => ({
       borderRadius: 0,
       padding: theme.spacing.md
     },
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[0]
+        : theme.colors.gray[7],
+    fontSize: theme.fontSizes.sm,
+    fontWeight: 500,
+
     '&:hover': {
       color: '#EA6F66'
     }
@@ -80,9 +93,9 @@ const useStyles = createStyles((theme) => ({
 
   linkActive: {
     '&, &:hover': {
-       backgroundColor: '#EA6F66',
-       color:'white'
-      }
+      backgroundColor: '#EA6F66',
+      color: 'white'
+    }
   }
 }));
 
@@ -92,51 +105,59 @@ interface IHeaderResponsiveProps {
 
 const Navbar = ({ links }: IHeaderResponsiveProps) => {
   const [opened, { toggle, close }] = useDisclosure(false);
-  const [active, setActive] = useState(links[links.length - 1].link);
+  const [active, setActive] = useState(links[0].link);
+
   const { classes, cx } = useStyles();
   const items = links.map((link) => (
-    <a
-      key={link.label}
-      href={link.link}
-      className={`${cx(classes.link, {
-        [classes.linkActive]: active === link.link
-      })}`}
-      onClick={(event) => {
-        event.preventDefault();
-        setActive(link.link);
-        close();
-      }}>
-      {link.label}
-    </a>
+    <Link href={link.link} legacyBehavior key={link.label}>
+      <a
+        key={link.label}
+        className={`${cx(classes.link, {
+          [classes.linkActive]: active === link.link
+        })}`}
+        onClick={(ev: any) => {
+          ev.preventDefault();
+          setActive(link.link);
+          close();
+        }}>
+        {link.label}
+      </a>
+    </Link>
   ));
 
   return (
-    <Header
-      height={HEADER_HEIGHT}
-      ///mb={120}
-      className={`${classes.root} rounded-[30px]`}>
-      <Container className={classes.header}>
-        <LogoHumaapi />
-        <Group spacing={4} className={`${classes.links} hearder-style  items-center`}>
-          {items}
-        </Group>
+    <>
+      <Header
+        height={HEADER_HEIGHT}
+        ///mb={120}
+        className={`${classes.root} `}>
+        <Container className={classes.header}>
+          <LogoHumaapi />
+          <Group spacing={4} className={`${classes.links} hearder-style`}>
+            {items}
+          </Group>
 
-        <Burger
-          opened={opened}
-          onClick={toggle}
-          className={classes.burger}
-          size="sm"
-        />
+          <Burger
+            color="#EA6F66"
+            opened={opened}
+            onClick={toggle}
+            className={classes.burger}
+            size="sm"
+          />
 
-        <Transition transition="pop-top-right" duration={200} mounted={opened}>
-          {(styles) => (
-            <Paper className={classes.dropdown} withBorder style={styles}>
-              {items}
-            </Paper>
-          )}
-        </Transition>
-      </Container>
-    </Header>
+          <Transition
+            transition="pop-top-right"
+            duration={420}
+            mounted={opened}>
+            {(styles) => (
+              <Paper className={classes.dropdown} style={styles}>
+                {items}
+              </Paper>
+            )}
+          </Transition>
+        </Container>
+      </Header>
+    </>
   );
 };
 export default Navbar;

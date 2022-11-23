@@ -1,26 +1,26 @@
 import styled from '@emotion/styled';
 import { Box, Text } from '@mantine/core';
-import Card from '../elements/card';
-import RetailIcon from '../elements/illustrations/icon-retail';
-import EducationIcon from '../elements/illustrations/education-icon';
-import HelthcareIcon from '../elements/illustrations/healthcare-icon';
-import LogistiqueIcon from '../elements/illustrations/logistique-icon';
-import SocialNetworkIcon from '../elements/illustrations/social-network-icon';
-import RealStateIcon from '../elements/illustrations/real-state-icon';
-import TravelHospitalIcon from '../elements/illustrations/travel-hospital-icon';
-import FoodRestaurantIcon from '../elements/illustrations/food-restaurant-icon';
-import DemandSolutionIcon from '../elements/illustrations/demand-solution-icon';
-import Description from '../modules/description';
+import Card from '../../elements/card';
+import RetailIcon from '../../elements/illustrations/logo-icon/icon-retail';
+import EducationIcon from '../../elements/illustrations/logo-icon/education-icon';
+import HelthcareIcon from '../../elements/illustrations/logo-icon/healthcare-icon';
+import LogistiqueIcon from '../../elements/illustrations/logo-icon/logistique-icon';
+import SocialNetworkIcon from '../../elements/illustrations/logo-icon/social-network-icon';
+import RealStateIcon from '../../elements/illustrations/logo-icon/real-state-icon';
+import TravelHospitalIcon from '../../elements/illustrations/logo-icon/travel-hospital-icon';
+import FoodRestaurantIcon from '../../elements/illustrations/logo-icon/food-restaurant-icon';
+import DemandSolutionIcon from '../../elements/illustrations/logo-icon/demand-solution-icon';
+import Description from '../../modules/description';
 
 const DomaineActivity = () => {
   const ContainDomainsActivity = styled.div``;
   const ContainCards = styled.div``;
   const Container = styled.div``;
   const tableCardDomain = [
-    { icon:  <RetailIcon />, text: 'Retail, Ecommerce' },
-    { icon:  <EducationIcon />, text: 'Education & e-learning' },
-    { icon:  <HelthcareIcon />, text: 'Healthcare & fitness' },
-    { icon:  <LogistiqueIcon />, text: 'Logistique & Distribution' },
+    { icon: <RetailIcon />, text: 'Retail, Ecommerce' },
+    { icon: <EducationIcon />, text: 'Education & e-learning' },
+    { icon: <HelthcareIcon />, text: 'Healthcare & fitness' },
+    { icon: <LogistiqueIcon />, text: 'Logistique & Distribution' },
     { icon: <SocialNetworkIcon />, text: 'Social networking' },
     { icon: <RealStateIcon />, text: 'Real estate' },
     { icon: <TravelHospitalIcon />, text: 'Travel & hospitality' },
@@ -47,13 +47,13 @@ const DomaineActivity = () => {
       <ContainCards className="grid place-items-center">
         <Container className="grid gap-4 lg:grid-cols-3 md:grid-cols-2">
           {tableCardDomain.map((el, index) => (
-           <Card classe={'flex place-items-center space-x-3'} key={index} styleCard={{width: 262,height: 51}}>
-          <div className=''>
-            {el.icon}
-            </div>  
-           <Text className=''>{el.text}</Text>
-           </Card>
-            
+            <Card
+              classe={'flex place-items-center space-x-3'}
+              key={index}
+              styleCard={{ width: 262, height: 51 }}>
+              <div className="">{el.icon}</div>
+              <Text className="">{el.text}</Text>
+            </Card>
           ))}
         </Container>
       </ContainCards>

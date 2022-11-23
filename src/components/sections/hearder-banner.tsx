@@ -5,10 +5,12 @@ import bgImage from '../../../public/assets/img/gradientcircleglassmorphism.png'
 
 interface IHearderBanner {
   children?: ReactNode;
+  size?:string
 }
-const HearderBanner: FC<IHearderBanner> = ({ children }) => {
+const HearderBanner: FC<IHearderBanner> = (props) => {
+  const {children,size} = props
   return (
-    <Box className="h-screen bg-gradient-to-b from-[#fff9f9]">
+    <Box className={`${size ? `${size}`:'h-screen'} bg-gradient-to-b from-[#fff9f9]`} >
       <Image
         src={bgImage}
         alt={'backgroundImage'}
@@ -16,7 +18,7 @@ const HearderBanner: FC<IHearderBanner> = ({ children }) => {
         quality={40}
         className="object-center blur-[120px]"
       />
-      <Box className='flex justify-center items-center'>{children}</Box>
+      {children}
     </Box>
   );
 };

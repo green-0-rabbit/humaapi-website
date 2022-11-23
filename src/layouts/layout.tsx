@@ -1,6 +1,7 @@
 import Navbar from '../components/sections/navbar';
 import Footer from '../components/sections/footer';
 import { FC, ReactNode } from 'react';
+import ScrollTop from '../components/modules/scroll-to-up';
 import styled from '@emotion/styled';
 
 interface ILayout {
@@ -9,10 +10,10 @@ interface ILayout {
 
 const Layout: FC<ILayout> = ({ children }) => {
   const links = [
-    { link: '/home', label: 'Home' },
-    { link: '/ours-service', label: 'Our Services' },
-    { link: '/aboutus', label: 'About us' },
-    { link: '/contactus', label: 'Contact us' }
+    { link: '/', label: 'Home' },
+    { link: '/our-services', label: 'Our Services' },
+    { link: '/about-us', label: 'About us' },
+    { link: '/contact-us', label: 'Contact us' }
   ];
   const texts = [
     { text: 'Privacy notice' },
@@ -25,6 +26,7 @@ const Layout: FC<ILayout> = ({ children }) => {
       <Navbar links={links} />
       {children}
       <Footer texts={texts} />
+      <ScrollTop />
     </Container>
   );
 };
