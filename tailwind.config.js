@@ -10,7 +10,7 @@ module.exports = {
         stitle: '#363636' /*Sub title color*/,
         ctitle: '#5D5D5D' /*Content title color*/,
         content: '#7F7F7F' /*content color*/,
-        gcolor: '#EA6F66' /*content color*/
+        hm: '#EA6F66' /*content color*/
       },
       fontFamily: {
         UbuntuBold: 'Ubuntu-Bold',
@@ -22,11 +22,11 @@ module.exports = {
         UbuntuMediumItalic: 'Ubuntu-MediumItalic',
         UbuntuRegular: 'Ubuntu-Regular'
       },
-      screens:{
-        'xs':'420px'
+      screens: {
+        xs: '420px'
       }
     }
   },
-  plugins: [],
+  plugins: []
   // corePlugins:{preflight:false}
 };

@@ -41,16 +41,17 @@ const DomaineActivity = () => {
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
           }
           classe={'common-description-home'}
-          space={3}
+          space={1}
         />
       </ContainDomainsActivity>
-      <ContainCards className="grid place-items-center">
+      <ContainCards className="grid place-items-center mt-2">
         <Container className="grid gap-4 lg:grid-cols-3 md:grid-cols-2">
           {tableCardDomain.map((el, index) => (
             <Card
-              classe={'flex place-items-center space-x-3'}
+              className="flex place-items-center space-x-3"
               key={index}
-              styleCard={{ width: 262, height: 51 }}>
+              radius={18}
+              style={{ width: 262, height: 51 }}>
               <div className="">{el.icon}</div>
               <Text className="">{el.text}</Text>
             </Card>

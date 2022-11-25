@@ -11,7 +11,7 @@ const ScrollTop = () =>{
       <Affix position={{ bottom: 20, right: 20 }}>
         <Transition transition="slide-up" mounted={scroll.y > 0}>
           {(transitionStyles) => (
-            <ButtonCustom link={''} icon={<IconArrowUp size={16}/>} style={transitionStyles} action={()=> scrollTo({ y: 0 })} content={'Scroll to top'}/>
+            <ButtonCustom link={''} leftIcon={<IconArrowUp size={16}/>} style={transitionStyles} action={()=> scrollTo({ y: 0 })} content={'Scroll to top'}/>
           )}
         </Transition>
       </Affix>

@@ -6,7 +6,8 @@ import {
   Group,
   Burger,
   Paper,
-  Transition
+  Transition,
+  Text
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import LogoHumaapi from '../elements/illustrations/logo-icon/logo-humaapi';
@@ -110,18 +111,18 @@ const Navbar = ({ links }: IHeaderResponsiveProps) => {
   const { classes, cx } = useStyles();
   const items = links.map((link) => (
     <Link href={link.link} legacyBehavior key={link.label}>
-      <a
+      <Text
         key={link.label}
         className={`${cx(classes.link, {
           [classes.linkActive]: active === link.link
         })}`}
-        onClick={(ev: any) => {
-          ev.preventDefault();
+        onClick={(ev:any) => {
+        //  ev.preventDefault()
           setActive(link.link);
           close();
         }}>
         {link.label}
-      </a>
+      </Text>
     </Link>
   ));
 
