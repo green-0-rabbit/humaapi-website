@@ -1,17 +1,19 @@
+import { Box, Text } from "@mantine/core";
 import { FC } from "react"
 
 interface IDescription{
     title:string;
     content: string;
-    classe:string
+    classe:string;
+    space:number
 }
 const Description: FC<IDescription> = (props) => {
-    const {title, content, classe} = props;
+    const {title, content, classe,space} = props;
     return(
-        <div className={`${classe}`}>
-            <span>{title} </span>
-            <span>{content} </span>
-        </div>
+        <Box className={`grid gap-${space}`}>
+            <Text className={`${classe}`}>{title}</Text>
+            <Text className="font-UbuntuRegular text-sm font-light">{content} </Text>
+        </Box>
     )
 }
 export default Description

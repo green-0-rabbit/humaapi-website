@@ -1,16 +1,20 @@
-import { createStyles, Container, Anchor, Group} from '@mantine/core';
-import Copywritting from '../elements/illustrations/copywritting-icon'
+import { createStyles, Container, Group, Box} from '@mantine/core';
+import Copywritting from '../elements/illustrations/logo-icon/copywritting-icon'
 import styled from '@emotion/styled'
-import React, { ReactNode } from 'react';
-import TwitterLogo from '../elements/illustrations/twitter-logo';
-import LinkedinLogo from '../elements/illustrations/linkedin-logo';
+import React from 'react';
+import TwitterLogo from '../elements/illustrations/logo-icon/twitter-logo';
+import LinkedinLogo from '../elements/illustrations/logo-icon/linkedin-logo';
 
 const useStyles = createStyles((theme) => ({
   footer: {
-    marginTop: 120,
-    borderTop: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
-    }`,
+   
+    [theme.fn.smallerThan('sm')]: {
+      marginTop: 50,
+    },
+   
+    [theme.fn.largerThan('sm')]: {
+      marginTop: 120,
+    },
   },
 
   inner: {
@@ -36,6 +40,8 @@ interface IFooterSimpleProps {
   texts: { text: string}[]
  }
 const Text = styled.span``
+const ContainLogo = styled.div``
+const SecondPartFooter = styled.div``
 const Footer = ({ texts }: IFooterSimpleProps) => {
   const { classes } = useStyles();
   const items = texts.map((link,index) => (
@@ -49,20 +55,20 @@ const Footer = ({ texts }: IFooterSimpleProps) => {
   ));
 
   return (
-    <div className={classes.footer}>
+    <Box className={classes.footer}>
       <Container className={classes.inner}>
       <Copywritting text='2022 humaapi'/>
-      <div className=' order-first lg:order-last  md:order-last sm:order-first'>
+      <SecondPartFooter className=' order-first lg:order-last  md:order-last sm:order-first'>
 <Group className={`${classes.links} flex flex-col flex-wrap items-center md:flex-row`}>{items}
-      <div className='grid grid-cols-2 gap-1'>
+      <ContainLogo className='grid grid-cols-2 gap-1'>
         <LinkedinLogo />
        <TwitterLogo />
-      </div>
+      </ContainLogo>
             </Group>
-      </div>
+      </SecondPartFooter>
       
       </Container>
-    </div>
+    </Box>
   );
 }
 export default Footer;

@@ -8,12 +8,20 @@
   .hearder-style {
     @apply font-UbuntuRegular text-hslate;
   }
-  .btn-custom{
-    @apply rounded-[29px] bg-gcolor hover:bg-[#ee9b95]
+  .btn-custom {
+    @apply bg-hm hover:bg-[#ee9b95];
   }
+  .description-title {
+    @apply font-UbuntuBold tracking-normal;
+  }
+  .common-description-home {
+    @apply description-title text-[32px] leading-9 font-bold;
+  }
+  
 }
+
 @layer base {
-   @font-face {
+  @font-face {
     font-family: 'Ubuntu-Bold';
     src: local('Ubuntu-Bold'),
       url('../../public/fonts/Ubuntu/Ubuntu-Bold.ttf') format(truetype);
