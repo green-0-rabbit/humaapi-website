@@ -1,23 +1,14 @@
 import { Box } from '@mantine/core';
-import LandingPage from 'src/components/sections/home-section/landing-page';
-import OursService from '../components/sections/home-section/ours-service';
-import DomaineActivity from '../components/sections/home-section/domaine-activity';
-import styled from '@emotion/styled';
-
-const ContainOursService = styled.div``;
-const ContainDomaineActivity = styled.div``;
+import LandingPage from 'src/components/sections/home/landing-page';
+import OursService from '../components/sections/home/our-services';
+import DomaineActivity from '../components/sections/home/domaine-activity';
 
 export default function Home() {
   return (
-    <Box className="w-full space-y-[3rem]">
+    <Box className="w-full space-y-[4rem]">
       <LandingPage />
-      <ContainOursService>
-        <OursService />
-      </ContainOursService>
-      <ContainDomaineActivity>
-        <DomaineActivity />
-      </ContainDomaineActivity>
-      
+      <OursService />
+      <DomaineActivity />
     </Box>
   );
 }

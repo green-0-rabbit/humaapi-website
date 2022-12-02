@@ -29,20 +29,25 @@ const TemplateCarousel: FC<ITemplateCarousel> = (props) => {
       dragFree
       slideSize="45%"
       slideGap="md"
-      height={200}
+      height={210}
       withControls={false}
       withIndicators
       getEmblaApi={setEmbla}
       initialSlide={1}
       styles={{
-        indicator: {
-          width: 18,
-          height: 10,
-          transition: 'width 250ms ease',
-          '&[data-active]': {
-            width: 10,
-            backgroundColor: '#EA6F66'
+        root: {
+          '.mantine-Carousel-indicator': {
+            backgroundColor: '#e6e6e6',
+            '&[data-active]': {
+              width: 10,
+              backgroundColor: '#EA6F66'
+            }
           }
+        },
+        indicator: {
+          width: 14,
+          height: 10,
+          transition: 'width 250ms ease'
         }
       }}>
       {children}
