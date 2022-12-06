@@ -35,7 +35,7 @@ const WebDev: FC<IWebDev> = (props) => {
             <BrandButton
             variant="filled" className='btn-custom'
                  content={`${labelBtn ? labelBtn : 'Learn More'}`}
-              action={() => navigation('/our-services/web-developement')}
+              onClick={() => navigation('/our-services/web-developement')}
             />
           </Box>
         </Container>

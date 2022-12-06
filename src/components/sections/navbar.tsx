@@ -12,6 +12,8 @@ import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link';
 import LogoHumaapi from '../elements/svg/icons/logo-humaapi';
 import { useRouter } from 'next/router';
+import ActionButton from 'src/components/modules/action-button';
+
 
 const HEADER_HEIGHT = 60;
 
@@ -137,8 +139,11 @@ const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
           <Link href={'/'}> <LogoHumaapi /></Link>
              <Group spacing={4} className={`${classes.itemNavLink} hearder-style`}>
             {items}
+            <ActionButton />
           </Group>
-
+          <div className='block md:hidden'>
+          <ActionButton />
+          </div>
           <Burger
             color="#EA6F66"
             opened={opened}
@@ -154,6 +159,7 @@ const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
             {(styles) => (
               <Paper className={classes.dropdown} style={styles}>
                 {items}
+                
               </Paper>
             )}
           </Transition>

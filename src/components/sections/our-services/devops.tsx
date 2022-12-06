@@ -29,7 +29,7 @@ const DevOps: FC<IDevOps> = (props) => {
             <BrandButton
             variant="filled" className='btn-custom'
               content={`${labelBtn ? labelBtn : 'Learn More'} `}
-              action={() => navigation('/our-services/devops')}
+              onClick={() => navigation('/our-services/devops')}
             />
           </Box>
         </Box>

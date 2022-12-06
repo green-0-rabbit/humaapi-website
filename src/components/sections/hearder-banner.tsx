@@ -23,6 +23,7 @@ const HearderBanner: FC<IHearderBanner> = (props) => {
         size ? `${size}` : 'h-screen'
       } flex items-center justify-center bg-gradient-to-b ${classes.root  ? 'from-[#f1afaf30]':'from-[#fff9f9]'}  ${classes.root}`}>
       <Image
+      priority
         src={bgImage}
         alt={'backgroundImage'}
         quality={40}

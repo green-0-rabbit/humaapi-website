@@ -13,14 +13,14 @@ const useStyles = createStyles((theme) => ({
 }))
 interface ICard extends PaperProps {
   children: ReactNode;
-  cardClass:string
+  cardclass:string
 }
 const BrandCard: FC<ICard> = (props) => {
-  const { children,cardClass } = props;
+  const { children,cardclass } = props;
   const { classes} = useStyles();
    return (
       <Paper radius={28} p="lg" 
-         className={`${classes.root} ${cardClass} ${classes.schadow}`}
+         className={`${classes.root} ${cardclass} ${classes.schadow}`}
        {...props}>
       {children}
     </Paper>

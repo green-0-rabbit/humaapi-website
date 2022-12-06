@@ -7,8 +7,9 @@ const ActionButton = () => {
 
   return (
     <ActionIcon
+    className={`${dark ? 'text-[#EA6F66]':'bg-gray-100'}`}
       variant="outline"
-      color={dark ? 'yellow' : 'blue'}
+      radius={'lg'}
       onClick={() => toggleColorScheme()}
         >
       {dark ? <IconSun size={18} /> : <IconMoonStars size={18} />}

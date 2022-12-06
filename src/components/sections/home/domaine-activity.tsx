@@ -41,7 +41,7 @@ const DomaineActivity = () => {
                 key={el.text}
               radius={18}
               style={{ width: 262, height: 51 }} 
-              cardClass={'flex place-items-center space-x-3'}>
+              cardclass={'flex place-items-center space-x-3'}>
               <Icon className="">{el.icon}</Icon>
               <Text className={`${classes.textColor} font-UbuntuRegular`}>{el.text}</Text>
             </Card>

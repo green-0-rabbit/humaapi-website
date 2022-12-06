@@ -4,9 +4,11 @@ import { Carousel, Embla } from '@mantine/carousel';
 interface ITemplateCarousel {
   classeCarrousel: string;
   children: ReactNode;
+  dotSpace:string;
+gridCol:string
 }
 const TemplateCarousel: FC<ITemplateCarousel> = (props) => {
-  const { classeCarrousel, children } = props;
+  const { classeCarrousel, children,dotSpace,gridCol} = props;
   const [scrollProgress, setScrollProgress] = useState(0);
   const [embla, setEmbla] = useState<Embla | null>(null);
 
@@ -28,24 +30,34 @@ const TemplateCarousel: FC<ITemplateCarousel> = (props) => {
       className={`${classeCarrousel}`}
       dragFree
       slideSize="45%"
-      slideGap="md"
+      slideGap="lg"
       height={210}
       withControls={false}
       withIndicators
       getEmblaApi={setEmbla}
       initialSlide={1}
+      align="center"
       styles={{
         root: {
+          '.mantine-Carousel-indicators': {
+            transform: `translateY(${dotSpace}px)`
+          },
           '.mantine-Carousel-indicator': {
             backgroundColor: '#e6e6e6',
+
             '&[data-active]': {
               width: 10,
               backgroundColor: '#EA6F66'
             }
+          },
+          '.mantine-Carousel-container': {
+            display: 'grid',
+            gridTemplateColumns: `repeat(${gridCol}, 1fr)`,
+            placeItems: 'center'
           }
         },
         indicator: {
-          width: 14,
+          width: 12,
           height: 10,
           transition: 'width 250ms ease'
         }

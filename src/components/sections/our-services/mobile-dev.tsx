@@ -30,7 +30,7 @@ const MobileDev: FC<IMobileDev> = (props) => {
             <BrandButton
             variant="filled" className='btn-custom'
                 content={`${labelBtn ? labelBtn : 'Learn More'}`}
-              action={() => navigation('/our-services/mobile-developement')}
+                onClick={() => navigation('/our-services/mobile-developement')}
             />
           </Box>
         </Box>

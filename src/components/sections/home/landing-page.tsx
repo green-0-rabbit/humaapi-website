@@ -5,6 +5,7 @@ import Description from '../../modules/description';
 import IllustrationLandingPage from 'src/components/elements/svg/icons/illustration-landing-page';
 import SearchBar from '../../modules/search-bar';
 
+
 const Illustration = styled.div``;
 const HearderBannerContain = styled.div``;
 const Contain = styled.div``;
@@ -34,6 +35,7 @@ const LandingPage: FC = (props) => {
           </Illustration>
         </Contain>
       </HearderBannerContain>
+      
     </Box>
   );
 };

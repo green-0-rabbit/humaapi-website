@@ -13,7 +13,7 @@ const SearchBar: FC<ICustomInput> = ({ ...props }) => {
       rightSection={
         <BrandButton
         variant="filled" className='btn-custom'
-          action={()=> console.log('it works !!!') }
+        onClick={()=> console.log('it works !!!') }
           content={'Get in touch'}
         />
       }

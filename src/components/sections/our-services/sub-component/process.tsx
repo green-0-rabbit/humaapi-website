@@ -44,7 +44,7 @@ const Process: FC<IProcess> = ({ ...props }) => {
         <Container className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {dataProcess.map((el, index) => (
             <Card
-              cardClass={'hidden md:grid place-items-start'}
+              cardclass={'hidden md:grid place-items-start'}
               radius={20}
               key={index}
               style={{ width: 280, height: 173 }}>
@@ -65,13 +65,13 @@ const Process: FC<IProcess> = ({ ...props }) => {
         </Container>
       </ContainCards>
 
-      <TemplateCarousel classeCarrousel={'block md:hidden grid'}>
+      <TemplateCarousel classeCarrousel={'block md:hidden grid'} dotSpace={'25'} gridCol={'5'}>
         {dataProcess.map((el, index) => (
-          <Carousel.Slide>
+          <Carousel.Slide  key={index}>
             <Card
-              cardClass={'grid place-items-start'}
+              cardclass={'grid place-items-start'}
               radius={20}
-              key={index}
+             
               style={{ width: 280, height: 173 }}>
               <Contain className="grid gap-1 grid-cols-1 font-UbuntuRegular ">
                 <Icon>{el.icon}</Icon>

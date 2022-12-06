@@ -3,21 +3,23 @@ import { FC } from 'react';
 
 interface IBrandButton extends ButtonProps {
   content: string;
-  action?(args?: any): any;
+  onClick?(args?: any): any;
+ //action:((link:any)=>any)
 }
-const BrandButton: FC<IBrandButton> = (props) => {
-  const { content,action } = props;
+const BrandButton: FC<IBrandButton> = ({...props}) => {
+  const { content,onClick } = props;
   return (
        <Button
+       {...props}
         radius="xl"
       styles={() => ({
         root: {
           '.mantine-Button-root': {}
         }
       })}
-      onClick={action}
-      {...props}>
-      {content}
+         onClick={onClick}
+      >
+        {content}
     </Button>
     );
 };

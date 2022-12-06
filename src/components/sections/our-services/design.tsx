@@ -32,7 +32,7 @@ const Design: FC<IDesign> = (props) => {
             <BrandButton
             variant="filled" className='btn-custom'
               content={`${labelBtn ? labelBtn : 'Learn More'} `}
-              action={() => navigation('/our-services/design')}
+              onClick={() => navigation('/our-services/design')}
             />
           </Box>
         </Box>
