@@ -7,6 +7,7 @@ import {
   Burger,
   Paper,
   Transition,
+  Box,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link';
@@ -139,7 +140,8 @@ const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
           <Link href={'/'}> <LogoHumaapi /></Link>
              <Group spacing={4} className={`${classes.itemNavLink} hearder-style`}>
             {items}
-            <ActionButton />
+            <Box className='ml-8'><ActionButton /></Box>
+            
           </Group>
           <div className='block md:hidden'>
           <ActionButton />

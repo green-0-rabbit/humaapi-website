@@ -10,6 +10,7 @@ const ActionButton = () => {
     className={`${dark ? 'text-[#EA6F66]':'bg-gray-100'}`}
       variant="outline"
       radius={'lg'}
+      style={{border:'none'}}
       onClick={() => toggleColorScheme()}
         >
       {dark ? <IconSun size={18} /> : <IconMoonStars size={18} />}
