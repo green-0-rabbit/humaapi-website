@@ -70,6 +70,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.7.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:18.2.0"],\
+            ["react-hm-dynamic-form", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:1.16.0"],\
+            ["react-hook-form", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:7.40.0"],\
+            ["react-router-dom", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:6.4.3"],\
             ["remove", "npm:0.1.5"],\
             ["rollup", "npm:3.3.0"],\
             ["tailwindcss", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:3.2.4"],\
@@ -3183,6 +3186,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packagePeers": [\
             "@types/react",\
             "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@remix-run/router", [\
+        ["npm:1.0.3", {\
+          "packageLocation": "./.yarn/cache/@remix-run-router-npm-1.0.3-98de0e8fbb-7e535f3c24.zip/node_modules/@remix-run/router/",\
+          "packageDependencies": [\
+            ["@remix-run/router", "npm:1.0.3"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -12771,11 +12783,118 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["react-hm-dynamic-form", [\
+        ["npm:1.16.0", {\
+          "packageLocation": "./.yarn/cache/react-hm-dynamic-form-npm-1.16.0-7ce0a1bd08-5a95cd3686.zip/node_modules/react-hm-dynamic-form/",\
+          "packageDependencies": [\
+            ["react-hm-dynamic-form", "npm:1.16.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:1.16.0", {\
+          "packageLocation": "./.yarn/__virtual__/react-hm-dynamic-form-virtual-0391f8d9b7/0/cache/react-hm-dynamic-form-npm-1.16.0-7ce0a1bd08-5a95cd3686.zip/node_modules/react-hm-dynamic-form/",\
+          "packageDependencies": [\
+            ["react-hm-dynamic-form", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:1.16.0"],\
+            ["@mui/material", null],\
+            ["@types/mui__material", null],\
+            ["@types/react", "npm:18.0.25"],\
+            ["@types/react-dom", "npm:18.0.8"],\
+            ["@types/react-hook-form", null],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:18.2.0"],\
+            ["react-hook-form", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:7.40.0"]\
+          ],\
+          "packagePeers": [\
+            "@mui/material",\
+            "@types/mui__material",\
+            "@types/react-dom",\
+            "@types/react-hook-form",\
+            "@types/react",\
+            "react-dom",\
+            "react-hook-form",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["react-hook-form", [\
+        ["npm:7.40.0", {\
+          "packageLocation": "./.yarn/cache/react-hook-form-npm-7.40.0-760f91e47b-8187981c14.zip/node_modules/react-hook-form/",\
+          "packageDependencies": [\
+            ["react-hook-form", "npm:7.40.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:7.40.0", {\
+          "packageLocation": "./.yarn/__virtual__/react-hook-form-virtual-2a95aecb74/0/cache/react-hook-form-npm-7.40.0-760f91e47b-8187981c14.zip/node_modules/react-hook-form/",\
+          "packageDependencies": [\
+            ["react-hook-form", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:7.40.0"],\
+            ["@types/react", "npm:18.0.25"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["react-is", [\
         ["npm:16.13.1", {\
           "packageLocation": "./.yarn/cache/react-is-npm-16.13.1-a9b9382b4f-f7a19ac349.zip/node_modules/react-is/",\
           "packageDependencies": [\
             ["react-is", "npm:16.13.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["react-router", [\
+        ["npm:6.4.3", {\
+          "packageLocation": "./.yarn/cache/react-router-npm-6.4.3-74c3e62880-b89c0495c6.zip/node_modules/react-router/",\
+          "packageDependencies": [\
+            ["react-router", "npm:6.4.3"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:7fb3d4a336dbc352b3a98f91afb924b02238168e7c1afc078aef0adf11d857eef4e1381c8810f72d5124bf59b6ea83f1d84c839d3dbfd4bc53c22618f311602d#npm:6.4.3", {\
+          "packageLocation": "./.yarn/__virtual__/react-router-virtual-e611b76786/0/cache/react-router-npm-6.4.3-74c3e62880-b89c0495c6.zip/node_modules/react-router/",\
+          "packageDependencies": [\
+            ["react-router", "virtual:7fb3d4a336dbc352b3a98f91afb924b02238168e7c1afc078aef0adf11d857eef4e1381c8810f72d5124bf59b6ea83f1d84c839d3dbfd4bc53c22618f311602d#npm:6.4.3"],\
+            ["@remix-run/router", "npm:1.0.3"],\
+            ["@types/react", "npm:18.0.25"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["react-router-dom", [\
+        ["npm:6.4.3", {\
+          "packageLocation": "./.yarn/cache/react-router-dom-npm-6.4.3-3b0e4f134b-67a44d8dc4.zip/node_modules/react-router-dom/",\
+          "packageDependencies": [\
+            ["react-router-dom", "npm:6.4.3"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:6.4.3", {\
+          "packageLocation": "./.yarn/__virtual__/react-router-dom-virtual-7fb3d4a336/0/cache/react-router-dom-npm-6.4.3-3b0e4f134b-67a44d8dc4.zip/node_modules/react-router-dom/",\
+          "packageDependencies": [\
+            ["react-router-dom", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:6.4.3"],\
+            ["@remix-run/router", "npm:1.0.3"],\
+            ["@types/react", "npm:18.0.25"],\
+            ["@types/react-dom", "npm:18.0.8"],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:18.2.0"],\
+            ["react-router", "virtual:7fb3d4a336dbc352b3a98f91afb924b02238168e7c1afc078aef0adf11d857eef4e1381c8810f72d5124bf59b6ea83f1d84c839d3dbfd4bc53c22618f311602d#npm:6.4.3"]\
+          ],\
+          "packagePeers": [\
+            "@types/react-dom",\
+            "@types/react",\
+            "react-dom",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -15180,6 +15299,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.7.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:18.2.0"],\
+            ["react-hm-dynamic-form", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:1.16.0"],\
+            ["react-hook-form", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:7.40.0"],\
+            ["react-router-dom", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:6.4.3"],\
             ["remove", "npm:0.1.5"],\
             ["rollup", "npm:3.3.0"],\
             ["tailwindcss", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:3.2.4"],\

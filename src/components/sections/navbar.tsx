@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   createStyles,
   Header,
@@ -7,11 +7,14 @@ import {
   Burger,
   Paper,
   Transition,
-  Text
+  Box,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import LogoHumaapi from '../elements/illustrations/logo-icon/logo-humaapi';
 import Link from 'next/link';
+import LogoHumaapi from '../elements/svg/icons/logo-humaapi';
+import { useRouter } from 'next/router';
+import ActionButton from 'src/components/modules/action-button';
+
 
 const HEADER_HEIGHT = 60;
 
@@ -22,14 +25,16 @@ const useStyles = createStyles((theme) => ({
   root: {
     position: 'fixed',
     zIndex: 1,
-    background: theme.fn.rgba('#ffffff', 0.4),
     borderStyle: 'none',
     marginLeft: 6,
     marginRight: 6,
     marginTop: 6,
     borderRadius: 20,
-    backdropFilter: 'blur(64px)'
-  },
+    backdropFilter: 'blur(64px)',
+    background: theme.colorScheme === 'dark' ? theme.fn.rgba('#000000', 0.4):theme.fn.rgba('#ffffff', 0.4)
+    
+       },
+
 
   dropdown: {
     position: 'absolute',
@@ -42,7 +47,7 @@ const useStyles = createStyles((theme) => ({
     borderTopWidth: 0,
     overflow: 'hidden',
     borderRadius: 18,
-    backgroundColor: '#f8f8f8',
+    backgroundColor: theme.colorScheme === 'dark' ? "#292727":"#f5eeee",
 
     [theme.fn.largerThan('sm')]: {
       display: 'none'
@@ -56,7 +61,7 @@ const useStyles = createStyles((theme) => ({
     height: '100%'
   },
 
-  links: {
+  itemNavLink: {
     [theme.fn.smallerThan('sm')]: {
       display: 'none',
       alignItems: 'center'
@@ -82,7 +87,7 @@ const useStyles = createStyles((theme) => ({
     },
     color:
       theme.colorScheme === 'dark'
-        ? theme.colors.dark[0]
+        ? theme.colors.gray[0]
         : theme.colors.gray[7],
     fontSize: theme.fontSizes.sm,
     fontWeight: 500,
@@ -101,28 +106,28 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface IHeaderResponsiveProps {
-  links: { link: string; label: string }[];
+  itemNavLink: { link: string; label: string }[];
 }
 
-const Navbar = ({ links }: IHeaderResponsiveProps) => {
+const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
+  const router = useRouter();
   const [opened, { toggle, close }] = useDisclosure(false);
-  const [active, setActive] = useState(links[0].link);
+  const [active, setActive] = useState(router.pathname);
 
   const { classes, cx } = useStyles();
-  const items = links.map((link) => (
+  const items = itemNavLink.map((link, index) => (
     <Link href={link.link} legacyBehavior key={link.label}>
-      <Text
+      <a
         key={link.label}
         className={`${cx(classes.link, {
           [classes.linkActive]: active === link.link
         })}`}
-        onClick={(ev:any) => {
-        //  ev.preventDefault()
-          setActive(link.link);
+        onClick={() => {
+          setActive(active);
           close();
         }}>
         {link.label}
-      </Text>
+      </a>
     </Link>
   ));
 
@@ -130,14 +135,17 @@ const Navbar = ({ links }: IHeaderResponsiveProps) => {
     <>
       <Header
         height={HEADER_HEIGHT}
-        ///mb={120}
-        className={`${classes.root} `}>
+        className={`${classes.root}`}>
         <Container className={classes.header}>
-          <LogoHumaapi />
-          <Group spacing={4} className={`${classes.links} hearder-style`}>
+          <Link href={'/'}> <LogoHumaapi /></Link>
+             <Group spacing={4} className={`${classes.itemNavLink} hearder-style`}>
             {items}
+            <Box className='ml-8'><ActionButton /></Box>
+            
           </Group>
-
+          <div className='block md:hidden'>
+          <ActionButton />
+          </div>
           <Burger
             color="#EA6F66"
             opened={opened}
@@ -153,6 +161,7 @@ const Navbar = ({ links }: IHeaderResponsiveProps) => {
             {(styles) => (
               <Paper className={classes.dropdown} style={styles}>
                 {items}
+                
               </Paper>
             )}
           </Transition>

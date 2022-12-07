@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 @layer components {
-  .footer-style {
-    @apply font-UbuntuRegular  text-fblack;
-  }
   .hearder-style {
     @apply font-UbuntuRegular text-hslate;
   }

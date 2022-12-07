@@ -1,16 +1,20 @@
 import styled from '@emotion/styled';
-import { Box, Text } from '@mantine/core';
-import AboubacarIcon from 'src/components/elements/personel-icon/ab-icon';
-import AurelIcon from 'src/components/elements/personel-icon/aurel-icon';
-import FreddyIcon from 'src/components/elements/personel-icon/freddy-icon';
-import GratientIcon from 'src/components/elements/personel-icon/gratient-icon';
-import SamIcon from 'src/components/elements/personel-icon/sam-icon';
 import Description from 'src/components/modules/description';
-import LandingAboutUs from 'src/components/sections/about-us/aboutus-landing-page';
-import HearderBanner from 'src/components/sections/hearder-banner';
+import LandingAboutUs from 'src/components/sections/landing-page-about-us';
+import { createStyles } from '@mantine/core';
+import DataService from 'src/components/content/content-data';
+
+const useStyles = createStyles((theme) => ({
+  
+  nameColor:{color: theme.colorScheme === 'dark' ? "white" :"#2b2b2b"},
+  roleColor:{color: theme.colorScheme === 'dark' ? "#afaaaa" :"#6B7280"}
+  
+}))
+
 
 const AboutUs = () => {
-  const HearderBannerContain = styled.div``;
+  const { classes} = useStyles();
+
   const ContainService = styled.div``;
   const Title = styled.div``;
   const Name = styled.div``;
@@ -21,43 +25,12 @@ const AboutUs = () => {
   const Container = styled.div``;
   const Contain = styled.div``;
   const Ourteam = styled.div``;
-  const Border = styled.div``;
-  const tableTeam = [
-    {
-      icon: <AurelIcon />,
-      role: 'Director & CEO',
-      name: 'Aurel AG'
-    },
-    {
-      icon: <AboubacarIcon />,
-      role: 'Community manager',
-      name: 'Aboubakar Ta'
-    },
-    {
-      icon: <GratientIcon />,
-      role: 'Mobile developper',
-      name: 'Gratien adn'
-    },
-    {
-      icon: <FreddyIcon />,
-      role: 'Developper fullstack',
-      name: 'Freddy Bh'
-    },
-    {
-      icon: <SamIcon />,
-      role: 'Designer',
-      name: 'Samuel  stch'
-    }
-  ];
+  
   return (
-    <ContainService className="space-y-32 md:space-y-52">
-      <HearderBanner size="h-[80vh] md:h-[45vh]">
-        <HearderBannerContain className="h-screen md:h-[75vh]  grid place-items-center p-5">
+    <ContainService>
+      
         <LandingAboutUs />
-          
-        </HearderBannerContain>
-      </HearderBanner>
-
+            
       <Ourteam className="mx-4">
         <ContainDescription>
           <Title className="text-center">
@@ -72,22 +45,19 @@ const AboutUs = () => {
           </Title>
         </ContainDescription>
         <ContainCards className="grid place-items-center mt-12">
-        <Contain className='grid  grid-cols-2 md:grid-cols-3 gap-y-10 gap-x-16 text-center font-UbuntuRegular'>
-                      {tableTeam.map((el, index) => (
-              <Container className="grid  grid-cols-1">
-                
-                    <Icon className='h-36'>{el.icon}</Icon>
-                <Name className="text-base font-semibold text-[#2b2b2b]">
+          <Contain className="grid  grid-cols-2 md:grid-cols-3 gap-y-10 gap-x-16 text-center font-UbuntuRegular">
+            {DataService.iconTeamData.map((el, index) => (
+              <Container key={index} className="grid  grid-cols-1">
+                <Icon className="h-36">{el.icon}</Icon>
+                <Name className={`${classes.nameColor} text-base font-semibold font-UbuntuRegular`}>
                   {el.name}
                 </Name>
-                <Role className="text-sm text-gray-500 font-medium">
+                <Role className={`${classes.roleColor} text-sm font-UbuntuRegular  font-medium`}>
                   {el.role}
                 </Role>
-                </Container>
-                
-            
+              </Container>
             ))}
-           </Contain>
+          </Contain>
         </ContainCards>
       </Ourteam>
     </ContainService>

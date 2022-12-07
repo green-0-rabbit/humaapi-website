@@ -1,74 +1,157 @@
-import { createStyles, Container, Group, Box} from '@mantine/core';
-import Copywritting from '../elements/illustrations/logo-icon/copywritting-icon'
-import styled from '@emotion/styled'
-import React from 'react';
-import TwitterLogo from '../elements/illustrations/logo-icon/twitter-logo';
-import LinkedinLogo from '../elements/illustrations/logo-icon/linkedin-logo';
+import { createStyles, Text, Container, ActionIcon, Group } from '@mantine/core';
+import Copywritting from '../elements/svg/icons/copywritting-icon';
+import LogoHumaapi from '../elements/svg/icons/logo-humaapi';
+import Link from 'next/link';
+import LinkedinLogo from '../elements/svg/icons/linkedin-logo';
+import TwitterLogo from '../elements/svg/icons/twitter-logo';
 
 const useStyles = createStyles((theme) => ({
   footer: {
-   
+    marginTop: 120,
+    paddingTop: theme.spacing.xl * 2,
+    paddingBottom: theme.spacing.xl * 2,
+     },
+
+  logo: {
+    maxWidth: 200,
+
     [theme.fn.smallerThan('sm')]: {
-      marginTop: 50,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
     },
-   
-    [theme.fn.largerThan('sm')]: {
-      marginTop: 120,
+  },
+
+  description: {
+    marginTop: 5,
+
+    [theme.fn.smallerThan('sm')]: {
+      marginTop: theme.spacing.xs,
+      textAlign: 'center',
     },
   },
 
   inner: {
     display: 'flex',
     justifyContent: 'space-between',
+
+    [theme.fn.smallerThan('sm')]: {
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
+  },
+
+  groups: {
+    display: 'flex',
+    flexWrap: 'wrap',
+
+    [theme.fn.smallerThan('sm')]: {
+      display: 'none',
+    },
+  },
+
+  wrapper: {
+    width: 160,
+  },
+
+  link: {
+    display: 'block',
+    color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[6],
+    fontSize: theme.fontSizes.sm,
+    paddingTop: 3,
+    paddingBottom: 3,
+
+    '&:hover': {
+      textDecoration: 'underline',
+    },
+  },
+
+  title: {
+    fontSize: theme.fontSizes.lg,
+    fontWeight: 700,
+    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    marginBottom: theme.spacing.xs / 2,
+    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+  },
+
+  afterFooter: {
+    display: 'flex',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    marginTop: theme.spacing.xl,
     paddingTop: theme.spacing.xl,
     paddingBottom: theme.spacing.xl,
+    borderTop: `1px solid ${
+      theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
+    }`,
 
     [theme.fn.smallerThan('sm')]: {
       flexDirection: 'column',
     },
   },
 
-  links: {
+  social: {
     [theme.fn.smallerThan('sm')]: {
-      marginTop: theme.spacing.md,
+      marginTop: theme.spacing.xs,
     },
   },
 }));
 
-interface IFooterSimpleProps {
-  texts: { text: string}[]
- }
-const Text = styled.span``
-const ContainLogo = styled.div``
-const SecondPartFooter = styled.div``
-const Footer = ({ texts }: IFooterSimpleProps) => {
+interface FooterLinksProps {
+  data: {
+    title: string;
+    links: { label: string; link: string }[];
+  }[];
+}
+
+ const Footer = ({ data }: FooterLinksProps) =>{
   const { classes } = useStyles();
-  const items = texts.map((link,index) => (
-    <Text
-    className='footer-style'
-      key={index}
-      onClick={(event) => event.preventDefault()}
-    >
-      {link.text}
-    </Text>
-  ));
+
+  const groups = data.map((group) => {
+    const links = group.links.map((link, index) => (
+      <Text<'a'>
+        key={index}
+        className={classes.link}
+        component="a"
+        href={link.link}
+        onClick={(event) => event.preventDefault()}
+      >
+        {link.label}
+      </Text>
+    ));
+
+    return (
+      <div className={classes.wrapper} key={group.title}>
+        <Text className={classes.title}>{group.title}</Text>
+        {links}
+      </div>
+    );
+  });
 
   return (
-    <Box className={classes.footer}>
-      <Container className={classes.inner}>
-      <Copywritting text='2022 humaapi'/>
-      <SecondPartFooter className=' order-first lg:order-last  md:order-last sm:order-first'>
-<Group className={`${classes.links} flex flex-col flex-wrap items-center md:flex-row`}>{items}
-      <ContainLogo className='grid grid-cols-2 gap-1'>
-        <LinkedinLogo />
-       <TwitterLogo />
-      </ContainLogo>
-            </Group>
-      </SecondPartFooter>
-      
+    <footer className={`${classes.footer} bg-transparent`}>
+      <Container className={`${classes.inner}`}>
+        <div className={classes.logo}>
+        <Link href={'/'}> <LogoHumaapi /></Link>
+          <Text size="xs" color="dimmed" className={`${classes.description} font-UbuntuRegular`}>
+            Build fully functional accessible web applications faster than ever
+          </Text>
+        </div>
+        <div className={`${classes.groups} font-UbuntuRegular`}>{groups}</div>
       </Container>
-    </Box>
+      <Container className={classes.afterFooter}>
+              <Copywritting text="2022 humaapi" />
+                <Group spacing={0} className={classes.social} position="right" noWrap>
+          <ActionIcon size="lg">
+          <LinkedinLogo />
+          </ActionIcon>
+          <ActionIcon size="lg">
+          <TwitterLogo />
+          </ActionIcon>
+          
+        </Group>
+      </Container>
+    </footer>
   );
 }
-export default Footer;
+export default Footer
