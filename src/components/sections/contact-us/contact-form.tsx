@@ -1,8 +1,17 @@
 import styled from '@emotion/styled';
-import { Box, Group, Text, createStyles, Tooltip, Center } from '@mantine/core';
+import {
+  Box,
+  Group,
+  Text,
+  createStyles,
+  Tooltip,
+  Center,
+  Button,
+  FileButton
+} from '@mantine/core';
+import { useState } from 'react';
 import { fieldRegex } from 'react-hm-dynamic-form';
 import { useForm } from 'react-hook-form';
-import BrandButton from 'src/components/elements/brand-button';
 import InformationIcon from 'src/components/elements/svg/icons/information-icon';
 import {
   IFieldGroupMetaFlex,
@@ -19,10 +28,7 @@ const useStyles = createStyles((theme) => ({
   }
 }));
 
-// const Form = styled(Box)`
-//   display: flex;
-//   flex-direction: column;
-// `;
+
 export interface ISignInInput {
   name: string;
   email: string;
@@ -36,10 +42,10 @@ const defaultValues: ISignInInput = {
   message: ''
 };
 
+const ContainForm = styled.div``;
+const ContainText = styled.div``;
+const ContainGroup = styled.div``;
 const ContactForm = () => {
-  const ContainForm = styled.div``;
-  const ContainText = styled.div``;
-  const ContainGroup = styled.div``;
   const { classes } = useStyles();
   const { handleSubmit, ...methods } = useForm<ISignInInput>({
     mode: 'onSubmit',
@@ -49,6 +55,7 @@ const ContactForm = () => {
   const {
     formState: { errors }
   } = methods;
+  const [files, setFiles] =  useState<File[]>([]);
 
   const fieldsGroupMeta: IFieldGroupMetaFlex<ISignInInput>[] = [
     {
@@ -105,8 +112,7 @@ const ContactForm = () => {
         <Box
           className="grid gap-2 grid-cols-1 w-full mt-40 md:w-[62%] xl:w-[40%] lg:w-[55%]  md:mt-52 "
           component="form"
-          // onSubmit={handleSubmit(() => console.log('submit2'))}
-        >
+             >
           <ReactiveFormFlex
             methods={methods}
             errors={errors}
@@ -121,55 +127,52 @@ const ContactForm = () => {
               information
             </Text>
           </ContainText>
-          
-            <ContainGroup className="flex justify-between">
-              <Box className="flex">
-                <Group position="right" mt="xl">
-                  <BrandButton
-                    content={'Attache file'}
-                    variant="outline"
-                    color={'gray'}
-                  />
-                </Group>
-                <Group position="right" mt="xl" className="w-8 relative">
-                  <Tooltip
-                    label="Upload your document. Max file is 10mo"
-                    color={'#a7a7a7'}
-                    radius={8}
-                    offset={12}
-                    position="right"
-                    withArrow
-                    transition="pop">
-                    <Center sx={{ cursor: 'help' }}>
-                      <InformationIcon />
-                    </Center>
-                  </Tooltip>
-                </Group>
+
+          <ContainGroup className="flex justify-between">
+            <Box className="flex">
+              <Group position="right" mt="xl">
+              <FileButton onChange={setFiles} accept="image/png,image/jpeg" multiple>
+          {(props) => <Button  variant="outline" color={'gray'} {...props}>
+                  Attach file  {files?.length ? files?.length : ''}
+                </Button>}
+        </FileButton>
                 
-              </Box>
-              <Group position="left" mt="xl">
-                <BrandButton
-                  content={'Send'}
-                  onClick={handleSubmit(() => {
-                    const formval = methods.getValues()
-                    console.log(formval);
-                    let form = {}
-                   // Object.keys(formval).forEach((el)=>  Object.assign(form,{`${el}: ${formval[el].trim()}`}))
+              </Group>
+              <Group position="right" mt="xl" className="w-8 relative">
+                <Tooltip
+                  label="Upload your document. Max file is 10mo"
+                  color={'#a7a7a7'}
+                  radius={8}
+                  offset={12}
+                  position="right"
+                  withArrow
+                  transition="pop">
+                  <Center sx={{ cursor: 'help' }}>
+                    <InformationIcon />
+                  </Center>
+                </Tooltip>
+              </Group>
+            </Box>
+            <Group position="left" mt="xl">
+              <Button
+                onClick={handleSubmit(() => {
+                  const formval = methods.getValues();
+                  console.log(formval);
+                  let form = {};
+                  // Object.keys(formval).forEach((el)=>  Object.assign(form,{`${el}: ${formval[el].trim()}`}))
                   //   for (const key in formval) {
                   //     form = {...form,{`${key}: ${formval[key].trim()}`}}
-                      
-                  // }   
-                 // console.log(formval);
-                            
-                          } )}
-                  style={{ width: 98, height: 39 }}
-                  variant="filled"
-                  className="btn-custom"
-                />
-              </Group>
 
-               </ContainGroup>
-         
+                  // }
+                  // console.log(formval);
+                })}
+                style={{ width: 98, height: 39 }}
+                variant="filled"
+                className="btn-custom">
+                Send
+              </Button>
+            </Group>
+          </ContainGroup>
         </Box>
       </ContainForm>
     </Box>

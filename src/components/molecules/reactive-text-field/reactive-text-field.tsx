@@ -13,14 +13,14 @@ interface ICustomHandlechange {
 }
 
 const useStyles = createStyles((theme) => ({
-  input: {
-    backgroundColor: theme.colorScheme === 'dark' ? '#3d3d3d' : '#ffffff',
-    boxShadow:
-      theme.colorScheme === 'dark'
-        ? '1px 1px 10px #272727'
-        : '1px 1px 10px #eee',
-    border: 'none'
-  }
+  // input: {
+  //   backgroundColor: theme.colorScheme === 'dark' ? '#3d3d3d' : '#ffffff',
+  //   boxShadow:
+  //     theme.colorScheme === 'dark'
+  //       ? '1px 1px 10px #272727'
+  //       : '1px 1px 10px #eee',
+  //   border: 'none'
+  // }
 }));
 
 const ReactiveTextField: FC<SmartInputType<TextFieldCustomProps>> = (props) => {
@@ -45,7 +45,7 @@ const ReactiveTextField: FC<SmartInputType<TextFieldCustomProps>> = (props) => {
       width: '100%',
       display: hidden ? 'none' : undefined,
       borderStyle: isParentList && !errors ? 'none' : undefined,
-      background: isParentList ? undefined : '#78838c12',
+      // background: isParentList ? undefined : '#78838c12',
       maxHeight: isParentList ? '35px' : undefined,
       '::placeholder': isParentList
         ? {

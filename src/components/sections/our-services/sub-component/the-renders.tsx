@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
-import { Text, Container, Box } from '@mantine/core';
+import { Text, Container, Box, Paper } from '@mantine/core';
 import { FC } from 'react';
-import Card from 'src/components/elements/brand-card';
 import Description from 'src/components/modules/description';
 import { createStyles } from '@mantine/core';
 const useStyles = createStyles((theme) => ({
@@ -42,8 +41,8 @@ const TheRenders: FC<ITheRenders> = ({ ...props }) => {
       <ContainCards className="grid place-items-center mt-12">
         <Container className="grid gap-4 grid-cols-1 md:grid-cols-2">
           {dataTheRenders.map((el, index) => (
-            <Card
-            cardclass={"md:grid place-items-center "}
+            <Paper
+            className={"md:grid place-items-center "}
               key={index}
               p={14}
               radius={24}
@@ -62,7 +61,7 @@ const TheRenders: FC<ITheRenders> = ({ ...props }) => {
                   </Text>
                 </Box>
               </Contain>
-            </Card>
+            </Paper>
           ))}
         </Container>
       </ContainCards>

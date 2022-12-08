@@ -7,14 +7,13 @@ const ActionButton = () => {
 
   return (
     <ActionIcon
-    className={`${dark ? 'text-[#EA6F66]':'bg-gray-100'}`}
+      className={`${dark ? 'text-[#EA6F66]' : 'bg-gray-100'}`}
       variant="outline"
       radius={'lg'}
-      style={{border:'none'}}
-      onClick={() => toggleColorScheme()}
-        >
+      style={{ border: 'none' }}
+      onClick={() => toggleColorScheme()}>
       {dark ? <IconSun size={18} /> : <IconMoonStars size={18} />}
     </ActionIcon>
   );
-}
-export default ActionButton
+};
+export default ActionButton;

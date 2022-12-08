@@ -2,14 +2,12 @@ import styled from '@emotion/styled';
 import { Text } from '@mantine/core';
 import Description from 'src/components/modules/description';
 
+const Title = styled.div``;
+const TitleContain = styled.div``;
+const HearderBannerContain = styled.div``;
 const HeadOurServices = () => {
-  const Title = styled.div``;
-  const TitleContain = styled.div``;
-  const HearderBannerContain = styled.div``;
-
   return (
-    // <HearderBanner size="h-[80vh]">
-    <>  
+    <>
       <HearderBannerContain className=" h-[70vh] lg:h-[73vh] grid place-items-center px-9 xs:text-center md:text-left">
         <TitleContain className="text-center">
           <Text
@@ -29,7 +27,6 @@ const HeadOurServices = () => {
           </Title>
         </TitleContain>
       </HearderBannerContain>
-      {/* </HearderBanner> */}
     </>
   );
 };

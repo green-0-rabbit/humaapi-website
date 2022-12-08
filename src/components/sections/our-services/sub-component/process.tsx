@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import { Carousel } from '@mantine/carousel';
-import { Text, Container } from '@mantine/core';
-import Card from 'src/components/elements/brand-card';
+import { Text, Container, Paper } from '@mantine/core';
 import { FC } from 'react';
 import TemplateCarousel from 'src/components/modules/carousel';
 import Description from 'src/components/modules/description';
@@ -43,8 +42,8 @@ const Process: FC<IProcess> = ({ ...props }) => {
       <ContainCards className="grid place-items-center mt-12">
         <Container className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {dataProcess.map((el, index) => (
-            <Card
-              cardclass={'hidden md:grid place-items-start'}
+            <Paper
+              className={'hidden md:grid place-items-start'}
               radius={20}
               key={index}
               style={{ width: 280, height: 173 }}>
@@ -60,7 +59,7 @@ const Process: FC<IProcess> = ({ ...props }) => {
                   {el.text}
                 </Text>
               </Contain>
-            </Card>
+            </Paper>
           ))}
         </Container>
       </ContainCards>
@@ -68,8 +67,8 @@ const Process: FC<IProcess> = ({ ...props }) => {
       <TemplateCarousel classeCarrousel={'block md:hidden grid'} dotSpace={'25'} gridCol={'5'}>
         {dataProcess.map((el, index) => (
           <Carousel.Slide  key={index}>
-            <Card
-              cardclass={'grid place-items-start'}
+            <Paper
+              className={'grid place-items-start'}
               radius={20}
              
               style={{ width: 280, height: 173 }}>
@@ -85,7 +84,7 @@ const Process: FC<IProcess> = ({ ...props }) => {
                   {el.text}
                 </Text>
               </Contain>
-            </Card>
+            </Paper>
           </Carousel.Slide>
         ))}
       </TemplateCarousel>

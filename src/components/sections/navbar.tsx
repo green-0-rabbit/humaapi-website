@@ -7,14 +7,13 @@ import {
   Burger,
   Paper,
   Transition,
-  Box,
+  Box
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link';
 import LogoHumaapi from '../elements/svg/icons/logo-humaapi';
 import { useRouter } from 'next/router';
 import ActionButton from 'src/components/modules/action-button';
-
 
 const HEADER_HEIGHT = 60;
 
@@ -31,10 +30,11 @@ const useStyles = createStyles((theme) => ({
     marginTop: 6,
     borderRadius: 20,
     backdropFilter: 'blur(64px)',
-    background: theme.colorScheme === 'dark' ? theme.fn.rgba('#000000', 0.4):theme.fn.rgba('#ffffff', 0.4)
-    
-       },
-
+    background:
+      theme.colorScheme === 'dark'
+        ? theme.fn.rgba('#000000', 0.4)
+        : theme.fn.rgba('#ffffff', 0.4)
+  },
 
   dropdown: {
     position: 'absolute',
@@ -47,7 +47,7 @@ const useStyles = createStyles((theme) => ({
     borderTopWidth: 0,
     overflow: 'hidden',
     borderRadius: 18,
-    backgroundColor: theme.colorScheme === 'dark' ? "#292727":"#f5eeee",
+    backgroundColor: theme.colorScheme === 'dark' ? '#292727' : '#f5eeee',
 
     [theme.fn.largerThan('sm')]: {
       display: 'none'
@@ -120,10 +120,10 @@ const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
       <a
         key={link.label}
         className={`${cx(classes.link, {
-          [classes.linkActive]: active === link.link
+          [classes.linkActive]: router.pathname === link.link
         })}`}
         onClick={() => {
-          setActive(active);
+          setActive(router.pathname);
           close();
         }}>
         {link.label}
@@ -133,18 +133,19 @@ const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
 
   return (
     <>
-      <Header
-        height={HEADER_HEIGHT}
-        className={`${classes.root}`}>
+      <Header height={HEADER_HEIGHT} className={`${classes.root}`}>
         <Container className={classes.header}>
-          <Link href={'/'}> <LogoHumaapi /></Link>
-             <Group spacing={4} className={`${classes.itemNavLink} hearder-style`}>
+          <Link href={'/'}>
+              <LogoHumaapi />
+          </Link>
+          <Group spacing={4} className={`${classes.itemNavLink} hearder-style`}>
             {items}
-            <Box className='ml-8'><ActionButton /></Box>
-            
+            <Box className="ml-8">
+              <ActionButton />
+            </Box>
           </Group>
-          <div className='block md:hidden'>
-          <ActionButton />
+          <div className="block md:hidden">
+            <ActionButton />
           </div>
           <Burger
             color="#EA6F66"
@@ -161,7 +162,6 @@ const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
             {(styles) => (
               <Paper className={classes.dropdown} style={styles}>
                 {items}
-                
               </Paper>
             )}
           </Transition>

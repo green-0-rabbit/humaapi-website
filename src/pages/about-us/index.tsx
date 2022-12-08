@@ -12,19 +12,18 @@ const useStyles = createStyles((theme) => ({
 }))
 
 
+const ContainService = styled.div``;
+const Title = styled.div``;
+const Name = styled.div``;
+const Role = styled.div``;
+const Icon = styled.div``;
+const ContainDescription = styled.div``;
+const ContainCards = styled.div``;
+const Container = styled.div``;
+const Contain = styled.div``;
+const Ourteam = styled.div``;
 const AboutUs = () => {
   const { classes} = useStyles();
-
-  const ContainService = styled.div``;
-  const Title = styled.div``;
-  const Name = styled.div``;
-  const Role = styled.div``;
-  const Icon = styled.div``;
-  const ContainDescription = styled.div``;
-  const ContainCards = styled.div``;
-  const Container = styled.div``;
-  const Contain = styled.div``;
-  const Ourteam = styled.div``;
   
   return (
     <ContainService>

@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
-import { Box, Text } from '@mantine/core';
+import { Box, Paper, Text } from '@mantine/core';
 import DataService from 'src/components/content/content-data';
-import Card from '../../elements/brand-card';
 import Description from '../../modules/description';
 import { createStyles } from '@mantine/core';
 const useStyles = createStyles((theme) => ({
@@ -9,11 +8,12 @@ const useStyles = createStyles((theme) => ({
   textColor:{color: theme.colorScheme === 'dark' ? "white" :""}
   
 }))
-const DomaineActivity = () => {
-  const ContainDomainsActivity = styled.div``;
+const ContainDomainsActivity = styled.div``;
   const ContainCards = styled.div``;
   const Container = styled.div``;
   const Icon = styled.div``;
+const DomaineActivity = () => {
+  
   const { classes} = useStyles();
 
   return (
@@ -37,14 +37,14 @@ const DomaineActivity = () => {
       <ContainCards className="grid place-items-center mt-2">
         <Container className="grid gap-4 lg:grid-cols-3 md:grid-cols-2">
           {DataService.cardDomainData.map((el) => (
-            <Card
+            <Paper
                 key={el.text}
               radius={18}
               style={{ width: 262, height: 51 }} 
-              cardclass={'flex place-items-center space-x-3'}>
+              className={'flex place-items-center space-x-3'}>
               <Icon className="">{el.icon}</Icon>
               <Text className={`${classes.textColor} font-UbuntuRegular`}>{el.text}</Text>
-            </Card>
+            </Paper>
           ))}
         </Container>
       </ContainCards>

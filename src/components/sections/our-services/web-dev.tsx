@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
-import { Box } from '@mantine/core';
+import { Box, Button } from '@mantine/core';
 import { FC } from 'react';
-import BrandButton from 'src/components/elements/brand-button';
 import IllustrationWeb from 'src/components/elements/svg/services/illustration-web';
 import Description from 'src/components/modules/description';
 import navigation from 'src/components/features/navigation-hook';
@@ -9,12 +8,12 @@ import navigation from 'src/components/features/navigation-hook';
 interface IWebDev {
   labelBtn?: string;
 }
+const ContainWebDev = styled.div``;
+const Contain = styled.div``;
+const Container = styled.div``;
+const Illustration = styled.div``;
 const WebDev: FC<IWebDev> = (props) => {
   const { labelBtn } = props;
-  const ContainWebDev = styled.div``;
-  const Contain = styled.div``;
-  const Container = styled.div``;
-  const Illustration = styled.div``;
 
   return (
     <ContainWebDev className="px-2 grid place-items-center xs:text-center md:text-left">
@@ -32,11 +31,12 @@ const WebDev: FC<IWebDev> = (props) => {
             space={8}
           />
           <Box className="mt-4">
-            <BrandButton
-            variant="filled" className='btn-custom'
-                 content={`${labelBtn ? labelBtn : 'Learn More'}`}
-              onClick={() => navigation('/our-services/web-developement')}
-            />
+            <Button
+              variant="filled"
+              className="btn-custom"
+              onClick={() => navigation('/our-services/web-developement')}>
+              {labelBtn ? labelBtn : 'Learn more'}
+            </Button>
           </Box>
         </Container>
       </Contain>
