@@ -10,6 +10,7 @@
       "version": "detect"
     }
   },
+  "root": true,
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -19,11 +20,10 @@
     "plugin:tailwindcss/recommended",
     "plugin:import/recommended",
     "plugin:import/typescript",
-    "plugin:mobx/recommended",
+    // "plugin:mobx/recommended",
     "airbnb",
     "airbnb-typescript",
-    "next/core-web-vitals",
-    "plugin:@next/next/recommended"
+    "next/core-web-vitals"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {

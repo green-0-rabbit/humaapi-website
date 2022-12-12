@@ -5,11 +5,11 @@ import {
   ColorScheme
 } from '@mantine/core';
 import type { AppProps } from 'next/app';
-import Layout from '../layouts/layout';
 import themeGlobaly from 'src/components/commons/app.theming';
 import { useState } from 'react';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { css, Global } from '@emotion/react';
+import Layout from '../layouts/layout';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [colorScheme, setColorScheme] = useState<ColorScheme>(
@@ -31,7 +31,7 @@ export default function App({ Component, pageProps }: AppProps) {
         colorScheme={colorScheme}
         toggleColorScheme={toggleColorScheme}>
         <MantineProvider
-          theme={{ ...themeGlobaly, colorScheme: colorScheme }}
+          theme={{ ...themeGlobaly, colorScheme }}
           withGlobalStyles
           withNormalizeCSS>
           <Layout>
