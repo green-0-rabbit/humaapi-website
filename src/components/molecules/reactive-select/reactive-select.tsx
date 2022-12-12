@@ -14,7 +14,7 @@ interface ICustomHandlechange {
 }
 const ReactiveSelect: FC<SmartInputType<SelectCustomProps>> = (props) => {
   const { methods, inputKey, helperId, errors, options, customProps } = props;
-  const { size, color, disabled, handleChange, onDropdownOpen, label } =
+  const { size, color, disabled, handleChange, onDropdownOpen, label,placeHolder } =
     customProps;
   const selectOptions = customProps.options;
   const { control } = methods;
@@ -48,6 +48,7 @@ const ReactiveSelect: FC<SmartInputType<SelectCustomProps>> = (props) => {
       rules={{ ...options }}
       render={({ field: { onChange, value, ref, name, onBlur } }) => (
         <Select
+        placeholder={placeHolder}
           {...selectProps}
           onChange={(event) => {
             customHandlechange({ methods, event: event as never });

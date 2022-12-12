@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
-import { Box, Group, Text, createStyles, Tooltip, Center } from '@mantine/core';
+import { Button, createStyles, Text } from '@mantine/core';
+import { useEffect, useState } from 'react';
 import { fieldRegex } from 'react-hm-dynamic-form';
 import { useForm } from 'react-hook-form';
-import BrandButton from 'src/components/elements/brand-button';
-import InformationIcon from 'src/components/elements/svg/icons/information-icon';
+import ReactiveReCaptcha from 'src/components/molecules/recaptcha/recaptcha';
 import {
   IFieldGroupMetaFlex,
   ReactiveFormFlex
@@ -19,28 +19,32 @@ const useStyles = createStyles((theme) => ({
   }
 }));
 
-// const Form = styled(Box)`
-//   display: flex;
-//   flex-direction: column;
-// `;
 export interface ISignInInput {
   name: string;
   email: string;
   company: string;
+  domaine: string;
   message: string;
+  acceptCondition: boolean;
+  captchaToken: string;
+  recaptchaCheckbox: boolean;
 }
 const defaultValues: ISignInInput = {
   name: '',
   company: '',
   email: '',
-  message: ''
+  domaine: '',
+  message: '',
+  acceptCondition: false,
+  captchaToken: '',
+  recaptchaCheckbox: false
 };
 
+const ContainText = styled.div``;
+const Form = styled.form;
 const ContactForm = () => {
-  const ContainForm = styled.div``;
-  const ContainText = styled.div``;
-  const ContainGroup = styled.div``;
   const { classes } = useStyles();
+  const [isDisabled, setIsDisabled] = useState(false);
   const { handleSubmit, ...methods } = useForm<ISignInInput>({
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
@@ -49,6 +53,10 @@ const ContactForm = () => {
   const {
     formState: { errors }
   } = methods;
+
+  useEffect(() => {
+   // console.log('state', methods.formState.isValid);
+  }, []);
 
   const fieldsGroupMeta: IFieldGroupMetaFlex<ISignInInput>[] = [
     {
@@ -84,6 +92,23 @@ const ContactForm = () => {
           }
         },
         {
+          inputKey: 'domaine',
+          label: 'Domaine',
+          inputType: 'select',
+          customProps: {
+            placeHolder: 'Choose your domaine',
+            options: [
+              'Web developpement',
+              'Mobile developpement',
+              'Design',
+              'DevOps'
+            ]
+          },
+          options: {
+            required: { value: true, message: 'Topic is required' }
+          }
+        },
+        {
           inputKey: 'message',
           label: 'Message',
           inputType: 'textarea',
@@ -95,84 +120,73 @@ const ContactForm = () => {
             minRows: 5,
             maxRows: 10
           }
+        },
+        {
+          inputKey: 'acceptCondition',
+          label: 'I agree and accept the terms and conditions',
+          inputType: 'checkbox',
+          labelDirection: 'right',
+          options: {
+            required: { value: true, message: '' }
+          }
+        },
+        {
+          inputKey: 'recaptchaCheckbox',
+          label: '',
+          inputType: 'recaptcha',
+          options: {
+            required: { value: true, message: '' }
+          },
+          customProps: {}
         }
       ]
     }
   ];
+  const onSubmit = (data: ISignInInput) => {
+    const getDataToString = JSON.stringify(data);
+    const getNewData = JSON.parse(getDataToString, (key, value) => {
+      if (typeof value === 'string') {
+        return value.trim();
+      }
+      return value;
+    });
+     methods.reset();
+     console.log("getNewData",getNewData);
+     
+    return getNewData;
+  };
   return (
-    <Box className="p-8 md:p-0 font-UbuntuRegular ">
-      <ContainForm className="grid place-items-center">
-        <Box
-          className="grid gap-2 grid-cols-1 w-full mt-40 md:w-[62%] xl:w-[40%] lg:w-[55%]  md:mt-52 "
-          component="form"
-          // onSubmit={handleSubmit(() => console.log('submit2'))}
-        >
-          <ReactiveFormFlex
-            methods={methods}
-            errors={errors}
-            fieldsGroupMeta={fieldsGroupMeta}
-          />
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col justify-center h-screen max-w-2xl mx-auto">
+      <ReactiveFormFlex
+        methods={methods}
+        errors={errors}
+        fieldsGroupMeta={fieldsGroupMeta}
+      />
 
-          <ContainText className="max-w-xl md:max-w-lg lg:max-w-3xl">
-            <Text className={`text-left text-[12px] ${classes.description}`}>
-              Please be informed that when you click the Send button Itransition
-              Group will process your personal data in accordance with our
-              Privacy notice for the purpose of providing you with appropriate
-              information
-            </Text>
-          </ContainText>
-          
-            <ContainGroup className="flex justify-between">
-              <Box className="flex">
-                <Group position="right" mt="xl">
-                  <BrandButton
-                    content={'Attache file'}
-                    variant="outline"
-                    color={'gray'}
-                  />
-                </Group>
-                <Group position="right" mt="xl" className="w-8 relative">
-                  <Tooltip
-                    label="Upload your document. Max file is 10mo"
-                    color={'#a7a7a7'}
-                    radius={8}
-                    offset={12}
-                    position="right"
-                    withArrow
-                    transition="pop">
-                    <Center sx={{ cursor: 'help' }}>
-                      <InformationIcon />
-                    </Center>
-                  </Tooltip>
-                </Group>
-                
-              </Box>
-              <Group position="left" mt="xl">
-                <BrandButton
-                  content={'Send'}
-                  onClick={handleSubmit(() => {
-                    const formval = methods.getValues()
-                    console.log(formval);
-                    let form = {}
-                   // Object.keys(formval).forEach((el)=>  Object.assign(form,{`${el}: ${formval[el].trim()}`}))
-                  //   for (const key in formval) {
-                  //     form = {...form,{`${key}: ${formval[key].trim()}`}}
-                      
-                  // }   
-                 // console.log(formval);
-                            
-                          } )}
-                  style={{ width: 98, height: 39 }}
-                  variant="filled"
-                  className="btn-custom"
-                />
-              </Group>
-
-               </ContainGroup>
-         
-        </Box>
-      </ContainForm>
-    </Box>
+      {/* <ReactiveReCaptcha
+        fieldKey="captchaToken"
+        disabled={isDisabled}
+        methods={methods}
+        error={errors.recaptchaCheckbox}
+      /> */}
+      <ContainText className="max-w-xl md:max-w-lg lg:max-w-3xl">
+        <Text className={`text-left text-[12px] ${classes.description}`}>
+          Please be informed that when you click the Send button Itransition
+          Group will process your personal data in accordance with our Privacy
+          notice for the purpose of providing you with appropriate information
+        </Text>
+      </ContainText>
+      <Button
+        type="submit"
+        disabled={!methods.formState.isValid}
+        style={{ width: 'full', height: 39 }}
+        variant="filled"
+        className="btn-custom mt-8">
+        Send
+      </Button>
+    </form>
   );
 };
 export default ContactForm;

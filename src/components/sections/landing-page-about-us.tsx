@@ -4,10 +4,11 @@ import AboutusImage from '../../../public/assets/img/pexels-diva-plavalaguna-614
 import Description from 'src/components/modules/description';
 import Image from 'next/image';
 
+const Contain = styled.div``;
+const Container = styled.div``;
+const ImageContain = styled.div``;
 const LandingAboutUs = () => {
-  const Contain = styled.div``;
-  const Container = styled.div``;
-  const ImageContain = styled.div``;
+ 
  
   return (
     <Container className="h-screen grid place-items-center mt-3 text-center md:text-left px-2">
