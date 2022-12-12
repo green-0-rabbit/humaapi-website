@@ -51,12 +51,14 @@ const ContactForm = () => {
     defaultValues
   });
   const {
-    formState: { errors }
+    formState: { errors, isValid }
   } = methods;
 
   useEffect(() => {
-   // console.log('state', methods.formState.isValid);
+    // console.log('state', methods.formState.isValid);
   }, []);
+
+  console.log(isValid);
 
   const fieldsGroupMeta: IFieldGroupMetaFlex<ISignInInput>[] = [
     {
@@ -134,26 +136,23 @@ const ContactForm = () => {
           inputKey: 'recaptchaCheckbox',
           label: '',
           inputType: 'recaptcha',
-          options: {
-            required: { value: true, message: '' }
-          },
+          // options: {
+          //   required: { value: true, message: '' }
+          // },
           customProps: {}
         }
       ]
     }
   ];
   const onSubmit = (data: ISignInInput) => {
-    const getDataToString = JSON.stringify(data);
-    const getNewData = JSON.parse(getDataToString, (key, value) => {
-      if (typeof value === 'string') {
-        return value.trim();
-      }
-      return value;
-    });
-     methods.reset();
-     console.log("getNewData",getNewData);
-     
-    return getNewData;
+    const { recaptchaCheckbox, ...rest } = data;
+    const trimedData = Object.entries(rest).map(([key, value]) =>
+      typeof value === 'string' ? [key, value.trim()] : [key, value]
+    );
+    const newData = Object.fromEntries(trimedData);
+    // methods.reset();
+
+    return newData;
   };
   return (
     <form
@@ -180,7 +179,7 @@ const ContactForm = () => {
       </ContainText>
       <Button
         type="submit"
-        disabled={!methods.formState.isValid}
+        // disabled={!methods.formState.isValid}
         style={{ width: 'full', height: 39 }}
         variant="filled"
         className="btn-custom mt-8">

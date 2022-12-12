@@ -30,8 +30,8 @@ const ReactiveReCaptcha: FC<SmartInputType<CheckCustomProps>> = (props) => {
     helperId,
     errors,
     options,
-    isParentList
-    // customProps = { size: 'xs', color: 'primary', disabled: false }
+    isParentList,
+    customProps
   } = props;
   const { control, register, setValue } = methods;
   const { executeRecaptcha } = useGoogleReCaptcha();
@@ -39,40 +39,40 @@ const ReactiveReCaptcha: FC<SmartInputType<CheckCustomProps>> = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const recaptchaFieldName = 'recaptchaCheckbox';
 
-  // const checkboxProps: Parameters<typeof BrandCheckbox>['0'] = {
-  //   disabled
-  // };
+  const checkboxProps: Parameters<typeof BrandCheckbox>['0'] = {
+    disabled: customProps && customProps.disabled
+  };
 
-  useEffect(() => {
-    register(inputKey as any, {
-      required: { value: true, message: '' }
-    });
-    console.log(methods.getValues());
-    console.log(methods.getFieldState(inputKey as any));
-  }, [[inputKey, register]]);
+  useEffect(
+    () => {
+      // register(inputKey as any, {
+      //   required: { value: true, message: '' }
+      // });
+      register(inputKey as Path<any>);
+    },
+    // [[inputKey, register]]
+    []
+  );
 
   const handleReCaptchaVerify = async (isChecked: boolean) => {
-    // console.log('isLoading', isLoading);
-
     if (isChecked) {
       if (!executeRecaptcha) {
         console.log('Execute recaptcha not yet available');
         return;
       }
-      //   console.log('ici');
 
       const token = await executeRecaptcha('contact');
 
-      setValue(inputKey as any, token as any);
-      setValue(recaptchaFieldName as any, true as any);
-      console.log('after value', methods.getValues());
-      console.log('after value state', methods.formState.isValid);
+      setValue(inputKey as Path<any>, token);
+      setValue(recaptchaFieldName as Path<any>, true);
+      // console.log('after value', methods.getValues());
+      // console.log('after value state', methods.formState.isValid);
 
       return;
     }
 
-    setValue(inputKey as any, '' as any);
-    setValue(recaptchaFieldName as any, false as any);
+    setValue(inputKey as Path<any>, '');
+    setValue(recaptchaFieldName as Path<any>, false);
     // console.log(methods.getValues());
   };
 
@@ -108,7 +108,7 @@ const ReactiveReCaptcha: FC<SmartInputType<CheckCustomProps>> = (props) => {
               defaultValue={false as any}
               render={({ field: { value, ref, name, onBlur } }) => (
                 <BrandCheckbox
-                  // {...checkboxProps}
+                  {...checkboxProps}
                   ref={ref}
                   onBlur={onBlur}
                   onChange={async (event) => {

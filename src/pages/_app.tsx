@@ -9,6 +9,7 @@ import Layout from '../layouts/layout';
 import themeGlobaly from 'src/components/commons/app.theming';
 import { useState } from 'react';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
+import { css, Global } from '@emotion/react';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [colorScheme, setColorScheme] = useState<ColorScheme>(
@@ -19,6 +20,13 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <GoogleReCaptchaProvider
       reCaptchaKey={`${process.env.NEXT_PUBLIC_GOOGLE_CAPTCHA_KEY}`}>
+      <Global
+        styles={css`
+          .grecaptcha-badge {
+            display: none;
+          }
+        `}
+      />
       <ColorSchemeProvider
         colorScheme={colorScheme}
         toggleColorScheme={toggleColorScheme}>
