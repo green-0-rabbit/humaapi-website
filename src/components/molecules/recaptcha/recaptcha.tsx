@@ -8,13 +8,6 @@ import BrandCheckbox from './brandcheckbox';
 import { SmartInputType } from 'react-hm-dynamic-form';
 import { CheckCustomProps } from '../reactive-checkbox';
 
-interface IReactiveReCaptcha<T extends Record<string, any>> {
-  methods: Omit<UseFormReturn<T>, 'handleSubmit'>;
-  disabled?: boolean;
-  fieldKey: string;
-  error: any;
-}
-
 const OverlayProgress = styled.div`
   position: absolute;
   top: 50%;
@@ -43,16 +36,9 @@ const ReactiveReCaptcha: FC<SmartInputType<CheckCustomProps>> = (props) => {
     disabled: customProps && customProps.disabled
   };
 
-  useEffect(
-    () => {
-      // register(inputKey as any, {
-      //   required: { value: true, message: '' }
-      // });
-      register(inputKey as Path<any>);
-    },
-    // [[inputKey, register]]
-    []
-  );
+  useEffect(() => {
+    register(inputKey as Path<any>);
+  }, []);
 
   const handleReCaptchaVerify = async (isChecked: boolean) => {
     if (isChecked) {
@@ -60,20 +46,16 @@ const ReactiveReCaptcha: FC<SmartInputType<CheckCustomProps>> = (props) => {
         console.log('Execute recaptcha not yet available');
         return;
       }
-
       const token = await executeRecaptcha('contact');
 
       setValue(inputKey as Path<any>, token);
       setValue(recaptchaFieldName as Path<any>, true);
-      // console.log('after value', methods.getValues());
-      // console.log('after value state', methods.formState.isValid);
 
       return;
     }
 
     setValue(inputKey as Path<any>, '');
     setValue(recaptchaFieldName as Path<any>, false);
-    // console.log(methods.getValues());
   };
 
   useEffect(() => {
@@ -103,9 +85,9 @@ const ReactiveReCaptcha: FC<SmartInputType<CheckCustomProps>> = (props) => {
           <Box sx={{ visibility: isLoading ? 'hidden' : 'visible' }}>
             <Controller
               control={control}
-              name={recaptchaFieldName as any}
-              rules={{ required: true }}
-              defaultValue={false as any}
+              name={inputKey}
+              rules={{ ...options }}
+              defaultValue={false}
               render={({ field: { value, ref, name, onBlur } }) => (
                 <BrandCheckbox
                   {...checkboxProps}

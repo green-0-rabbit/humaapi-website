@@ -1,13 +1,12 @@
 import styled from '@emotion/styled';
 import { Button, createStyles, Text } from '@mantine/core';
-import { useEffect, useState } from 'react';
 import { fieldRegex } from 'react-hm-dynamic-form';
 import { useForm } from 'react-hook-form';
-import ReactiveReCaptcha from 'src/components/molecules/recaptcha/recaptcha';
 import {
   IFieldGroupMetaFlex,
   ReactiveFormFlex
 } from 'src/components/molecules';
+
 const useStyles = createStyles((theme) => ({
   input: {
     backgroundColor: theme.colorScheme === 'dark' ? '#ffffff' : '#f3f3f3',
@@ -41,24 +40,18 @@ const defaultValues: ISignInInput = {
 };
 
 const ContainText = styled.div``;
-const Form = styled.form;
+const Form = styled.form``;
+
 const ContactForm = () => {
   const { classes } = useStyles();
-  const [isDisabled, setIsDisabled] = useState(false);
   const { handleSubmit, ...methods } = useForm<ISignInInput>({
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
     defaultValues
   });
   const {
-    formState: { errors, isValid }
+    formState: { errors }
   } = methods;
-
-  useEffect(() => {
-    // console.log('state', methods.formState.isValid);
-  }, []);
-
-  console.log(isValid);
 
   const fieldsGroupMeta: IFieldGroupMetaFlex<ISignInInput>[] = [
     {
@@ -136,10 +129,9 @@ const ContactForm = () => {
           inputKey: 'recaptchaCheckbox',
           label: '',
           inputType: 'recaptcha',
-          // options: {
-          //   required: { value: true, message: '' }
-          // },
-          customProps: {}
+          options: {
+            required: { value: true, message: '' }
+          }
         }
       ]
     }
@@ -150,12 +142,12 @@ const ContactForm = () => {
       typeof value === 'string' ? [key, value.trim()] : [key, value]
     );
     const newData = Object.fromEntries(trimedData);
-    // methods.reset();
+    console.log(newData);
 
-    return newData;
+    // methods.reset(defaultValues);
   };
   return (
-    <form
+    <Form
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col justify-center h-screen max-w-2xl mx-auto">
       <ReactiveFormFlex
@@ -163,13 +155,6 @@ const ContactForm = () => {
         errors={errors}
         fieldsGroupMeta={fieldsGroupMeta}
       />
-
-      {/* <ReactiveReCaptcha
-        fieldKey="captchaToken"
-        disabled={isDisabled}
-        methods={methods}
-        error={errors.recaptchaCheckbox}
-      /> */}
       <ContainText className="max-w-xl md:max-w-lg lg:max-w-3xl">
         <Text className={`text-left text-[12px] ${classes.description}`}>
           Please be informed that when you click the Send button Itransition
@@ -179,13 +164,12 @@ const ContactForm = () => {
       </ContainText>
       <Button
         type="submit"
-        // disabled={!methods.formState.isValid}
         style={{ width: 'full', height: 39 }}
         variant="filled"
         className="btn-custom mt-8">
         Send
       </Button>
-    </form>
+    </Form>
   );
 };
 export default ContactForm;

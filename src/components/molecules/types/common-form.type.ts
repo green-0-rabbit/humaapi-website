@@ -38,31 +38,6 @@ interface IFieldMeta<T extends DataType, U extends CustomInputType> {
   options?: FormFieldOption;
 }
 
-/**
- *  display customProps accordingly of CustomInputType value
- */
-// export type ConditionalProp<T extends CustomInputType> = T extends "text"
-//   ? ICustomProps["textFieldCustomProps"]
-//   : T extends "password"
-//   ? ICustomProps["passwordFieldCustomProps"]
-//   : T extends "checkbox"
-//   ? ICustomProps["checkCustomProps"]
-//   : T extends "radio"
-//   ? ICustomProps["radioCustomProps"]
-//   : T extends "select"
-//   ? ICustomProps["selectCustomProps"]
-//   : T extends "switch"
-//   ? ICustomProps["switchCustomProps"]
-//   : T extends "range"
-//   ? ICustomProps["rangeCustomProps"]
-//   : T extends "multiSelect"
-//   ? ICustomProps["multiSelectCustomProps"]
-//   : T extends "list"
-//   ? ICustomProps["listCustomProps"]
-//   : T extends "datepicker"
-//   ? ICustomProps["datePickerCustomProps"]
-//   : never;
-
 export type ConditionalProp<T extends CustomInputType> = ICustomProps[T];
 
 type CustomProps<U extends CustomInputType> = {
@@ -82,6 +57,7 @@ export type FieldMeta<
   | "password"
   | "datepicker"
   | "textarea"
+  | "recaptcha"
   ? Partial<CustomProps<U>> & IFieldMeta<T, U>
   : CustomProps<U> & IFieldMeta<T, U>;
 
