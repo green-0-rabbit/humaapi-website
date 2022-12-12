@@ -13,8 +13,6 @@ const ContainDescription = styled.div``;
 const ContainCards = styled.div``;
 const Container = styled.div``;
 const OurServices = () => {
- 
-
   return (
     <Box className={`grid gap-6`}>
       <ContainDescription className="text-center mx-4">
@@ -38,7 +36,7 @@ const OurServices = () => {
             <Link href={el.link} key={el.text}>
               <Paper
                 key={el.text}
-               className={'grid gap-3  place-items-center'}
+                className={'grid gap-3  place-items-center'}
                 style={{ width: 205, height: 150 }}>
                 {el.icon}
                 <Text color={'#EA6F66'} className="font-UbuntuRegular">
@@ -50,7 +48,10 @@ const OurServices = () => {
         </Container>
       </ContainCards>
 
-      <TemplateCarousel classeCarrousel={'block grid md:hidden'} dotSpace={'12'} gridCol={'4'}>
+      <TemplateCarousel
+        classeCarrousel={'block grid md:hidden'}
+        dotSpace={'12'}
+        gridCol={'4'}>
         {DataService.cardServiceData.map((el, index) => (
           <Carousel.Slide key={index}>
             <Link href={el.link} key={el.text}>

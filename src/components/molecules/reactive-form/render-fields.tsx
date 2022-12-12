@@ -1,8 +1,11 @@
 import { Box } from '@mantine/core';
 import { FC } from 'react';
 import { DynamicFields, SmartFieldType } from 'react-hm-dynamic-form';
+import { ReactiveCheckbox } from '../reactive-checkbox';
+import { ReactiveSelect } from '../reactive-select';
 import { ReactiveTextArea } from '../reactive-text-area';
 import { ReactiveTextField } from '../reactive-text-field';
+import ReactiveReCaptcha from '../recaptcha/recaptcha';
 import { CustomInputType } from '../types';
 
 type RenderFieldsType = Parameters<
@@ -15,8 +18,9 @@ const fields: SmartFieldType<CustomInputType> = {
   text: (fieldProps: InputProps) => <ReactiveTextField {...fieldProps} />,
   textarea: (fieldProps: InputProps) => <ReactiveTextArea {...fieldProps} />,
   password: (fieldProps: InputProps) => <Box />,
-  select: (fieldProps: InputProps) => <Box />,
-  checkbox: (fieldProps: InputProps) => <Box />,
+  select: (fieldProps: InputProps) => <ReactiveSelect {...fieldProps} />,
+  checkbox: (fieldProps: InputProps) => <ReactiveCheckbox {...fieldProps} />,
+  recaptcha: (fieldProps: InputProps) => <ReactiveReCaptcha {...fieldProps} />,
   range: (fieldProps: InputProps) => <Box />,
   switch: (fieldProps: InputProps) => <Box />,
   multiSelect: (fieldProps: InputProps) => <Box />,

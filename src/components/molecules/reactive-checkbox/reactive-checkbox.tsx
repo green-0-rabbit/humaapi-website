@@ -48,6 +48,7 @@ const ReactiveCheckbox: FC<SmartInputType<CheckCustomProps>> = (props) => {
     <Controller
       control={control}
       name={inputKey}
+      rules={{ required: true }}
       defaultValue={false}
       render={({ field: { onChange, value, ref, name, onBlur } }) => (
         <Checkbox

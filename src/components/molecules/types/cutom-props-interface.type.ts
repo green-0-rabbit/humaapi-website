@@ -1,3 +1,4 @@
+import { RecaptchaCustomProps } from './../recaptcha/types';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable import/no-cycle */
 import { InputType } from "react-hm-dynamic-form";
@@ -18,7 +19,8 @@ export type CustomInputType =
   | InputType
   | "datepicker"
   | "autocomplete"
-  | "textarea";
+  | "textarea"| "recaptcha"
+
 
 type CustomPropsType = {
   [K in CustomInputType]: any;
@@ -30,6 +32,7 @@ export interface ICustomProps extends CustomPropsType {
   checkCustomProps: CheckCustomProps;
   switch: SwitchCustomProps;
   checkbox: MultiSelectCustomProps;
+  recaptcha:RecaptchaCustomProps;
   range: RangeCustomProps;
   radio: RadioCustomProps;
   select: SelectCustomProps;
