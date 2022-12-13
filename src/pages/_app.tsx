@@ -9,6 +9,7 @@ import themeGlobaly from 'src/components/commons/app.theming';
 import { useState } from 'react';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { css, Global } from '@emotion/react';
+import { NotificationsProvider } from '@mantine/notifications';
 import Layout from '../layouts/layout';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -34,9 +35,11 @@ export default function App({ Component, pageProps }: AppProps) {
           theme={{ ...themeGlobaly, colorScheme }}
           withGlobalStyles
           withNormalizeCSS>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <NotificationsProvider position="top-right" zIndex={2077}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </NotificationsProvider>
         </MantineProvider>
       </ColorSchemeProvider>
     </GoogleReCaptchaProvider>

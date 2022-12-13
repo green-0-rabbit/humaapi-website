@@ -1,11 +1,14 @@
 import styled from '@emotion/styled';
 import { Button, createStyles, Text } from '@mantine/core';
+import { IconCheck, IconX } from '@tabler/icons';
 import { fieldRegex } from 'react-hm-dynamic-form';
 import { useForm } from 'react-hook-form';
+import customNotification from 'src/components/features/notification';
 import {
   IFieldGroupMetaFlex,
   ReactiveFormFlex
 } from 'src/components/molecules';
+import nodemailer from 'nodemailer';
 
 const useStyles = createStyles((theme) => ({
   input: {
@@ -126,7 +129,7 @@ const ContactForm = () => {
           }
         },
         {
-          inputKey: 'recaptchaCheckbox',
+          inputKey: 'captchaToken',
           label: '',
           inputType: 'recaptcha',
           options: {
@@ -134,22 +137,32 @@ const ContactForm = () => {
           }
         }
       ]
-    }
+    } 
   ];
-  const onSubmit = (data: ISignInInput) => {
+  const onSubmit = async (data: ISignInInput) => {
     const { recaptchaCheckbox, ...rest } = data;
     const trimedData = Object.entries(rest).map(([key, value]) =>
       typeof value === 'string' ? [key, value.trim()] : [key, value]
     );
     const newData = Object.fromEntries(trimedData);
-    console.log(newData);
+    const newDataValue = { recaptchaCheckbox, ...newData };
+    if (methods.formState.isValid) {
+      // customNotification({
+      //   title: "Merci d'avoir pris contact avec nous",
+      //   message: 'Votre demande a été envoyée avec succès ',
+      //   autoClose: 3000,
+      //   radius: 20,
+      //   color: 'green',
+      //   icon: <IconCheck size={18} />
+      // });
+    }
 
     // methods.reset(defaultValues);
   };
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col justify-center h-screen max-w-2xl mx-auto">
+      className="flex flex-col justify-center h-screen max-w-2xl mx-auto px-5 mt-8">
       <ReactiveFormFlex
         methods={methods}
         errors={errors}

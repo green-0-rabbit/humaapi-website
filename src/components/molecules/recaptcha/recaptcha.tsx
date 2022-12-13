@@ -4,8 +4,8 @@ import Image from 'next/image';
 import { Controller, UseFormReturn, Path } from 'react-hook-form';
 import styled from '@emotion/styled';
 import { Box, Loader } from '@mantine/core';
-import BrandCheckbox from './brandcheckbox';
 import { SmartInputType } from 'react-hm-dynamic-form';
+import BrandCheckbox from './brandcheckbox';
 import { CheckCustomProps } from '../reactive-checkbox';
 
 const OverlayProgress = styled.div`
@@ -16,7 +16,6 @@ const OverlayProgress = styled.div`
   -ms-transform: translate(-50%, -50%);
 `;
 const ReactiveReCaptcha: FC<SmartInputType<CheckCustomProps>> = (props) => {
-  // const { error, methods, fieldKey, disabled, ...rest } = props;
   const {
     methods,
     inputKey,
@@ -68,53 +67,51 @@ const ReactiveReCaptcha: FC<SmartInputType<CheckCustomProps>> = (props) => {
   }, [isChecked]);
 
   return (
-    <>
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          width: '230px',
-          color: 'black',
-          background: 'white',
-          padding: '10px',
-          borderRadius: '10px',
-          border: errors && '2px solid red'
-        }}>
-        <Box sx={{ position: 'relative' }}>
-          <Box sx={{ visibility: isLoading ? 'hidden' : 'visible' }}>
-            <Controller
-              control={control}
-              name={inputKey}
-              rules={{ ...options }}
-              defaultValue={false}
-              render={({ field: { value, ref, name, onBlur } }) => (
-                <BrandCheckbox
-                  {...checkboxProps}
-                  ref={ref}
-                  onBlur={onBlur}
-                  onChange={async (event) => {
-                    setIsChecked(event.target.checked);
-                  }}
-                  name={name}
-                  checked={value}
-                />
-              )}
-            />
-          </Box>
-          <OverlayProgress
-            style={{
-              paddingTop: '4px',
-              display: isLoading ? 'block' : 'none'
-            }}>
-            <Loader />
-          </OverlayProgress>
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '230px',
+        color: 'black',
+        background: 'white',
+        padding: '10px',
+        borderRadius: '10px',
+        border: errors && '2px solid red'
+      }}>
+      <Box sx={{ position: 'relative' }}>
+        <Box sx={{ visibility: isLoading ? 'hidden' : 'visible' }}>
+          <Controller
+            control={control}
+            name={inputKey}
+            rules={{ ...options }}
+            defaultValue={false}
+            render={({ field: { value, ref, name, onBlur } }) => (
+              <BrandCheckbox
+                {...checkboxProps}
+                ref={ref}
+                onBlur={onBlur}
+                onChange={async (event) => {
+                  setIsChecked(event.target.checked);
+                }}
+                name={name}
+                checked={value}
+              />
+            )}
+          />
         </Box>
-        <span> I am not a robot</span>
-
-        <Image src="/RecaptchaLogo.svg.png" width="50" height="50" alt={''} />
+        <OverlayProgress
+          style={{
+            paddingTop: '4px',
+            display: isLoading ? 'block' : 'none'
+          }}>
+          <Loader />
+        </OverlayProgress>
       </Box>
-    </>
+      <span> I am not a robot</span>
+
+      <Image src="/RecaptchaLogo.svg.png" width="50" height="50" alt="" />
+    </Box>
   );
 };
 
