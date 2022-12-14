@@ -1,15 +1,15 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react/require-default-props */
 // eslint-disable-next-line object-curly-newline
-import { ChangeEvent, FC, useCallback, useEffect, useState } from "react";
-import { Controller } from "react-hook-form";
-import { SmartInputType, PartialMethodsType } from "react-hm-dynamic-form";
-import { MultiSelect, MultiSelectProps } from "@mantine/core";
-import { IconChevronDown } from "@tabler/icons";
-import { MultiSelectCustomProps } from "./types";
+import { ChangeEvent, FC, useCallback, useEffect, useState } from 'react';
+import { Controller } from 'react-hook-form';
+import { SmartInputType, PartialMethodsType } from 'react-hm-dynamic-form';
+import { MultiSelect, MultiSelectProps } from '@mantine/core';
+import { IconChevronDown } from '@tabler/icons';
+import { MultiSelectCustomProps } from './types';
 
 interface ICustomHandlechange {
-  methods: PartialMethodsType["methods"];
+  methods: PartialMethodsType['methods'];
   event: ChangeEvent<HTMLInputElement>;
 }
 
@@ -41,19 +41,19 @@ const ReactiveMultiSelect: FC<SmartInputType<MultiSelectCustomProps>> = (
   const selectProps: MultiSelectProps = {
     id: inputKey,
     multiple: true,
-    "aria-describedby": helperId,
+    'aria-describedby': helperId,
     error: Boolean(errors),
     color,
     data: selectOptions,
     sx: {
-      width: "100%"
+      width: '100%'
     }
   };
   return (
     <Controller
       control={control}
       name={inputKey}
-      defaultValue={[""]}
+      defaultValue={['']}
       rules={{ ...options }}
       render={({ field: { onChange, value, ref, name, onBlur } }) => (
         <MultiSelect

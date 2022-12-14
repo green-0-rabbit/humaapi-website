@@ -24,13 +24,13 @@ const ReactiveFormFlex = <T extends object>(props: IDynamicForm<T>) => {
 
   return (
     <DynamicFields
-    
       methods={methods}
       errors={errors}
       fieldsGroupMeta={fieldsGroupMeta as any}
       // renderGroup={MemoizedRenderGroup}
       renderLayout={MemoizedRenderLayout}
       renderFormControl={(controlProps) => <FormControl {...controlProps} />}
+      // eslint-disable-next-line @typescript-eslint/no-shadow
       renderFields={(props) => <RenderFields {...props} />}
     />
   );

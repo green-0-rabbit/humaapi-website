@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
-import { ChangeEvent } from "react";
-import { PartialMethodsType } from "react-hm-dynamic-form";
+import { ChangeEvent } from 'react';
+import { PartialMethodsType } from 'react-hm-dynamic-form';
 
 export type CommonProps<
   T extends HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -8,7 +8,7 @@ export type CommonProps<
   disabled?: boolean;
   hidden?: boolean;
   handleChange?: (params: {
-    methods: PartialMethodsType["methods"];
+    methods: PartialMethodsType['methods'];
     event: ChangeEvent<T> | any;
   }) => void;
 };

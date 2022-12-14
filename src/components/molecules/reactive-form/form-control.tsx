@@ -24,7 +24,8 @@ const FormControl = <T extends Record<string, any>>(props: IFormControl<T>) => {
     ...rest
   } = props;
 
- const _customProps = customProps as unknown as {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  const _customProps = customProps as unknown as {
     hidden: boolean;
   };
   const error = errors || undefined;

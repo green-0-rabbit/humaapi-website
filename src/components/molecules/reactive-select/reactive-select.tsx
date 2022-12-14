@@ -1,21 +1,28 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react/require-default-props */
 // eslint-disable-next-line object-curly-newline
-import { ChangeEvent, FC, useCallback } from "react";
-import { Controller } from "react-hook-form";
-import { SmartInputType, PartialMethodsType } from "react-hm-dynamic-form";
-import { SelectProps, Select } from "@mantine/core";
-import { IconChevronDown } from "@tabler/icons";
-import { SelectCustomProps } from "./types";
+import { ChangeEvent, FC, useCallback } from 'react';
+import { Controller } from 'react-hook-form';
+import { SmartInputType, PartialMethodsType } from 'react-hm-dynamic-form';
+import { SelectProps, Select } from '@mantine/core';
+import { IconChevronDown } from '@tabler/icons';
+import { SelectCustomProps } from './types';
 
 interface ICustomHandlechange {
-  methods: PartialMethodsType["methods"];
+  methods: PartialMethodsType['methods'];
   event: ChangeEvent<HTMLSelectElement>;
 }
 const ReactiveSelect: FC<SmartInputType<SelectCustomProps>> = (props) => {
   const { methods, inputKey, helperId, errors, options, customProps } = props;
-  const { size, color, disabled, handleChange, onDropdownOpen, label,placeHolder } =
-    customProps;
+  const {
+    size,
+    color,
+    disabled,
+    handleChange,
+    onDropdownOpen,
+    label,
+    placeHolder
+  } = customProps;
   const selectOptions = customProps.options;
   const { control } = methods;
   const selectProps: SelectProps = {
@@ -23,11 +30,11 @@ const ReactiveSelect: FC<SmartInputType<SelectCustomProps>> = (props) => {
     size,
     color,
     disabled,
-    "aria-describedby": helperId,
+    'aria-describedby': helperId,
     error: Boolean(errors),
     data: selectOptions,
     sx: {
-      width: "100%"
+      width: '100%'
     },
     onDropdownOpen
   };
@@ -39,7 +46,6 @@ const ReactiveSelect: FC<SmartInputType<SelectCustomProps>> = (props) => {
     },
     [handleChange]
   );
-
   return (
     <Controller
       control={control}
@@ -48,7 +54,7 @@ const ReactiveSelect: FC<SmartInputType<SelectCustomProps>> = (props) => {
       rules={{ ...options }}
       render={({ field: { onChange, value, ref, name, onBlur } }) => (
         <Select
-        placeholder={placeHolder}
+          placeholder={placeHolder}
           {...selectProps}
           onChange={(event) => {
             customHandlechange({ methods, event: event as never });

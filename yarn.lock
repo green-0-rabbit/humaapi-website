@@ -1797,6 +1797,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cookie-though@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "cookie-though@npm:1.5.0"
+  dependencies:
+    events: 3.3.0
+    lodash.throttle: 4.1.1
+    preact: 10.7.1
+  checksum: 10f7d49e3712c833bcb1af419b3df3e8f055c809678a64e2bd27fa6601c97c7ff7501addcc831c219109b5fb46dd3709e958e5e8f54b8e934a3ee2c66319fe8c
+  languageName: node
+  linkType: hard
+
 "core-js-pure@npm:^3.25.1":
   version: 3.26.0
   resolution: "core-js-pure@npm:3.26.0"
@@ -2667,6 +2678,13 @@ __metadata:
   version: 2.0.3
   resolution: "esutils@npm:2.0.3"
   checksum: 22b5b08f74737379a840b8ed2036a5fb35826c709ab000683b092d9054e5c2a82c27818f12604bfc2a9a76b90b6834ef081edbc1c7ae30d1627012e067c6ec87
+  languageName: node
+  linkType: hard
+
+"events@npm:3.3.0":
+  version: 3.3.0
+  resolution: "events@npm:3.3.0"
+  checksum: f6f487ad2198aa41d878fa31452f1a3c00958f46e9019286ff4787c84aac329332ab45c9cdc8c445928fc6d7ded294b9e005a7fce9426488518017831b272780
   languageName: node
   linkType: hard
 
@@ -3579,6 +3597,13 @@ __metadata:
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
   checksum: ad580b4bdbb7ca1f7abf7e1bce63a9a0b98e370cf40194b03380a46b4ed799c9573029599caebc1b14e3f24b111aef72b96674a56cfa105e0f5ac70546cdc005
+  languageName: node
+  linkType: hard
+
+"lodash.throttle@npm:4.1.1":
+  version: 4.1.1
+  resolution: "lodash.throttle@npm:4.1.1"
+  checksum: 129c0a28cee48b348aef146f638ef8a8b197944d4e9ec26c1890c19d9bf5a5690fe11b655c77a4551268819b32d27f4206343e30c78961f60b561b8608c8c805
   languageName: node
   linkType: hard
 
@@ -4765,6 +4790,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"preact@npm:10.7.1":
+  version: 10.7.1
+  resolution: "preact@npm:10.7.1"
+  checksum: e99d08bd38372e78ce1c84e68685cad66adf076bd95069bc8bcd32c9903a4df09c01d5b04aad849527362b67cc2c09446b647f72de4e67d0578fdea0f904f28f
+  languageName: node
+  linkType: hard
+
 "prelude-ls@npm:^1.2.1":
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
@@ -5874,6 +5906,7 @@ __metadata:
     "@typescript-eslint/parser": ^5.42.1
     autoprefixer: ^10.4.13
     autosuggest-highlight: ^3.3.4
+    cookie-though: ^1.5.0
     date-fns: ^2.29.3
     embla-carousel-react: ^7.0.5
     eslint: 8.27.0

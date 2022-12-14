@@ -1,11 +1,11 @@
 import nodemailer from 'nodemailer';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { IContactdata } from 'src/components/services/contact-service';
+import { IContactdata } from 'src/services/contact-service';
 import mjml2html from 'mjml';
 
 type ContactType = Omit<IContactdata, 'captchaToken'>;
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const Contact = async (req: NextApiRequest, res: NextApiResponse) => {
   const data: ContactType = req.body;
   const senderEmail = process.env.SMTP_USER;
   const senderPassword = process.env.SMTP_PASSWORD;
@@ -156,7 +156,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       .status(200)
       .json({ message: 'your request was successfully submitted' });
   } catch (err) {
-    const error = <{ message: string }>err;
-    return res.status(500).json({ message: 'error', error: error.message });
+    console.log(err);
+    return res;
+
+    // const error = <{ message: string }>err;
+    // return res.status(500).json({ message: 'error', error: error.message });
   }
 };
+
+export default Contact;

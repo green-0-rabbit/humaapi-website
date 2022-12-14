@@ -129,7 +129,7 @@ const ContactForm = () => {
           }
         },
         {
-          inputKey: 'captchaToken',
+          inputKey: 'recaptchaCheckbox',
           label: '',
           inputType: 'recaptcha',
           options: {
@@ -137,7 +137,7 @@ const ContactForm = () => {
           }
         }
       ]
-    } 
+    }
   ];
   const onSubmit = async (data: ISignInInput) => {
     const { recaptchaCheckbox, ...rest } = data;
@@ -146,18 +146,39 @@ const ContactForm = () => {
     );
     const newData = Object.fromEntries(trimedData);
     const newDataValue = { recaptchaCheckbox, ...newData };
-    if (methods.formState.isValid) {
-      // customNotification({
-      //   title: "Merci d'avoir pris contact avec nous",
-      //   message: 'Votre demande a été envoyée avec succès ',
-      //   autoClose: 3000,
-      //   radius: 20,
-      //   color: 'green',
-      //   icon: <IconCheck size={18} />
-      // });
-    }
 
-    // methods.reset(defaultValues);
+    const sendResult = await toast.promise(contactService.sendMail(data), {
+      pending: 'Submitting',
+      success: 'Your request was successfully submitted',
+      error: {
+        render({ mailData }: { mailData: { message: string } }) {
+          const { message } = mailData;
+          setIsSubmitting(false);
+          switch (message) {
+            case 'timeout':
+              setValue('recaptchaCheckbox', false);
+              return 'something went wrong, please try again';
+            case 'bot':
+              setIsDisabled(true);
+              return 'you are a bot 🤖!';
+            default:
+              return 'something went wrong, please try again';
+          }
+        }
+      }
+    });
+
+    if (methods.formState.isValid) {
+      customNotification({
+        title: 'Thank you for your request',
+        message: 'Your request has been sent successfully',
+        autoClose: 3000,
+        radius: 16,
+        color: 'green',
+        icon: <IconCheck size={16} />
+      });
+    }
+    methods.reset(defaultValues);
   };
   return (
     <Form
@@ -177,6 +198,7 @@ const ContactForm = () => {
       </ContainText>
       <Button
         type="submit"
+        disabled={!methods.formState.isValid}
         style={{ width: 'full', height: 39 }}
         variant="filled"
         className="btn-custom mt-8">

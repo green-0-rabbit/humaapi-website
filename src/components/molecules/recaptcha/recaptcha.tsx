@@ -3,7 +3,7 @@ import React, { FC, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Controller, UseFormReturn, Path } from 'react-hook-form';
 import styled from '@emotion/styled';
-import { Box, Loader } from '@mantine/core';
+import { Box, Checkbox, Loader } from '@mantine/core';
 import { SmartInputType } from 'react-hm-dynamic-form';
 import BrandCheckbox from './brandcheckbox';
 import { CheckCustomProps } from '../reactive-checkbox';
@@ -25,9 +25,9 @@ const ReactiveReCaptcha: FC<SmartInputType<CheckCustomProps>> = (props) => {
     isParentList,
     customProps
   } = props;
-  const { control, register, setValue } = methods;
+  const { control, register, setValue, formState } = methods;
   const { executeRecaptcha } = useGoogleReCaptcha();
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
   const recaptchaFieldName = 'recaptchaCheckbox';
 
@@ -39,8 +39,8 @@ const ReactiveReCaptcha: FC<SmartInputType<CheckCustomProps>> = (props) => {
     register(inputKey as Path<any>);
   }, []);
 
-  const handleReCaptchaVerify = async (isChecked: boolean) => {
-    if (isChecked) {
+  const handleReCaptchaVerify = async (isCheck: boolean) => {
+    if (isCheck) {
       if (!executeRecaptcha) {
         console.log('Execute recaptcha not yet available');
         return;
@@ -49,7 +49,6 @@ const ReactiveReCaptcha: FC<SmartInputType<CheckCustomProps>> = (props) => {
 
       setValue(inputKey as Path<any>, token);
       setValue(recaptchaFieldName as Path<any>, true);
-
       return;
     }
 
@@ -79,21 +78,29 @@ const ReactiveReCaptcha: FC<SmartInputType<CheckCustomProps>> = (props) => {
         borderRadius: '10px',
         border: errors && '2px solid red'
       }}>
-      <Box sx={{ position: 'relative' }}>
-        <Box sx={{ visibility: isLoading ? 'hidden' : 'visible' }}>
+      <Box
+        sx={{
+          position: 'relative'
+        }}>
+        <Box
+          sx={{
+            visibility: isLoading ? 'hidden' : 'visible'
+          }}>
           <Controller
             control={control}
             name={inputKey}
             rules={{ ...options }}
             defaultValue={false}
-            render={({ field: { value, ref, name, onBlur } }) => (
+            render={({ field: { onChange, value, ref, name, onBlur } }) => (
               <BrandCheckbox
                 {...checkboxProps}
                 ref={ref}
                 onBlur={onBlur}
                 onChange={async (event) => {
                   setIsChecked(event.target.checked);
+                  onChange(event);
                 }}
+                sx={{ display: 'flex' }}
                 name={name}
                 checked={value}
               />
@@ -110,7 +117,7 @@ const ReactiveReCaptcha: FC<SmartInputType<CheckCustomProps>> = (props) => {
       </Box>
       <span> I am not a robot</span>
 
-      <Image src="/RecaptchaLogo.svg.png" width="50" height="50" alt="" />
+      <Image src="/RecaptchaLogo.svg.png" width="40" height="40" alt="" />
     </Box>
   );
 };

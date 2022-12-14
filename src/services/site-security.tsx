@@ -1,14 +1,14 @@
 // import camelcaseKeys from 'camelcase-keys';
-// import { CamelCasedPropertiesDeep } from 'type-fest';
+//import { CamelCasedPropertiesDeep } from 'type-fest';
 
-// export interface ISiteVerify {
-//   success: boolean;
-//   challenge_ts?: string;
-//   hostname?: string;
-//   score?: number;
-//   action?: string;
-//   'error-codes'?: string[];
-// }
+export interface ISiteVerify {
+  success: boolean;
+  challenge_ts?: string;
+  hostname?: string;
+  score?: number;
+  action?: string;
+  'error-codes'?: string[];
+}
 
 // export const siteSecurityService = {
 //   checkIfHuman: async (token: string) => {
