@@ -1,6 +1,7 @@
 import { MantineThemeOverride } from '@mantine/styles';
+
 const themeGlobaly: MantineThemeOverride = {
-  colorScheme:'light',
+  colorScheme: 'light',
   components: {
     Input: {
       defaultProps: {

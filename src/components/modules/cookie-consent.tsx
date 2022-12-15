@@ -1,9 +1,12 @@
 import { init, getPreferences, onPreferencesChanged } from 'cookie-though';
 import { Config } from 'cookie-though/dist/types/types';
-import { useEffect, useState } from 'react';
 import useCookieBlocker from 'src/components/features/useCookieBlocker';
 import { patterns } from 'src/utils/cookieBlocker/variables';
+import { FC, ReactNode, useEffect, useState } from 'react';
 
+interface ICookieConsent {
+  children: ReactNode;
+}
 // This will show the Cookie though widget
 // in case no preferences have been stored
 const config: Config = {
@@ -54,10 +57,22 @@ const config: Config = {
   },
   customizeLabel: 'I choose'
 };
-const CookieConsent = () => {
+
+const CookieConsent: FC<ICookieConsent> = (props) => {
+  const { children } = props;
   const cookieBlocker = useCookieBlocker();
   const [isMount, setIsMount] = useState(false);
   const isTrue = (value: any) => value.isEnabled === true;
+
+  useEffect(() => {
+    setIsMount(true);
+    patterns!.blacklist = [];
+    patterns!.whitelist = [/www\.google\.com/];
+    cookieBlocker.startMonitoring();
+    cookieBlocker.blockDynamicScript();
+    init(config);
+  }, []);
+
   if (isMount) {
     onPreferencesChanged((preferences) => {
       if (preferences.cookieOptions.every(isTrue)) {
@@ -69,15 +84,7 @@ const CookieConsent = () => {
       }
     });
   }
-
-  useEffect(() => {
-    setIsMount(true);
-    patterns!.blacklist = [];
-    patterns!.whitelist = [/www\.google\.com/];
-    cookieBlocker.startMonitoring();
-    cookieBlocker.blockDynamicScript();
-    init(config);
-  }, []);
+  return <div>{children}</div>;
 };
 
 export default CookieConsent;

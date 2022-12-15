@@ -147,26 +147,26 @@ const ContactForm = () => {
     const newData = Object.fromEntries(trimedData);
     const newDataValue = { recaptchaCheckbox, ...newData };
 
-    const sendResult = await toast.promise(contactService.sendMail(data), {
-      pending: 'Submitting',
-      success: 'Your request was successfully submitted',
-      error: {
-        render({ mailData }: { mailData: { message: string } }) {
-          const { message } = mailData;
-          setIsSubmitting(false);
-          switch (message) {
-            case 'timeout':
-              setValue('recaptchaCheckbox', false);
-              return 'something went wrong, please try again';
-            case 'bot':
-              setIsDisabled(true);
-              return 'you are a bot 🤖!';
-            default:
-              return 'something went wrong, please try again';
-          }
-        }
-      }
-    });
+    // const sendResult = await toast.promise(contactService.sendMail(data), {
+    //   pending: 'Submitting',
+    //   success: 'Your request was successfully submitted',
+    //   error: {
+    //     render({ mailData }: { mailData: { message: string } }) {
+    //       const { message } = mailData;
+    //       setIsSubmitting(false);
+    //       switch (message) {
+    //         case 'timeout':
+    //           setValue('recaptchaCheckbox', false);
+    //           return 'something went wrong, please try again';
+    //         case 'bot':
+    //           setIsDisabled(true);
+    //           return 'you are a bot 🤖!';
+    //         default:
+    //           return 'something went wrong, please try again';
+    //       }
+    //     }
+    //   }
+    // });
 
     if (methods.formState.isValid) {
       customNotification({

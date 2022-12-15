@@ -5,7 +5,7 @@ import {
   ColorScheme
 } from '@mantine/core';
 import type { AppProps } from 'next/app';
-import themeGlobaly from 'src/components/commons/app.theming';
+import themeGlobaly from 'src/commons/app.theming';
 import { useState } from 'react';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { css, Global } from '@emotion/react';
@@ -37,10 +37,11 @@ export default function App({ Component, pageProps }: AppProps) {
           withGlobalStyles
           withNormalizeCSS>
           <NotificationsProvider position="top-right" zIndex={2077}>
-            <Layout>
-              <CookieConsent />
-              <Component {...pageProps} />
-            </Layout>
+            <CookieConsent>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </CookieConsent>
           </NotificationsProvider>
         </MantineProvider>
       </ColorSchemeProvider>
