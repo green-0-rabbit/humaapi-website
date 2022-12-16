@@ -1,7 +1,13 @@
-import { createStyles, Text, Container, ActionIcon, Group } from '@mantine/core';
+import {
+  createStyles,
+  Text,
+  Container,
+  ActionIcon,
+  Group
+} from '@mantine/core';
+import Link from 'next/link';
 import Copywritting from '../elements/svg/icons/copywritting-icon';
 import LogoHumaapi from '../elements/svg/icons/logo-humaapi';
-import Link from 'next/link';
 import LinkedinLogo from '../elements/svg/icons/linkedin-logo';
 import TwitterLogo from '../elements/svg/icons/twitter-logo';
 
@@ -9,8 +15,8 @@ const useStyles = createStyles((theme) => ({
   footer: {
     marginTop: 120,
     paddingTop: theme.spacing.xl * 2,
-    paddingBottom: theme.spacing.xl * 2,
-     },
+    paddingBottom: theme.spacing.xl * 2
+  },
 
   logo: {
     maxWidth: 200,
@@ -18,8 +24,8 @@ const useStyles = createStyles((theme) => ({
     [theme.fn.smallerThan('sm')]: {
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center',
-    },
+      alignItems: 'center'
+    }
   },
 
   description: {
@@ -27,8 +33,8 @@ const useStyles = createStyles((theme) => ({
 
     [theme.fn.smallerThan('sm')]: {
       marginTop: theme.spacing.xs,
-      textAlign: 'center',
-    },
+      textAlign: 'center'
+    }
   },
 
   inner: {
@@ -37,8 +43,8 @@ const useStyles = createStyles((theme) => ({
 
     [theme.fn.smallerThan('sm')]: {
       flexDirection: 'column',
-      alignItems: 'center',
-    },
+      alignItems: 'center'
+    }
   },
 
   groups: {
@@ -46,24 +52,27 @@ const useStyles = createStyles((theme) => ({
     flexWrap: 'wrap',
 
     [theme.fn.smallerThan('sm')]: {
-      display: 'none',
-    },
+      display: 'none'
+    }
   },
 
   wrapper: {
-    width: 160,
+    width: 160
   },
 
   link: {
     display: 'block',
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[6],
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[1]
+        : theme.colors.gray[6],
     fontSize: theme.fontSizes.sm,
     paddingTop: 3,
     paddingBottom: 3,
 
     '&:hover': {
-      textDecoration: 'underline',
-    },
+      textDecoration: 'underline'
+    }
   },
 
   title: {
@@ -71,7 +80,7 @@ const useStyles = createStyles((theme) => ({
     fontWeight: 700,
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     marginBottom: theme.spacing.xs / 2,
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    color: theme.colorScheme === 'dark' ? theme.white : theme.black
   },
 
   afterFooter: {
@@ -86,15 +95,15 @@ const useStyles = createStyles((theme) => ({
     }`,
 
     [theme.fn.smallerThan('sm')]: {
-      flexDirection: 'column',
-    },
+      flexDirection: 'column'
+    }
   },
 
   social: {
     [theme.fn.smallerThan('sm')]: {
-      marginTop: theme.spacing.xs,
-    },
-  },
+      marginTop: theme.spacing.xs
+    }
+  }
 }));
 
 interface FooterLinksProps {
@@ -104,7 +113,7 @@ interface FooterLinksProps {
   }[];
 }
 
- const Footer = ({ data }: FooterLinksProps) =>{
+const Footer = ({ data }: FooterLinksProps) => {
   const { classes } = useStyles();
 
   const groups = data.map((group) => {
@@ -114,8 +123,7 @@ interface FooterLinksProps {
         className={classes.link}
         component="a"
         href={link.link}
-        onClick={(event) => event.preventDefault()}
-      >
+        onClick={(event) => event.preventDefault()}>
         {link.label}
       </Text>
     ));
@@ -132,26 +140,31 @@ interface FooterLinksProps {
     <footer className={`${classes.footer} bg-transparent`}>
       <Container className={`${classes.inner}`}>
         <div className={classes.logo}>
-        <Link href={'/'}> <LogoHumaapi /></Link>
-          <Text size="xs" color="dimmed" className={`${classes.description} font-UbuntuRegular`}>
+          <Link href="/">
+            {' '}
+            <LogoHumaapi />
+          </Link>
+          <Text
+            size="xs"
+            color="dimmed"
+            className={`${classes.description} font-UbuntuRegular`}>
             Build fully functional accessible web applications faster than ever
           </Text>
         </div>
         <div className={`${classes.groups} font-UbuntuRegular`}>{groups}</div>
       </Container>
       <Container className={classes.afterFooter}>
-              <Copywritting text="2022 humaapi" />
-                <Group spacing={0} className={classes.social} position="right" noWrap>
+        <Copywritting text="2022 humaapi" />
+        <Group spacing={0} className={classes.social} position="right" noWrap>
           <ActionIcon size="lg">
-          <LinkedinLogo />
+            <LinkedinLogo />
           </ActionIcon>
           <ActionIcon size="lg">
-          <TwitterLogo />
+            <TwitterLogo />
           </ActionIcon>
-          
         </Group>
       </Container>
     </footer>
   );
-}
-export default Footer
+};
+export default Footer;

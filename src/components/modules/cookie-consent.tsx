@@ -7,8 +7,7 @@ import { FC, ReactNode, useEffect, useState } from 'react';
 interface ICookieConsent {
   children: ReactNode;
 }
-// This will show the Cookie though widget
-// in case no preferences have been stored
+
 const config: Config = {
   policies: [
     {
@@ -46,7 +45,7 @@ const config: Config = {
   },
   cookiePreferenceKey: 'cookie-preferences',
   header: {
-    title: 'Blah blah blah Cookies !',
+    title: 'Humaapi Cookies !',
     // subTitle: "You're probably fed up with these banners...",
     description:
       'Well ok, these cookies are neither sweet, nor chocolate, nor soft. But they allow us to know you better and to offer you content that you will love to devour. And that is worth all the cookies in the world.'

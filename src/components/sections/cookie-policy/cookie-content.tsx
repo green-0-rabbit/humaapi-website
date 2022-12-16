@@ -1,32 +1,24 @@
+import { Box } from '@mantine/core';
 import styled from '@emotion/styled';
-import DataService from 'src/components/content/content-data';
-import { Table } from '@mantine/core';
+import FirstDescription from './first-description';
+import HeadCookie from './header-cookies';
+import SecondDescription from './second-description';
+import TableDescription from './table-description';
+import ThirdDescription from './third-description';
+import FourthDescription from './fourth-description';
 
-const Section = styled.section``;
+const Container = styled.div``;
 
 const CookiePolicyContent = () => (
-  <Section>
-    <Table horizontalSpacing="sm" verticalSpacing="md" fontSize="md">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Category</th>
-          <th>Purpose</th>
-          <th>Domain</th>
-          <th>Strorage Period</th>
-        </tr>
-      </thead>
-      <tbody>
-        {DataService.cookieContentData.map((element) => (
-          <tr key={element.name}>
-            <td>{element.category}</td>
-            <td>{element.purpose}</td>
-            <td>{element.domain}</td>
-            <td>{element.strorageperiod}</td>
-          </tr>
-        ))}
-      </tbody>
-    </Table>
-  </Section>
+  <Box>
+    <HeadCookie />
+    <Container className="space-y-20 ">
+      <FirstDescription />
+      <SecondDescription />
+      <ThirdDescription />
+      <FourthDescription />
+      <TableDescription />
+    </Container>
+  </Box>
 );
 export default CookiePolicyContent;

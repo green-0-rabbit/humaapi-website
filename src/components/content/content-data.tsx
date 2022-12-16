@@ -211,6 +211,15 @@ const DataService = {
           link: '#'
         }
       ]
+    },
+    {
+      title: 'Cookie Policy',
+      links: [
+        {
+          label: 'Know more about it',
+          link: '/cookie-policy'
+        }
+      ]
     }
   ],
   cookieContentData: [
@@ -226,6 +235,48 @@ const DataService = {
       name: '__Secure-3PSIDCC',
       category: 'Targeting and advertising cookies',
       purpose: 'Cookie used for advertising targeting purposes.',
+      domain: '.google.com',
+      strorageperiod: '12 Months'
+    },
+    {
+      name: '__Secure-1PSIDCC',
+      category: 'Targeting and advertising cookies',
+      purpose: 'Cookie used for advertising targeting purposes',
+      domain: '.google.com',
+      strorageperiod: '12 Months'
+    },
+    {
+      name: '__Secure-1PSIDCC',
+      category: 'Targeting and advertising cookies',
+      purpose: 'Cookie used for advertising targeting purposes',
+      domain: '.google.com',
+      strorageperiod: '12 Months'
+    },
+    {
+      name: '__Secure-1PSIDCC',
+      category: 'Targeting and advertising cookies',
+      purpose: 'Cookie used for advertising targeting purposes',
+      domain: '.google.com',
+      strorageperiod: '12 Months'
+    },
+    {
+      name: '__Secure-1PSIDCC',
+      category: 'Targeting and advertising cookies',
+      purpose: 'Cookie used for advertising targeting purposes',
+      domain: '.google.com',
+      strorageperiod: '12 Months'
+    },
+    {
+      name: '__Secure-1PSIDCC',
+      category: 'Targeting and advertising cookies',
+      purpose: 'Cookie used for advertising targeting purposes',
+      domain: '.google.com',
+      strorageperiod: '12 Months'
+    },
+    {
+      name: '__Secure-1PSIDCC',
+      category: 'Targeting and advertising cookies',
+      purpose: 'Cookie used for advertising targeting purposes',
       domain: '.google.com',
       strorageperiod: '12 Months'
     },

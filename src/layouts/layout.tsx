@@ -18,26 +18,25 @@ const useStyles = createStyles((theme) => ({
 interface ILayout {
   children?: ReactNode;
 }
-  const Container = styled.div``;
+const Container = styled.div``;
 
 const Layout: FC<ILayout> = ({ children }) => {
   const { classes } = useStyles();
   return (
-   
-      <Container>
-        <Navbar itemNavLink={DataService.navLink} />
-        <Image
-          src={bgImage}
-          alt={'backgroundImage'}
-          quality={40}
-          className={` ${
-            classes.root ? 'blur-[195px]' : 'blur-[220px]'
-          } object-center absolute`}
-        />
-        {children}
-        <Footer data={DataService.footerLink} />
-        <ScrollTop />
-      </Container>
+    <Container>
+      <Navbar itemNavLink={DataService.navLink} />
+      <Image
+        src={bgImage}
+        alt="backgroundImage"
+        quality={40}
+        className={` ${
+          classes.root ? 'blur-[195px]' : 'blur-[220px]'
+        } object-center absolute`}
+      />
+      {children}
+      <Footer data={DataService.footerLink} />
+      <ScrollTop />
+    </Container>
   );
 };
 export default Layout;

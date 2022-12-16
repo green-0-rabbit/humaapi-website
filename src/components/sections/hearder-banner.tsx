@@ -8,11 +8,11 @@ const useStyles = createStyles((theme) => ({
     background: theme.colorScheme === 'dark' ? '#27272730' : ''
   }
 }));
-interface IHearderBanner {
+interface IheaderBanner {
   children?: ReactNode;
   size?: string;
 }
-const HearderBanner: FC<IHearderBanner> = (props) => {
+const headerBanner: FC<IheaderBanner> = (props) => {
   const { children, size } = props;
   const { classes } = useStyles();
   return (
@@ -36,4 +36,4 @@ const HearderBanner: FC<IHearderBanner> = (props) => {
   );
 };
 
-export default HearderBanner;
+export default headerBanner;

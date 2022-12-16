@@ -6,13 +6,13 @@ import IllustrationLandingPage from 'src/components/elements/svg/icons/illustrat
 import SearchBar from '../../modules/search-bar';
 
 const Illustration = styled.div``;
-const HearderBannerContain = styled.div``;
+const headerBannerContain = styled.div``;
 const Contain = styled.div``;
 
 const LandingPage: FC = (props) => {
   return (
     <Box {...props}>
-      <HearderBannerContain className="h-screen  grid place-items-center p-5 mt-10">
+      <headerBannerContain className="h-screen  grid place-items-center p-5 mt-10">
         <Contain className="grid grid-cols-1 mt-30 md:gap-10 text-left lg:max-w-[50rem] md:grid-cols-2 md:mx-14">
           <Box className="col-span-1 grid gap-8 p-2 md:p-0 md:gap-10 xs:col-span-2 md:col-span-1">
             <Description
@@ -29,7 +29,7 @@ const LandingPage: FC = (props) => {
             <IllustrationLandingPage />
           </Illustration>
         </Contain>
-      </HearderBannerContain>
+      </headerBannerContain>
     </Box>
   );
 };

@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @layer components {
-  .hearder-style {
+  .header-style {
     @apply font-UbuntuRegular text-hslate;
   }
   .btn-custom {
@@ -14,7 +14,6 @@
   .common-description-home {
     @apply description-title text-[32px] leading-9 font-bold;
   }
-  
 }
 
 @layer base {

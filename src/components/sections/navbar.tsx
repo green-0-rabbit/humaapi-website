@@ -136,9 +136,9 @@ const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
       <Header height={HEADER_HEIGHT} className={`${classes.root}`}>
         <Container className={classes.header}>
           <Link href={'/'}>
-              <LogoHumaapi />
+            <LogoHumaapi />
           </Link>
-          <Group spacing={4} className={`${classes.itemNavLink} hearder-style`}>
+          <Group spacing={4} className={`${classes.itemNavLink} header-style`}>
             {items}
             <Box className="ml-8">
               <ActionButton />

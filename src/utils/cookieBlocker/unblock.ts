@@ -20,10 +20,12 @@ export const unblock = (...scriptUrlsOrRegexes: any[]) => {
       if (patterns.blacklist) {
         patterns.blacklist = patterns.blacklist.filter((pattern: RegExp) =>
           scriptUrlsOrRegexes.every((urlOrRegexp) => {
-            if (typeof urlOrRegexp === 'string')
+            if (typeof urlOrRegexp === 'string') {
               return !pattern.test(urlOrRegexp);
-            if (urlOrRegexp instanceof RegExp)
+            }
+            if (urlOrRegexp instanceof RegExp) {
               return pattern.toString() !== urlOrRegexp.toString();
+            }
           })
         );
       }
