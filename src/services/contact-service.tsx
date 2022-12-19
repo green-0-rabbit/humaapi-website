@@ -1,3 +1,5 @@
+import { siteSecurityService } from './site-security';
+
 export interface IContactdata {
   name: string;
   email: string;
@@ -20,13 +22,14 @@ export const contactService = {
       const checkResponse = await siteSecurityService.checkIfHuman(
         captchaToken
       );
+      console.log(captchaToken);
       console.log(checkResponse);
       if (checkResponse && checkResponse.success) {
         if (checkResponse.score && checkResponse.score < 0.5) {
           const message = 'bot';
           throw new Error(message);
         }
-        const res = await fetch(`api/contactUs`, {
+        const res = await fetch(`api/contact-us`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -46,8 +49,8 @@ export const contactService = {
       }
       return undefined;
     } catch (err) {
-      const error = <{ message: string }>err;
-      throw new Error(error.message);
+      console.log(err);
+      
     }
   }
 };

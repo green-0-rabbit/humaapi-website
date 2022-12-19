@@ -9,6 +9,7 @@ import {
   ReactiveFormFlex
 } from 'src/components/molecules';
 import nodemailer from 'nodemailer';
+import contactService from 'src/services/contact-service';
 
 const useStyles = createStyles((theme) => ({
   input: {
@@ -129,7 +130,7 @@ const ContactForm = () => {
           }
         },
         {
-          inputKey: 'recaptchaCheckbox',
+          inputKey: 'captchaToken',
           label: '',
           inputType: 'recaptcha',
           options: {
@@ -146,39 +147,23 @@ const ContactForm = () => {
     );
     const newData = Object.fromEntries(trimedData);
     const newDataValue = { recaptchaCheckbox, ...newData };
-
-    // const sendResult = await toast.promise(contactService.sendMail(data), {
-    //   pending: 'Submitting',
-    //   success: 'Your request was successfully submitted',
-    //   error: {
-    //     render({ mailData }: { mailData: { message: string } }) {
-    //       const { message } = mailData;
-    //       setIsSubmitting(false);
-    //       switch (message) {
-    //         case 'timeout':
-    //           setValue('recaptchaCheckbox', false);
-    //           return 'something went wrong, please try again';
-    //         case 'bot':
-    //           setIsDisabled(true);
-    //           return 'you are a bot 🤖!';
-    //         default:
-    //           return 'something went wrong, please try again';
-    //       }
-    //     }
-    //   }
-    // });
+    const sendResult = await contactService.sendMail(newDataValue);
+    console.log('sendResult', sendResult);
+    console.log('newDataValue', newDataValue);
 
     if (methods.formState.isValid) {
-      customNotification({
-        title: 'Thank you for your request',
-        message: 'Your request has been sent successfully',
-        autoClose: 3000,
-        radius: 16,
-        color: 'green',
-        icon: <IconCheck size={16} />
-      });
+      if (sendResult) {
+        customNotification({
+          title: 'Thank you for your request',
+          message: 'Your request has been sent successfully',
+          autoClose: 3000,
+          radius: 16,
+          color: 'green',
+          icon: <IconCheck size={16} />
+        });
+        methods.reset(defaultValues);
+      }
     }
-    methods.reset(defaultValues);
   };
   return (
     <Form

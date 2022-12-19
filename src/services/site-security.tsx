@@ -1,6 +1,5 @@
-// import camelcaseKeys from 'camelcase-keys';
-//import { CamelCasedPropertiesDeep } from 'type-fest';
-
+import camelcaseKeys from 'camelcase-keys';
+import { CamelCasedPropertiesDeep } from 'type-fest';
 export interface ISiteVerify {
   success: boolean;
   challenge_ts?: string;
@@ -10,26 +9,26 @@ export interface ISiteVerify {
   'error-codes'?: string[];
 }
 
-// export const siteSecurityService = {
-//   checkIfHuman: async (token: string) => {
-//     try {
-//       const res = await fetch(`api/vsIntegrityCheck`, {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(token)
-//       });
+export const siteSecurityService = {
+  checkIfHuman: async (token: string) => {
+    try {
+      const res = await fetch(`api/vsIntegrityCheck`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(token)
+      });
 
-//       const serializedRes = (await res.json()) as ISiteVerify;
-//       const data = camelcaseKeys(
-//         serializedRes as CamelCasedPropertiesDeep<ISiteVerify>,
-//         { deep: true }
-//       );
-//       return data;
-//     } catch (err) {
-//       const error = <{ message: string }>err;
-//       throw new Error(error.message);
-//     }
-//   }
-// };
+      const serializedRes = (await res.json()) as ISiteVerify;
+      const data = camelcaseKeys(
+        serializedRes as CamelCasedPropertiesDeep<ISiteVerify>,
+        { deep: true }
+      );
+      return data;
+    } catch (err) {
+      console.log(err);
+      
+    }
+  }
+};

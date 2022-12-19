@@ -52,6 +52,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/parser", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:5.42.1"],\
             ["autoprefixer", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:10.4.13"],\
             ["autosuggest-highlight", "npm:3.3.4"],\
+            ["camelcase-keys", "npm:8.0.2"],\
             ["cookie-though", "npm:1.5.0"],\
             ["date-fns", "npm:2.29.3"],\
             ["embla-carousel-react", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:7.0.5"],\
@@ -82,6 +83,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["remove", "npm:0.1.5"],\
             ["rollup", "npm:3.3.0"],\
             ["tailwindcss", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:3.2.4"],\
+            ["type-fest", "npm:3.4.0"],\
             ["typescript", "patch:typescript@npm%3A4.8.4#~builtin<compat/typescript>::version=4.8.4&hash=701156"]\
           ],\
           "linkType": "SOFT"\
@@ -2342,11 +2344,33 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["camelcase", [\
+        ["npm:7.0.1", {\
+          "packageLocation": "./.yarn/cache/camelcase-npm-7.0.1-d41d97bb0d-86ab8f3ebf.zip/node_modules/camelcase/",\
+          "packageDependencies": [\
+            ["camelcase", "npm:7.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["camelcase-css", [\
         ["npm:2.0.1", {\
           "packageLocation": "./.yarn/cache/camelcase-css-npm-2.0.1-90d1b6df08-1cec2b3b3d.zip/node_modules/camelcase-css/",\
           "packageDependencies": [\
             ["camelcase-css", "npm:2.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["camelcase-keys", [\
+        ["npm:8.0.2", {\
+          "packageLocation": "./.yarn/cache/camelcase-keys-npm-8.0.2-fc717c40d7-878fdaffa5.zip/node_modules/camelcase-keys/",\
+          "packageDependencies": [\
+            ["camelcase-keys", "npm:8.0.2"],\
+            ["camelcase", "npm:7.0.1"],\
+            ["map-obj", "npm:4.3.0"],\
+            ["quick-lru", "npm:6.1.1"],\
+            ["type-fest", "npm:2.19.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -4961,6 +4985,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["map-obj", [\
+        ["npm:4.3.0", {\
+          "packageLocation": "./.yarn/cache/map-obj-npm-4.3.0-d53e32935d-fbc554934d.zip/node_modules/map-obj/",\
+          "packageDependencies": [\
+            ["map-obj", "npm:4.3.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["mensch", [\
         ["npm:0.3.4", {\
           "packageLocation": "./.yarn/cache/mensch-npm-0.3.4-acb386e2b9-eabb25d595.zip/node_modules/mensch/",\
@@ -6354,6 +6387,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["quick-lru", "npm:5.1.1"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:6.1.1", {\
+          "packageLocation": "./.yarn/cache/quick-lru-npm-6.1.1-6266dda1a4-a9c75bf1d2.zip/node_modules/quick-lru/",\
+          "packageDependencies": [\
+            ["quick-lru", "npm:6.1.1"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["react", [\
@@ -7386,6 +7426,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["type-fest", "npm:0.20.2"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:2.19.0", {\
+          "packageLocation": "./.yarn/cache/type-fest-npm-2.19.0-918b953248-a4ef07ece2.zip/node_modules/type-fest/",\
+          "packageDependencies": [\
+            ["type-fest", "npm:2.19.0"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:3.4.0", {\
+          "packageLocation": "./.yarn/cache/type-fest-npm-3.4.0-74bcebf228-37e8559f07.zip/node_modules/type-fest/",\
+          "packageDependencies": [\
+            ["type-fest", "npm:3.4.0"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["typescript", [\
@@ -7642,6 +7696,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/parser", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:5.42.1"],\
             ["autoprefixer", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:10.4.13"],\
             ["autosuggest-highlight", "npm:3.3.4"],\
+            ["camelcase-keys", "npm:8.0.2"],\
             ["cookie-though", "npm:1.5.0"],\
             ["date-fns", "npm:2.29.3"],\
             ["embla-carousel-react", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:7.0.5"],\
@@ -7672,6 +7727,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["remove", "npm:0.1.5"],\
             ["rollup", "npm:3.3.0"],\
             ["tailwindcss", "virtual:cf8ffcb710679020abafe0fbcaab750f08dab7b1a7fa9ceecfcadcb8b2fd1f81fe0ab2e0d5708baa8284ba8df6064d02810e0ee1987cf62ceb6c2e0e60712444#npm:3.2.4"],\
+            ["type-fest", "npm:3.4.0"],\
             ["typescript", "patch:typescript@npm%3A4.8.4#~builtin<compat/typescript>::version=4.8.4&hash=701156"]\
           ],\
           "linkType": "SOFT"\

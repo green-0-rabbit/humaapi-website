@@ -10,13 +10,16 @@ const Contact = async (req: NextApiRequest, res: NextApiResponse) => {
   const senderEmail = process.env.SMTP_USER;
   const senderPassword = process.env.SMTP_PASSWORD;
   const transporter = nodemailer.createTransport({
-    host: 'smtp.ionos.fr',
-    port: 465,
+    host: 'smtp.office365.com', // or smtp-mail.outlook.com
+    port: 587,
     secure: true,
-    auth: {
+     auth: {
       user: senderEmail,
       pass: senderPassword
-    }
+    },
+    tls: {
+      ciphers:'SSLv3'
+  }
   });
 
   try {
