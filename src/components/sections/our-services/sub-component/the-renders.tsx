@@ -1,16 +1,16 @@
 import styled from '@emotion/styled';
-import { Text, Container, Box, Paper } from '@mantine/core';
+import { Text, Container, Box, Paper, createStyles } from '@mantine/core';
 import { FC } from 'react';
+import generateId from 'src/components/features/generateId';
 import Description from 'src/components/modules/description';
-import { createStyles } from '@mantine/core';
-const useStyles = createStyles((theme) => ({
-  titleColor:{color: theme.colorScheme === 'dark' ? "white" :"#2b2b2b"},
-  textColor:{color: theme.colorScheme === 'dark' ? "#afaaaa" :"#6B7280"}
-  }))
 
+const useStyles = createStyles((theme) => ({
+  titleColor: { color: theme.colorScheme === 'dark' ? 'white' : '#2b2b2b' },
+  textColor: { color: theme.colorScheme === 'dark' ? '#afaaaa' : '#6B7280' }
+}));
 
 interface ITheRenders {
-  dataTheRenders: {text: string,title: string} [];
+  dataTheRenders: { text: string; title: string }[];
 }
 
 const Section = styled('div')``;
@@ -22,19 +22,23 @@ const Num = styled('div')``;
 const TitleCard = styled('div')``;
 
 const TheRenders: FC<ITheRenders> = ({ ...props }) => {
-  const { classes} = useStyles();
+  const { classes } = useStyles();
   const { dataTheRenders } = props;
+
   return (
     <Section className="mx-4">
       <ContainDescription>
         <HeadSection className="text-center">
           <Description
-            title={'What your get'}
-            content={
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
-            }
-            classe={'description-title leading-9 font-bold text-[24px]'}
-            space={1}
+            title="What your get"
+            content="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+            sx={{
+              fontFamily: 'Ubuntu-Bold',
+              fontWeight: 700,
+              lineHeight: '24px'
+            }}
+            size={24}
+            space={4}
           />
         </HeadSection>
       </ContainDescription>
@@ -42,21 +46,28 @@ const TheRenders: FC<ITheRenders> = ({ ...props }) => {
         <Container className="grid gap-4 grid-cols-1 md:grid-cols-2">
           {dataTheRenders.map((el, index) => (
             <Paper
-            className={"md:grid place-items-center "}
-              key={index}
+              className="md:grid place-items-center "
+              key={generateId()}
               p={14}
               radius={24}
               style={{ width: 296, height: 96 }}>
               <Contain className="flex font-UbuntuRegular">
                 <Num className="w-8 font-bold text-hm text-base">
-                  0{index + 1}
+                  0 {index + 1}
                 </Num>
 
                 <Box className="flex flex-col">
-                  <TitleCard className={`${classes.titleColor} text-base font-semibold`}>
+                  <TitleCard
+                    className={`${classes.titleColor} text-base font-semibold`}>
                     {el.title}
                   </TitleCard>
-                  <Text className={`${classes.textColor} text-xs font-medium mt-1`}>
+                  <Text
+                    sx={{
+                      fontWeight: 500,
+                      lineHeight: '16px'
+                    }}
+                    size="xs"
+                    className={`${classes.textColor} mt-1`}>
                     {el.text}
                   </Text>
                 </Box>

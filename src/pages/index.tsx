@@ -5,7 +5,7 @@ import DomaineActivity from '../components/sections/home/domaine-activity';
 
 export default function Home() {
   return (
-    <Box className="w-full space-y-[4rem]">
+    <Box className="w-full space-y-[72px]">
       <LandingPage />
       <OursService />
       <DomaineActivity />

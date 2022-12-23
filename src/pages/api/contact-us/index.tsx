@@ -2,6 +2,7 @@ import nodemailer from 'nodemailer';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { IContactdata } from 'src/services/contact-service';
 import mjml2html from 'mjml';
+import mailImage from '../../../../public/assets/img/boxmailillustration.png'
 
 type ContactType = Omit<IContactdata, 'captchaToken'>;
 
@@ -10,52 +11,52 @@ const Contact = async (req: NextApiRequest, res: NextApiResponse) => {
   const senderEmail = process.env.SMTP_USER;
   const senderPassword = process.env.SMTP_PASSWORD;
   const transporter = nodemailer.createTransport({
-    host: 'smtp.office365.com', // or smtp-mail.outlook.com
-    port: 587,
-    secure: true,
-     auth: {
+    host: 'smtp-mail.outlook.com', // smtp-mail.outlook.com or smtp.office365.com
+    port: 587, // 587
+    // secure: true,
+    service: 'hotmail',
+    auth: {
       user: senderEmail,
       pass: senderPassword
     },
     tls: {
-      ciphers:'SSLv3'
-  }
+      rejectUnauthorized: false
+    }
   });
 
   try {
     const aknowledgeOutputMJML = mjml2html(
       `
       <mjml>
-      <mj-body>
-        <mj-raw>
-          <!-- Company Header -->
-        </mj-raw>
-        <mj-section background-color="#f0f0f0">
-          <mj-column>
-            <mj-text font-style="italic" font-size="20px" color="#626262">Humaapi</mj-text>
-          </mj-column>
-        </mj-section>
-        <mj-raw>
-          <!-- Image Header -->
-        </mj-raw>
-        <mj-section background-url="https://k2bmt9x7.directus.app/assets/b4178a49-75d5-4979-9a89-6f2bf9843518/w=640&q=20" background-size="cover" background-repeat="no-repeat">
-          <mj-column width="600px">
-            <mj-text align="center" color="#000" font-size="40px" font-family="Helvetica Neue">Welcome on Blazers</mj-text>
-          </mj-column>
-        </mj-section>
-        <mj-raw>
-          <!-- Intro text -->
-        </mj-raw>
-        <mj-section background-color="#fafafa">
-          <mj-column width="400px">
-            <mj-text font-style="italic" font-size="20px" font-family="Helvetica Neue" color="#626262">My Awesome Text</mj-text>
-            <mj-text color="#525252">${data.message}</mj-text>
-            <mj-button background-color="#F45E43" href="#">Learn more</mj-button>
-          </mj-column>
-        </mj-section>
+  <mj-body>
     
-      </mj-body>
-    </mjml>
+    <mj-section background-color="white">
+            <mj-group>
+              <mj-column>
+        <mj-image width="800px" height="200px"  padding="0" src="https://variverge.com/wp-content/uploads/2020/09/digital-direct-mail-og.png"></mj-image>
+      </mj-column>
+               <mj-column border="1px solid #ddd">
+                 
+        <mj-text font-size="28px"  font-family="Ubuntu-Bold" color="black">
+          <h2>Huma<span style="color:#EA6F66">api</span></h2>
+          
+                  
+         </mj-text>
+                
+             
+            
+        <mj-text font-size="18px" color="#525252">Your message has been received. Thanks</mj-text>
+      </mj-column>
+</mj-group>
+      
+      
+      
+    </mj-section>
+    <mj-raw>
+      <!-- Icons -->
+    </mj-raw>
+  </mj-body>
+</mjml>
 `,
       {
         keepComments: false,
@@ -65,73 +66,40 @@ const Contact = async (req: NextApiRequest, res: NextApiResponse) => {
     const formSubmissionDataMJML = mjml2html(
       `
       <mjml>
-      <mj-body>
-        <!--  Header -->
-        <mj-section>
-          <mj-column>
+  <mj-body>
     
-            <mj-text font-size="48px" color="#626262">Blazers Form</mj-text>
-    
-            <mj-divider border-color="#3b00a2"></mj-divider>
-    
-            <mj-text font-size="20px" color="#3b00a2" font-family="helvetica">You have a contact form submission</mj-text>
-          </mj-column>
-        </mj-section>
-        <!--  Email -->
-        <mj-section>
-          <mj-column>
-            <mj-text font-size="16px" color="#3b00a2" font-family="helvetica">
-              Email :
-            </mj-text>
-          </mj-column>
-          <mj-column>
-            <mj-text color="#525252">
-              ${data.email}
-            </mj-text>
-          </mj-column>
-        </mj-section>
-        <!--  Phone -->
-        <mj-section>
-          <mj-column>
-            <mj-text font-size="16px" color="#3b00a2" font-family="helvetica">
-              Phone :
-            </mj-text>
-          </mj-column>
-          <mj-column>
-            <mj-text color="#525252">
-              ${data.company}
-            </mj-text>
-          </mj-column>
-        </mj-section>
-        <!--  Domaine -->
-        <mj-section>
-          <mj-column>
-            <mj-text font-size="16px" color="#3b00a2" font-family="helvetica">
-              Domaine :
-            </mj-text>
-          </mj-column>
-          <mj-column>
-            <mj-text color="#525252">
-              ${data.domaine}
-            </mj-text>
-          </mj-column>
-        </mj-section>
+    <mj-section background-color="white">
+            <mj-group>
+              <mj-column>
+        <mj-image width="200px"  padding="0" src="https://variverge.com/wp-content/uploads/2020/09/digital-direct-mail-og.png"></mj-image>
+      </mj-column>
+               <mj-column border="1px solid #ddd">
+                 
+        <mj-text font-size="28px"  font-family="Ubuntu-Bold" color="black">
+          <h2>Huma<span style="color:#EA6F66">api</span></h2>
+          
+                  
+         </mj-text>
+                
+                         <mj-text   font-size="26px" font-family="Helvetica Neue" >Name: <span style="font-size:22px">${data.name}</span> </mj-text>
+            <mj-text  font-size="26px" font-family="Helvetica Neue" >Email:  <span style="font-size:22px">${data.email}</span></mj-text>
+            <mj-text  font-size="26px" font-family="Helvetica Neue" >Company:  <span style="font-size:22px">${data.company}</span></mj-text>
+            <mj-text  font-size="26px" font-family="Helvetica Neue" >Domaine:  <span style="font-size:22px">${data.domaine}</span></mj-text>
+            <mj-text  font-size="26px" font-family="Helvetica Neue" >Message:  <span style="font-size:22px">${data.message}</span></mj-text>
+           
             
-        <!--  Message -->
-        <mj-section>
-          <mj-column>
-            <mj-text font-size="16px" color="#3b00a2" font-family="helvetica">
-              Request :
-            </mj-text>
-          </mj-column>
-          <mj-column>
-            <mj-text color="#525252">
-              ${data.message}
-            </mj-text>
-          </mj-column>
-        </mj-section>
-      </mj-body>
-    </mjml>
+        <mj-text color="#525252">We have a contact from submission.</mj-text>
+      </mj-column>
+</mj-group>
+      
+      
+      
+    </mj-section>
+    <mj-raw>
+      <!-- Icons -->
+    </mj-raw>
+  </mj-body>
+</mjml>
 `,
       {
         keepComments: false,

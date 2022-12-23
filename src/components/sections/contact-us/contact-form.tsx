@@ -147,11 +147,9 @@ const ContactForm = () => {
     );
     const newData = Object.fromEntries(trimedData);
     const newDataValue = { recaptchaCheckbox, ...newData };
-    const sendResult = await contactService.sendMail(newDataValue);
-    console.log('sendResult', sendResult);
-    console.log('newDataValue', newDataValue);
-
     if (methods.formState.isValid) {
+      const sendResult = await contactService.sendMail(newDataValue);
+
       if (sendResult) {
         customNotification({
           title: 'Thank you for your request',

@@ -2,6 +2,25 @@ import { MantineThemeOverride } from '@mantine/styles';
 
 const themeGlobaly: MantineThemeOverride = {
   colorScheme: 'light',
+  fontSizes: {
+    xs: 12,
+    sm: 14,
+    md: 16,
+    lg: 18,
+    xl: 20
+  },
+  lineHeight: '20px',
+  headings: {
+    // properties for individual headings, all of them are optional
+    sizes: {
+      h1: { fontSize: 32, lineHeight: 1.4 },
+      h2: { fontSize: 28, lineHeight: 1.5 },
+      h3: { fontSize: 24, lineHeight: 1.5 },
+      h4: { fontSize: 20, lineHeight: 1.5 },
+      h5: { fontSize: 16, lineHeight: 1.5 },
+      h6: { fontSize: 14, lineHeight: 1.5 }
+    }
+  },
   components: {
     Input: {
       defaultProps: {

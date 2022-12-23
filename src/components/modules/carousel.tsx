@@ -4,11 +4,11 @@ import { Carousel, Embla } from '@mantine/carousel';
 interface ITemplateCarousel {
   classeCarrousel: string;
   children: ReactNode;
-  dotSpace:string;
-gridCol:string
+  dotSpace: string;
+  gridCol: string;
 }
 const TemplateCarousel: FC<ITemplateCarousel> = (props) => {
-  const { classeCarrousel, children,dotSpace,gridCol} = props;
+  const { classeCarrousel, children, dotSpace, gridCol } = props;
   const [scrollProgress, setScrollProgress] = useState(0);
   const [embla, setEmbla] = useState<Embla | null>(null);
 

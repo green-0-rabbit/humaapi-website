@@ -8,37 +8,42 @@ import navigation from 'src/components/features/navigation-hook';
 interface IDesign {
   labelBtn?: string;
 }
-const ContainWebDesign = styled.div``;
+const Section = styled.section``;
 const Contain = styled.div``;
+const ContainerImage = styled.div``;
+const Container = styled.div``;
 const Design: FC<IDesign> = (props) => {
   const { labelBtn } = props;
 
   return (
-    <ContainWebDesign className="grid place-items-center px-2 xs:text-center md:text-left">
-      <Contain className="grid px-2 grid-cols-1 place-items-center gap-6 max-w-lg md:max-w-2xl md:gap-20 lg:max-w-[50rem] md:grid-cols-2">
-        <Box className="">
+    <Section className="flex flex-col justify-center xs:text-center md:text-left">
+      <Contain className="flex flex-col justify-center items-center md:flex-row">
+        <ContainerImage className="flex justify-center relative mb-12 md:m-0">
           <IllustrationDesign />
-        </Box>
-        <Box className="space-y-10 ">
+        </ContainerImage>
+        <Container className="w-[85%] md:max-w-xs flex justify-center flex-col md:ml-24">
           <Description
-            title={'Design'}
-            content={
-              ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut voluptatibus fuga, dolores quisquam quibusdam rem!'
-            }
-            classe={'common-description-home'}
-            space={8}
+            sx={{
+              fontFamily: 'Ubuntu-Bold',
+              fontWeight: 700,
+              lineHeight: '36px'
+            }}
+            size={32}
+            title="Design"
+            content=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut voluptatibus fuga, dolores quisquam quibusdam rem!"
+            space={12}
           />
           <Box className="mt-6">
             <Button
               variant="filled"
               className="btn-custom"
               onClick={() => navigation('/our-services/design')}>
-              {labelBtn ? labelBtn : 'Learn more'}
+              {labelBtn || 'Learn more'}
             </Button>
           </Box>
-        </Box>
+        </Container>
       </Contain>
-    </ContainWebDesign>
+    </Section>
   );
 };
 export default Design;

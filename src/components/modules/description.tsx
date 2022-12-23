@@ -1,28 +1,28 @@
-import { Box, Text } from '@mantine/core';
+import { Box, Text, createStyles, TextProps } from '@mantine/core';
 import { FC } from 'react';
-import { createStyles } from '@mantine/core';
-
 
 const useStyles = createStyles((theme) => ({
   root: {
-    color: theme.colorScheme === 'dark' ? "white" :""
+    color: theme.colorScheme === 'dark' ? 'white' : ''
   }
-  
-}))
-interface IDescription {
+}));
+interface IDescription extends TextProps {
   title: string;
   content: string;
-  classe: string;
   space: number;
 }
 const Description: FC<IDescription> = (props) => {
-  const { classes} = useStyles();
+  const { classes } = useStyles();
 
-  const { title, content, classe, space } = props;
+  const { title, content, space } = props;
   return (
-    <Box className={`grid gap-${space}`}>
-      <Text className={`${classe} ${classes.root}`}>{title}</Text>
-      <Text className="font-UbuntuRegular text-sm font-light">{content} </Text>
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: space }}>
+      <Text className={`${classes.root}`} {...props}>
+        {title}
+      </Text>
+      <Text sx={{ fontFamily: 'Ubuntu-Regular' }} size="sm">
+        {content}
+      </Text>
     </Box>
   );
 };

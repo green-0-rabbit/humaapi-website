@@ -66,3 +66,9 @@
     font-weight: 400;
   }
 }
+
+
+::selection {
+  color: rgb(255, 255, 255);
+  background: #EA6F66;
+}

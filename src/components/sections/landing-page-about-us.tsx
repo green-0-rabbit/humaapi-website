@@ -1,35 +1,40 @@
 import styled from '@emotion/styled';
-import AboutusImage from '../../../public/assets/img/pexels-diva-plavalaguna-6147029.jpg';
-
 import Description from 'src/components/modules/description';
 import Image from 'next/image';
+import { Box } from '@mantine/core';
+import AboutusImage from '../../../public/assets/img/pexels-diva-plavalaguna-6147029.jpg';
 
 const Contain = styled.div``;
-const Container = styled.div``;
+const Section = styled.section``;
 const ImageContain = styled.div``;
-const LandingAboutUs = () => {
- 
- 
-  return (
-    <Container className="h-screen grid place-items-center mt-3 text-center md:text-left px-2">
-      <Contain className="grid px-2 grid-cols-1 place-items-center gap-10 md:gap-2 max-w-lg md:max-w-2xl lg:max-w-[50rem] md:grid-cols-2">
-        <Description
-          title={'About us'}
-          content={
-            ' We are a team of growth hacker and designer. We create astonishing digital contents coupled with automation in order to sky rocket your turnover and ROI.'
-          }
-          classe={'common-description-home'}
-          space={4}
-        />
-        <ImageContain className="order-first md:order-last">
+const HeaderBannerContain = styled.div``;
+
+const LandingAboutUs = () => (
+  <HeaderBannerContain className="h-screen flex justify-center p-5">
+    <Section className="flex flex-col justify-center xs:text-center md:text-left">
+      <Contain className="flex flex-col justify-center items-center md:flex-row">
+        <Box className="w-[85%] md:max-w-xs flex justify-center flex-col md:mr-14">
+          <Description
+            sx={{
+              fontFamily: 'Ubuntu-Bold',
+              fontWeight: 700,
+              lineHeight: '36px'
+            }}
+            size={32}
+            space={12}
+            title="About us"
+            content=" We are a team of growth hacker and designer. We create astonishing digital contents coupled with automation in order to sky rocket your turnover and ROI."
+          />
+        </Box>
+        <ImageContain className="flex justify-center relative mb-12 md:m-0 order-first md:order-last">
           <Image
             src={AboutusImage}
-            alt={'AboutusImage'}
+            alt="AboutusImage"
             className="object-cover object-center rounded-[50px] h-[313px] w-[279px] border-4 border-white shadow-lg shadow-[#eee]"
           />
         </ImageContain>
       </Contain>
-    </Container>
-  );
-};
+    </Section>
+  </HeaderBannerContain>
+);
 export default LandingAboutUs;

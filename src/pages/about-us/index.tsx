@@ -5,12 +5,9 @@ import { createStyles } from '@mantine/core';
 import DataService from 'src/components/content/content-data';
 
 const useStyles = createStyles((theme) => ({
-  
-  nameColor:{color: theme.colorScheme === 'dark' ? "white" :"#2b2b2b"},
-  roleColor:{color: theme.colorScheme === 'dark' ? "#afaaaa" :"#6B7280"}
-  
-}))
-
+  nameColor: { color: theme.colorScheme === 'dark' ? 'white' : '#2b2b2b' },
+  roleColor: { color: theme.colorScheme === 'dark' ? '#afaaaa' : '#6B7280' }
+}));
 
 const ContainService = styled.div``;
 const Title = styled.div``;
@@ -23,35 +20,39 @@ const Container = styled.div``;
 const Contain = styled.div``;
 const Ourteam = styled.div``;
 const AboutUs = () => {
-  const { classes} = useStyles();
-  
+  const { classes } = useStyles();
+
   return (
     <ContainService>
-      
-        <LandingAboutUs />
-            
+      <LandingAboutUs />
+
       <Ourteam className="mx-4">
         <ContainDescription>
           <Title className="text-center">
             <Description
-              title={'Our team'}
-              content={
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
-              }
-              classe={'description-title leading-9 font-bold text-[24px]'}
-              space={1}
+              title="Our team"
+              content="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+              sx={{
+                fontFamily: 'Ubuntu-Bold',
+                fontWeight: 700,
+                lineHeight: '36px'
+              }}
+              size={24}
+              space={4}
             />
           </Title>
         </ContainDescription>
-        <ContainCards className="grid place-items-center mt-12">
+        <ContainCards className="grid place-items-center mt-12 ">
           <Contain className="grid  grid-cols-2 md:grid-cols-3 gap-y-10 gap-x-16 text-center font-UbuntuRegular">
             {DataService.iconTeamData.map((el, index) => (
-              <Container key={index} className="grid  grid-cols-1">
+              <Container key={el.name} className="grid  grid-cols-1">
                 <Icon className="h-36">{el.icon}</Icon>
-                <Name className={`${classes.nameColor} text-base font-semibold font-UbuntuRegular`}>
+                <Name
+                  className={`${classes.nameColor} text-base font-semibold font-UbuntuRegular`}>
                   {el.name}
                 </Name>
-                <Role className={`${classes.roleColor} text-sm font-UbuntuRegular  font-medium`}>
+                <Role
+                  className={`${classes.roleColor} text-sm font-UbuntuRegular  font-medium`}>
                   {el.role}
                 </Role>
               </Container>

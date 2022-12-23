@@ -4,40 +4,45 @@ import { FC } from 'react';
 import IllustrationDevops from 'src/components/elements/svg/services/illustration-devops';
 import Description from 'src/components/modules/description';
 import navigation from 'src/components/features/navigation-hook';
+
 interface IDevOps {
   labelBtn?: string;
 }
 const Contain = styled.div``;
-const Illustration = styled.div``;
+const ContainerImage = styled.div``;
+const Section = styled.section``;
 const DevOps: FC<IDevOps> = (props) => {
   const { labelBtn } = props;
 
   return (
-    <Box className="grid place-items-center px-2 xs:text-center md:text-left">
-      <Contain className="grid grid-cols-1 px-2 gap-8 place-items-center max-w-lg md:max-w-2xl md:gap-16 lg:gap-36 lg:max-w-[50rem] md:grid-cols-2">
-        <Box className="space-y-10">
+    <Section className="flex flex-col justify-center xs:text-center md:text-left">
+      <Contain className="flex flex-col justify-center items-center md:flex-row">
+        <Box className="w-[85%] md:max-w-xs flex justify-center flex-col md:mr-14  order-last md:order-first">
           <Description
-            title={'DevOps'}
-            content={
-              ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut voluptatibus fuga, dolores quisquam quibusdam rem!'
-            }
-            classe={'common-description-home'}
-            space={8}
+            title="DevOps"
+            content=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut voluptatibus fuga, dolores quisquam quibusdam rem!"
+            sx={{
+              fontFamily: 'Ubuntu-Bold',
+              fontWeight: 700,
+              lineHeight: '36px'
+            }}
+            size={32}
+            space={12}
           />
-          <Box>
+          <Box className="mt-6">
             <Button
               variant="filled"
               className="btn-custom"
               onClick={() => navigation('/our-services/devops')}>
-              {labelBtn ? labelBtn : 'Learn more'}
+              {labelBtn || 'Learn more'}
             </Button>
           </Box>
         </Box>
-        <Illustration className="order-first md:order-last">
+        <ContainerImage className="flex justify-center relative mb-12 md:m-0">
           <IllustrationDevops />
-        </Illustration>
+        </ContainerImage>
       </Contain>
-    </Box>
+    </Section>
   );
 };
 export default DevOps;

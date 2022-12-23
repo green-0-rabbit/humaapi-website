@@ -28,7 +28,6 @@ export const siteSecurityService = {
       return data;
     } catch (err) {
       console.log(err);
-      
     }
   }
 };

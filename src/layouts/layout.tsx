@@ -1,13 +1,13 @@
-import Navbar from '../components/sections/navbar';
 import Image from 'next/image';
 import { FC, ReactNode } from 'react';
-import ScrollTop from '../components/modules/scroll-to-up';
 import styled from '@emotion/styled';
 import Footer from 'src/components/sections/footer';
-import bgImage from '../../public/assets/img/gradientcircleglassmorphism.png';
 
 import { createStyles } from '@mantine/core';
 import DataService from 'src/components/content/content-data';
+import bgImage from '../../public/assets/img/gradientcircleglassmorphism.png';
+import ScrollTop from '../components/modules/scroll-to-up';
+import Navbar from '../components/sections/navbar';
 
 const useStyles = createStyles((theme) => ({
   root: {

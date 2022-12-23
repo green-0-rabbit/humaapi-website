@@ -11,6 +11,7 @@ import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { css, Global } from '@emotion/react';
 import { NotificationsProvider } from '@mantine/notifications';
 import CookieConsent from 'src/components/modules/cookie-consent';
+import CustomFonts from 'src/commons/app.fonts';
 import Layout from '../layouts/layout';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -38,6 +39,7 @@ export default function App({ Component, pageProps }: AppProps) {
           withNormalizeCSS>
           <NotificationsProvider position="top-right" zIndex={2077}>
             <CookieConsent>
+              <CustomFonts />
               <Layout>
                 <Component {...pageProps} />
               </Layout>
