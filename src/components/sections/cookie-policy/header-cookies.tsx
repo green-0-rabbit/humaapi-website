@@ -15,8 +15,13 @@ const HeadCookie = () => (
         <Description
           title="Cover every aspect of your project with our services"
           content="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-          classe="common-description-home"
           space={3}
+          sx={{
+            fontFamily: 'Ubuntu-Bold',
+            fontWeight: 700,
+            lineHeight: '36px'
+          }}
+          size={32}
         />
       </Title>
     </TitleContain>

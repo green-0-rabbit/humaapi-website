@@ -72,3 +72,7 @@
   color: rgb(255, 255, 255);
   background: #EA6F66;
 }
+
+.cookie-though {
+  --ct-primary-400: #EA6F66;
+}

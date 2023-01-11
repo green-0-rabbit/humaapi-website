@@ -22,8 +22,7 @@ export const contactService = {
       const checkResponse = await siteSecurityService.checkIfHuman(
         captchaToken
       );
-      console.log(captchaToken);
-      console.log(checkResponse);
+
       if (checkResponse && checkResponse.success) {
         if (checkResponse.score && checkResponse.score < 0.5) {
           const message = 'bot';
@@ -50,7 +49,6 @@ export const contactService = {
       return undefined;
     } catch (err) {
       console.log(err);
-      
     }
   }
 };

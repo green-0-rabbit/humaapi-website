@@ -2,7 +2,6 @@ import nodemailer from 'nodemailer';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { IContactdata } from 'src/services/contact-service';
 import mjml2html from 'mjml';
-import mailImage from '../../../../public/assets/img/boxmailillustration.png'
 
 type ContactType = Omit<IContactdata, 'captchaToken'>;
 
@@ -28,35 +27,47 @@ const Contact = async (req: NextApiRequest, res: NextApiResponse) => {
     const aknowledgeOutputMJML = mjml2html(
       `
       <mjml>
-  <mj-body>
-    
-    <mj-section background-color="white">
-            <mj-group>
-              <mj-column>
-        <mj-image width="800px" height="200px"  padding="0" src="https://variverge.com/wp-content/uploads/2020/09/digital-direct-mail-og.png"></mj-image>
-      </mj-column>
-               <mj-column border="1px solid #ddd">
-                 
-        <mj-text font-size="28px"  font-family="Ubuntu-Bold" color="black">
-          <h2>Huma<span style="color:#EA6F66">api</span></h2>
+      <mj-head>
+        <mj-title>Message From Humaapi</mj-title>
+       
+        <mj-attributes>
           
-                  
-         </mj-text>
+          <mj-all font-family="Ubuntu" padding="0px"></mj-all>
+          <mj-text font-weight="400" font-size="14px" color="#000000" line-height="21px"></mj-text>
+          
+        </mj-attributes>
+         
+      </mj-head>
+      <mj-body background-color="#EAE8E5">
+        <mj-section padding="22px" background-color="#FFFFFF">
+          <mj-column width="35%" vertical-align="middle">
+            <mj-image src="https://variverge.com/wp-content/uploads/2020/09/digital-direct-mail-og.png" alt="" align="center" border="none"></mj-image>
+          </mj-column>
+          
+          <mj-column width="60%" vertical-align="middle" padding-left="10px">
+           
+         
+            <mj-text align="left" padding="0 20px" font-size="36px" line-height="40px" font-weight="bold">Huma<span style="color:#EA6F66">api</span></mj-text>
+            <mj-text align="left" padding="0 20px"><strong><span style="font-size: 30px;">⚊</span></strong><br /><br /></mj-text>
+          
+              <mj-text align="left" padding="0 20px"><span style="font-size: 15px;">
+                <p> Cher utilisateur,</p>
+                <p> Nous vous confirmons avoir reçu votre message. Nous vous remercions de l'intérêt que vous portez à notre entreprise. Nous allons étudier votre demande avec soin et vous répondrons dans les plus brefs délais.</p>
+                <p> Cordialement,</p>
+                <p style="font-size: 12px;">L'équipe <span style="font-weight: bold"> Humaapi </span></p>
+           
                 
-             
-            
-        <mj-text font-size="18px" color="#525252">Your message has been received. Thanks</mj-text>
-      </mj-column>
-</mj-group>
+               </span></mj-text>
+            <mjml>
       
-      
-      
-    </mj-section>
-    <mj-raw>
-      <!-- Icons -->
-    </mj-raw>
-  </mj-body>
-</mjml>
+    </mjml>
+    
+            </mj-column>
+          
+        </mj-section>
+       
+         </mj-body>
+    </mjml>
 `,
       {
         keepComments: false,
@@ -66,39 +77,63 @@ const Contact = async (req: NextApiRequest, res: NextApiResponse) => {
     const formSubmissionDataMJML = mjml2html(
       `
       <mjml>
-  <mj-body>
+  <mj-head>
+    <mj-title>Message to Humaapi</mj-title>
+   
+    <mj-attributes>
+      
+      <mj-all font-family="Ubuntu" padding="0px"></mj-all>
+      <mj-text font-weight="400" font-size="14px" color="#000000" line-height="21px"></mj-text>
+      
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#EAE8E5">
     
-    <mj-section background-color="white">
-            <mj-group>
-              <mj-column>
-        <mj-image width="200px"  padding="0" src="https://variverge.com/wp-content/uploads/2020/09/digital-direct-mail-og.png"></mj-image>
+    <mj-section padding="22px" background-color="#FFFFFF">
+      <mj-column width="35%" vertical-align="middle">
+        <mj-image src="https://variverge.com/wp-content/uploads/2020/09/digital-direct-mail-og.png" alt="" align="center" border="none"></mj-image>
       </mj-column>
-               <mj-column border="1px solid #ddd">
-                 
-        <mj-text font-size="28px"  font-family="Ubuntu-Bold" color="black">
-          <h2>Huma<span style="color:#EA6F66">api</span></h2>
-          
-                  
-         </mj-text>
-                
-                         <mj-text   font-size="26px" font-family="Helvetica Neue" >Name: <span style="font-size:22px">${data.name}</span> </mj-text>
-            <mj-text  font-size="26px" font-family="Helvetica Neue" >Email:  <span style="font-size:22px">${data.email}</span></mj-text>
-            <mj-text  font-size="26px" font-family="Helvetica Neue" >Company:  <span style="font-size:22px">${data.company}</span></mj-text>
-            <mj-text  font-size="26px" font-family="Helvetica Neue" >Domaine:  <span style="font-size:22px">${data.domaine}</span></mj-text>
-            <mj-text  font-size="26px" font-family="Helvetica Neue" >Message:  <span style="font-size:22px">${data.message}</span></mj-text>
-           
-            
-        <mj-text color="#525252">We have a contact from submission.</mj-text>
-      </mj-column>
-</mj-group>
       
+      <mj-column width="60%" vertical-align="middle" padding-left="10px">
+       
+     
+        <mj-text align="left" padding="0 20px" font-size="36px" line-height="40px" font-weight="bold">Huma<span style="color:#EA6F66">api</span></mj-text>
+       <mj-text align="left" padding="0 20px"><span style="font-size: 15px;">We have a contact form submission</span></mj-text>
+        <mj-text align="left" padding="0 20px"><strong><span style="font-size: 30px;">⚊</span></strong><br /><br /></mj-text>
       
+   
+       
+        <mj-table padding-left="20px" table-layout="fixed" width="100%">
+        <tr>
+          <td style="font-size:14px;font-weight:bold;padding-bottom:10">Name</td>
+          <td style="font-size:14px">: ${data.name}</td>
+        </tr>
+        <tr >
+           <td style="font-size:14px;font-weight:bold;padding-bottom:10">Email</td>
+          <td style="font-size:14px">: fred@gmail.com</td>
+        </tr>
+          <tr >
+           <td style="font-size:14px;font-weight:bold;padding-bottom:10">Company</td>
+          <td style="font-size:14px">: ${data.company}</td>
+        </tr>
+          <tr >
+           <td style="font-size:14px;font-weight:bold;padding-bottom:10">Domaine</td>
+          <td style="font-size:14px">:${data.domaine}</td>
+        </tr>
+           <tr >
+           <td style="font-size:14px;font-weight:bold;padding-bottom:10">Message </td>
+          <td style="font-size:14px">: ${data.message} </td>
+        </tr>
+      </mj-table>
+        
+        <mjml>
+  
+</mjml>
+
+        </mj-column>
       
     </mj-section>
-    <mj-raw>
-      <!-- Icons -->
-    </mj-raw>
-  </mj-body>
+     </mj-body>
 </mjml>
 `,
       {

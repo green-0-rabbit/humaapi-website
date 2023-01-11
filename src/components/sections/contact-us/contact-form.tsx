@@ -10,6 +10,7 @@ import {
 } from 'src/components/molecules';
 import nodemailer from 'nodemailer';
 import contactService from 'src/services/contact-service';
+import navigation from 'src/components/features/navigation-hook';
 
 const useStyles = createStyles((theme) => ({
   input: {
@@ -141,15 +142,14 @@ const ContactForm = () => {
     }
   ];
   const onSubmit = async (data: ISignInInput) => {
-    const { recaptchaCheckbox, ...rest } = data;
+    const { acceptCondition, recaptchaCheckbox, ...rest } = data;
     const trimedData = Object.entries(rest).map(([key, value]) =>
       typeof value === 'string' ? [key, value.trim()] : [key, value]
     );
     const newData = Object.fromEntries(trimedData);
-    const newDataValue = { recaptchaCheckbox, ...newData };
+    const newDataValue = { acceptCondition, recaptchaCheckbox, ...newData };
     if (methods.formState.isValid) {
       const sendResult = await contactService.sendMail(newDataValue);
-
       if (sendResult) {
         customNotification({
           title: 'Thank you for your request',
@@ -160,6 +160,7 @@ const ContactForm = () => {
           icon: <IconCheck size={16} />
         });
         methods.reset(defaultValues);
+        navigation('/');
       }
     }
   };

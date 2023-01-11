@@ -13,7 +13,12 @@ const SecondDescription = () => (
         Cookies are managed by your internet browser. You can configure your device so that it informs you each time a cookie is sent
          to you. You can also choose to disable all cookies. You can do this in your browser settings. Please see the last part for
           more information on how to manage or disable browser cookies."
-      classe="common-description-home"
+      sx={{
+        fontFamily: 'Ubuntu-Bold',
+        fontWeight: 700,
+        lineHeight: '36px'
+      }}
+      size={32}
       space={6}
     />
   </Title>
