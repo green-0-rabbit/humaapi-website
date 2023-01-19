@@ -3,7 +3,18 @@ import Description from 'src/components/modules/description';
 import LandingAboutUs from 'src/components/sections/landing-page-about-us';
 import { createStyles } from '@mantine/core';
 import DataService from 'src/components/content/content-data';
+import { GetStaticProps } from 'next';
+import {
+  aboutUsService,
+  IDataLandingAboutUs,
+  IDataOurTeam
+} from 'src/services/about-us-service';
+import { FC } from 'react';
 
+interface IAboutUs {
+  landingData: IDataLandingAboutUs[];
+  teamData: IDataOurTeam[];
+}
 const useStyles = createStyles((theme) => ({
   nameColor: { color: theme.colorScheme === 'dark' ? 'white' : '#2b2b2b' },
   roleColor: { color: theme.colorScheme === 'dark' ? '#afaaaa' : '#6B7280' }
@@ -19,19 +30,23 @@ const ContainCards = styled.div``;
 const Container = styled.div``;
 const Contain = styled.div``;
 const Ourteam = styled.div``;
-const AboutUs = () => {
+const AboutUs: FC<IAboutUs> = ({ ...props }) => {
+  const { landingData, teamData } = props;
+  const filter = { ...teamData[0] };
+  console.log('landingData', landingData);
+
   const { classes } = useStyles();
 
   return (
     <ContainService>
-      <LandingAboutUs />
+      <LandingAboutUs landingData={landingData[0]} />
 
       <Ourteam className="mx-4">
         <ContainDescription>
           <Title className="text-center">
             <Description
-              title="Our team"
-              content="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+              title={filter.titleTeam}
+              content={filter.contentTeam}
               sx={{
                 fontFamily: 'Ubuntu-Bold',
                 fontWeight: 700,
@@ -62,5 +77,16 @@ const AboutUs = () => {
       </Ourteam>
     </ContainService>
   );
+};
+export const getStaticProps: GetStaticProps = async () => {
+   const landingData = await aboutUsService.getLanding();
+  const teamData = await aboutUsService.getTeam();
+
+  return {
+    props: {
+        landingData,
+      teamData
+    }
+  };
 };
 export default AboutUs;

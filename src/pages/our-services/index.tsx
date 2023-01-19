@@ -1,21 +1,37 @@
 import { Box } from '@mantine/core';
-import Design from 'src/components/sections/our-services/design';
-import DevOps from 'src/components/sections/our-services/devops';
+import { GetStaticProps } from 'next';
+import { FC } from 'react';
+import CardServices from 'src/components/sections/our-services/card-services';
 import HeadOurServices from 'src/components/sections/our-services/header-our-services';
-import MobileDev from 'src/components/sections/our-services/mobile-dev';
-import WebDev from 'src/components/sections/our-services/web-dev';
 
-const OurServices = () => {
+import {
+  IDataService,
+  OurServicesService
+} from 'src/services/our-service-service';
+import { HomeService, IDataOurService } from 'src/services/home-service';
+interface IOurServices {
+  serviceData: IDataService[];
+  headerData: IDataOurService[];
+}
+const OurServices: FC<IOurServices> = ({ ...props }) => {
+  const { serviceData, headerData } = props;
+
   return (
     <Box className="w-full">
-      <HeadOurServices />
-      <Box className="space-y-32 md:space-y-72">
-        <MobileDev />
-        <WebDev />
-        <DevOps />
-        <Design />
-      </Box>
+      <HeadOurServices headerData={headerData[0]} />
+      <CardServices servicesData={serviceData} />
     </Box>
   );
+};
+export const getStaticProps: GetStaticProps = async () => {
+  const headerData = await HomeService.getService();
+  const serviceData = await OurServicesService.getAll();
+
+  return {
+    props: {
+      serviceData,
+      headerData
+    }
+  };
 };
 export default OurServices;

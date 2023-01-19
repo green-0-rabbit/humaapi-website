@@ -1,8 +1,13 @@
 import styled from '@emotion/styled';
 import { Box, Paper, Text, createStyles } from '@mantine/core';
+import { FC } from 'react';
 import DataService from 'src/components/content/content-data';
+import { IDataDomaineActivity } from 'src/services/home-service';
 import Description from '../../modules/description';
 
+interface IDomaineActivity {
+  domaineData: IDataDomaineActivity;
+}
 const useStyles = createStyles((theme) => ({
   textColor: { color: theme.colorScheme === 'dark' ? 'white' : '' }
 }));
@@ -10,8 +15,9 @@ const ContainDomainsActivity = styled.div``;
 const ContainCards = styled.div``;
 const Container = styled.div``;
 const Icon = styled.div``;
-const DomaineActivity = () => {
+const DomaineActivity: FC<IDomaineActivity> = (props) => {
   const { classes } = useStyles();
+  const { domaineData } = props;
 
   return (
     <Box className="flex flex-col space-y-16">
@@ -34,8 +40,8 @@ const DomaineActivity = () => {
             lineHeight: '36px'
           }}
           size={32}
-          title="Industries we serve"
-          content="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+          title={domaineData.titleDomaine}
+          content={domaineData.contentDomaine}
           space={4}
         />
       </ContainDomainsActivity>

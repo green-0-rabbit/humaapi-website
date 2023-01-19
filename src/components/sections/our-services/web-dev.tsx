@@ -4,16 +4,17 @@ import { FC } from 'react';
 import IllustrationWeb from 'src/components/elements/svg/services/illustration-web';
 import Description from 'src/components/modules/description';
 import navigation from 'src/components/features/navigation-hook';
+import { IDataWebDev } from 'src/services/our-service-service';
 
 interface IWebDev {
-  labelBtn?: string;
+  webDevData: IDataWebDev;
 }
 const Section = styled.section``;
 const Contain = styled.div``;
 const Container = styled.div``;
 const ContainerImage = styled.div``;
 const WebDev: FC<IWebDev> = (props) => {
-  const { labelBtn } = props;
+  const { webDevData } = props;
 
   return (
     <Section className="flex flex-col justify-center xs:text-center md:text-left">
@@ -21,10 +22,10 @@ const WebDev: FC<IWebDev> = (props) => {
         <ContainerImage className="flex justify-center relative mb-12 md:m-0">
           <IllustrationWeb />
         </ContainerImage>
-        <Container className="w-[85%] md:max-w-xs flex justify-center flex-col md:ml-14 ">
+        <Container className="w-[85%] md:max-w-xs flex justify-center flex-col md:ml-14">
           <Description
-            title="Web developpment"
-            content=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut voluptatibus fuga, dolores quisquam quibusdam rem!"
+            title="{webDevData.titleWeb}"
+            content="{webDevData.contentWeb}"
             sx={{
               fontFamily: 'Ubuntu-Bold',
               fontWeight: 700,
@@ -37,8 +38,8 @@ const WebDev: FC<IWebDev> = (props) => {
             <Button
               variant="filled"
               className="btn-custom"
-              onClick={() => navigation('/our-services/web-developement')}>
-              {labelBtn || 'Learn more'}
+              onClick={() => navigation(`/our-services/${webDevData.linkWeb}`)}>
+              Learn more
             </Button>
           </Box>
         </Container>

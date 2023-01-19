@@ -4,16 +4,17 @@ import { FC } from 'react';
 import IllustrationDesign from 'src/components/elements/svg/services/illustration-design';
 import Description from 'src/components/modules/description';
 import navigation from 'src/components/features/navigation-hook';
+import { IDataDesign } from 'src/services/our-service-service';
 
 interface IDesign {
-  labelBtn?: string;
+  designData: IDataDesign;
 }
 const Section = styled.section``;
 const Contain = styled.div``;
 const ContainerImage = styled.div``;
 const Container = styled.div``;
 const Design: FC<IDesign> = (props) => {
-  const { labelBtn } = props;
+  const { designData } = props;
 
   return (
     <Section className="flex flex-col justify-center xs:text-center md:text-left">
@@ -29,16 +30,18 @@ const Design: FC<IDesign> = (props) => {
               lineHeight: '36px'
             }}
             size={32}
-            title="Design"
-            content=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut voluptatibus fuga, dolores quisquam quibusdam rem!"
+            title={designData.titleDesign}
+            content={designData.contentDesign}
             space={12}
           />
           <Box className="mt-6">
             <Button
               variant="filled"
               className="btn-custom"
-              onClick={() => navigation('/our-services/design')}>
-              {labelBtn || 'Learn more'}
+              onClick={() =>
+                navigation(`/our-services/${designData.linkDesign}`)
+              }>
+              Learn more
             </Button>
           </Box>
         </Container>

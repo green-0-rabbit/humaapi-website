@@ -110,7 +110,7 @@ const Contact = async (req: NextApiRequest, res: NextApiResponse) => {
         </tr>
         <tr >
            <td style="font-size:14px;font-weight:bold;padding-bottom:10">Email</td>
-          <td style="font-size:14px">: fred@gmail.com</td>
+          <td style="font-size:14px">:  ${data.email} </td>
         </tr>
           <tr >
            <td style="font-size:14px;font-weight:bold;padding-bottom:10">Company</td>

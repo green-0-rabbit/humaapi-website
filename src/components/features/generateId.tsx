@@ -1,5 +1,4 @@
-const generateId = () => {
-  const dateMillsecond = new Date().getMilliseconds();
-  return Math.floor(Math.ceil(Math.random() * dateMillsecond));
-};
+import { v4 } from 'uuid';
+
+const generateId = () => v4();
 export default generateId;

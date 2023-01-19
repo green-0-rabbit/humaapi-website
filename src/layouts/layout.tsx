@@ -8,6 +8,11 @@ import DataService from 'src/components/content/content-data';
 import bgImage from '../../public/assets/img/gradientcircleglassmorphism.png';
 import ScrollTop from '../components/modules/scroll-to-up';
 import Navbar from '../components/sections/navbar';
+import {
+  INavigationHeaderData,
+  navigationHeaderService
+} from 'src/services/navigation-service/navigation-header-service';
+import { GetStaticProps } from 'next';
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -16,11 +21,13 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface ILayout {
-  children?: ReactNode;
+  children: ReactNode;
+  navigationHeader: INavigationHeaderData;
 }
 const Container = styled.div``;
 
-const Layout: FC<ILayout> = ({ children }) => {
+const Layout: FC<ILayout> = ({ ...props }) => {
+  const { children, navigationHeader } = props;
   const { classes } = useStyles();
   return (
     <Container>
@@ -39,4 +46,14 @@ const Layout: FC<ILayout> = ({ children }) => {
     </Container>
   );
 };
+export const getStaticProps: GetStaticProps = async () => {
+  const navigationHeaderData = await navigationHeaderService.getAll();
+  // const cookiePolicyContent = await cookieService.get();
+  return {
+    props: {
+      navigationHeaderData
+    }
+  };
+};
+
 export default Layout;
