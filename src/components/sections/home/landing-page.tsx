@@ -36,7 +36,6 @@ const LandingPage: FC<ILandingPage> = (props) => {
             </Box>
           </Box>
           <ContentImage className="hidden md:block" />
-           
         </Contain>
       </HeaderBannerContain>
     </Box>

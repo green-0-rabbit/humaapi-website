@@ -28,7 +28,7 @@ export type IDataOurTeam = NonUndefined<
 export const aboutUsService = {
   getLanding: async () => {
     try {
-      const {data} = await hmDirectus.readSingleton<ILandingAboutUs>({
+      const { data } = await hmDirectus.readSingleton<ILandingAboutUs>({
         fields: `#graphql
               {      
                 title_about_us,

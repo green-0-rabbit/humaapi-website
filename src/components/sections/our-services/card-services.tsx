@@ -1,17 +1,16 @@
 import styled from '@emotion/styled';
 import { Box, Button } from '@mantine/core';
 import { FC } from 'react';
-import { IDataDesign, IDataService } from 'src/services/our-service-service';
+import { IDataOurServiceView } from 'src/services/our-service-service';
 import CardService from 'src/components/modules/card-service';
 
 interface ICardServices {
-  servicesData: IDataService[];
+  servicesData: IDataOurServiceView[];
 }
 const Section = styled.section``;
 const Contain = styled.div``;
 const CardServices: FC<ICardServices> = (props) => {
   const { servicesData } = props;
-  console.log('servicesData', servicesData);
 
   return (
     <Section className="flex flex-col justify-center xs:text-center md:text-left">
@@ -19,9 +18,10 @@ const CardServices: FC<ICardServices> = (props) => {
         {servicesData.map((service) => (
           <Contain key={service.id}>
             <CardService
+              id={service.id}
               serviceTitle={service.serviceTitle}
               serviceContent={service.serviceContent}
-              serviceLink={service.serviceLink}
+              serviceLink={`/our-services/${service.serviceLink}`}
               serviceImg={service.serviceImg}
             />
           </Contain>

@@ -2,9 +2,11 @@ import styled from '@emotion/styled';
 import { Box, Button } from '@mantine/core';
 import { FC } from 'react';
 import navigation from '../features/navigation-hook';
+import ReorderChildren from '../features/orderChildren';
 import Description from './description';
 
 interface ICardService {
+  id: number;
   serviceTitle: string;
   serviceContent: string;
   serviceLink: string;
@@ -14,10 +16,15 @@ const Contain = styled.div``;
 const ContainerImage = styled.div``;
 
 const CardService: FC<ICardService> = ({ ...props }) => {
-  const { serviceTitle, serviceContent, serviceLink, serviceImg } = props;
+  const { id, serviceTitle, serviceContent, serviceLink, serviceImg } = props;
   return (
-    <Contain className=" flex flex-col justify-center items-center md:flex-row">
-      <Box className="w-[85%] md:max-w-xs flex justify-center flex-col md:mr-14  order-last md:order-first">
+    <ReorderChildren
+      id={id}
+      className=" flex flex-col justify-center items-center md:flex-row">
+      <Box
+        className={`w-[85%] md:max-w-xs flex justify-center flex-col md:ml-14 ${
+          id % 2 !== 0 ? 'order-last  md:order-first' : ''
+        }`}>
         <Description
           title={serviceTitle}
           content={serviceContent}
@@ -33,7 +40,7 @@ const CardService: FC<ICardService> = ({ ...props }) => {
           <Button
             variant="filled"
             className="btn-custom mt-4"
-            onClick={() => navigation(`/our-services/${serviceLink}`)}>
+            onClick={() => navigation(`${serviceLink}`)}>
             Learn more
           </Button>
         </Box>
@@ -42,7 +49,7 @@ const CardService: FC<ICardService> = ({ ...props }) => {
         className="flex justify-center relative mb-12 md:m-0"
         dangerouslySetInnerHTML={{ __html: serviceImg }}
       />
-    </Contain>
+    </ReorderChildren>
   );
 };
 export default CardService;

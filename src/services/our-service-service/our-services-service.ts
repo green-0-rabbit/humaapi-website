@@ -4,30 +4,22 @@ import { NonUndefined } from 'react-hook-form';
 import { ReturnTypeAsync } from 'src/commons/interface';
 import { hmDirectus } from 'src/utils';
 import { CamelCasedPropertiesDeep } from 'type-fest';
+import { getFormatedOverview } from './helper-function';
 
-interface IMobileDev {
+interface IGetServiceDesc {
   id: number;
-  title_mobile: string;
-  content_mobile: string;
-  link_mobile: string;
-}
-interface IWebDev {
-  id: number;
-  title_web: string;
-  content_web: string;
-  link_web: string;
-}
-interface IDevops {
-  id: number;
-  title_devops: string;
-  content_devops: string;
-  link_devops: string;
-}
-interface IDesign {
-  id: number;
-  title_design: string;
-  content_design: string;
-  link_design: string;
+  service_title: string;
+  service_content: string;
+  service_link: string;
+  service_img: string;
+
+  get_title: string;
+  get_content: string;
+  get_list: string;
+
+  process_title: string;
+  process_content: string;
+  process_list: string;
 }
 interface IService {
   id: number;
@@ -36,29 +28,20 @@ interface IService {
   service_link: string;
   service_img: string;
 }
-export type IDataService = NonUndefined<
-  Required<ReturnTypeAsync<typeof OurServicesService.getAll>>
+export type IDataOurServiceView = NonUndefined<
+  Required<ReturnTypeAsync<typeof OurServicesService.getAllServiceDes>>
 >;
-export type IDataMobileDev = NonUndefined<
-  Required<ReturnTypeAsync<typeof OurServicesService.getMobileDev>>
->;
-export type IDataWebDev = NonUndefined<
-  Required<ReturnTypeAsync<typeof OurServicesService.getWebDev>>
->;
-export type IDataDevops = NonUndefined<
-  Required<ReturnTypeAsync<typeof OurServicesService.getDevops>>
->;
-
-export type IDataDesign = NonUndefined<
-  Required<ReturnTypeAsync<typeof OurServicesService.getDesign>>
+export type IDataServiceOurDescription = NonUndefined<
+  Required<ReturnTypeAsync<typeof OurServicesService.getServiceByLink>>
 >;
 
 export const OurServicesService = {
-  getAll: async () => {
+  getAllServiceDes: async () => {
     try {
       const { data } = await hmDirectus.readSingleton<IService>({
         fields: `#graphql
-              {      
+              {    
+                id    
                 service_title
                 service_content
                 service_link
@@ -83,120 +66,91 @@ export const OurServicesService = {
       throw new Error(error.message);
     }
   },
-
-  getMobileDev: async () => {
+  getServiceByLink: async (serviceLink: string) => {
     try {
-      const { data } = await hmDirectus.readSingleton<IMobileDev>({
+      const { data } = await hmDirectus.readByQuery<IGetServiceDesc>({
         fields: `#graphql
-              {      
-                title_mobile,
-                content_mobile
-                link_mobile
-              }
-            `,
-        queryName: 'our_services'
+            {      
+          id
+          service_title
+          service_content
+          service_link
+          service_img
+            get_title
+            get_content
+            get_list 
+            process_title
+            process_content
+            process_list
+          
+            }
+          `,
+        filter: {
+          service_link: { _eq: serviceLink }
+        },
+        queryName: 'services'
       });
 
-      if (data) {
-        const res = camelcaseKeys(
-          data as unknown as CamelCasedPropertiesDeep<IMobileDev>,
-          {
-            deep: true
-          }
-        );
-        return res;
+      if (!data) {
+        return undefined;
       }
-      return undefined;
+
+      const singleValue = { ...data[0] };
+      const finaleValue = {
+        service_title: singleValue.service_title,
+        service_content: singleValue.service_content,
+        service_link: singleValue.service_link,
+        service_img: singleValue.service_img,
+        whatget: {
+          get_title: singleValue.get_title,
+          get_content: singleValue.get_content,
+          get_list: getFormatedOverview(singleValue.get_list)
+        },
+        process: {
+          process_title: singleValue.process_title,
+          process_content: singleValue.process_content,
+          process_list: getFormatedOverview(singleValue.process_list)
+        }
+      };
+
+      return camelcaseKeys(
+        finaleValue as unknown as CamelCasedPropertiesDeep<typeof finaleValue>,
+        {
+          deep: true
+        }
+      );
     } catch (err) {
-      const error = <any>err;
-      throw new Error(error.message);
+      // console.error(err);
+      return undefined;
     }
   },
-  getWebDev: async () => {
+  getPaths: async () => {
+    type Path = Pick<IGetServiceDesc, 'service_link'>;
     try {
-      const { data } = await hmDirectus.readSingleton<IWebDev>({
+      const { data } = await hmDirectus.readByQuery<Path>({
         fields: `#graphql
-              {      
-                title_web,
-                content_web,
-                link_web
-               
-              }
-            `,
-        queryName: 'our_services'
+            {      
+              service_link
+            }
+          `,
+
+        queryName: 'services'
       });
 
-      if (data) {
-        const res = camelcaseKeys(
-          data as unknown as CamelCasedPropertiesDeep<IWebDev>,
-          {
-            deep: true
-          }
-        );
-        return res;
+      if (!data) {
+        return undefined;
       }
-      return undefined;
-    } catch (err) {
-      const error = <any>err;
-      throw new Error(error.message);
-    }
-  },
-  getDevops: async () => {
-    try {
-      const { data } = await hmDirectus.readSingleton<IDevops>({
-        fields: `#graphql
-              {      
-                title_devops,
-                content_devops, 
-                link_devops
-                
-              }
-            `,
-        queryName: 'our_services'
-      });
 
-      if (data) {
-        const res = camelcaseKeys(
-          data as unknown as CamelCasedPropertiesDeep<IDevops>,
-          {
-            deep: true
-          }
-        );
-        return res;
-      }
-      return undefined;
-    } catch (err) {
-      const error = <any>err;
-      throw new Error(error.message);
-    }
-  },
-  getDesign: async () => {
-    try {
-      const { data } = await hmDirectus.readSingleton<IDesign>({
-        fields: `#graphql
-              {      
-                title_design,
-                content_design,
-                link_design
-                
-              }
-            `,
-        queryName: 'our_services'
-      });
+      const pathsConfig = data.map((post) => ({
+        params: {
+          id: String(post.service_link)
+        }
+      }));
 
-      if (data) {
-        const res = camelcaseKeys(
-          data as unknown as CamelCasedPropertiesDeep<IDesign>,
-          {
-            deep: true
-          }
-        );
-        return res;
-      }
-      return undefined;
+      return pathsConfig;
     } catch (err) {
-      const error = <any>err;
-      throw new Error(error.message);
+      // console.error(err);
+      return undefined;
     }
   }
 };
