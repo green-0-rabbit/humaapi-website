@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { init, getPreferences, onPreferencesChanged } from 'cookie-though';
 import { Config } from 'cookie-though/dist/types/types';
 import useCookieBlocker from 'src/components/features/useCookieBlocker';
@@ -65,7 +67,9 @@ const CookieConsent: FC<ICookieConsent> = (props) => {
 
   useEffect(() => {
     setIsMount(true);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     patterns!.blacklist = [];
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     patterns!.whitelist = [/www\.google\.com/];
     cookieBlocker.startMonitoring();
     cookieBlocker.blockDynamicScript();

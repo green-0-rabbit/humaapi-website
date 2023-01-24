@@ -1,13 +1,11 @@
 import styled from '@emotion/styled';
-import { Carousel } from '@mantine/carousel';
 import { Box, Paper, Text } from '@mantine/core';
 import Link from 'next/link';
 import { FC } from 'react';
 import DataService from 'src/components/content/content-data';
-import generateId from 'src/components/features/generateId';
 import { IDataOurService } from 'src/services/home-service';
-import TemplateCarousel from '../../modules/carousel';
 import Description from '../../modules/description';
+import CarouselHome from './carousel-home';
 
 interface IOurServices {
   serviceData: IDataOurService;
@@ -60,24 +58,7 @@ const OurServices: FC<IOurServices> = (props) => {
           ))}
         </Container>
       </ContainCards>
-
-      <TemplateCarousel
-        classeCarrousel="block md:hidden"
-        dotSpace="12"
-        gridCol="4">
-        {DataService.cardServiceData.map((el) => (
-          <Carousel.Slide key={generateId()}>
-            <Link href={el.link}>
-              <Paper
-                className="flex flex-col items-center justify-center space-y-4"
-                style={{ width: 205, height: 150 }}>
-                {el.icon}
-                <Text color="#EA6F66">{el.text}</Text>
-              </Paper>
-            </Link>
-          </Carousel.Slide>
-        ))}
-      </TemplateCarousel>
+      <CarouselHome data={DataService.cardServiceData} />
     </Box>
   );
 };

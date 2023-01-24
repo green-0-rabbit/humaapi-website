@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from 'react';
 import {
   createStyles,
@@ -11,9 +14,9 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link';
-import LogoHumaapi from '../elements/svg/icons/logo-humaapi';
 import { useRouter } from 'next/router';
 import ActionButton from 'src/components/modules/action-button';
+import LogoHumaapi from '../elements/svg/icons/logo-humaapi';
 
 const HEADER_HEIGHT = 60;
 
@@ -132,42 +135,37 @@ const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
   ));
 
   return (
-    <>
-      <Header height={HEADER_HEIGHT} className={`${classes.root}`}>
-        <Container className={classes.header}>
-          <Link href={'/'}>
-            <LogoHumaapi />
-          </Link>
-          <Group spacing={4} className={`${classes.itemNavLink} header-style`}>
-            {items}
-            <Box className="ml-8">
-              <ActionButton />
-            </Box>
-          </Group>
-          <div className="block md:hidden">
+    <Header height={HEADER_HEIGHT} className={`${classes.root}`}>
+      <Container className={classes.header}>
+        <Link href="/">
+          <LogoHumaapi />
+        </Link>
+        <Group spacing={4} className={`${classes.itemNavLink} header-style`}>
+          {items}
+          <Box className="ml-8">
             <ActionButton />
-          </div>
-          <Burger
-            color="#EA6F66"
-            opened={opened}
-            onClick={toggle}
-            className={classes.burger}
-            size="sm"
-          />
+          </Box>
+        </Group>
+        <div className="block md:hidden">
+          <ActionButton />
+        </div>
+        <Burger
+          color="#EA6F66"
+          opened={opened}
+          onClick={toggle}
+          className={classes.burger}
+          size="sm"
+        />
 
-          <Transition
-            transition="pop-top-right"
-            duration={420}
-            mounted={opened}>
-            {(styles) => (
-              <Paper className={classes.dropdown} style={styles}>
-                {items}
-              </Paper>
-            )}
-          </Transition>
-        </Container>
-      </Header>
-    </>
+        <Transition transition="pop-top-right" duration={420} mounted={opened}>
+          {(styles) => (
+            <Paper className={classes.dropdown} style={styles}>
+              {items}
+            </Paper>
+          )}
+        </Transition>
+      </Container>
+    </Header>
   );
 };
 export default Navbar;

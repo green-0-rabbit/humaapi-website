@@ -1,4 +1,5 @@
 import { createStyles } from '@mantine/core';
+
 const useStyles = createStyles((theme) => ({
   fillType: { fill: theme.colorScheme === 'dark' ? '#fff' : '#3C3C3B' },
   fillLine: { fill: theme.colorScheme === 'dark' ? '#fff' : '#3C3C3B' }

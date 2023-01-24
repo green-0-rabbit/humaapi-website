@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable import/prefer-default-export */
 import camelcaseKeys from 'camelcase-keys';
 import { NonUndefined } from 'react-hook-form';
@@ -72,7 +73,7 @@ export const cookieService = {
       });
       if (data) {
         return camelcaseKeys(
-          data as unknown as CamelCasedPropertiesDeep<ICookie[]>,
+          data as unknown as CamelCasedPropertiesDeep<ICookie>,
           {
             deep: true
           }

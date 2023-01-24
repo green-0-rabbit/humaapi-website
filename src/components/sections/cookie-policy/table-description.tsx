@@ -1,16 +1,10 @@
 import styled from '@emotion/styled';
-import DataService from 'src/components/content/content-data';
 import { Table } from '@mantine/core';
-import { GetStaticProps } from 'next';
-import {
-  cookieService,
-  ICookieManagementData
-} from 'src/services/cookie-service';
+import { ICookieManagementData } from 'src/services/cookie-service';
 import { FC } from 'react';
-import generateId from 'src/components/features/generateId';
 
 interface ITableDescription {
-  cookiesData: ICookieManagementData;
+  cookiesData: ICookieManagementData[];
 }
 const SectionTable = styled.section``;
 
@@ -36,7 +30,7 @@ const TableDescription: FC<ITableDescription> = (props) => {
           </tr>
         </thead>
         <tbody>
-          {cookiesData.map((element, index) => (
+          {cookiesData.map((element) => (
             <tr key={element.id}>
               <td>{element.name}</td>
               <td>{element.category}</td>

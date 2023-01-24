@@ -1,6 +1,6 @@
 import { MantineThemeOverride } from '@mantine/styles';
 
-const themeGlobaly: MantineThemeOverride = {
+const appTheme: MantineThemeOverride = {
   colorScheme: 'light',
   fontSizes: {
     xs: 12,
@@ -56,4 +56,4 @@ const themeGlobaly: MantineThemeOverride = {
   }
 };
 
-export default themeGlobaly;
+export default appTheme;

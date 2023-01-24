@@ -1,9 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import React, { FC, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Controller, UseFormReturn, Path } from 'react-hook-form';
+import { Controller, Path } from 'react-hook-form';
 import styled from '@emotion/styled';
-import { Box, Checkbox, Loader } from '@mantine/core';
+import { Box, Loader } from '@mantine/core';
 import { SmartInputType } from 'react-hm-dynamic-form';
 import BrandCheckbox from './brandcheckbox';
 import { CheckCustomProps } from '../reactive-checkbox';
@@ -42,7 +44,6 @@ const ReactiveReCaptcha: FC<SmartInputType<CheckCustomProps>> = (props) => {
   const handleReCaptchaVerify = async (isCheck: boolean) => {
     if (isCheck) {
       if (!executeRecaptcha) {
-        console.log('Execute recaptcha not yet available');
         return;
       }
       const token = await executeRecaptcha('contact');

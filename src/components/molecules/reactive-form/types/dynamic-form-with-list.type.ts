@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
-import { NestedKeyOf, IFieldGroupMetaBase } from "react-hm-dynamic-form";
-import { CustomInputType, DataType, FieldMeta } from "../../types";
+import { NestedKeyOf, IFieldGroupMetaBase } from 'react-hm-dynamic-form';
+import { CustomInputType, DataType, FieldMeta } from '../../types';
 
 type ColumnRange = 1 | 2;
 type RowRange = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
@@ -33,7 +33,7 @@ export interface ILayoutWithList<U extends DataType> {
 }
 
 export interface IFieldGroupMeta<T extends DataType>
-  extends Omit<IFieldGroupMetaBase<T>, "fieldsMeta">,
+  extends Omit<IFieldGroupMetaBase<T>, 'fieldsMeta'>,
     ILayoutWithList<T> {
   fieldsMeta: ReturnType<
     <U extends CustomInputType>(params: FieldMeta<T, U>[]) => typeof params

@@ -162,7 +162,6 @@ const Contact = async (req: NextApiRequest, res: NextApiResponse) => {
       .status(200)
       .json({ message: 'your request was successfully submitted' });
   } catch (err) {
-    console.log(err);
     return res;
 
     // const error = <{ message: string }>err;

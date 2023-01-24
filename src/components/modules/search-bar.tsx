@@ -1,8 +1,4 @@
 import { Button, createStyles, Input, InputProps } from '@mantine/core';
-import { FC } from 'react';
-interface ICustomInput extends InputProps {
-  placeholder?: string;
-}
 
 const useStyles = createStyles((theme) => ({
   input: {
@@ -15,21 +11,18 @@ const useStyles = createStyles((theme) => ({
   }
 }));
 
-const SearchBar: FC<ICustomInput> = ({ ...props }) => {
+const SearchBar = () => {
   const { classes } = useStyles();
   return (
     <Input
       radius={80}
       placeholder="write your message"
-      size='lg'
+      size="lg"
       style={{ width: '100%' }}
-      classNames={classes} 
+      classNames={classes}
       rightSectionWidth={135}
       rightSection={
-        <Button
-          variant="filled"
-          className="btn-custom"
-          onClick={() => console.log('it works !!!')}>
+        <Button variant="filled" className="btn-custom" onClick={() => null}>
           Get in touch
         </Button>
       }

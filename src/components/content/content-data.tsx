@@ -26,21 +26,8 @@ import AurelIcon from 'src/components/elements/svg/avatars/aurel-icon';
 import FreddyIcon from 'src/components/elements/svg/avatars/freddy-icon';
 import GratientIcon from 'src/components/elements/svg/avatars/gratient-icon';
 import SamIcon from 'src/components/elements/svg/avatars/sam-icon';
-import WebDev from '../sections/our-services/web-dev';
-import MobileDev from '../sections/our-services/mobile-dev';
-import DevOps from '../sections/our-services/devops';
-import Design from '../sections/our-services/design';
 
 const DataService = {
-  sendIdData: [
-    {
-      id: 'mobile-developement',
-      data: <MobileDev labelBtn="Get in touch" />
-    },
-    { id: 'web-developement', data: <WebDev labelBtn="Get in touch" /> },
-    { id: 'devops', data: <DevOps labelBtn="Get in touch" /> },
-    { id: 'design', data: <Design labelBtn="Get in touch" /> }
-  ],
   theRendersData: [
     {
       text: 'We develop your own, custom project - one & only',

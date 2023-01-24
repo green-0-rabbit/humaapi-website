@@ -1,8 +1,9 @@
 import { createStyles } from '@mantine/core';
+
 const useStyles = createStyles((theme) => ({
   strokIcon: { stroke: theme.colorScheme === 'dark' ? '#fff' : '#5D5D5D' }
 }));
-          
+
 const WebdevIcon = () => {
   const { classes } = useStyles();
 

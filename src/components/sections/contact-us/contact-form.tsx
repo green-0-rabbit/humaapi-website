@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 import styled from '@emotion/styled';
 import { Button, createStyles, Text } from '@mantine/core';
 import { IconCheck, IconX } from '@tabler/icons';

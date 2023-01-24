@@ -23,6 +23,7 @@ const ReactiveSelect: FC<SmartInputType<SelectCustomProps>> = (props) => {
     label,
     placeHolder
   } = customProps;
+
   const selectOptions = customProps.options;
   const { control } = methods;
   const selectProps: SelectProps = {

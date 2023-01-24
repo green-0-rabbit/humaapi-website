@@ -1,14 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FC, ReactNode, useCallback, useEffect, useState } from 'react';
 import { Carousel, Embla } from '@mantine/carousel';
+import Link from 'next/link';
+import { Paper, Text } from '@mantine/core';
 
-interface ITemplateCarousel {
-  classeCarrousel: string;
-  children: ReactNode;
-  dotSpace: string;
-  gridCol: string;
+interface ICarouselHome {
+  data: {
+    link: string;
+    icon: JSX.Element;
+    text: string;
+  }[];
 }
-const TemplateCarousel: FC<ITemplateCarousel> = (props) => {
-  const { classeCarrousel, children, dotSpace, gridCol } = props;
+const CarouselHome: FC<ICarouselHome> = (props) => {
+  const { data } = props;
   const [scrollProgress, setScrollProgress] = useState(0);
   const [embla, setEmbla] = useState<Embla | null>(null);
 
@@ -27,7 +31,7 @@ const TemplateCarousel: FC<ITemplateCarousel> = (props) => {
 
   return (
     <Carousel
-      className={`${classeCarrousel}`}
+      className="block md:hidden"
       dragFree
       slideSize="45%"
       slideGap="lg"
@@ -40,7 +44,7 @@ const TemplateCarousel: FC<ITemplateCarousel> = (props) => {
       styles={{
         root: {
           '.mantine-Carousel-indicators': {
-            transform: `translateY(${dotSpace}px)`
+            transform: `translateY(12px)`
           },
           '.mantine-Carousel-indicator': {
             backgroundColor: '#e6e6e6',
@@ -52,7 +56,7 @@ const TemplateCarousel: FC<ITemplateCarousel> = (props) => {
           },
           '.mantine-Carousel-container': {
             display: 'grid',
-            gridTemplateColumns: `repeat(${gridCol}, 1fr)`,
+            gridTemplateColumns: `repeat(4, 1fr)`,
             placeItems: 'center'
           }
         },
@@ -62,8 +66,19 @@ const TemplateCarousel: FC<ITemplateCarousel> = (props) => {
           transition: 'width 250ms ease'
         }
       }}>
-      {children}
+      {data.map((el) => (
+        <Carousel.Slide key={el.link}>
+          <Link href={el.link}>
+            <Paper
+              className="flex flex-col items-center justify-center space-y-4"
+              style={{ width: 205, height: 150 }}>
+              {el.icon}
+              <Text color="#EA6F66">{el.text}</Text>
+            </Paper>
+          </Link>
+        </Carousel.Slide>
+      ))}
     </Carousel>
   );
 };
-export default TemplateCarousel;
+export default CarouselHome;

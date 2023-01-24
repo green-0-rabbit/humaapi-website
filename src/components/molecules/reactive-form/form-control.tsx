@@ -10,6 +10,7 @@ import { IconHelp } from '@tabler/icons';
 
 type CustomBoxProps = BoxProps & React.ComponentPropsWithRef<'div'>;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const FormControl = <T extends Record<string, any>>(props: IFormControl<T>) => {
   const {
     inputKey,

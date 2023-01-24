@@ -36,7 +36,6 @@ export const contactService = {
           body: JSON.stringify(rest)
         });
         const serializedRes = (await res.json()) as IResponse;
-        console.log(serializedRes);
         return serializedRes;
       }
       if (checkResponse && !checkResponse.success && checkResponse.errorCodes) {
@@ -48,7 +47,7 @@ export const contactService = {
       }
       return undefined;
     } catch (err) {
-      console.log(err);
+      return err;
     }
   }
 };

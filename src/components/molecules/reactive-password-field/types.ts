@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/no-cycle
-import { CommonProps } from "../types";
+import { CommonProps } from '../types';
 
 export type PasswordFieldCustomProps = {
-  size?: "xs" | "sm" | "md" | "lg" | "xl" | undefined;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | undefined;
   label?: string;
-  color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
+  color?: 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
 } & CommonProps<HTMLInputElement | HTMLTextAreaElement>;

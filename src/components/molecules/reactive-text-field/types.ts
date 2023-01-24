@@ -1,11 +1,10 @@
-import { MantineTheme } from '@mantine/core';
 /* eslint-disable import/no-cycle */
-import { MantineSize } from "@mantine/core";
-import { CommonProps } from "../types";
+import { MantineSize } from '@mantine/core';
+import { CommonProps } from '../types';
 
 export type TextFieldCustomProps = {
-  type?: "text" | "number";
+  type?: 'text' | 'number';
   label?: string;
   size?: MantineSize;
-  color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
+  color?: 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
 } & CommonProps<HTMLInputElement | HTMLTextAreaElement>;

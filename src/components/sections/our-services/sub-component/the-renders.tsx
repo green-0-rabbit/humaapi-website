@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import { Text, Container, Box, Paper, createStyles } from '@mantine/core';
 import { FC } from 'react';
-import generateId from 'src/components/features/generateId';
 import Description from 'src/components/modules/description';
 
 const useStyles = createStyles((theme) => ({
@@ -47,13 +46,13 @@ const TheRenders: FC<ITheRenders> = ({ ...props }) => {
           {dataTheRenders.map((el, index) => (
             <Paper
               className="md:grid place-items-center "
-              key={generateId()}
+              key={el.title}
               p={14}
               radius={24}
               style={{ width: 296, height: 96 }}>
               <Contain className="flex font-UbuntuRegular">
                 <Num className="w-8 font-bold text-hm text-base">
-                  0 {index + 1}
+                  {`0${index + 1}`}
                 </Num>
 
                 <Box className="flex flex-col">

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useCallback } from 'react';
 import { DynamicFields, ISmartField } from 'react-hm-dynamic-form';
 import FormControl from './form-control';
