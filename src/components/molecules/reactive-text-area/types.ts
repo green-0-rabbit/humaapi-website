@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
-import { MantineSize } from "@mantine/core";
-import { CommonProps } from "../types";
+import { MantineSize } from '@mantine/core';
+import { CommonProps } from '../types';
 
 export type TextAreaCustomProps = {
   label?: string;
@@ -9,5 +9,5 @@ export type TextAreaCustomProps = {
   minRows?: number;
   maxRows?: number;
 
-  color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
+  color?: 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
 } & CommonProps<HTMLInputElement | HTMLTextAreaElement>;

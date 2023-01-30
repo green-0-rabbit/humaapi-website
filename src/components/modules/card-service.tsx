@@ -10,13 +10,13 @@ interface ICardService {
   serviceTitle: string;
   serviceContent: string;
   serviceLink: string;
-  serviceImg: string;
+  serviceImg: JSX.Element;
 }
-const Contain = styled.div``;
 const ContainerImage = styled.div``;
-
 const CardService: FC<ICardService> = ({ ...props }) => {
   const { id, serviceTitle, serviceContent, serviceLink, serviceImg } = props;
+  const Illustration = serviceImg;
+
   return (
     <ReorderChildren
       id={id}
@@ -45,10 +45,9 @@ const CardService: FC<ICardService> = ({ ...props }) => {
           </Button>
         </Box>
       </Box>
-      <ContainerImage
-        className="flex justify-center relative mb-12 md:m-0"
-        dangerouslySetInnerHTML={{ __html: serviceImg }}
-      />
+      <ContainerImage className="flex justify-center relative mb-12 md:m-0">
+        {Illustration}
+      </ContainerImage>
     </ReorderChildren>
   );
 };

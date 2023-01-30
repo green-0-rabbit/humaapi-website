@@ -33,8 +33,6 @@ const Ourteam = styled.div``;
 const AboutUs: FC<IAboutUs> = ({ ...props }) => {
   const { landingData, teamData } = props;
   const filter = { ...teamData[0] };
-  console.log('landingData', landingData);
-
   const { classes } = useStyles();
 
   return (
@@ -79,12 +77,12 @@ const AboutUs: FC<IAboutUs> = ({ ...props }) => {
   );
 };
 export const getStaticProps: GetStaticProps = async () => {
-   const landingData = await aboutUsService.getLanding();
+  const landingData = await aboutUsService.getLanding();
   const teamData = await aboutUsService.getTeam();
 
   return {
     props: {
-        landingData,
+      landingData,
       teamData
     }
   };

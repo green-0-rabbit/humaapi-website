@@ -6,14 +6,11 @@ import {
 } from 'src/services/cookie-service';
 import { FC } from 'react';
 import HeadCookie from './header-cookies';
-import SecondDescription from './second-description';
 import TableDescription from './table-description';
-import ThirdDescription from './third-description';
-import FourthDescription from './fourth-description';
 import DescriptionField from './description-field';
 
 interface ICookiePolicyContent {
-  cookiesData: ICookieManagementData;
+  cookiesData: ICookieManagementData[];
   cookiePolicyContent: IDataCookiePolicy;
 }
 const Container = styled.div``;

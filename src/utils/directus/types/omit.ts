@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 export type Primitive = string | number | boolean | undefined | null | {};
 
 /**

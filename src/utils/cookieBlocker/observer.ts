@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable no-plusplus */
@@ -28,7 +29,7 @@ export const generateObserver = () => {
               node.type = TYPE_ATTRIBUTE;
 
               // Firefox has this additional event which prevents scripts from beeing executed
-              const beforeScriptExecuteListener = function (event: Event) {
+              const beforeScriptExecuteListener = (event: Event) => {
                 // Prevent only marked scripts from executing
                 if (node.getAttribute('type') === TYPE_ATTRIBUTE) {
                   event.preventDefault();
@@ -57,7 +58,7 @@ export const generateObserver = () => {
 export const startMonitoring = () => {
   if (typeof window !== 'undefined') {
     const observer = generateObserver();
-    observer!.observe(document.documentElement, {
+    observer?.observe(document.documentElement, {
       childList: true,
       subtree: true
     });

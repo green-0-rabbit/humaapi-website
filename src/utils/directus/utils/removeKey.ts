@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable max-len */
 /* eslint-disable import/prefer-default-export */
 import { CamelCasedPropertiesDeep } from 'type-fest';
 import { DeepOmit } from '../types';
@@ -27,7 +29,11 @@ import { DeepOmit } from '../types';
 //     );
 // };
 
-export const removeKey = <T extends Record<string, any>, K extends string>(
+export /**
+ * @param obj The object from where you want to remove the keys
+ * @param keyToRemove An array of property names (strings) to remove
+ */
+const removeKey = <T extends Record<string, any>, K extends string>(
   obj: T,
   keyToRemove: K
 ): DeepOmit<T, K> =>

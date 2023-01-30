@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable prefer-regex-literals */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable no-plusplus */
 /* eslint-disable consistent-return */
@@ -41,7 +43,7 @@ export const unblock = (...scriptUrlsOrRegexes: any[]) => {
                 );
                 const permissiveRegexp = `.*${escapedUrl}.*`;
                 if (
-                  patterns!.whitelist.every(
+                  patterns?.whitelist.every(
                     (p: any) => p.toString() !== permissiveRegexp.toString()
                   )
                 ) {
@@ -49,7 +51,7 @@ export const unblock = (...scriptUrlsOrRegexes: any[]) => {
                 }
               } else if (urlOrRegexp instanceof RegExp) {
                 if (
-                  patterns!.whitelist.every(
+                  patterns?.whitelist.every(
                     (p: any) => p.toString() !== urlOrRegexp.toString()
                   )
                 ) {
@@ -71,7 +73,7 @@ export const unblock = (...scriptUrlsOrRegexes: any[]) => {
     const script = tags[i];
     if (willBeUnblocked(script)) {
       backupScripts.blacklisted.push([script, 'application/javascript']);
-      script.parentElement!.removeChild(script);
+      script.parentElement?.removeChild(script);
     }
   }
 
@@ -95,10 +97,10 @@ export const unblock = (...scriptUrlsOrRegexes: any[]) => {
   });
 
   // Disconnect the observer if the blacklist is empty for performance reasons
-  if (patterns!.blacklist && patterns!.blacklist.length < 1) {
+  if (patterns?.blacklist && patterns?.blacklist.length < 1) {
     if (typeof window !== 'undefined') {
       const observer = generateObserver();
-      observer!.disconnect();
+      observer?.disconnect();
     }
   }
 };

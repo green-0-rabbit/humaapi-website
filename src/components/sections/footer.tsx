@@ -119,7 +119,7 @@ const Footer = ({ data }: FooterLinksProps) => {
   const groups = data.map((group) => {
     const links = group.links.map((link, index) => (
       <Text<'a'>
-        key={index}
+        key={link.link}
         className={classes.link}
         component="a"
         href={link.link}

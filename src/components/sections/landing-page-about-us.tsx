@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-contradicting-classname */
 import styled from '@emotion/styled';
 import Description from 'src/components/modules/description';
 import Image from 'next/image';
@@ -36,9 +37,9 @@ const LandingAboutUs: FC<ILandingAboutUs> = (props) => {
           <ImageContain className="flex justify-center relative mb-12 md:m-0 order-first md:order-last">
             <Image
               src={AboutusImage}
-             
               alt="AboutusImage"
-              className="object-cover object-center rounded-[50px] border-4 h-[313px] w-[279px] border-white shadow-lg shadow-[#eee]"
+              className="object-cover object-center rounded-[50px]
+              border-4 h-[313px] w-[279px] border-white shadow-lg shadow-[#eee]"
             />
           </ImageContain>
         </Contain>

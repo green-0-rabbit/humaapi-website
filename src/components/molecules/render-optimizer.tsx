@@ -1,8 +1,10 @@
-import { useFormContext } from "react-hook-form";
-import { FC, Fragment, useMemo } from "react";
-import { IFieldGroupMeta } from "./reactive-form";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useFormContext } from 'react-hook-form';
+import { FC, Fragment, useMemo } from 'react';
+import { IFieldGroupMeta } from './reactive-form';
 
-type FieldMeta = IFieldGroupMeta<never>["fieldsMeta"][0];
+type FieldMeta = IFieldGroupMeta<never>['fieldsMeta'][0];
 interface IRenderOptimizer {
   fieldMeta: FieldMeta;
   defaultValue: any;

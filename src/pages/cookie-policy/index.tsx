@@ -9,7 +9,7 @@ import {
 } from 'src/services/cookie-service';
 
 interface ICookie {
-  cookiesData: ICookieManagementData;
+  cookiesData: ICookieManagementData[];
   cookiePolicyContent: IDataCookiePolicy[];
 }
 

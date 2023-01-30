@@ -26,8 +26,20 @@ import AurelIcon from 'src/components/elements/svg/avatars/aurel-icon';
 import FreddyIcon from 'src/components/elements/svg/avatars/freddy-icon';
 import GratientIcon from 'src/components/elements/svg/avatars/gratient-icon';
 import SamIcon from 'src/components/elements/svg/avatars/sam-icon';
+import IllustrationLandingPage from 'src/components/elements/svg/icons/illustration-landing-page';
+import IllustrationDesign from '../elements/svg/services/illustration-design';
+import IllustrationDevops from '../elements/svg/services/illustration-devops';
+import IllustrationMobile from '../elements/svg/services/illustration-mobile';
+import IllustrationWeb from '../elements/svg/services/illustration-web';
 
 const DataService = {
+  serviceSvgIllustration: [
+    { img: <IllustrationMobile /> },
+    { img: <IllustrationWeb /> },
+    { img: <IllustrationDevops /> },
+    { img: <IllustrationDesign /> },
+    { img: <IllustrationLandingPage /> }
+  ],
   theRendersData: [
     {
       text: 'We develop your own, custom project - one & only',
@@ -77,19 +89,11 @@ const DataService = {
       title: 'Custom development'
     }
   ],
-  cardServiceData: [
-    {
-      icon: <MobiledevIcon />,
-      text: 'Mobile developement',
-      link: '/our-services/mobile-developement'
-    },
-    {
-      icon: <WebdevIcon />,
-      text: 'Web development',
-      link: '/our-services/web-developement'
-    },
-    { icon: <DevopsIcon />, text: 'Devops', link: '/our-services/devops' },
-    { icon: <DesignIcon />, text: 'Design', link: '/our-services/design' }
+  serviceSvgIcon: [
+    { icon: <MobiledevIcon /> },
+    { icon: <WebdevIcon /> },
+    { icon: <DevopsIcon /> },
+    { icon: <DesignIcon /> }
   ],
   cardDomainData: [
     { icon: <RetailIcon />, text: 'Retail, Ecommerce' },

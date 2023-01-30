@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable import/prefer-default-export */
 import { TYPE_ATTRIBUTE } from './variables';
 import { isOnBlacklist } from './checks';
@@ -12,10 +14,10 @@ export const blockDynamicScript = () => {
     };
 
     // Monkey patch the createElement method to prevent dynamic scripts from executing
-    document.createElement = function (
+    document.createElement = (
       tagName: string,
       option?: ElementCreationOptions
-    ) {
+    ) => {
       // If this is not a script tag, bypass
       if (tagName !== 'script') {
         return createElementBackup.bind(document)(tagName, option);
@@ -61,7 +63,7 @@ export const blockDynamicScript = () => {
         });
 
         // Monkey patch the setAttribute function so that the setter is called instead
-        scriptElt.setAttribute = function (name: string, value: any) {
+        scriptElt.setAttribute = (name: string, value: any) => {
           if (name === 'type' || name === 'src') scriptElt[name] = value;
           else {
             HTMLScriptElement.prototype.setAttribute.call(

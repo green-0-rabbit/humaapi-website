@@ -1,3 +1,6 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-console */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/no-shadow */
@@ -11,7 +14,6 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import fetch from 'cross-fetch';
 import { Filter, Sort } from '../types';
-import { removeKey } from './removeKey';
 
 interface IReadByQueryParam<Model extends Record<string, any>> {
   sort?: Sort<Model>;

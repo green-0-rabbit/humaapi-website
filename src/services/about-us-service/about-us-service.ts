@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable import/prefer-default-export */
 import camelcaseKeys from 'camelcase-keys';
 import { NonUndefined } from 'react-hook-form';

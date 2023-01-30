@@ -27,13 +27,20 @@ interface IService {
   service_title: string;
   service_content: string;
   service_link: string;
-  service_img: string;
+}
+interface IServiceCard {
+  id: number;
+  service_title: string;
+  service_link: string;
 }
 export type IDataOurServiceView = NonUndefined<
   Required<ReturnTypeAsync<typeof OurServicesService.getAllServiceDes>>
 >;
 export type IDataServiceOurDescription = NonUndefined<
   Required<ReturnTypeAsync<typeof OurServicesService.getServiceByLink>>
+>;
+export type IDataServiceCard = NonUndefined<
+  Required<ReturnTypeAsync<typeof OurServicesService.getServiceCard>>
 >;
 
 export const OurServicesService = {
@@ -46,8 +53,7 @@ export const OurServicesService = {
                 service_title
                 service_content
                 service_link
-                service_img
-              }
+                             }
             `,
         queryName: 'services'
       });
@@ -150,8 +156,34 @@ export const OurServicesService = {
 
       return pathsConfig;
     } catch (err) {
-      // console.error(err);
       return undefined;
+    }
+  },
+  getServiceCard: async () => {
+    try {
+      const { data } = await hmDirectus.readSingleton<IServiceCard>({
+        fields: `#graphql
+              {      
+                service_title,
+                service_link
+              }
+            `,
+        queryName: 'services'
+      });
+
+      if (data) {
+        const res = camelcaseKeys(
+          data as unknown as CamelCasedPropertiesDeep<IServiceCard>,
+          {
+            deep: true
+          }
+        );
+        return res;
+      }
+      return undefined;
+    } catch (err) {
+      const error = <any>err;
+      throw new Error(error.message);
     }
   }
 };

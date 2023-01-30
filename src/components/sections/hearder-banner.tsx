@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import { Box, createStyles } from '@mantine/core';
 import Image from 'next/image';
 import { FC, ReactNode } from 'react';
@@ -12,7 +13,7 @@ interface IheaderBanner {
   children?: ReactNode;
   size?: string;
 }
-const headerBanner: FC<IheaderBanner> = (props) => {
+const HeaderBanner: FC<IheaderBanner> = ({ ...props }) => {
   const { children, size } = props;
   const { classes } = useStyles();
   return (
@@ -25,7 +26,7 @@ const headerBanner: FC<IheaderBanner> = (props) => {
       <Image
         priority
         src={bgImage}
-        alt={'backgroundImage'}
+        alt="backgroundImage"
         quality={40}
         className={` ${
           classes.root ? 'blur-[195px]' : 'blur-[220px]'
@@ -36,4 +37,4 @@ const headerBanner: FC<IheaderBanner> = (props) => {
   );
 };
 
-export default headerBanner;
+export default HeaderBanner;

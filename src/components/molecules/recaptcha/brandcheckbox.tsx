@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { Checkbox, CheckboxProps } from '@mantine/core';
 import { forwardRef, ForwardedRef } from 'react';
 

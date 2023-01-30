@@ -9,7 +9,6 @@ import {
   IFieldGroupMetaFlex,
   ReactiveFormFlex
 } from 'src/components/molecules';
-import nodemailer from 'nodemailer';
 import contactService from 'src/services/contact-service';
 import navigation from 'src/components/features/navigation-hook';
 

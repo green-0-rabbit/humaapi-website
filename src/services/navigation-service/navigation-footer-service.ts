@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable consistent-return */
 import camelcaseKeys from 'camelcase-keys';
 import { DeepRequired } from 'react-hm-dynamic-form';

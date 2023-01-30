@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Box } from '@mantine/core';
 import { FC } from 'react';
-import IllustrationLandingPage from 'src/components/elements/svg/icons/illustration-landing-page';
+import DataService from 'src/components/content/content-data';
 import { IDataLandingPage } from 'src/services/home-service';
 import Description from '../../modules/description';
 import SearchBar from '../../modules/search-bar';
@@ -12,6 +12,7 @@ interface ILandingPage {
 const ContentImage = styled.div``;
 const HeaderBannerContain = styled.div``;
 const Contain = styled.div``;
+const landingIllustration = DataService.serviceSvgIllustration[4].img;
 
 const LandingPage: FC<ILandingPage> = (props) => {
   const { landingData } = props;
@@ -35,7 +36,9 @@ const LandingPage: FC<ILandingPage> = (props) => {
               <SearchBar />
             </Box>
           </Box>
-          <ContentImage className="hidden md:block" />
+          <ContentImage className="hidden md:block">
+            {landingIllustration}
+          </ContentImage>
         </Contain>
       </HeaderBannerContain>
     </Box>

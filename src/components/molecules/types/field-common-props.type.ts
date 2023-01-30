@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable import/no-cycle */
 import { ChangeEvent } from 'react';
 import { PartialMethodsType } from 'react-hm-dynamic-form';

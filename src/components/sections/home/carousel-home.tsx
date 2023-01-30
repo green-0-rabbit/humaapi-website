@@ -3,16 +3,14 @@ import { FC, ReactNode, useCallback, useEffect, useState } from 'react';
 import { Carousel, Embla } from '@mantine/carousel';
 import Link from 'next/link';
 import { Paper, Text } from '@mantine/core';
+import { IDataServiceCard } from 'src/services/our-service-service';
 
 interface ICarouselHome {
-  data: {
-    link: string;
-    icon: JSX.Element;
-    text: string;
-  }[];
+  data: IDataServiceCard[];
+  icons: { icon: JSX.Element }[];
 }
 const CarouselHome: FC<ICarouselHome> = (props) => {
-  const { data } = props;
+  const { data, icons } = props;
   const [scrollProgress, setScrollProgress] = useState(0);
   const [embla, setEmbla] = useState<Embla | null>(null);
 
@@ -66,14 +64,14 @@ const CarouselHome: FC<ICarouselHome> = (props) => {
           transition: 'width 250ms ease'
         }
       }}>
-      {data.map((el) => (
-        <Carousel.Slide key={el.link}>
-          <Link href={el.link}>
+      {data.map((el, index) => (
+        <Carousel.Slide key={el.serviceLink}>
+          <Link href={el.serviceLink}>
             <Paper
               className="flex flex-col items-center justify-center space-y-4"
               style={{ width: 205, height: 150 }}>
-              {el.icon}
-              <Text color="#EA6F66">{el.text}</Text>
+              {icons[index].icon}
+              <Text color="#EA6F66">{el.serviceTitle}</Text>
             </Paper>
           </Link>
         </Carousel.Slide>

@@ -4,17 +4,22 @@ import Link from 'next/link';
 import { FC } from 'react';
 import DataService from 'src/components/content/content-data';
 import { IDataOurService } from 'src/services/home-service';
+import { IDataServiceCard } from 'src/services/our-service-service';
 import Description from '../../modules/description';
 import CarouselHome from './carousel-home';
 
 interface IOurServices {
   serviceData: IDataOurService;
+  serviceCardData: IDataServiceCard[];
 }
 const ContainDescription = styled.div``;
 const ContainCards = styled.div``;
 const Container = styled.div``;
+const DispalyIcons = styled.div``;
+const Icons = DataService.serviceSvgIcon;
 const OurServices: FC<IOurServices> = (props) => {
-  const { serviceData } = props;
+  const { serviceData, serviceCardData } = props;
+
   return (
     <Box className="flex flex-col space-y-16">
       <ContainDescription className="text-center mx-auto">
@@ -43,22 +48,24 @@ const OurServices: FC<IOurServices> = (props) => {
       </ContainDescription>
       <ContainCards className="hidden md:flex md:justify-center">
         <Container className="grid gap-8 grid-cols-3">
-          {DataService.cardServiceData.map((el) => (
-            <Link href={el.link} key={el.text}>
+          {serviceCardData.map((el, index) => (
+            <Link href={`/our-services/${el.serviceLink}`} key={el.serviceLink}>
               <Paper
-                key={el.text}
                 className="flex flex-col items-center justify-center space-y-4"
                 style={{ width: 205, height: 150 }}>
-                {el.icon}
-                <Text color="#EA6F66" sx={{ fontFamily: 'Ubuntu-Regular' }}>
-                  {el.text}
+                <DispalyIcons>{Icons[index].icon}</DispalyIcons>
+                <Text
+                  color="#EA6F66"
+                  sx={{ fontFamily: 'Ubuntu-Regular' }}
+                  className="text-center">
+                  {el.serviceTitle}
                 </Text>
               </Paper>
             </Link>
           ))}
         </Container>
       </ContainCards>
-      <CarouselHome data={DataService.cardServiceData} />
+      <CarouselHome data={serviceCardData} icons={Icons} />
     </Box>
   );
 };

@@ -1,5 +1,6 @@
 import camelcaseKeys from 'camelcase-keys';
 import { CamelCasedPropertiesDeep } from 'type-fest';
+
 export interface ISiteVerify {
   success: boolean;
   challenge_ts?: string;
@@ -27,7 +28,7 @@ export const siteSecurityService = {
       );
       return data;
     } catch (err) {
-      console.log(err);
+      return false;
     }
   }
 };
