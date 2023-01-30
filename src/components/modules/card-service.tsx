@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import styled from '@emotion/styled';
 import { Box, Button } from '@mantine/core';
 import { FC } from 'react';
@@ -10,7 +11,7 @@ interface ICardService {
   serviceTitle: string;
   serviceContent: string;
   serviceLink: string;
-  serviceImg: JSX.Element;
+  serviceImg?: JSX.Element;
 }
 const ContainerImage = styled.div``;
 const CardService: FC<ICardService> = ({ ...props }) => {

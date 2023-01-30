@@ -34,11 +34,11 @@ import IllustrationWeb from '../elements/svg/services/illustration-web';
 
 const DataService = {
   serviceSvgIllustration: [
-    { img: <IllustrationMobile /> },
-    { img: <IllustrationWeb /> },
-    { img: <IllustrationDevops /> },
-    { img: <IllustrationDesign /> },
-    { img: <IllustrationLandingPage /> }
+    { img: <IllustrationMobile />, title: 'mobile-developpement' },
+    { img: <IllustrationWeb />, title: 'web-developpement' },
+    { img: <IllustrationDevops />, title: 'devops' },
+    { img: <IllustrationDesign />, title: 'design' },
+    { img: <IllustrationLandingPage />, title: '' }
   ],
   theRendersData: [
     {

@@ -10,6 +10,7 @@ import {
   OurServicesService
 } from 'src/services/our-service-service';
 import CardService from 'src/components/modules/card-service';
+import { useRouter } from 'next/router';
 
 interface IIdOutService {
   serviceData: IDataOurServiceView;
@@ -18,7 +19,11 @@ const HeaderBannerContain = styled.div``;
 const ContainService = styled.div``;
 const IdOutService: FC<IIdOutService> = (props) => {
   const { serviceData } = props;
-
+  const getPath = useRouter();
+  const { id } = getPath.query;
+  const getImage = DataService.serviceSvgIllustration.find(
+    (el) => el.title === id
+  );
   return (
     <ContainService>
       <HeaderBannerContain className="h-screen mt-[16%] sm:mt-0  grid place-items-center p-5 ">
@@ -27,7 +32,7 @@ const IdOutService: FC<IIdOutService> = (props) => {
           serviceTitle={serviceData.serviceTitle}
           serviceContent={serviceData.serviceContent}
           serviceLink="/contact-us"
-          serviceImg={serviceData.serviceImg}
+          serviceImg={getImage?.img}
         />
       </HeaderBannerContain>
       <Box className="space-y-32">

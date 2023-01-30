@@ -82,7 +82,6 @@ export const OurServicesService = {
           service_title
           service_content
           service_link
-          service_img
             get_title
             get_content
             get_list 
@@ -107,7 +106,6 @@ export const OurServicesService = {
         service_title: singleValue.service_title,
         service_content: singleValue.service_content,
         service_link: singleValue.service_link,
-        service_img: singleValue.service_img,
         whatget: {
           get_title: singleValue.get_title,
           get_content: singleValue.get_content,
