@@ -26,3 +26,14 @@ export enum Color {
   white = 'white',
   black = 'black'
 }
+export interface INavigationFooter {
+  title: string;
+  contentparag: string | string[];
+  contentLinks: string | string[];
+}
+interface IDataFooter {
+  data: {
+    title: string;
+    links: { label: string; link: string }[];
+  }[];
+}

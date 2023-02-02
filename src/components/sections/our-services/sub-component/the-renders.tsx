@@ -7,11 +7,13 @@ const useStyles = createStyles((theme) => ({
   titleColor: { color: theme.colorScheme === 'dark' ? 'white' : '#2b2b2b' },
   textColor: { color: theme.colorScheme === 'dark' ? '#afaaaa' : '#6B7280' }
 }));
-
 interface ITheRenders {
-  dataTheRenders: { text: string; title: string }[];
+  dataTheRenders: {
+    getTitle: string;
+    getContent: string;
+    getList: { title: string; content: string }[];
+  };
 }
-
 const Section = styled('div')``;
 const HeadSection = styled('div')``;
 const ContainDescription = styled('div')``;
@@ -29,8 +31,8 @@ const TheRenders: FC<ITheRenders> = ({ ...props }) => {
       <ContainDescription>
         <HeadSection className="text-center">
           <Description
-            title="What your get"
-            content="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+            title={dataTheRenders.getTitle}
+            content={dataTheRenders.getContent}
             sx={{
               fontFamily: 'Ubuntu-Bold',
               fontWeight: 700,
@@ -43,7 +45,7 @@ const TheRenders: FC<ITheRenders> = ({ ...props }) => {
       </ContainDescription>
       <ContainCards className="grid place-items-center mt-12">
         <Container className="grid gap-4 grid-cols-1 md:grid-cols-2">
-          {dataTheRenders.map((el, index) => (
+          {dataTheRenders.getList.map((el, index) => (
             <Paper
               className="md:grid place-items-center "
               key={el.title}
@@ -52,7 +54,7 @@ const TheRenders: FC<ITheRenders> = ({ ...props }) => {
               style={{ width: 296, height: 96 }}>
               <Contain className="flex font-UbuntuRegular">
                 <Num className="w-8 font-bold text-hm text-base">
-                  {`0${index + 1}`}
+                  {`${index + 1 <= 9 ? '0' : ''}${index + 1}`}
                 </Num>
 
                 <Box className="flex flex-col">
@@ -67,7 +69,7 @@ const TheRenders: FC<ITheRenders> = ({ ...props }) => {
                     }}
                     size="xs"
                     className={`${classes.textColor} mt-1`}>
-                    {el.text}
+                    {el.content}
                   </Text>
                 </Box>
               </Contain>

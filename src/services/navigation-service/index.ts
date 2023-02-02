@@ -1,1 +1,1 @@
-export * from './navigation-footer-service';
+export * from './navigation-service';

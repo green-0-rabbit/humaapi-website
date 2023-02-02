@@ -1,7 +1,9 @@
+/* eslint-disable react/no-array-index-key */
 import styled from '@emotion/styled';
 import { Carousel } from '@mantine/carousel';
 import { Text, Container, Paper, createStyles } from '@mantine/core';
 import { FC } from 'react';
+import DataService from 'src/components/content/content-data';
 import Description from 'src/components/modules/description';
 import CarouselOursServices from '../carousel-our-services';
 
@@ -11,9 +13,13 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface IProcess {
-  dataProcess: { icon: JSX.Element; text: string; title: string }[];
+  dataProcess: {
+    processTitle: string;
+    processContent: string;
+    processList: { title: string; content: string }[];
+  };
 }
-
+// icon: JSX.Element; text: string;
 const Section = styled('div')``;
 const HeadSection = styled('div')``;
 const ContainDescription = styled('div')``;
@@ -25,13 +31,14 @@ const TitleCard = styled('div')``;
 const Process: FC<IProcess> = ({ ...props }) => {
   const { classes } = useStyles();
   const { dataProcess } = props;
+  const Icons = DataService.processData;
   return (
     <Section>
       <ContainDescription className="mx-auto">
         <HeadSection className="text-center">
           <Description
-            title="Process we follow"
-            content="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+            title={dataProcess.processTitle}
+            content={dataProcess.processContent}
             sx={{
               fontFamily: 'Ubuntu-Bold',
               fontWeight: 700,
@@ -44,14 +51,14 @@ const Process: FC<IProcess> = ({ ...props }) => {
       </ContainDescription>
       <ContainCards className="flex justify-center mt-12">
         <Container className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {dataProcess.map((el) => (
+          {dataProcess.processList.map((el, index) => (
             <Paper
               className="hidden md:grid place-items-start"
               radius={20}
-              key={el.title}
+              key={index}
               style={{ width: 280, height: 173 }}>
               <Contain className="grid gap-1 grid-cols-1 font-UbuntuRegular">
-                <Icon>{el.icon}</Icon>
+                <Icon>{Icons[index].icon}</Icon>
                 <TitleCard
                   className={`text-base font-semibold ${classes.titleColor}`}>
                   {el.title}
@@ -61,7 +68,7 @@ const Process: FC<IProcess> = ({ ...props }) => {
                   size="xs"
                   className={` mt-1 ${classes.textColor}`}
                   lineClamp={4}>
-                  {el.text}
+                  {el.content}
                 </Text>
               </Contain>
             </Paper>
@@ -69,7 +76,7 @@ const Process: FC<IProcess> = ({ ...props }) => {
         </Container>
       </ContainCards>
 
-      <CarouselOursServices data={dataProcess} />
+      <CarouselOursServices data={dataProcess.processList} icons={Icons} />
     </Section>
   );
 };

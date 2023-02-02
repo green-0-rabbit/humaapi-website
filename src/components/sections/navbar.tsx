@@ -109,7 +109,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface IHeaderResponsiveProps {
-  itemNavLink: { link: string; label: string }[];
+  itemNavLink: { navigationLink: string; navigationTitle: string }[];
 }
 
 const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
@@ -118,18 +118,22 @@ const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
   const [active, setActive] = useState(router.pathname);
 
   const { classes, cx } = useStyles();
-  const items = itemNavLink.map((link, index) => (
-    <Link href={link.link} legacyBehavior key={link.label}>
+  const items = itemNavLink.map((el, index) => (
+    <Link
+      href={`/${el.navigationLink.replace('/', '')}`}
+      legacyBehavior
+      key={el.navigationTitle}>
       <a
-        key={link.label}
+        key={el.navigationTitle}
         className={`${cx(classes.link, {
-          [classes.linkActive]: router.pathname === link.link
+          [classes.linkActive]:
+            router.pathname === `/${el.navigationLink.replace('/', '')}`
         })}`}
         onClick={() => {
           setActive(router.pathname);
           close();
         }}>
-        {link.label}
+        {el.navigationTitle}
       </a>
     </Link>
   ));

@@ -66,7 +66,7 @@ const CarouselHome: FC<ICarouselHome> = (props) => {
       }}>
       {data.map((el, index) => (
         <Carousel.Slide key={el.serviceLink}>
-          <Link href={el.serviceLink}>
+          <Link href={`our-services/${el.serviceLink}`}>
             <Paper
               className="flex flex-col items-center justify-center space-y-4"
               style={{ width: 205, height: 150 }}>

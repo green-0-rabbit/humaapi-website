@@ -1,32 +1,48 @@
 import Image from 'next/image';
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
-import Footer from 'src/components/sections/footer';
-
 import { createStyles } from '@mantine/core';
-import DataService from 'src/components/content/content-data';
 import bgImage from '../../public/assets/img/gradientcircleglassmorphism.png';
 import ScrollTop from '../components/modules/scroll-to-up';
-import Navbar from '../components/sections/navbar';
 
 const useStyles = createStyles((theme) => ({
   root: {
     background: theme.colorScheme === 'dark' ? '#27272730' : ''
   }
 }));
+// async function getHeader() {
+//   const res = await navigationHeaderService.getHeader();
+//   return res;
+// }
 
 interface ILayout {
   children: ReactNode;
-  // navigationHeader: INavigationHeaderData;
 }
 const Container = styled.div``;
 
 const Layout: FC<ILayout> = ({ ...props }) => {
   const { children } = props;
   const { classes } = useStyles();
+  // const fheader = getHeader();
+  // const [header, setHeader] = useState<any>([]);
+
+  // async function fetchData() {
+  //   try {
+  //     const [pageHeader] = await Promise.all([fheader]);
+  //     console.log(pageHeader);
+  //     setHeader(() => pageHeader);
+  //     console.log(header);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
+
   return (
     <Container>
-      <Navbar itemNavLink={DataService.navLink} />
+      {/* <Navbar itemNavLink={DataService.navLink} /> */}
       <Image
         src={bgImage}
         alt="backgroundImage"
@@ -36,7 +52,7 @@ const Layout: FC<ILayout> = ({ ...props }) => {
         } object-center absolute`}
       />
       {children}
-      <Footer data={DataService.footerLink} />
+      {/* <Footer data={DataService.footerLink} /> */}
       <ScrollTop />
     </Container>
   );

@@ -34,8 +34,8 @@ import IllustrationWeb from '../elements/svg/services/illustration-web';
 
 const DataService = {
   serviceSvgIllustration: [
-    { img: <IllustrationMobile />, title: 'mobile-developpement' },
-    { img: <IllustrationWeb />, title: 'web-developpement' },
+    { img: <IllustrationMobile />, title: 'mobile-development' },
+    { img: <IllustrationWeb />, title: 'web-development' },
     { img: <IllustrationDevops />, title: 'devops' },
     { img: <IllustrationDesign />, title: 'design' },
     { img: <IllustrationLandingPage />, title: '' }
@@ -65,27 +65,25 @@ const DataService = {
   processData: [
     {
       icon: <GatheringIcon />,
-      text: 'We follow the first and foremost priority of gathering requirements, resources, and information to begin our project.',
       title: 'Requirement Gathering'
     },
     {
       icon: <UxUiIcon />,
-      text: 'We follow the first and foremost priority of gathering requirements, resources, and information to begin our project.',
       title: 'Custom development'
     },
     {
       icon: <DevelopementIcon />,
-      text: 'After designing, you will get your prototype, which will be sent ahead for the development process for the product.',
+
       title: 'Custom development'
     },
     {
       icon: <QualityAssuranceIcon />,
-      text: 'Hyperlink values quality and provides 100% bug free application with no compromisation in it.e develop your own, custom project - one & only',
+
       title: 'Custom development'
     },
     {
       icon: <DeployementIcon />,
-      text: 'We develop your own, custom project - one & only',
+
       title: 'Custom development'
     }
   ],

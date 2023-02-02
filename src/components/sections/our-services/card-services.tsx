@@ -23,7 +23,7 @@ const CardServices: FC<ICardServices> = (props) => {
               id={service.id}
               serviceTitle={service.serviceTitle}
               serviceContent={service.serviceContent}
-              serviceLink={`/our-services/${service.serviceLink}`}
+              serviceLink={`our-services/${service.serviceLink}`}
               serviceImg={illustration[index].img}
             />
           </Contain>

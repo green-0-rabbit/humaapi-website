@@ -10,16 +10,16 @@ const useStyles = createStyles((theme) => ({
 }));
 interface ICarouselOursServices {
   data: {
-    text: string;
-    icon: JSX.Element;
     title: string;
+    content: string;
   }[];
+  icons: { icon: JSX.Element }[];
 }
 const Contain = styled('div')``;
 const Icon = styled('div')``;
 const TitleCard = styled('div')``;
 const CarouselOursServices: FC<ICarouselOursServices> = (props) => {
-  const { data } = props;
+  const { data, icons } = props;
   const [scrollProgress, setScrollProgress] = useState(0);
   const [embla, setEmbla] = useState<Embla | null>(null);
   const { classes } = useStyles();
@@ -74,14 +74,14 @@ const CarouselOursServices: FC<ICarouselOursServices> = (props) => {
           transition: 'width 250ms ease'
         }
       }}>
-      {data.map((el) => (
+      {data.map((el, index) => (
         <Carousel.Slide key={el.title}>
           <Paper
             className="grid place-items-start"
             radius={20}
             style={{ width: 280, height: 173 }}>
             <Contain className="grid gap-1 grid-cols-1 font-UbuntuRegular">
-              <Icon>{el.icon}</Icon>
+              <Icon>{icons[index].icon}</Icon>
               <TitleCard
                 className={`text-base font-semibold ${classes.titleColor}`}>
                 {el.title}
@@ -91,7 +91,7 @@ const CarouselOursServices: FC<ICarouselOursServices> = (props) => {
                 size="xs"
                 className={`mt-1 ${classes.textColor}`}
                 lineClamp={4}>
-                {el.text}
+                {el.content}
               </Text>
             </Contain>
           </Paper>

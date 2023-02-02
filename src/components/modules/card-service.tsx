@@ -23,7 +23,7 @@ const CardService: FC<ICardService> = ({ ...props }) => {
       id={id}
       className=" flex flex-col justify-center items-center md:flex-row">
       <Box
-        className={`w-[85%] md:max-w-xs flex justify-center flex-col md:ml-14 ${
+        className={`w-[85%] md:max-w-md flex justify-center flex-col md:ml-14 ${
           id % 2 !== 0 ? 'order-last  md:order-first' : ''
         }`}>
         <Description

@@ -7,7 +7,7 @@ import {
 } from '@mantine/core';
 import type { AppProps } from 'next/app';
 import appTheme from 'src/commons/app.theming';
-import { useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { css, Global } from '@emotion/react';
 import { NotificationsProvider } from '@mantine/notifications';
@@ -21,7 +21,6 @@ export default function App({ Component, pageProps }: AppProps) {
   );
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
-
   return (
     <GoogleReCaptchaProvider
       reCaptchaKey={`${process.env.NEXT_PUBLIC_GOOGLE_CAPTCHA_KEY}`}>

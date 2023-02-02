@@ -12,12 +12,9 @@ interface IGetServiceDesc {
   service_title: string;
   service_content: string;
   service_link: string;
-  service_img: string;
-
   get_title: string;
   get_content: string;
   get_list: string;
-
   process_title: string;
   process_content: string;
   process_list: string;
@@ -36,8 +33,8 @@ interface IServiceCard {
 export type IDataOurServiceView = NonUndefined<
   Required<ReturnTypeAsync<typeof OurServicesService.getAllServiceDes>>
 >;
-export type IDataServiceOurDescription = NonUndefined<
-  Required<ReturnTypeAsync<typeof OurServicesService.getServiceByLink>>
+export type IDataDetailsService = NonUndefined<
+  Required<ReturnTypeAsync<typeof OurServicesService.getByLink>>
 >;
 export type IDataServiceCard = NonUndefined<
   Required<ReturnTypeAsync<typeof OurServicesService.getServiceCard>>
@@ -73,7 +70,7 @@ export const OurServicesService = {
       throw new Error(error.message);
     }
   },
-  getServiceByLink: async (serviceLink: string) => {
+  getByLink: async (serviceLink: string) => {
     try {
       const { data } = await hmDirectus.readByQuery<IGetServiceDesc>({
         fields: `#graphql
@@ -103,6 +100,7 @@ export const OurServicesService = {
 
       const singleValue = { ...data[0] };
       const finaleValue = {
+        id: singleValue.id,
         service_title: singleValue.service_title,
         service_content: singleValue.service_content,
         service_link: singleValue.service_link,
@@ -125,7 +123,6 @@ export const OurServicesService = {
         }
       );
     } catch (err) {
-      // console.error(err);
       return undefined;
     }
   },

@@ -6,10 +6,12 @@ import {
   Group
 } from '@mantine/core';
 import Link from 'next/link';
+import { INavigationFooter } from 'src/commons/interface';
 import Copywritting from '../elements/svg/icons/copywritting-icon';
 import LogoHumaapi from '../elements/svg/icons/logo-humaapi';
 import LinkedinLogo from '../elements/svg/icons/linkedin-logo';
 import TwitterLogo from '../elements/svg/icons/twitter-logo';
+import navigation from '../features/navigation-hook';
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -107,25 +109,21 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface FooterLinksProps {
-  data: {
-    title: string;
-    links: { label: string; link: string }[];
-  }[];
+  itemFooter: INavigationFooter[];
 }
-
-const Footer = ({ data }: FooterLinksProps) => {
+const Footer = ({ itemFooter }: FooterLinksProps) => {
   const { classes } = useStyles();
+  const descTitle = itemFooter.find((el) => el.title === 'Description');
+  const otherFooter = itemFooter.filter((el) => el.title !== 'Description');
 
-  const groups = data.map((group) => {
-    const links = group.links.map((link, index) => (
-      <Text<'a'>
-        key={link.link}
+  const groups = otherFooter.map((group) => {
+    const links = (group.contentLinks as Array<any>).map((link, index) => (
+      <Link
+        key={link}
         className={classes.link}
-        component="a"
-        href={link.link}
-        onClick={(event) => event.preventDefault()}>
-        {link.label}
-      </Text>
+        href={`${link.search('https:/') !== -1 ? `${link}` : `/${link}`}`}>
+        {group.contentparag[index]}
+      </Link>
     ));
 
     return (
@@ -141,14 +139,13 @@ const Footer = ({ data }: FooterLinksProps) => {
       <Container className={`${classes.inner}`}>
         <div className={classes.logo}>
           <Link href="/">
-            {' '}
             <LogoHumaapi />
           </Link>
           <Text
             size="xs"
             color="dimmed"
             className={`${classes.description} font-UbuntuRegular`}>
-            Build fully functional accessible web applications faster than ever
+            {descTitle?.contentparag}
           </Text>
         </div>
         <div className={`${classes.groups} font-UbuntuRegular`}>{groups}</div>

@@ -49,7 +49,7 @@ const OurServices: FC<IOurServices> = (props) => {
       <ContainCards className="hidden md:flex md:justify-center">
         <Container className="grid gap-8 grid-cols-3">
           {serviceCardData.map((el, index) => (
-            <Link href={`/our-services/${el.serviceLink}`} key={el.serviceLink}>
+            <Link href={`our-services/${el.serviceLink}`} key={el.serviceLink}>
               <Paper
                 className="flex flex-col items-center justify-center space-y-4"
                 style={{ width: 205, height: 150 }}>

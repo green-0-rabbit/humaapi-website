@@ -1,10 +1,9 @@
 const IllustrationWeb = () => (
   <svg
-    width="409"
-    height="200"
     viewBox="0 0 409 200"
     fill="none"
-    xmlns="http://www.w3.org/2000/svg">
+    xmlns="http://www.w3.org/2000/svg"
+    className=" w-[335px] h-[250px] md:w-[400px] md:h-[219px] lg:w-[456px] lg:h-[219px]">
     <path
       d="M278.7 199.4H5.79999C2.79999 199.4 0.299988 196.9 0.299988 193.9V28.3C0.299988 25.3 2.79999 22.8 5.79999 22.8H278.7C281.7 22.8 284.2 25.3 284.2 28.3V194C284.2 197 281.7 199.4 278.7 199.4Z"
       fill="#DADADA"
@@ -147,15 +146,15 @@ const IllustrationWeb = () => (
     <path
       d="M157.3 62.3V102.8C157.3 104.6 155.8 106.1 154 106.1H107.8C106 106.1 104.5 104.6 104.5 102.8V62.3C104.5 60.5 106 59 107.8 59H154C155.8 59 157.3 60.5 157.3 62.3Z"
       stroke="white"
-      stroke-width="0.5"
-      stroke-miterlimit="10"
+      strokeWidth="0.5"
+      strokeMiterlimit="10"
     />
     <path
       d="M157.3 102.4V102.8C157.3 104.6 155.8 106.1 154 106.1H107.8C106 106.1 104.5 104.6 104.5 102.8V96.1L115.7 84.9C117 83.6 119.1 83.6 120.4 84.9L134.9 99.4L142.2 92C143.5 90.7 145.6 90.7 146.9 92L157.3 102.4Z"
       fill="white"
       stroke="white"
-      stroke-width="0.5"
-      stroke-miterlimit="10"
+      strokeWidth="0.5"
+      strokeMiterlimit="10"
     />
     <path
       d="M144.8 77.9C147.064 77.9 148.9 76.0644 148.9 73.8C148.9 71.5357 147.064 69.7 144.8 69.7C142.536 69.7 140.7 71.5357 140.7 73.8C140.7 76.0644 142.536 77.9 144.8 77.9Z"
@@ -164,7 +163,7 @@ const IllustrationWeb = () => (
     <path
       d="M245.7 20.8V4.29999H299.4"
       stroke="#EA6F66"
-      stroke-miterlimit="10"
+      strokeMiterlimit="10"
     />
     <path
       d="M248 20.7C248 21.9 247 23 245.7 23C244.4 23 243.4 22 243.4 20.7C243.4 19.5 244.4 18.4 245.7 18.4C247 18.4 248 19.5 248 20.7Z"

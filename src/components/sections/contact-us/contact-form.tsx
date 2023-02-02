@@ -11,6 +11,7 @@ import {
 } from 'src/components/molecules';
 import contactService from 'src/services/contact-service';
 import navigation from 'src/components/features/navigation-hook';
+import Link from 'next/link';
 
 const useStyles = createStyles((theme) => ({
   input: {
@@ -175,9 +176,10 @@ const ContactForm = () => {
       />
       <ContainText className="max-w-xl md:max-w-lg lg:max-w-3xl">
         <Text className={`text-left text-[12px] ${classes.description}`}>
-          Please be informed that when you click the Send button Itransition
-          Group will process your personal data in accordance with our Privacy
-          notice for the purpose of providing you with appropriate information
+          I agree to the processing of my personal data and accept the terms of
+          <span className="text-red-200 cursor-pointer">
+            <Link href="cookie-policy"> privacy policy .</Link>
+          </span>
         </Text>
       </ContainText>
       <Button
