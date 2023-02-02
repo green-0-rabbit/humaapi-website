@@ -34,6 +34,11 @@ export interface ISignInInput {
   captchaToken: string;
   recaptchaCheckbox: boolean;
 }
+// const getStorageValue = localStorage.getItem('message')
+//   ? localStorage.getItem('message')
+//   : '';
+// console.log(getStorageValue);
+
 const defaultValues: ISignInInput = {
   name: '',
   company: '',

@@ -1,4 +1,4 @@
-const DeployementIcon = () => (
+const DeploymentIcon = () => (
   <svg
     width="36"
     height="36"
@@ -42,4 +42,4 @@ const DeployementIcon = () => (
     </defs>
   </svg>
 );
-export default DeployementIcon;
+export default DeploymentIcon;

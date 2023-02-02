@@ -5,7 +5,7 @@ const useStyles = createStyles((theme) => ({
   fillIcon: { fill: theme.colorScheme === 'dark' ? '#fff' : '#343434' }
 }));
 
-const linkedinLogo = () => {
+const LinkedinLogo = () => {
   const { classes } = useStyles();
 
   return (
@@ -20,4 +20,4 @@ const linkedinLogo = () => {
     </svg>
   );
 };
-export default linkedinLogo;
+export default LinkedinLogo;

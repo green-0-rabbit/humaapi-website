@@ -1,14 +1,12 @@
 import { GetStaticProps } from 'next';
 import { FC } from 'react';
 import ContactForm from 'src/components/sections/contact-us/contact-form';
-import Footer from 'src/components/sections/footer';
-import Navbar from 'src/components/sections/navbar';
+import Layout from 'src/layouts/layout';
 import {
   IDataNavigationFooter,
   INavigationHeaderData,
   navigationService
 } from 'src/services/navigation-service';
-import { parseFooter } from 'src/services/navigation-service/helper-function';
 
 interface IContactUs {
   navigationHeaderData: INavigationHeaderData[];
@@ -17,14 +15,13 @@ interface IContactUs {
 
 const ContactUs: FC<IContactUs> = (props) => {
   const { navigationHeaderData, navigationFooterData } = props;
-  const itemFooter = parseFooter(navigationFooterData);
 
   return (
-    <>
-      <Navbar itemNavLink={navigationHeaderData} />
+    <Layout
+      navigationHeaderData={navigationHeaderData}
+      navigationFooterData={navigationFooterData}>
       <ContactForm />
-      <Footer itemFooter={itemFooter} />
-    </>
+    </Layout>
   );
 };
 export default ContactUs;

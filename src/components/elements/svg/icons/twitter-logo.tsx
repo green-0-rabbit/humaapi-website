@@ -5,7 +5,7 @@ const useStyles = createStyles((theme) => ({
   fillIcon: { fill: theme.colorScheme === 'dark' ? '#fff' : '#343434' }
 }));
 
-const twitterLogo = () => {
+const TwitterLogo = () => {
   const { classes } = useStyles();
 
   return (
@@ -27,4 +27,4 @@ const twitterLogo = () => {
     </svg>
   );
 };
-export default twitterLogo;
+export default TwitterLogo;

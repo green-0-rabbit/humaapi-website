@@ -10,7 +10,6 @@ const useStyles = createStyles((theme) => ({
 interface ITheRenders {
   dataTheRenders: {
     getTitle: string;
-    getContent: string;
     getList: { title: string; content: string }[];
   };
 }
@@ -32,28 +31,26 @@ const TheRenders: FC<ITheRenders> = ({ ...props }) => {
         <HeadSection className="text-center">
           <Description
             title={dataTheRenders.getTitle}
-            content={dataTheRenders.getContent}
             sx={{
               fontFamily: 'Ubuntu-Bold',
               fontWeight: 700,
               lineHeight: '24px'
             }}
             size={24}
-            space={4}
           />
         </HeadSection>
       </ContainDescription>
-      <ContainCards className="grid place-items-center mt-12">
+      <ContainCards className="grid place-items-center mt-10">
         <Container className="grid gap-4 grid-cols-1 md:grid-cols-2">
           {dataTheRenders.getList.map((el, index) => (
             <Paper
-              className="md:grid place-items-center "
+              className="md:grid place-items-center"
               key={el.title}
               p={14}
               radius={24}
               style={{ width: 296, height: 96 }}>
               <Contain className="flex font-UbuntuRegular">
-                <Num className="w-8 font-bold text-hm text-base">
+                <Num className="w-8 font-bold text-hm text-base mr-2">
                   {`${index + 1 <= 9 ? '0' : ''}${index + 1}`}
                 </Num>
 
@@ -68,6 +65,7 @@ const TheRenders: FC<ITheRenders> = ({ ...props }) => {
                       lineHeight: '16px'
                     }}
                     size="xs"
+                    lineClamp={3}
                     className={`${classes.textColor} mt-1`}>
                     {el.content}
                   </Text>

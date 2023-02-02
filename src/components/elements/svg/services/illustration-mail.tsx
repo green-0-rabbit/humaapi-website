@@ -5,7 +5,7 @@ const IllustrationMail = () => (
     viewBox="0 0 204 224"
     fill="none"
     xmlns="http://www.w3.org/2000/svg">
-    <g clip-path="url(#clip0_1202_15)">
+    <g clipPath="url(#clip0_1202_15)">
       <path
         d="M192.736 139.834H31.4738C26.5871 139.834 22.6943 135.858 22.6943 131.053V76.8757C22.6943 53.5148 41.6614 34.5444 65.0183 34.5444H159.191C182.548 34.5444 201.515 53.5148 201.515 76.8757V131.053C201.515 135.941 197.622 139.834 192.736 139.834Z"
         fill="#EB6F67"
@@ -80,14 +80,14 @@ const IllustrationMail = () => (
         stroke="black"
         strokeWidth="6"
         strokeMiterlimit="10"
-        stroke-linecap="round"
+        strokeLinecap="round"
       />
       <path
         d="M173.603 221.515H177.164"
         stroke="black"
         strokeWidth="6"
         strokeMiterlimit="10"
-        stroke-linecap="round"
+        strokeLinecap="round"
       />
     </g>
     <defs>

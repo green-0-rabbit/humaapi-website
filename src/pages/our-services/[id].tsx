@@ -7,19 +7,16 @@ import { Box } from '@mantine/core';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import {
   IDataDetailsService,
-  IDataOurServiceView,
   OurServicesService
 } from 'src/services/our-service-service';
 import CardService from 'src/components/modules/card-service';
 import { useRouter } from 'next/router';
-import Navbar from 'src/components/sections/navbar';
-import Footer from 'src/components/sections/footer';
-import { parseFooter } from 'src/services/navigation-service/helper-function';
 import {
   IDataNavigationFooter,
   INavigationHeaderData,
   navigationService
 } from 'src/services/navigation-service';
+import Layout from 'src/layouts/layout';
 
 interface IIdOutService {
   serviceData: IDataDetailsService;
@@ -30,15 +27,19 @@ const HeaderBannerContain = styled.div``;
 const ContainService = styled.div``;
 const IdOutService: FC<IIdOutService> = (props) => {
   const { serviceData, navigationHeaderData, navigationFooterData } = props;
-  const itemFooter = parseFooter(navigationFooterData);
   const getPath = useRouter();
   const { id } = getPath.query;
   const getImage = DataService.serviceSvgIllustration.find(
     (el) => el.title === id
   );
+  const icons = DataService.processData
+    .filter((el) => el.service === id)
+    .map((el) => el.data);
+
   return (
-    <>
-      <Navbar itemNavLink={navigationHeaderData} />
+    <Layout
+      navigationHeaderData={navigationHeaderData}
+      navigationFooterData={navigationFooterData}>
       <ContainService>
         <HeaderBannerContain className="h-screen mt-[16%] sm:mt-0  grid place-items-center p-5 ">
           <CardService
@@ -47,15 +48,15 @@ const IdOutService: FC<IIdOutService> = (props) => {
             serviceContent={serviceData.serviceContent}
             serviceLink="/contact-us"
             serviceImg={getImage?.img}
+            nameEvent="Get in touch"
           />
         </HeaderBannerContain>
         <Box className="space-y-32">
           <TheRenders dataTheRenders={serviceData.whatget} />
-          <Process dataProcess={serviceData.process} />
+          <Process dataProcess={serviceData.process} icons={icons[0]} />
         </Box>
       </ContainService>
-      <Footer itemFooter={itemFooter} />
-    </>
+    </Layout>
   );
 };
 export const getStaticPaths: GetStaticPaths = async () => {

@@ -30,7 +30,7 @@ const DomaineActivity: FC<IDomaineActivity> = (props) => {
           }}
           size="xl"
           color="#EA6F66"
-          className="mb-2">
+          className="mb-1">
           Domains activity
         </Text>
         <Description

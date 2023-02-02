@@ -13,10 +13,8 @@ interface IGetServiceDesc {
   service_content: string;
   service_link: string;
   get_title: string;
-  get_content: string;
   get_list: string;
   process_title: string;
-  process_content: string;
   process_list: string;
 }
 interface IService {
@@ -80,13 +78,10 @@ export const OurServicesService = {
           service_content
           service_link
             get_title
-            get_content
             get_list 
             process_title
-            process_content
             process_list
-          
-            }
+                    }
           `,
         filter: {
           service_link: { _eq: serviceLink }
@@ -106,12 +101,10 @@ export const OurServicesService = {
         service_link: singleValue.service_link,
         whatget: {
           get_title: singleValue.get_title,
-          get_content: singleValue.get_content,
           get_list: getFormatedOverview(singleValue.get_list)
         },
         process: {
           process_title: singleValue.process_title,
-          process_content: singleValue.process_content,
           process_list: getFormatedOverview(singleValue.process_list)
         }
       };

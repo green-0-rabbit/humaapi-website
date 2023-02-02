@@ -8,14 +8,12 @@ import {
   IDataCookiePolicy
 } from 'src/services/cookie-service';
 
-import Navbar from 'src/components/sections/navbar';
-import Footer from 'src/components/sections/footer';
-import { parseFooter } from 'src/services/navigation-service/helper-function';
 import {
   IDataNavigationFooter,
   INavigationHeaderData,
   navigationService
 } from 'src/services/navigation-service';
+import Layout from 'src/layouts/layout';
 
 interface ICookie {
   cookiesData: ICookieManagementData[];
@@ -31,18 +29,17 @@ const Cookie: FC<ICookie> = ({ ...props }) => {
     navigationHeaderData,
     navigationFooterData
   } = props;
-  const itemFooter = parseFooter(navigationFooterData);
   return (
-    <>
-      <Navbar itemNavLink={navigationHeaderData} />
+    <Layout
+      navigationHeaderData={navigationHeaderData}
+      navigationFooterData={navigationFooterData}>
       <Box className="mx-auto">
         <CookiePolicyContent
           cookiesData={cookiesData}
           cookiePolicyContent={cookiePolicyContent[0]}
         />
       </Box>
-      <Footer itemFooter={itemFooter} />
-    </>
+    </Layout>
   );
 };
 

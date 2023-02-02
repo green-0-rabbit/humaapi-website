@@ -8,14 +8,12 @@ import {
   OurServicesService
 } from 'src/services/our-service-service';
 import { HomeService, IDataOurService } from 'src/services/home-service';
-import Navbar from 'src/components/sections/navbar';
-import Footer from 'src/components/sections/footer';
-import { parseFooter } from 'src/services/navigation-service/helper-function';
 import {
   IDataNavigationFooter,
   INavigationHeaderData,
   navigationService
 } from 'src/services/navigation-service';
+import Layout from 'src/layouts/layout';
 
 interface IOurServices {
   serviceDesData: IDataOurServiceView[];
@@ -30,17 +28,16 @@ const OurServices: FC<IOurServices> = ({ ...props }) => {
     navigationHeaderData,
     navigationFooterData
   } = props;
-  const itemFooter = parseFooter(navigationFooterData);
 
   return (
-    <>
-      <Navbar itemNavLink={navigationHeaderData} />
+    <Layout
+      navigationHeaderData={navigationHeaderData}
+      navigationFooterData={navigationFooterData}>
       <Box className="w-full">
         <HeadOurServices headerData={headerData[0]} />
         <CardServices servicesData={serviceDesData} />
       </Box>
-      <Footer itemFooter={itemFooter} />
-    </>
+    </Layout>
   );
 };
 export const getStaticProps: GetStaticProps = async () => {

@@ -41,9 +41,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <NotificationsProvider position="top-right" zIndex={2077}>
             <CookieConsent>
               <CustomFonts />
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
+              <Component {...pageProps} />
             </CookieConsent>
           </NotificationsProvider>
         </MantineProvider>

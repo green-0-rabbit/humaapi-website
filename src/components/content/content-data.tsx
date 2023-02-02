@@ -1,6 +1,5 @@
 /** * sendIdData ** */
 /** * processData ** */
-import DeployementIcon from 'src/components/elements/svg/icons/deployment-icon';
 import DevelopementIcon from 'src/components/elements/svg/icons/developement-icon';
 import GatheringIcon from 'src/components/elements/svg/icons/gathering-icon';
 import QualityAssuranceIcon from 'src/components/elements/svg/icons/quality-assurance-icon';
@@ -27,10 +26,20 @@ import FreddyIcon from 'src/components/elements/svg/avatars/freddy-icon';
 import GratientIcon from 'src/components/elements/svg/avatars/gratient-icon';
 import SamIcon from 'src/components/elements/svg/avatars/sam-icon';
 import IllustrationLandingPage from 'src/components/elements/svg/icons/illustration-landing-page';
+import DeploymentIcon from 'src/components/elements/svg/icons/deployment-icon';
 import IllustrationDesign from '../elements/svg/services/illustration-design';
 import IllustrationDevops from '../elements/svg/services/illustration-devops';
 import IllustrationMobile from '../elements/svg/services/illustration-mobile';
 import IllustrationWeb from '../elements/svg/services/illustration-web';
+import LinkedinLogo from '../elements/svg/icons/linkedin-logo';
+import TwitterLogo from '../elements/svg/icons/twitter-logo';
+import Behance from '../elements/svg/icons/behance';
+import Github from '../elements/svg/icons/github';
+import Dribbble from '../elements/svg/icons/dribbble';
+import UserResearch from '../elements/svg/icons/user-research';
+import InteractionDesign from '../elements/svg/icons/intera-design';
+import Testing from '../elements/svg/icons/testing';
+import InfoArchitecture from '../elements/svg/icons/info-architecture';
 
 const DataService = {
   serviceSvgIllustration: [
@@ -40,51 +49,46 @@ const DataService = {
     { img: <IllustrationDesign />, title: 'design' },
     { img: <IllustrationLandingPage />, title: '' }
   ],
-  theRendersData: [
-    {
-      text: 'We develop your own, custom project - one & only',
-      title: 'Custom development'
-    },
-    {
-      text: 'Development of look & feel of your app on various devices',
-      title: 'Mobile developement'
-    },
-    {
-      text: 'Assurance to make sure that everything will work as planned',
-      title: 'Quality assurance'
-    },
-    {
-      text: 'Development of the backbone of your product',
-      title: 'Backend development'
-    },
-    {
-      text: 'Intuitive UX & breathtaking UI dedicated for mobile',
-      title: 'UI & UX Design'
-    }
-  ],
   processData: [
     {
-      icon: <GatheringIcon />,
-      title: 'Requirement Gathering'
+      service: 'web-development',
+      data: [
+        { icon: <GatheringIcon /> },
+        { icon: <UxUiIcon /> },
+        { icon: <DevelopementIcon /> },
+        { icon: <QualityAssuranceIcon /> },
+        { icon: <DeploymentIcon /> }
+      ]
     },
     {
-      icon: <UxUiIcon />,
-      title: 'Custom development'
+      service: 'mobile-development',
+      data: [
+        { icon: <GatheringIcon /> },
+        { icon: <UxUiIcon /> },
+        { icon: <DevelopementIcon /> },
+        { icon: <Testing /> },
+        { icon: <DeploymentIcon /> }
+      ]
     },
     {
-      icon: <DevelopementIcon />,
-
-      title: 'Custom development'
+      service: 'devops',
+      data: [
+        { icon: <GatheringIcon /> },
+        { icon: <UxUiIcon /> },
+        { icon: <DevelopementIcon /> },
+        { icon: <QualityAssuranceIcon /> },
+        { icon: <DeploymentIcon /> }
+      ]
     },
     {
-      icon: <QualityAssuranceIcon />,
-
-      title: 'Custom development'
-    },
-    {
-      icon: <DeployementIcon />,
-
-      title: 'Custom development'
+      service: 'design',
+      data: [
+        { icon: <UserResearch /> },
+        { icon: <InfoArchitecture /> },
+        { icon: <InteractionDesign /> },
+        { icon: <UxUiIcon /> },
+        { icon: <Testing /> }
+      ]
     }
   ],
   serviceSvgIcon: [
@@ -275,6 +279,29 @@ const DataService = {
       purpose: 'Cookie used for advertising targeting purposes',
       domain: '.google.com',
       strorageperiod: '12 Months'
+    }
+  ],
+  iconFooter: [
+    {
+      icon: <LinkedinLogo />,
+      title: 'linkedin',
+      link: 'https://www.linkedin.com/company/humaapi-sarl/'
+    },
+    {
+      icon: <TwitterLogo />,
+      title: 'twitter',
+      link: 'https://twitter.com/humaapi'
+    },
+    { icon: <Github />, title: 'github', link: 'https://github.com/humaapi' },
+    {
+      icon: <Dribbble />,
+      title: 'dribbble',
+      link: 'https://dribbble.com/Humaapi'
+    },
+    {
+      icon: <Behance />,
+      title: 'behance',
+      link: 'https://www.behance.net/hm-humaapi'
     }
   ]
 };

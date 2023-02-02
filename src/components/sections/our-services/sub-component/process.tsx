@@ -2,6 +2,7 @@
 import styled from '@emotion/styled';
 import { Carousel } from '@mantine/carousel';
 import { Text, Container, Paper, createStyles } from '@mantine/core';
+import { useRouter } from 'next/router';
 import { FC } from 'react';
 import DataService from 'src/components/content/content-data';
 import Description from 'src/components/modules/description';
@@ -15,9 +16,9 @@ const useStyles = createStyles((theme) => ({
 interface IProcess {
   dataProcess: {
     processTitle: string;
-    processContent: string;
     processList: { title: string; content: string }[];
   };
+  icons: { icon: JSX.Element }[];
 }
 // icon: JSX.Element; text: string;
 const Section = styled('div')``;
@@ -29,36 +30,34 @@ const Icon = styled('div')``;
 const TitleCard = styled('div')``;
 
 const Process: FC<IProcess> = ({ ...props }) => {
+  const { dataProcess, icons } = props;
   const { classes } = useStyles();
-  const { dataProcess } = props;
-  const Icons = DataService.processData;
+
   return (
     <Section>
       <ContainDescription className="mx-auto">
         <HeadSection className="text-center">
           <Description
             title={dataProcess.processTitle}
-            content={dataProcess.processContent}
             sx={{
               fontFamily: 'Ubuntu-Bold',
               fontWeight: 700,
               lineHeight: '36px'
             }}
             size={24}
-            space={12}
           />
         </HeadSection>
       </ContainDescription>
-      <ContainCards className="flex justify-center mt-12">
+      <ContainCards className="hidden md:flex md:justify-center mt-10">
         <Container className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {dataProcess.processList.map((el, index) => (
             <Paper
-              className="hidden md:grid place-items-start"
+              className="md:grid place-items-start"
               radius={20}
               key={index}
               style={{ width: 280, height: 173 }}>
               <Contain className="grid gap-1 grid-cols-1 font-UbuntuRegular">
-                <Icon>{Icons[index].icon}</Icon>
+                <Icon>{icons[index].icon}</Icon>
                 <TitleCard
                   className={`text-base font-semibold ${classes.titleColor}`}>
                   {el.title}
@@ -76,7 +75,7 @@ const Process: FC<IProcess> = ({ ...props }) => {
         </Container>
       </ContainCards>
 
-      <CarouselOursServices data={dataProcess.processList} icons={Icons} />
+      <CarouselOursServices data={dataProcess.processList} icons={icons} />
     </Section>
   );
 };

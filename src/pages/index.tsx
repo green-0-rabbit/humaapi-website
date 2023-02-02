@@ -12,14 +12,12 @@ import {
   IDataServiceCard,
   OurServicesService
 } from 'src/services/our-service-service';
-import Navbar from 'src/components/sections/navbar';
-import Footer from 'src/components/sections/footer';
 import {
   IDataNavigationFooter,
   INavigationHeaderData,
   navigationService
 } from 'src/services/navigation-service/navigation-service';
-import { parseFooter } from 'src/services/navigation-service/helper-function';
+import Layout from 'src/layouts/layout';
 import OursService from '../components/sections/home/our-services';
 import DomaineActivity from '../components/sections/home/domaine-activity';
 
@@ -40,11 +38,11 @@ const Home: FC<Ihome> = ({ ...props }) => {
     navigationHeaderData,
     navigationFooterData
   } = props;
-  const itemFooter = parseFooter(navigationFooterData);
 
   return (
-    <>
-      <Navbar itemNavLink={navigationHeaderData} />
+    <Layout
+      navigationHeaderData={navigationHeaderData}
+      navigationFooterData={navigationFooterData}>
       <Box className="w-full space-y-[72px]">
         <LandingPage landingData={landingData[0]} />
         <OursService
@@ -53,8 +51,7 @@ const Home: FC<Ihome> = ({ ...props }) => {
         />
         <DomaineActivity domaineData={domaineData[0]} />
       </Box>
-      <Footer itemFooter={itemFooter} />
-    </>
+    </Layout>
   );
 };
 export default Home;

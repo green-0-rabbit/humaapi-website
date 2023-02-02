@@ -12,10 +12,18 @@ interface ICardService {
   serviceContent: string;
   serviceLink: string;
   serviceImg?: JSX.Element;
+  nameEvent?: string;
 }
 const ContainerImage = styled.div``;
 const CardService: FC<ICardService> = ({ ...props }) => {
-  const { id, serviceTitle, serviceContent, serviceLink, serviceImg } = props;
+  const {
+    id,
+    serviceTitle,
+    serviceContent,
+    serviceLink,
+    serviceImg,
+    nameEvent
+  } = props;
   const Illustration = serviceImg;
 
   return (
@@ -23,8 +31,10 @@ const CardService: FC<ICardService> = ({ ...props }) => {
       id={id}
       className=" flex flex-col justify-center items-center md:flex-row">
       <Box
-        className={`w-[85%] md:max-w-md flex justify-center flex-col md:ml-14 ${
-          id % 2 !== 0 ? 'order-last  md:order-first' : ''
+        className={`w-[85%] flex justify-center flex-col md:ml-14 ${
+          id % 2 !== 0
+            ? 'order-last  md:order-first md:max-w-md md:pr-16'
+            : 'md:max-w-md'
         }`}>
         <Description
           title={serviceTitle}
@@ -42,7 +52,7 @@ const CardService: FC<ICardService> = ({ ...props }) => {
             variant="filled"
             className="btn-custom mt-4"
             onClick={() => navigation(`${serviceLink}`)}>
-            Learn more
+            {nameEvent || 'Learn more'}
           </Button>
         </Box>
       </Box>

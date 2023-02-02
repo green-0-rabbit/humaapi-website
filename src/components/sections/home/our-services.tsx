@@ -21,7 +21,7 @@ const OurServices: FC<IOurServices> = (props) => {
   const { serviceData, serviceCardData } = props;
 
   return (
-    <Box className="flex flex-col space-y-16">
+    <Box className="flex flex-col md:space-y-16">
       <ContainDescription className="text-center mx-auto">
         <Text
           sx={{
@@ -31,7 +31,7 @@ const OurServices: FC<IOurServices> = (props) => {
           }}
           size="xl"
           color="#EA6F66"
-          className="mb-2">
+          className="mb-1">
           Our services
         </Text>
         <Description
@@ -42,8 +42,9 @@ const OurServices: FC<IOurServices> = (props) => {
             fontWeight: 700,
             lineHeight: '36px'
           }}
+          mx="0px 14px 0px 14px"
           size={32}
-          space={4}
+          space={12}
         />
       </ContainDescription>
       <ContainCards className="hidden md:flex md:justify-center">

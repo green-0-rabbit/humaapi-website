@@ -12,6 +12,7 @@ import LogoHumaapi from '../elements/svg/icons/logo-humaapi';
 import LinkedinLogo from '../elements/svg/icons/linkedin-logo';
 import TwitterLogo from '../elements/svg/icons/twitter-logo';
 import navigation from '../features/navigation-hook';
+import DataService from '../content/content-data';
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -152,13 +153,14 @@ const Footer = ({ itemFooter }: FooterLinksProps) => {
       </Container>
       <Container className={classes.afterFooter}>
         <Copywritting text="2022 humaapi" />
-        <Group spacing={0} className={classes.social} position="right" noWrap>
-          <ActionIcon size="lg">
-            <LinkedinLogo />
-          </ActionIcon>
-          <ActionIcon size="lg">
-            <TwitterLogo />
-          </ActionIcon>
+        <Group spacing={4} className={classes.social} position="right" noWrap>
+          {DataService.iconFooter.map((icon) => (
+            <Link href={icon.link} key={icon.title} target="_blank">
+              <ActionIcon size="lg" key={icon.title}>
+                {icon.icon}
+              </ActionIcon>
+            </Link>
+          ))}
         </Group>
       </Container>
     </footer>
