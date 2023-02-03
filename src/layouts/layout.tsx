@@ -5,7 +5,7 @@ import { createStyles } from '@mantine/core';
 import Navbar from 'src/components/sections/navbar';
 import Footer from 'src/components/sections/footer';
 import {
-  IDataNavigationFooter,
+  INavigationFooterData,
   INavigationHeaderData
 } from 'src/services/navigation-service';
 import { parseFooter } from 'src/services/navigation-service/helper-function';
@@ -21,7 +21,7 @@ const useStyles = createStyles((theme) => ({
 interface ILayout {
   children: ReactNode;
   navigationHeaderData: INavigationHeaderData[];
-  navigationFooterData: IDataNavigationFooter[];
+  navigationFooterData: INavigationFooterData[];
 }
 const Container = styled.div``;
 

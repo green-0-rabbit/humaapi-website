@@ -3,14 +3,14 @@ import { FC } from 'react';
 import ContactForm from 'src/components/sections/contact-us/contact-form';
 import Layout from 'src/layouts/layout';
 import {
-  IDataNavigationFooter,
+  INavigationFooterData,
   INavigationHeaderData,
   navigationService
 } from 'src/services/navigation-service';
 
 interface IContactUs {
   navigationHeaderData: INavigationHeaderData[];
-  navigationFooterData: IDataNavigationFooter[];
+  navigationFooterData: INavigationFooterData[];
 }
 
 const ContactUs: FC<IContactUs> = (props) => {

@@ -1,69 +1,45 @@
 const UserResearch = () => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24">
-    <g
-      id="vuesax_linear_user-search"
-      data-name="vuesax/linear/user-search"
-      transform="translate(-428 -188)">
-      <g id="user-search">
-        <path
-          id="Vector"
-          d="M10,5A5,5,0,1,1,5,0,5,5,0,0,1,10,5Z"
-          transform="translate(435 190)"
-          fill="none"
-          stroke="#292d32"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="1.5"
-        />
-        <path
-          id="Vector-2"
-          data-name="Vector"
-          d="M0,7C0,3.13,3.85,0,8.59,0"
-          transform="translate(431.41 203)"
-          fill="none"
-          stroke="#292d32"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="1.5"
-        />
-        <g id="Group">
-          <path
-            id="Vector-3"
-            data-name="Vector"
-            d="M6.4,3.2A3.2,3.2,0,1,1,3.2,0,3.2,3.2,0,0,1,6.4,3.2Z"
-            transform="translate(443 203)"
-            fill="none"
-            stroke="#292d32"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="1.5"
-          />
-          <path
-            id="Vector-4"
-            data-name="Vector"
-            d="M1,1,0,0"
-            transform="translate(449 209)"
-            fill="none"
-            stroke="#292d32"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="1.5"
-          />
-        </g>
-        <path
-          id="Vector-5"
-          data-name="Vector"
-          d="M0,0H24V24H0Z"
-          transform="translate(428 188)"
-          fill="none"
-          opacity="0"
-        />
-      </g>
+    width="36"
+    height="36"
+    viewBox="0 0 36 36"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg">
+    <g clipPath="url(#clip0_1487_152)">
+      <path
+        d="M25.5 10.5C25.5 11.9834 25.0601 13.4334 24.236 14.6668C23.4119 15.9001 22.2406 16.8614 20.8701 17.4291C19.4997 17.9968 17.9917 18.1453 16.5368 17.8559C15.082 17.5665 13.7456 16.8522 12.6967 15.8033C11.6478 14.7544 10.9335 13.418 10.6441 11.9632C10.3547 10.5083 10.5032 9.00032 11.0709 7.62987C11.6386 6.25943 12.5999 5.08809 13.8332 4.26398C15.0666 3.43987 16.5166 3 18 3C19.9891 3 21.8968 3.79018 23.3033 5.1967C24.7098 6.60322 25.5 8.51088 25.5 10.5Z"
+        stroke="#ff7b00"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M5.11499 33C5.11499 27.195 10.89 22.5 18 22.5"
+        stroke="#ff7b00"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M32.1 27.3C32.1 28.2494 31.8185 29.1774 31.2911 29.9667C30.7636 30.7561 30.014 31.3713 29.1369 31.7346C28.2598 32.0979 27.2947 32.193 26.3636 32.0078C25.4325 31.8226 24.5772 31.3654 23.9059 30.6941C23.2346 30.0228 22.7774 29.1675 22.5922 28.2364C22.407 27.3053 22.5021 26.3402 22.8654 25.4631C23.2287 24.586 23.8439 23.8364 24.6333 23.3089C25.4226 22.7815 26.3507 22.5 27.3 22.5C28.573 22.5 29.7939 23.0057 30.6941 23.9059C31.5943 24.8061 32.1 26.027 32.1 27.3Z"
+        stroke="#ff7b00"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M33 33L31.5 31.5"
+        stroke="#ff7b00"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </g>
+    <defs>
+      <clipPath id="clip0_1487_152">
+        <rect width="36" height="36" fill="white" />
+      </clipPath>
+    </defs>
   </svg>
 );
 export default UserResearch;

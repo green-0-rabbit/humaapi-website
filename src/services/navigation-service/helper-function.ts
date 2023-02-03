@@ -1,5 +1,5 @@
 import { parse } from 'node-html-parser';
-import { IDataNavigationFooter } from './navigation-service';
+import { INavigationFooterData } from './navigation-service';
 
 export function getFormatedOverview(data: string) {
   const parsedData = parse(data);
@@ -21,7 +21,7 @@ export function getFormatedOverview(data: string) {
   }
   return { title, contentparag, contentLinks };
 }
-export const parseFooter = (navigationData: IDataNavigationFooter[]) => {
+export const parseFooter = (navigationData: INavigationFooterData[]) => {
   const getFooterValues = navigationData.map((value) =>
     getFormatedOverview(value.footerSection)
   );

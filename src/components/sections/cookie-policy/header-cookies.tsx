@@ -15,7 +15,12 @@ const HeadCookie: FC<IHeadCookie> = ({ ...props }) => {
   return (
     <HeaderCookie className="h-[70vh] grid place-items-center px-9 xs:text-center md:text-left">
       <TitleContain className="text-center max-w-xl mx-auto">
-        <Text color="#EA6F66" className="font-UbuntuRegular font-bold text-xl">
+        <Text
+          color="humaapi.0"
+          className="font-bold text-xl"
+          sx={{
+            fontFamily: 'Ubuntu-Regular'
+          }}>
           Cookie policy
         </Text>
         <Title className="text-center">

@@ -19,7 +19,7 @@ const TableDescription: FC<ITableDescription> = (props) => {
         fontSize="md"
         highlightOnHover
         withBorder
-        className="font-UbuntuRegular">
+        sx={{ fontFamily: 'Ubuntu-Regular' }}>
         <thead>
           <tr>
             <th>Name</th>

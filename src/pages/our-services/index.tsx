@@ -9,7 +9,7 @@ import {
 } from 'src/services/our-service-service';
 import { HomeService, IDataOurService } from 'src/services/home-service';
 import {
-  IDataNavigationFooter,
+  INavigationFooterData,
   INavigationHeaderData,
   navigationService
 } from 'src/services/navigation-service';
@@ -19,7 +19,7 @@ interface IOurServices {
   serviceDesData: IDataOurServiceView[];
   headerData: IDataOurService[];
   navigationHeaderData: INavigationHeaderData[];
-  navigationFooterData: IDataNavigationFooter[];
+  navigationFooterData: INavigationFooterData[];
 }
 const OurServices: FC<IOurServices> = ({ ...props }) => {
   const {

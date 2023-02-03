@@ -3,12 +3,12 @@ import styled from '@emotion/styled';
 import Description from 'src/components/modules/description';
 import Image from 'next/image';
 import { Box } from '@mantine/core';
-import { IDataLandingAboutUs } from 'src/services/about-us-service';
+import { ILandingAboutUsData } from 'src/services/about-us-service';
 import { FC } from 'react';
 import AboutusImage from '../../../public/assets/img/pexels-diva-plavalaguna-6147029.jpg';
 
 interface ILandingAboutUs {
-  landingData: IDataLandingAboutUs;
+  landingData: ILandingAboutUsData;
 }
 const Contain = styled.div``;
 const Section = styled.section``;

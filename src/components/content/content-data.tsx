@@ -25,6 +25,7 @@ import AurelIcon from 'src/components/elements/svg/avatars/aurel-icon';
 import FreddyIcon from 'src/components/elements/svg/avatars/freddy-icon';
 import GratientIcon from 'src/components/elements/svg/avatars/gratient-icon';
 import SamIcon from 'src/components/elements/svg/avatars/sam-icon';
+/** Other icons */
 import IllustrationLandingPage from 'src/components/elements/svg/icons/illustration-landing-page';
 import DeploymentIcon from 'src/components/elements/svg/icons/deployment-icon';
 import IllustrationDesign from '../elements/svg/services/illustration-design';
@@ -138,86 +139,6 @@ const DataService = {
       icon: <SamIcon />,
       role: 'Designer',
       name: 'Samuel  stch'
-    }
-  ],
-  navLink: [
-    { link: '/', label: 'Home' },
-    { link: '/our-services', label: 'Our Services' },
-    { link: '/about-us', label: 'About us' },
-    { link: '/contact-us', label: 'Contact us' }
-  ],
-  footerLink: [
-    {
-      title: 'Our Services',
-      links: [
-        {
-          label: 'Features',
-          link: '#'
-        },
-        {
-          label: 'Pricing',
-          link: '#'
-        },
-        {
-          label: 'Support',
-          link: '#'
-        },
-        {
-          label: 'Forums',
-          link: '#'
-        }
-      ]
-    },
-    {
-      title: 'About Us',
-      links: [
-        {
-          label: 'Contribute',
-          link: '#'
-        },
-        {
-          label: 'Media assets',
-          link: '#'
-        },
-        {
-          label: 'Changelog',
-          link: '#'
-        },
-        {
-          label: 'Releases',
-          link: '#'
-        }
-      ]
-    },
-    {
-      title: 'Contact Us',
-      links: [
-        {
-          label: 'Join Discord',
-          link: '#'
-        },
-        {
-          label: 'Follow on Twitter',
-          link: '#'
-        },
-        {
-          label: 'Email newsletter',
-          link: '#'
-        },
-        {
-          label: 'GitHub discussions',
-          link: '#'
-        }
-      ]
-    },
-    {
-      title: 'Cookie Policy',
-      links: [
-        {
-          label: 'Know more about it',
-          link: '/cookie-policy'
-        }
-      ]
     }
   ],
   cookieContentData: [

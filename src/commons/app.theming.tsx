@@ -9,6 +9,9 @@ const appTheme: MantineThemeOverride = {
     lg: 18,
     xl: 20
   },
+  colors: {
+    humaapi: ['#EA6F66']
+  },
   lineHeight: '20px',
   headings: {
     // properties for individual headings, all of them are optional

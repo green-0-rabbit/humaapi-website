@@ -1,67 +1,45 @@
 const Implementation = () => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24">
-    <g
-      id="vuesax_linear_document-code-2"
-      data-name="vuesax/linear/document-code-2"
-      transform="translate(-300 -252)">
-      <g id="document-code-2">
-        <path
-          id="Vector"
-          d="M8,20h5c3.5,0,5-2,5-5V5c0-3-1.5-5-5-5H5C1.5,0,0,2,0,5v7"
-          transform="translate(303 254)"
-          fill="none"
-          stroke="#292d32"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-        />
-        <path
-          id="Vector-2"
-          data-name="Vector"
-          d="M0,0V2A2.006,2.006,0,0,0,2,4H4"
-          transform="translate(314.5 256.5)"
-          fill="none"
-          stroke="#292d32"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-        />
-        <path
-          id="Vector-3"
-          data-name="Vector"
-          d="M2,0,0,2,2,4"
-          transform="translate(302 269)"
-          fill="none"
-          stroke="#292d32"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-        />
-        <path
-          id="Vector-4"
-          data-name="Vector"
-          d="M0,0,2,2,0,4"
-          transform="translate(307 269)"
-          fill="none"
-          stroke="#292d32"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-        />
-        <path
-          id="Vector-5"
-          data-name="Vector"
-          d="M0,0H24V24H0Z"
-          transform="translate(300 252)"
-          fill="none"
-          opacity="0"
-        />
-      </g>
+    width="36"
+    height="36"
+    viewBox="0 0 36 36"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg">
+    <g clipPath="url(#clip0_1487_100)">
+      <path
+        d="M16.5 33H24C29.25 33 31.5 30 31.5 25.5V10.5C31.5 6 29.25 3 24 3H12C6.75 3 4.5 6 4.5 10.5V21"
+        stroke="#FF0000"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M21.75 6.75V9.75C21.7524 10.5449 22.0692 11.3066 22.6313 11.8687C23.1934 12.4308 23.9551 12.7476 24.75 12.75H27.75"
+        stroke="#FF0000"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M6 25.5L3 28.5L6 31.5"
+        stroke="#FF0000"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10.5 25.5L13.5 28.5L10.5 31.5"
+        stroke="#FF0000"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </g>
+    <defs>
+      <clipPath id="clip0_1487_100">
+        <rect width="36" height="36" fill="white" />
+      </clipPath>
+    </defs>
   </svg>
 );
 export default Implementation;

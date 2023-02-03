@@ -1,100 +1,67 @@
 const Training = () => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24">
-    <g
-      id="vuesax_linear_data-2"
-      data-name="vuesax/linear/data-2"
-      transform="translate(-684 -188)">
-      <g id="data-2">
-        <path
-          id="Vector"
-          d="M5,6H2A2.006,2.006,0,0,1,0,4V2A2.006,2.006,0,0,1,2,0H5A2.006,2.006,0,0,1,7,2V4A2.006,2.006,0,0,1,5,6Z"
-          transform="translate(686 190)"
-          fill="none"
-          stroke="#292d32"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-        />
-        <path
-          id="Vector-2"
-          data-name="Vector"
-          d="M4.8,4H1.2A1.2,1.2,0,0,1,0,2.8V1.2A1.2,1.2,0,0,1,1.2,0H4.8A1.2,1.2,0,0,1,6,1.2V2.8A1.2,1.2,0,0,1,4.8,4Z"
-          transform="translate(700 191)"
-          fill="none"
-          stroke="#292d32"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-        />
-        <path
-          id="Vector-3"
-          data-name="Vector"
-          d="M4.8,4H1.2A1.2,1.2,0,0,1,0,2.8V1.2A1.2,1.2,0,0,1,1.2,0H4.8A1.2,1.2,0,0,1,6,1.2V2.8A1.2,1.2,0,0,1,4.8,4Z"
-          transform="translate(700 198.5)"
-          fill="none"
-          stroke="#292d32"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-        />
-        <path
-          id="Vector-4"
-          data-name="Vector"
-          d="M0,0H7"
-          transform="translate(693 193)"
-          fill="none"
-          stroke="#292d32"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-        />
-        <path
-          id="Vector-5"
-          data-name="Vector"
-          d="M0,0V13a2.006,2.006,0,0,0,2,2H3.5"
-          transform="translate(696.5 193)"
-          fill="#fff"
-          stroke="#292d32"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-        />
-        <path
-          id="Vector-6"
-          data-name="Vector"
-          d="M0,0H3.5"
-          transform="translate(696.5 200.5)"
-          fill="#fff"
-          stroke="#292d32"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-        />
-        <path
-          id="Vector-7"
-          data-name="Vector"
-          d="M4.8,4H1.2A1.2,1.2,0,0,1,0,2.8V1.2A1.2,1.2,0,0,1,1.2,0H4.8A1.2,1.2,0,0,1,6,1.2V2.8A1.2,1.2,0,0,1,4.8,4Z"
-          transform="translate(700 206)"
-          fill="none"
-          stroke="#292d32"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-        />
-        <path
-          id="Vector-8"
-          data-name="Vector"
-          d="M0,0H24V24H0Z"
-          transform="translate(684 188)"
-          fill="none"
-          opacity="0"
-        />
-      </g>
+    width="36"
+    height="36"
+    viewBox="0 0 36 36"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg">
+    <g clipPath="url(#clip0_1487_108)">
+      <path
+        d="M10.5 12H6C5.20508 11.9976 4.4434 11.6808 3.8813 11.1187C3.31921 10.5566 3.00237 9.79492 3 9V6C3.00237 5.20508 3.31921 4.4434 3.8813 3.8813C4.4434 3.31921 5.20508 3.00237 6 3L10.5 3C11.2949 3.00237 12.0566 3.31921 12.6187 3.8813C13.1808 4.4434 13.4976 5.20508 13.5 6V9C13.4976 9.79492 13.1808 10.5566 12.6187 11.1187C12.0566 11.6808 11.2949 11.9976 10.5 12Z"
+        stroke="#00FABE"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M31.2 10.5H25.8C25.3226 10.5 24.8648 10.3104 24.5272 9.97279C24.1896 9.63523 24 9.17739 24 8.7V6.3C24 5.82261 24.1896 5.36477 24.5272 5.02721C24.8648 4.68964 25.3226 4.5 25.8 4.5H31.2C31.6774 4.5 32.1352 4.68964 32.4728 5.02721C32.8104 5.36477 33 5.82261 33 6.3V8.7C33 9.17739 32.8104 9.63523 32.4728 9.97279C32.1352 10.3104 31.6774 10.5 31.2 10.5Z"
+        stroke="#00FABE"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M31.2 21.75H25.8C25.3226 21.75 24.8648 21.5604 24.5272 21.2228C24.1896 20.8852 24 20.4274 24 19.95V17.55C24 17.0726 24.1896 16.6148 24.5272 16.2772C24.8648 15.9396 25.3226 15.75 25.8 15.75H31.2C31.6774 15.75 32.1352 15.9396 32.4728 16.2772C32.8104 16.6148 33 17.0726 33 17.55V19.95C33 20.4274 32.8104 20.8852 32.4728 21.2228C32.1352 21.5604 31.6774 21.75 31.2 21.75Z"
+        stroke="#00FABE"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M13.5 7.5H24"
+        stroke="#00FABE"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M18.75 7.5V27C18.7524 27.7949 19.0692 28.5566 19.6313 29.1187C20.1934 29.6808 20.9551 29.9976 21.75 30H24"
+        stroke="#00FABE"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M18.75 18.75H24Z" fill="white" />
+      <path
+        d="M18.75 18.75H24"
+        stroke="#00FABE"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M31.2 33H25.8C25.3226 33 24.8648 32.8104 24.5272 32.4728C24.1896 32.1352 24 31.6774 24 31.2V28.8C24 28.3226 24.1896 27.8648 24.5272 27.5272C24.8648 27.1896 25.3226 27 25.8 27H31.2C31.6774 27 32.1352 27.1896 32.4728 27.5272C32.8104 27.8648 33 28.3226 33 28.8V31.2C33 31.6774 32.8104 32.1352 32.4728 32.4728C32.1352 32.8104 31.6774 33 31.2 33Z"
+        stroke="#00FABE"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </g>
+    <defs>
+      <clipPath id="clip0_1487_108">
+        <rect width="36" height="36" fill="white" />
+      </clipPath>
+    </defs>
   </svg>
 );
 export default Training;

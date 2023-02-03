@@ -17,12 +17,17 @@ const Container = styled.div``;
 
 const CookiePolicyContent: FC<ICookiePolicyContent> = ({ ...props }) => {
   const { cookiesData, cookiePolicyContent } = props;
-  const filter = { ...cookiePolicyContent };
+  const filterCookiePolicyContent = { ...cookiePolicyContent };
   return (
     <Box>
-      <HeadCookie title={filter.title} content={filter.content} />
+      <HeadCookie
+        title={filterCookiePolicyContent.title}
+        content={filterCookiePolicyContent.content}
+      />
       <Container className="space-y-20 ">
-        <DescriptionField content={filter.descriptionField} />
+        <DescriptionField
+          content={filterCookiePolicyContent.descriptionField}
+        />
         <TableDescription cookiesData={cookiesData} />
       </Container>
     </Box>

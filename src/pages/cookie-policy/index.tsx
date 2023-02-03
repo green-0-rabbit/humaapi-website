@@ -9,7 +9,7 @@ import {
 } from 'src/services/cookie-service';
 
 import {
-  IDataNavigationFooter,
+  INavigationFooterData,
   INavigationHeaderData,
   navigationService
 } from 'src/services/navigation-service';
@@ -18,7 +18,7 @@ import Layout from 'src/layouts/layout';
 interface ICookie {
   cookiesData: ICookieManagementData[];
   cookiePolicyContent: IDataCookiePolicy[];
-  navigationFooterData: IDataNavigationFooter[];
+  navigationFooterData: INavigationFooterData[];
   navigationHeaderData: INavigationHeaderData[];
 }
 

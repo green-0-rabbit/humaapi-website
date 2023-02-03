@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import styled from '@emotion/styled';
 import { Carousel } from '@mantine/carousel';
-import { Text, Container, Paper, createStyles } from '@mantine/core';
+import { Text, Container, Paper, createStyles, Box } from '@mantine/core';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 import DataService from 'src/components/content/content-data';
@@ -56,7 +56,9 @@ const Process: FC<IProcess> = ({ ...props }) => {
               radius={20}
               key={index}
               style={{ width: 280, height: 173 }}>
-              <Contain className="grid gap-1 grid-cols-1 font-UbuntuRegular">
+              <Box
+                className="grid gap-1 grid-cols-1"
+                sx={{ fontFamily: 'Ubuntu-Regular' }}>
                 <Icon>{icons[index].icon}</Icon>
                 <TitleCard
                   className={`text-base font-semibold ${classes.titleColor}`}>
@@ -69,7 +71,7 @@ const Process: FC<IProcess> = ({ ...props }) => {
                   lineClamp={4}>
                   {el.content}
                 </Text>
-              </Contain>
+              </Box>
             </Paper>
           ))}
         </Container>

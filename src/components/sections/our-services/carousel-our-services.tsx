@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { FC, ReactNode, useCallback, useEffect, useState } from 'react';
 import { Carousel, Embla } from '@mantine/carousel';
-import { createStyles, Paper, Text } from '@mantine/core';
+import { Box, createStyles, Paper, Text } from '@mantine/core';
 import styled from '@emotion/styled';
 
 const useStyles = createStyles((theme) => ({
@@ -16,7 +16,6 @@ interface ICarouselOursServices {
   }[];
   icons: { icon: JSX.Element }[];
 }
-const Contain = styled('div')``;
 const Icon = styled('div')``;
 const TitleCard = styled('div')``;
 const CarouselOursServices: FC<ICarouselOursServices> = (props) => {
@@ -81,7 +80,9 @@ const CarouselOursServices: FC<ICarouselOursServices> = (props) => {
             className="grid place-items-start"
             radius={20}
             style={{ width: 280, height: 173 }}>
-            <Contain className="grid gap-1 grid-cols-1 font-UbuntuRegular">
+            <Box
+              className="grid gap-1 grid-cols-1"
+              sx={{ fontFamily: 'Ubuntu-Regular' }}>
               <Icon>{icons[index].icon}</Icon>
               <TitleCard
                 className={`text-base font-semibold ${classes.titleColor}`}>
@@ -94,7 +95,7 @@ const CarouselOursServices: FC<ICarouselOursServices> = (props) => {
                 lineClamp={4}>
                 {el.content}
               </Text>
-            </Contain>
+            </Box>
           </Paper>
         </Carousel.Slide>
       ))}

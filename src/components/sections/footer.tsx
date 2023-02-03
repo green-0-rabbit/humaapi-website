@@ -1,17 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   createStyles,
   Text,
   Container,
   ActionIcon,
-  Group
+  Group,
+  Box
 } from '@mantine/core';
 import Link from 'next/link';
 import { INavigationFooter } from 'src/commons/interface';
 import Copywritting from '../elements/svg/icons/copywritting-icon';
 import LogoHumaapi from '../elements/svg/icons/logo-humaapi';
-import LinkedinLogo from '../elements/svg/icons/linkedin-logo';
-import TwitterLogo from '../elements/svg/icons/twitter-logo';
-import navigation from '../features/navigation-hook';
 import DataService from '../content/content-data';
 
 const useStyles = createStyles((theme) => ({
@@ -122,7 +121,7 @@ const Footer = ({ itemFooter }: FooterLinksProps) => {
       <Link
         key={link}
         className={classes.link}
-        href={`${link.search('https:/') !== -1 ? `${link}` : `/${link}`}`}>
+        href={`${link.search('https://') !== -1 ? `${link}` : `/${link}`}`}>
         {group.contentparag[index]}
       </Link>
     ));
@@ -145,11 +144,16 @@ const Footer = ({ itemFooter }: FooterLinksProps) => {
           <Text
             size="xs"
             color="dimmed"
-            className={`${classes.description} font-UbuntuRegular`}>
+            className={`${classes.description}`}
+            sx={{ fontFamily: 'Ubuntu-Regular' }}>
             {descTitle?.contentparag}
           </Text>
         </div>
-        <div className={`${classes.groups} font-UbuntuRegular`}>{groups}</div>
+        <Box
+          className={`${classes.groups}`}
+          sx={{ fontFamily: 'Ubuntu-Regular' }}>
+          {groups}
+        </Box>
       </Container>
       <Container className={classes.afterFooter}>
         <Copywritting text="2022 humaapi" />

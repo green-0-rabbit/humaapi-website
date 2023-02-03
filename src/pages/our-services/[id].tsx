@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { FC } from 'react';
 import DataService from 'src/components/content/content-data';
-import TheRenders from 'src/components/sections/our-services/sub-component/the-renders';
+import TheRenders from 'src/components/sections/our-services/sub-component/weget';
 import Process from 'src/components/sections/our-services/sub-component/process';
 import { Box } from '@mantine/core';
 import { GetStaticPaths, GetStaticProps } from 'next';
@@ -12,7 +12,7 @@ import {
 import CardService from 'src/components/modules/card-service';
 import { useRouter } from 'next/router';
 import {
-  IDataNavigationFooter,
+  INavigationFooterData,
   INavigationHeaderData,
   navigationService
 } from 'src/services/navigation-service';
@@ -21,7 +21,7 @@ import Layout from 'src/layouts/layout';
 interface IIdOutService {
   serviceData: IDataDetailsService;
   navigationHeaderData: INavigationHeaderData[];
-  navigationFooterData: IDataNavigationFooter[];
+  navigationFooterData: INavigationFooterData[];
 }
 const HeaderBannerContain = styled.div``;
 const ContainService = styled.div``;
@@ -52,7 +52,7 @@ const IdOutService: FC<IIdOutService> = (props) => {
           />
         </HeaderBannerContain>
         <Box className="space-y-32">
-          <TheRenders dataTheRenders={serviceData.whatget} />
+          <TheRenders dataWeget={serviceData.whatget} />
           <Process dataProcess={serviceData.process} icons={icons[0]} />
         </Box>
       </ContainService>

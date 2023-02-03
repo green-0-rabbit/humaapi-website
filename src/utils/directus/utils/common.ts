@@ -24,7 +24,8 @@ interface IReadByQueryParam<Model extends Record<string, any>> {
 }
 
 class HMDirectus {
-  private _accesToken = 'AxY2xnyT2dVpRbGONN12DjL2lbP-bmkW';
+  // AxY2xnyT2dVpRbGONN12DjL2lbP-bmkW
+  private _accesToken = 'JvlT05hhhPlNrVV0yuX5DyKzVEbUEk_E';
 
   private _client: ApolloClient<NormalizedCacheObject>;
 

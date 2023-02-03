@@ -19,7 +19,7 @@ interface IOurTeam {
   title_team: string;
   content_team: string;
 }
-export type IDataLandingAboutUs = NonUndefined<
+export type ILandingAboutUsData = NonUndefined<
   Required<ReturnTypeAsync<typeof aboutUsService.getLanding>>
 >;
 export type IDataOurTeam = NonUndefined<

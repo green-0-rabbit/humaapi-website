@@ -30,7 +30,7 @@ const OurServices: FC<IOurServices> = (props) => {
             lineHeight: '28px'
           }}
           size="xl"
-          color="#EA6F66"
+          color="humaapi.0"
           className="mb-1">
           Our services
         </Text>
@@ -56,7 +56,7 @@ const OurServices: FC<IOurServices> = (props) => {
                 style={{ width: 205, height: 150 }}>
                 <DispalyIcons>{Icons[index].icon}</DispalyIcons>
                 <Text
-                  color="#EA6F66"
+                  color="humaapi.0"
                   sx={{ fontFamily: 'Ubuntu-Regular' }}
                   className="text-center">
                   {el.serviceTitle}

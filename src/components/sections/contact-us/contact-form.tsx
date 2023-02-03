@@ -12,6 +12,7 @@ import {
 import contactService from 'src/services/contact-service';
 import navigation from 'src/components/features/navigation-hook';
 import Link from 'next/link';
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 const useStyles = createStyles((theme) => ({
   input: {
@@ -34,27 +35,34 @@ export interface ISignInInput {
   captchaToken: string;
   recaptchaCheckbox: boolean;
 }
-// const getStorageValue = localStorage.getItem('message')
-//   ? localStorage.getItem('message')
-//   : '';
-// console.log(getStorageValue);
-
-const defaultValues: ISignInInput = {
-  name: '',
-  company: '',
-  email: '',
-  domaine: '',
-  message: '',
-  acceptCondition: false,
-  captchaToken: '',
-  recaptchaCheckbox: false
-};
 
 const ContainText = styled.div``;
 const Form = styled.form``;
 
 const ContactForm = () => {
+  const memeMessage = () => {
+    let getStorage = '';
+    if (typeof window !== 'undefined') {
+      const storedValue = localStorage.getItem('message');
+      if (storedValue) getStorage = storedValue;
+      setTimeout(() => {
+        localStorage.clear();
+      }, 2000);
+    }
+    return getStorage;
+  };
+  const [valueLocal, setvalueLocal] = useState(memeMessage());
   const { classes } = useStyles();
+  const defaultValues: ISignInInput = {
+    name: '',
+    company: '',
+    email: '',
+    domaine: '',
+    message: valueLocal,
+    acceptCondition: false,
+    captchaToken: '',
+    recaptchaCheckbox: false
+  };
   const { handleSubmit, ...methods } = useForm<ISignInInput>({
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
@@ -63,7 +71,6 @@ const ContactForm = () => {
   const {
     formState: { errors }
   } = methods;
-
   const fieldsGroupMeta: IFieldGroupMetaFlex<ISignInInput>[] = [
     {
       groupName: '',

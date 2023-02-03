@@ -29,7 +29,7 @@ const DomaineActivity: FC<IDomaineActivity> = (props) => {
             lineHeight: '28px'
           }}
           size="xl"
-          color="#EA6F66"
+          color="humaapi.0"
           className="mb-1">
           Domains activity
         </Text>

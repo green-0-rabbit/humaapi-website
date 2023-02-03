@@ -71,7 +71,7 @@ const CarouselHome: FC<ICarouselHome> = (props) => {
               className="flex flex-col items-center justify-center space-y-4"
               style={{ width: 205, height: 150 }}>
               {icons[index].icon}
-              <Text color="#EA6F66">{el.serviceTitle}</Text>
+              <Text color="humaapi.0">{el.serviceTitle}</Text>
             </Paper>
           </Link>
         </Carousel.Slide>

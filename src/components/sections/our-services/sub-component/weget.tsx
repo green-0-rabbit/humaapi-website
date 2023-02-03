@@ -7,8 +7,8 @@ const useStyles = createStyles((theme) => ({
   titleColor: { color: theme.colorScheme === 'dark' ? 'white' : '#2b2b2b' },
   textColor: { color: theme.colorScheme === 'dark' ? '#afaaaa' : '#6B7280' }
 }));
-interface ITheRenders {
-  dataTheRenders: {
+interface IWeget {
+  dataWeget: {
     getTitle: string;
     getList: { title: string; content: string }[];
   };
@@ -18,19 +18,18 @@ const HeadSection = styled('div')``;
 const ContainDescription = styled('div')``;
 const ContainCards = styled('div')``;
 const Contain = styled('div')``;
-const Num = styled('div')``;
 const TitleCard = styled('div')``;
 
-const TheRenders: FC<ITheRenders> = ({ ...props }) => {
+const Weget: FC<IWeget> = ({ ...props }) => {
   const { classes } = useStyles();
-  const { dataTheRenders } = props;
+  const { dataWeget } = props;
 
   return (
     <Section className="mx-4">
       <ContainDescription>
         <HeadSection className="text-center">
           <Description
-            title={dataTheRenders.getTitle}
+            title={dataWeget.getTitle}
             sx={{
               fontFamily: 'Ubuntu-Bold',
               fontWeight: 700,
@@ -42,17 +41,19 @@ const TheRenders: FC<ITheRenders> = ({ ...props }) => {
       </ContainDescription>
       <ContainCards className="grid place-items-center mt-10">
         <Container className="grid gap-4 grid-cols-1 md:grid-cols-2">
-          {dataTheRenders.getList.map((el, index) => (
+          {dataWeget.getList.map((el, index) => (
             <Paper
               className="md:grid place-items-center"
               key={el.title}
               p={14}
               radius={24}
               style={{ width: 296, height: 96 }}>
-              <Contain className="flex font-UbuntuRegular">
-                <Num className="w-8 font-bold text-hm text-base mr-2">
+              <Box className="flex" sx={{ fontFamily: 'Ubuntu-Regular' }}>
+                <Text
+                  className="w-8 font-bold text-base mr-2"
+                  color="humaapi.0">
                   {`${index + 1 <= 9 ? '0' : ''}${index + 1}`}
-                </Num>
+                </Text>
 
                 <Box className="flex flex-col">
                   <TitleCard
@@ -70,7 +71,7 @@ const TheRenders: FC<ITheRenders> = ({ ...props }) => {
                     {el.content}
                   </Text>
                 </Box>
-              </Contain>
+              </Box>
             </Paper>
           ))}
         </Container>
@@ -79,4 +80,4 @@ const TheRenders: FC<ITheRenders> = ({ ...props }) => {
   );
 };
 
-export default TheRenders;
+export default Weget;

@@ -1,122 +1,80 @@
 const Maintenance = () => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24">
-    <g
-      id="vuesax_linear_driver-refresh"
-      data-name="vuesax/linear/driver-refresh"
-      transform="translate(-236 -252)">
-      <g id="driver-refresh">
-        <path
-          id="Vector"
-          d="M0,0V2"
-          transform="translate(242 258.25)"
-          fill="none"
-          stroke="#292d32"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-        />
-        <path
-          id="Vector-2"
-          data-name="Vector"
-          d="M20,10V7c0-5-2-7-7-7H7C2,0,0,2,0,7v6c0,5,2,7,7,7h3"
-          transform="translate(238 254)"
-          fill="none"
-          stroke="#292d32"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-        />
-        <path
-          id="Vector-3"
-          data-name="Vector"
-          d="M0,0V2"
-          transform="translate(246 258.25)"
-          fill="none"
-          stroke="#292d32"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-        />
-        <path
-          id="Vector-4"
-          data-name="Vector"
-          d="M0,0V2"
-          transform="translate(242 268)"
-          fill="none"
-          stroke="#292d32"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-        />
-        <path
-          id="Vector-5"
-          data-name="Vector"
-          d="M0,0V2"
-          transform="translate(246 268)"
-          fill="none"
-          stroke="#292d32"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-        />
-        <path
-          id="Vector-6"
-          data-name="Vector"
-          d="M0,0H4"
-          transform="translate(250 259.25)"
-          fill="none"
-          stroke="#292d32"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-        />
-        <path
-          id="Vector-7"
-          data-name="Vector"
-          d="M0,0H20"
-          transform="translate(238 264)"
-          fill="none"
-          stroke="#292d32"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-        />
-        <path
-          id="Vector-8"
-          data-name="Vector"
-          d="M0,4.89V6.75"
-          transform="translate(251.86 267.25)"
-          fill="none"
-          stroke="#292d32"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-        />
-        <path
-          id="Vector-9"
-          data-name="Vector"
-          d="M5.7,5.08A3.24,3.24,0,0,1,2.89,6.7,3.846,3.846,0,0,1,0,4.9M.07,1.84A3.232,3.232,0,0,1,2.89.21a3.994,3.994,0,0,1,3.25,1.8M6.14,0V2h-2M0,4.89H2"
-          transform="translate(251.86 267.25)"
-          fill="none"
-          stroke="#292d32"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-        />
-        <path
-          id="Vector-10"
-          data-name="Vector"
-          d="M0,0H24V24H0Z"
-          transform="translate(236 252)"
-          fill="none"
-          opacity="0"
-        />
-      </g>
+    width="36"
+    height="36"
+    viewBox="0 0 36 36"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg">
+    <g clipPath="url(#clip0_1487_132)">
+      <path
+        d="M9 9.375V12.375"
+        stroke="#4505CD"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M33 18V13.5C33 6 30 3 22.5 3H13.5C6 3 3 6 3 13.5V22.5C3 30 6 33 13.5 33H18"
+        stroke="#4505CD"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M15 9.375V12.375"
+        stroke="#4505CD"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9 24V27"
+        stroke="#4505CD"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M15 24V27"
+        stroke="#4505CD"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M21 10.875H27"
+        stroke="#4505CD"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M3 18H33"
+        stroke="#4505CD"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M23.79 30.21V33"
+        stroke="#4505CD"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M32.34 30.495C31.9129 31.2347 31.2984 31.8488 30.5584 32.2754C29.8185 32.702 28.9791 32.9261 28.125 32.925C27.2436 32.8379 26.3942 32.549 25.6424 32.0808C24.8907 31.6126 24.2568 30.9776 23.79 30.225M23.895 25.635C24.3205 24.8895 24.9363 24.2703 25.6795 23.8407C26.4226 23.4111 27.2666 23.1866 28.125 23.19C29.0955 23.2114 30.0463 23.4683 30.8955 23.9387C31.7447 24.409 32.4669 25.0787 33 25.89M33 22.875V25.875H30M23.79 30.21H26.79"
+        stroke="#4505CD"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </g>
+    <defs>
+      <clipPath id="clip0_1487_132">
+        <rect width="36" height="36" fill="white" />
+      </clipPath>
+    </defs>
   </svg>
 );
 export default Maintenance;

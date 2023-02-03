@@ -1,64 +1,61 @@
 const Assement = () => (
   <svg
-    width="40"
-    height="40"
-    viewBox="0 0 40 40"
+    width="36"
+    height="36"
+    viewBox="0 0 36 36"
     fill="none"
     xmlns="http://www.w3.org/2000/svg">
-    <g clip-path="url(#clip0_1484_13)">
-      <rect width="40" height="40" fill="white" />
+    <g clipPath="url(#clip0_1487_161)">
       <mask
-        id="mask0_1484_13"
+        id="mask0_1487_161"
         // style="mask-type:luminance"
         maskUnits="userSpaceOnUse"
         x="0"
         y="0"
-        width="40"
-        height="40">
-        <path d="M40 0H0V40H40V0Z" fill="white" />
+        width="36"
+        height="36">
+        <path d="M36 0H0V36H36V0Z" fill="white" />
       </mask>
-      <g mask="url(#mask0_1484_13)">
+      <g mask="url(#mask0_1487_161)">
         <path
-          d="M30.5 27.6667V28.3334C30.5 31.3334 28 33.8334 25 33.8334H15C12 33.8334 9.5 31.3334 9.5 28.3334V22.3334"
+          d="M27.45 24.9V25.5C27.45 28.2 25.2 30.45 22.5 30.45H13.5C10.8 30.45 8.55005 28.2 8.55005 25.5V20.1"
           stroke="#0AA7FF"
-          stroke-width="1.5"
-          stroke-miterlimit="10"
-          stroke-linecap="round"
+          strokeWidth="1.5"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
         />
         <path
-          d="M19.1667 12.1667H25C26.1667 12.1667 27.3334 12.5 28.3334 13.1667"
+          d="M17.25 10.95H22.5C23.55 10.95 24.6 11.25 25.5 11.85"
           stroke="#0AA7FF"
-          stroke-width="1.5"
-          stroke-miterlimit="10"
-          stroke-linecap="round"
+          strokeWidth="1.5"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
         />
         <path
-          d="M9.5 18.1667C12.8137 18.1667 15.5 15.4804 15.5 12.1667C15.5 8.85298 12.8137 6.16669 9.5 6.16669C6.18629 6.16669 3.5 8.85298 3.5 12.1667C3.5 15.4804 6.18629 18.1667 9.5 18.1667Z"
-          fill="white"
+          d="M8.55002 16.35C11.5324 16.35 13.95 13.9323 13.95 10.95C13.95 7.96765 11.5324 5.54999 8.55002 5.54999C5.56769 5.54999 3.15002 7.96765 3.15002 10.95C3.15002 13.9323 5.56769 16.35 8.55002 16.35Z"
           stroke="#0AA7FF"
-          stroke-width="1.5"
-          stroke-miterlimit="10"
+          strokeWidth="1.5"
+          strokeMiterlimit="10"
         />
         <path
-          d="M36.1667 16.8333L27.8333 25.1667C27.3333 25.6667 26.8333 25.8333 26.3333 26L24.3333 26.5C23.6667 26.6667 23.1667 26.1667 23.3333 25.5L23.8333 23.5C24 22.8333 24.3333 22.3333 24.6667 22L33.1667 13.5C33.8333 12.8333 34.8333 12.8333 35.5 13.5L36.3333 14.3333C36.8333 15.3333 36.8333 16.3333 36.1667 16.8333Z"
-          fill="white"
+          d="M32.55 15.15L25.05 22.65C24.6 23.1 24.15 23.25 23.7 23.4L21.9 23.85C21.3 24 20.85 23.55 21 22.95L21.45 21.15C21.6 20.55 21.9 20.1 22.2 19.8L29.85 12.15C30.45 11.55 31.35 11.55 31.95 12.15L32.7 12.9C33.15 13.8 33.15 14.7 32.55 15.15Z"
           stroke="#0AA7FF"
-          stroke-width="1.5"
-          stroke-miterlimit="10"
+          strokeWidth="1.5"
+          strokeMiterlimit="10"
         />
         <path
-          d="M6.66669 11.8334L8.66669 14L12.1667 10.3334"
+          d="M6 10.65L7.8 12.6L10.95 9.29999"
           stroke="#0AA7FF"
-          stroke-width="1.5"
-          stroke-miterlimit="10"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeMiterlimit="10"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </g>
     </g>
     <defs>
-      <clipPath id="clip0_1484_13">
-        <rect width="40" height="40" fill="white" />
+      <clipPath id="clip0_1487_161">
+        <rect width="36" height="36" fill="white" />
       </clipPath>
     </defs>
   </svg>

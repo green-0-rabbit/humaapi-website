@@ -13,7 +13,7 @@ import {
   OurServicesService
 } from 'src/services/our-service-service';
 import {
-  IDataNavigationFooter,
+  INavigationFooterData,
   INavigationHeaderData,
   navigationService
 } from 'src/services/navigation-service/navigation-service';
@@ -27,7 +27,7 @@ interface Ihome {
   serviceData: IDataOurService[];
   serviceCardData: IDataServiceCard[];
   navigationHeaderData: INavigationHeaderData[];
-  navigationFooterData: IDataNavigationFooter[];
+  navigationFooterData: INavigationFooterData[];
 }
 const Home: FC<Ihome> = ({ ...props }) => {
   const {

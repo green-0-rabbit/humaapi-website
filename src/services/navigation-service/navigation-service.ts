@@ -19,7 +19,7 @@ interface IFooterSection {
 export type INavigationHeaderData = Required<
   DeepRequired<ReturnTypeAsync<typeof navigationService.getHeader>>
 >[0];
-export type IDataNavigationFooter = Required<
+export type INavigationFooterData = Required<
   DeepRequired<ReturnTypeAsync<typeof navigationService.getFooter>>
 >[0];
 

@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import { createStyles } from '@mantine/styles';
 import { FC } from 'react';
-import Description from 'src/components/modules/description';
 
 const useStyles = createStyles((theme) => ({
   root: {
