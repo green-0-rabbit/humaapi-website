@@ -50,8 +50,10 @@ yarn-error.log*
 
 # local env files
 .env*.local
+
 # local env
 .env
+
 # vercel
 .vercel
 
