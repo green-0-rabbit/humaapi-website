@@ -41,7 +41,6 @@ export const aboutUsService = {
             `,
         queryName: 'about_us'
       });
-
       if (data) {
         return camelcaseKeys(
           data as unknown as CamelCasedPropertiesDeep<ILandingAboutUs>,

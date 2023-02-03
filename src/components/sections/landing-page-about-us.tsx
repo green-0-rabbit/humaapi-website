@@ -36,6 +36,7 @@ const LandingAboutUs: FC<ILandingAboutUs> = (props) => {
           </Box>
           <ImageContain className="flex justify-center relative mb-12 md:m-0 order-first md:order-last">
             <Image
+              // {`https://1qd42xii.directus.app/assets/${landingData.aboutImg.id}`}
               src={AboutusImage}
               alt="AboutusImage"
               className="object-cover object-center rounded-[50px]

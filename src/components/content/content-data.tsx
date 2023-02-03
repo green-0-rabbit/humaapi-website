@@ -40,6 +40,11 @@ import UserResearch from '../elements/svg/icons/user-research';
 import InteractionDesign from '../elements/svg/icons/intera-design';
 import Testing from '../elements/svg/icons/testing';
 import InfoArchitecture from '../elements/svg/icons/info-architecture';
+import Assement from '../elements/svg/icons/assement';
+import Implementation from '../elements/svg/icons/implementation';
+import Training from '../elements/svg/icons/training';
+import Integration from '../elements/svg/icons/integration';
+import Maintenance from '../elements/svg/icons/maintenance';
 
 const DataService = {
   serviceSvgIllustration: [
@@ -73,11 +78,11 @@ const DataService = {
     {
       service: 'devops',
       data: [
-        { icon: <GatheringIcon /> },
-        { icon: <UxUiIcon /> },
-        { icon: <DevelopementIcon /> },
-        { icon: <QualityAssuranceIcon /> },
-        { icon: <DeploymentIcon /> }
+        { icon: <Assement /> },
+        { icon: <Implementation /> },
+        { icon: <Training /> },
+        { icon: <Integration /> },
+        { icon: <Maintenance /> }
       ]
     },
     {

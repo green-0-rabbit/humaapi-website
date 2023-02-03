@@ -58,14 +58,12 @@ const AboutUs: FC<IAboutUs> = ({ ...props }) => {
             <Title className="text-center">
               <Description
                 title={filter.titleTeam}
-                content={filter.contentTeam}
                 sx={{
                   fontFamily: 'Ubuntu-Bold',
                   fontWeight: 700,
                   lineHeight: '36px'
                 }}
                 size={24}
-                space={4}
               />
             </Title>
           </ContainDescription>
