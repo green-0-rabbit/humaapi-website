@@ -37,7 +37,7 @@ const DescriptionField: FC<IDescriptionField> = ({ ...props }) => {
   const { content } = props;
   return (
     <Content
-      className={`${classes.root} mx-auto max-w-xl text-center`}
+      className={`${classes.root} mx-auto max-w-xl px-4 text-left md:text-center`}
       dangerouslySetInnerHTML={{ __html: content }}
     />
   );

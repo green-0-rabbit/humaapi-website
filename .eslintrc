@@ -30,6 +30,7 @@
     "ecmaFeatures": {
       "jsx": true
     },
+    "extraFileExtensions": [".css"],
     "ecmaVersion": 11,
     "sourceType": "module",
     "project": "./tsconfig.json"
