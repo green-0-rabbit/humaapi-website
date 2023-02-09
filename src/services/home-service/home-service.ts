@@ -19,8 +19,12 @@ interface ILandingPage {
 }
 interface IOurService {
   id: number;
+  title_page: string;
   title_service: string;
   content_service: string;
+}
+interface IPageTitle {
+  page_title: string;
 }
 export type IDataDomaineActivity = NonUndefined<
   Required<ReturnTypeAsync<typeof HomeService.getDomaine>>
@@ -30,6 +34,9 @@ export type IDataLandingPage = NonUndefined<
 >;
 export type IDataOurService = NonUndefined<
   Required<ReturnTypeAsync<typeof HomeService.getService>>
+>;
+export type IDataTitle = NonUndefined<
+  Required<ReturnTypeAsync<typeof HomeService.getTitle>>
 >;
 
 export const HomeService = {
@@ -94,7 +101,8 @@ export const HomeService = {
     try {
       const { data } = await hmDirectus.readSingleton<IOurService>({
         fields: `#graphql
-              {      
+              {   
+                title_page   
                 title_service,
                 content_service,
                 
@@ -106,6 +114,32 @@ export const HomeService = {
       if (data) {
         const res = camelcaseKeys(
           data as unknown as CamelCasedPropertiesDeep<IOurService>,
+          {
+            deep: true
+          }
+        );
+        return res;
+      }
+      return undefined;
+    } catch (err) {
+      const error = <any>err;
+      throw new Error(error.message);
+    }
+  },
+  getTitle: async () => {
+    try {
+      const { data } = await hmDirectus.readSingleton<IPageTitle>({
+        fields: `#graphql
+              {      
+                page_title
+              }
+            `,
+        queryName: 'home'
+      });
+
+      if (data) {
+        const res = camelcaseKeys(
+          data as unknown as CamelCasedPropertiesDeep<IPageTitle>,
           {
             deep: true
           }

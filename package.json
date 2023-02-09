@@ -78,5 +78,6 @@
   "engines": {
     "npm": "please-use-yarn",
     "yarn": ">= 1.19.1"
-  }
+  },
+  "packageManager": "yarn@3.4.1"
 }

@@ -38,10 +38,11 @@ const IdOutService: FC<IIdOutService> = (props) => {
 
   return (
     <Layout
+      pageTitle={serviceData.pageTitle}
       navigationHeaderData={navigationHeaderData}
       navigationFooterData={navigationFooterData}>
       <ContainService>
-        <HeaderBannerContain className="h-screen mt-[16%] sm:mt-0  grid place-items-center p-5 ">
+        <HeaderBannerContain className="mt-[16%] grid h-screen  place-items-center p-5 sm:mt-0 ">
           <CardService
             id={serviceData.id}
             serviceTitle={serviceData.serviceTitle}

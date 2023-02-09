@@ -29,9 +29,9 @@ const CardService: FC<ICardService> = ({ ...props }) => {
   return (
     <ReorderChildren
       id={id}
-      className=" flex flex-col justify-center items-center md:flex-row">
+      className=" flex flex-col items-center justify-center md:flex-row">
       <Box
-        className={`w-[85%] flex justify-center flex-col md:ml-14 ${
+        className={`flex w-[85%] flex-col justify-center md:ml-14 ${
           id % 2 !== 0
             ? 'order-last  md:order-first md:max-w-md md:pr-16'
             : 'md:max-w-md'
@@ -56,7 +56,7 @@ const CardService: FC<ICardService> = ({ ...props }) => {
           </Button>
         </Box>
       </Box>
-      <ContainerImage className="flex justify-center relative mb-12 md:m-0">
+      <ContainerImage className="relative mb-12 flex justify-center md:m-0">
         {Illustration}
       </ContainerImage>
     </ReorderChildren>

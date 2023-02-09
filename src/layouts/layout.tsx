@@ -9,6 +9,7 @@ import {
   INavigationHeaderData
 } from 'src/services/navigation-service';
 import { parseFooter } from 'src/services/navigation-service/helper-function';
+import Head from 'next/head';
 import bgImage from '../../public/assets/img/gradientcircleglassmorphism.png';
 import ScrollTop from '../components/modules/scroll-to-up';
 
@@ -22,28 +23,35 @@ interface ILayout {
   children: ReactNode;
   navigationHeaderData: INavigationHeaderData[];
   navigationFooterData: INavigationFooterData[];
+  pageTitle: string;
 }
 const Container = styled.div``;
 
 const Layout: FC<ILayout> = ({ ...props }) => {
-  const { children, navigationHeaderData, navigationFooterData } = props;
+  const { children, navigationHeaderData, navigationFooterData, pageTitle } =
+    props;
   const { classes } = useStyles();
   const itemFooter = parseFooter(navigationFooterData);
   return (
-    <Container>
-      <Navbar itemNavLink={navigationHeaderData} />
-      <Image
-        src={bgImage}
-        alt="backgroundImage"
-        quality={40}
-        className={` ${
-          classes.root ? 'blur-[195px]' : 'blur-[220px]'
-        } object-center absolute`}
-      />
-      {children}
-      <Footer itemFooter={itemFooter} />
-      <ScrollTop />
-    </Container>
+    <>
+      <Head>
+        <title>{pageTitle}</title>
+      </Head>
+      <Container>
+        <Navbar itemNavLink={navigationHeaderData} />
+        <Image
+          src={bgImage}
+          alt="backgroundImage"
+          quality={40}
+          className={` ${
+            classes.root ? 'blur-[195px]' : 'blur-[220px]'
+          } absolute object-center`}
+        />
+        {children}
+        <Footer itemFooter={itemFooter} />
+        <ScrollTop />
+      </Container>
+    </>
   );
 };
 

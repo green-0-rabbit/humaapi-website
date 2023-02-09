@@ -5,7 +5,8 @@ import {
   HomeService,
   IDataDomaineActivity,
   IDataLandingPage,
-  IDataOurService
+  IDataOurService,
+  IDataTitle
 } from 'src/services/home-service';
 import { FC } from 'react';
 import {
@@ -28,6 +29,7 @@ interface Ihome {
   serviceCardData: IDataServiceCard[];
   navigationHeaderData: INavigationHeaderData[];
   navigationFooterData: INavigationFooterData[];
+  pageTitle: IDataTitle[];
 }
 const Home: FC<Ihome> = ({ ...props }) => {
   const {
@@ -36,13 +38,15 @@ const Home: FC<Ihome> = ({ ...props }) => {
     landingData,
     serviceCardData,
     navigationHeaderData,
-    navigationFooterData
+    navigationFooterData,
+    pageTitle
   } = props;
-
+  const title = { ...pageTitle[0] };
   return (
     <Layout
       navigationHeaderData={navigationHeaderData}
-      navigationFooterData={navigationFooterData}>
+      navigationFooterData={navigationFooterData}
+      pageTitle={title.pageTitle}>
       <Box className="w-full space-y-[72px]">
         <LandingPage landingData={landingData[0]} />
         <OursService
@@ -60,6 +64,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const serviceData = await HomeService.getService();
   const domaineData = await HomeService.getDomaine();
   const landingData = await HomeService.getLanding();
+  const pageTitle = await HomeService.getTitle();
   const serviceCardData = await OurServicesService.getServiceCard();
   const navigationHeaderData = await navigationService.getHeader();
   const navigationFooterData = await navigationService.getFooter();
@@ -71,7 +76,8 @@ export const getStaticProps: GetStaticProps = async () => {
       landingData,
       serviceCardData,
       navigationHeaderData,
-      navigationFooterData
+      navigationFooterData,
+      pageTitle
     }
   };
 };

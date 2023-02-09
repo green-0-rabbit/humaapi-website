@@ -5,6 +5,7 @@ import CookiePolicyContent from 'src/components/sections/cookie-policy/cookie-co
 import {
   cookieService,
   ICookieManagementData,
+  ICookieTitleData,
   IDataCookiePolicy
 } from 'src/services/cookie-service';
 
@@ -20,6 +21,7 @@ interface ICookie {
   cookiePolicyContent: IDataCookiePolicy[];
   navigationFooterData: INavigationFooterData[];
   navigationHeaderData: INavigationHeaderData[];
+  pageTitle: ICookieTitleData[];
 }
 
 const Cookie: FC<ICookie> = ({ ...props }) => {
@@ -27,10 +29,13 @@ const Cookie: FC<ICookie> = ({ ...props }) => {
     cookiesData,
     cookiePolicyContent,
     navigationHeaderData,
-    navigationFooterData
+    navigationFooterData,
+    pageTitle
   } = props;
+  const title = { ...pageTitle[0] };
   return (
     <Layout
+      pageTitle={title.pageTitle}
       navigationHeaderData={navigationHeaderData}
       navigationFooterData={navigationFooterData}>
       <Box className="mx-auto">
@@ -46,6 +51,7 @@ const Cookie: FC<ICookie> = ({ ...props }) => {
 export const getStaticProps: GetStaticProps = async () => {
   const cookiesData = await cookieService.getCookies();
   const cookiePolicyContent = await cookieService.get();
+  const pageTitle = await cookieService.getTitle();
   const navigationHeaderData = await navigationService.getHeader();
   const navigationFooterData = await navigationService.getFooter();
   return {
@@ -53,7 +59,8 @@ export const getStaticProps: GetStaticProps = async () => {
       cookiesData,
       cookiePolicyContent,
       navigationHeaderData,
-      navigationFooterData
+      navigationFooterData,
+      pageTitle
     }
   };
 };

@@ -22,7 +22,7 @@ const OurServices: FC<IOurServices> = (props) => {
 
   return (
     <Box className="flex flex-col md:space-y-16">
-      <ContainDescription className="text-center mx-auto">
+      <ContainDescription className="mx-auto text-center">
         <Text
           sx={{
             fontFamily: 'Ubuntu-Regular',
@@ -32,7 +32,7 @@ const OurServices: FC<IOurServices> = (props) => {
           size="xl"
           color="humaapi.0"
           className="mb-1">
-          Our services
+          {serviceData.titlePage}
         </Text>
         <Description
           title={serviceData.titleService}
@@ -48,7 +48,7 @@ const OurServices: FC<IOurServices> = (props) => {
         />
       </ContainDescription>
       <ContainCards className="hidden md:flex md:justify-center">
-        <Container className="grid gap-8 grid-cols-3">
+        <Container className="grid grid-cols-3 gap-8">
           {serviceCardData.map((el, index) => (
             <Link href={`our-services/${el.serviceLink}`} key={el.serviceLink}>
               <Paper

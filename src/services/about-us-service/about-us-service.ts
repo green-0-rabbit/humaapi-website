@@ -19,6 +19,9 @@ interface IOurTeam {
   title_team: string;
   content_team: string;
 }
+interface IPageTitle {
+  page_title: string;
+}
 export type ILandingAboutUsData = NonUndefined<
   Required<ReturnTypeAsync<typeof aboutUsService.getLanding>>
 >;
@@ -37,6 +40,7 @@ export const aboutUsService = {
                 about_img{
                   id
                 },
+                page_title
               }
             `,
         queryName: 'about_us'
@@ -70,6 +74,33 @@ export const aboutUsService = {
       if (data) {
         return camelcaseKeys(
           data as unknown as CamelCasedPropertiesDeep<IOurTeam>,
+          {
+            deep: true
+          }
+        );
+      }
+      return undefined;
+    } catch (err) {
+      const error = <any>err;
+      throw new Error(error.message);
+    }
+  },
+  getPageTitle: async () => {
+    try {
+      const { data } = await hmDirectus.readByQuery<IPageTitle>({
+        fields: `#graphql
+              {      
+                
+                page_title
+              
+              }
+            `,
+        queryName: 'about_us'
+      });
+
+      if (data) {
+        return camelcaseKeys(
+          data as unknown as CamelCasedPropertiesDeep<IPageTitle>,
           {
             deep: true
           }

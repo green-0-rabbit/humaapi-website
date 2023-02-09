@@ -14,13 +14,13 @@ const HeadOurServices: FC<IHeadOurServices> = (props) => {
   const { headerData } = props;
 
   return (
-    <HeaderBannerContain className=" h-[70vh] lg:h-[73vh] grid place-items-center px-9 xs:text-center md:text-left">
+    <HeaderBannerContain className=" grid h-[70vh] place-items-center px-9 xs:text-center md:text-left lg:h-[73vh]">
       <TitleContain className="text-center">
         <Text
           color="humaapi.0"
-          className="font-bold text-xl"
+          className="text-xl font-bold"
           sx={{ fontFamily: 'Ubuntu-Regular' }}>
-          Our services
+          {headerData.titlePage}
         </Text>
         <Title className="text-center">
           <Description

@@ -10,20 +10,20 @@ import {
   IDataOurTeam
 } from 'src/services/about-us-service';
 import { FC } from 'react';
-import Navbar from 'src/components/sections/navbar';
-import Footer from 'src/components/sections/footer';
-import { parseFooter } from 'src/services/navigation-service/helper-function';
 import {
   INavigationFooterData,
   INavigationHeaderData,
   navigationService
 } from 'src/services/navigation-service';
+import Layout from 'src/layouts/layout';
+import { IDataTitle } from 'src/services/home-service';
 
 interface IAboutUs {
   landingData: ILandingAboutUsData[];
   teamData: IDataOurTeam[];
   navigationHeaderData: INavigationHeaderData[];
   navigationFooterData: INavigationFooterData[];
+  pageTitle: IDataTitle[];
 }
 const useStyles = createStyles((theme) => ({
   nameColor: { color: theme.colorScheme === 'dark' ? 'white' : '#2b2b2b' },
@@ -38,15 +38,21 @@ const ContainCards = styled.div``;
 const Container = styled.div``;
 const Ourteam = styled.div``;
 const AboutUs: FC<IAboutUs> = ({ ...props }) => {
-  const { landingData, teamData, navigationHeaderData, navigationFooterData } =
-    props;
+  const {
+    landingData,
+    teamData,
+    navigationHeaderData,
+    navigationFooterData,
+    pageTitle
+  } = props;
   const filterTeamData = { ...teamData[0] };
   const { classes } = useStyles();
-  const itemFooter = parseFooter(navigationFooterData);
-
+  const title = { ...pageTitle[0] };
   return (
-    <>
-      <Navbar itemNavLink={navigationHeaderData} />
+    <Layout
+      pageTitle={title.pageTitle}
+      navigationHeaderData={navigationHeaderData}
+      navigationFooterData={navigationFooterData}>
       <ContainService>
         <LandingAboutUs landingData={landingData[0]} />
 
@@ -64,9 +70,9 @@ const AboutUs: FC<IAboutUs> = ({ ...props }) => {
               />
             </Title>
           </ContainDescription>
-          <ContainCards className="grid place-items-center mt-12 ">
+          <ContainCards className="mt-12 grid place-items-center ">
             <Box
-              className="grid  grid-cols-2 md:grid-cols-3 gap-y-10 gap-x-16 text-center"
+              className="grid  grid-cols-2 gap-y-10 gap-x-16 text-center md:grid-cols-3"
               sx={{ fontFamily: 'Ubuntu-Regular' }}>
               {DataService.iconTeamData.map((el, index) => (
                 <Container key={el.name} className="grid  grid-cols-1">
@@ -87,8 +93,7 @@ const AboutUs: FC<IAboutUs> = ({ ...props }) => {
           </ContainCards>
         </Ourteam>
       </ContainService>
-      <Footer itemFooter={itemFooter} />
-    </>
+    </Layout>
   );
 };
 export const getStaticProps: GetStaticProps = async () => {
@@ -96,13 +101,15 @@ export const getStaticProps: GetStaticProps = async () => {
   const teamData = await aboutUsService.getTeam();
   const navigationHeaderData = await navigationService.getHeader();
   const navigationFooterData = await navigationService.getFooter();
+  const pageTitle = await aboutUsService.getPageTitle();
 
   return {
     props: {
       landingData,
       teamData,
       navigationHeaderData,
-      navigationFooterData
+      navigationFooterData,
+      pageTitle
     }
   };
 };

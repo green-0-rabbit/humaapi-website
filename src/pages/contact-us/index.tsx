@@ -18,6 +18,7 @@ const ContactUs: FC<IContactUs> = (props) => {
 
   return (
     <Layout
+      pageTitle="Contact Us"
       navigationHeaderData={navigationHeaderData}
       navigationFooterData={navigationFooterData}>
       <ContactForm />

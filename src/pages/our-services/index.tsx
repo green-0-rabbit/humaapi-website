@@ -28,9 +28,11 @@ const OurServices: FC<IOurServices> = ({ ...props }) => {
     navigationHeaderData,
     navigationFooterData
   } = props;
+  const title = { ...headerData[0] };
 
   return (
     <Layout
+      pageTitle={title.titlePage}
       navigationHeaderData={navigationHeaderData}
       navigationFooterData={navigationFooterData}>
       <Box className="w-full">

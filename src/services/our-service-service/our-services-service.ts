@@ -9,6 +9,7 @@ import { getFormatedOverview } from './helper-function';
 
 interface IGetServiceDesc {
   id: number;
+  page_title: string;
   service_title: string;
   service_content: string;
   service_link: string;
@@ -44,7 +45,7 @@ export const OurServicesService = {
       const { data } = await hmDirectus.readSingleton<IService>({
         fields: `#graphql
               {    
-                id    
+                id      
                 service_title
                 service_content
                 service_link
@@ -74,6 +75,7 @@ export const OurServicesService = {
         fields: `#graphql
             {      
           id
+          page_title
           service_title
           service_content
           service_link
@@ -96,6 +98,7 @@ export const OurServicesService = {
       const singleValue = { ...data[0] };
       const finaleValue = {
         id: singleValue.id,
+        page_title: singleValue.page_title,
         service_title: singleValue.service_title,
         service_content: singleValue.service_content,
         service_link: singleValue.service_link,

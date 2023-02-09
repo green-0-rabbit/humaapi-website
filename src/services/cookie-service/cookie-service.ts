@@ -12,6 +12,9 @@ interface ICookiePolicy {
   content: string;
   description_field: string;
 }
+interface ICookieTitle {
+  page_title: string;
+}
 interface ICookie {
   id: number;
   name: string;
@@ -25,6 +28,9 @@ export type IDataCookiePolicy = NonUndefined<
 >;
 export type ICookieManagementData = NonUndefined<
   Required<ReturnTypeAsync<typeof cookieService.getCookies>>
+>;
+export type ICookieTitleData = NonUndefined<
+  Required<ReturnTypeAsync<typeof cookieService.getTitle>>
 >;
 
 export const cookieService = {
@@ -44,6 +50,33 @@ export const cookieService = {
       if (data) {
         const res = camelcaseKeys(
           data as unknown as CamelCasedPropertiesDeep<ICookiePolicy>,
+          {
+            deep: true
+          }
+        );
+        return res;
+      }
+      return undefined;
+    } catch (err) {
+      const error = <any>err;
+      throw new Error(error.message);
+    }
+  },
+  getTitle: async () => {
+    try {
+      const { data } = await hmDirectus.readSingleton<ICookieTitle>({
+        fields: `#graphql
+              {      
+                page_title
+               
+              }
+            `,
+        queryName: 'cookie'
+      });
+
+      if (data) {
+        const res = camelcaseKeys(
+          data as unknown as CamelCasedPropertiesDeep<ICookieTitle>,
           {
             deep: true
           }
