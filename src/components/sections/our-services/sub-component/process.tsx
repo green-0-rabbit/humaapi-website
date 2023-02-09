@@ -48,16 +48,16 @@ const Process: FC<IProcess> = ({ ...props }) => {
           />
         </HeadSection>
       </ContainDescription>
-      <ContainCards className="hidden md:flex md:justify-center mt-10">
-        <Container className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <ContainCards className="mt-10 hidden md:flex md:justify-center">
+        <Container className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {dataProcess.processList.map((el, index) => (
             <Paper
-              className="md:grid place-items-start"
+              className="place-items-start md:grid"
               radius={20}
               key={index}
               style={{ width: 280, height: 173 }}>
               <Box
-                className="grid gap-1 grid-cols-1"
+                className="grid grid-cols-1 gap-1"
                 sx={{ fontFamily: 'Ubuntu-Regular' }}>
                 <Icon>{icons[index].icon}</Icon>
                 <TitleCard

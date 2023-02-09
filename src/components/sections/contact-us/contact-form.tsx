@@ -180,7 +180,7 @@ const ContactForm = () => {
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col justify-center h-screen max-w-2xl mx-auto px-5 mt-8">
+      className="mx-auto mt-8 flex h-screen max-w-2xl flex-col justify-center px-5">
       <ReactiveFormFlex
         methods={methods}
         errors={errors}
@@ -189,7 +189,7 @@ const ContactForm = () => {
       <ContainText className="max-w-xl md:max-w-lg lg:max-w-3xl">
         <Text className={`text-left text-[12px] ${classes.description}`}>
           I agree to the processing of my personal data and accept the terms of
-          <span className="text-red-200 cursor-pointer">
+          <span className="cursor-pointer text-red-200">
             <Link href="cookie-policy"> privacy policy .</Link>
           </span>
         </Text>

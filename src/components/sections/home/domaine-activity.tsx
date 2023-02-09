@@ -21,7 +21,7 @@ const DomaineActivity: FC<IDomaineActivity> = (props) => {
 
   return (
     <Box className="flex flex-col space-y-16">
-      <ContainDomainsActivity className="text-center mx-auto">
+      <ContainDomainsActivity className="mx-auto text-center">
         <Text
           sx={{
             fontFamily: 'Ubuntu-Regular',
@@ -45,8 +45,8 @@ const DomaineActivity: FC<IDomaineActivity> = (props) => {
           space={4}
         />
       </ContainDomainsActivity>
-      <ContainCards className="flex justify-center mt-2">
-        <Container className="grid gap-4 lg:grid-cols-3 md:grid-cols-2">
+      <ContainCards className="mt-2 flex justify-center">
+        <Container className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {DataService.cardDomainData.map((el) => (
             <Paper
               key={el.text}

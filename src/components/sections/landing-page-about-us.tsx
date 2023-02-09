@@ -18,10 +18,10 @@ const HeaderBannerContain = styled.div``;
 const LandingAboutUs: FC<ILandingAboutUs> = (props) => {
   const { landingData } = props;
   return (
-    <HeaderBannerContain className="h-screen flex justify-center p-5">
+    <HeaderBannerContain className="flex h-screen justify-center p-5">
       <Section className="flex flex-col justify-center xs:text-center md:text-left">
-        <Contain className="flex flex-col justify-center items-center md:flex-row">
-          <Box className="w-[85%] md:max-w-xs flex justify-center flex-col md:mr-14">
+        <Contain className="flex flex-col items-center justify-center md:flex-row">
+          <Box className="flex w-[85%] flex-col justify-center md:mr-14 md:max-w-xs">
             <Description
               sx={{
                 fontFamily: 'Ubuntu-Bold',
@@ -34,13 +34,13 @@ const LandingAboutUs: FC<ILandingAboutUs> = (props) => {
               content={landingData.contentAboutUs}
             />
           </Box>
-          <ImageContain className="flex justify-center relative mb-12 md:m-0 order-first md:order-last">
+          <ImageContain className="relative order-first mb-12 flex justify-center md:order-last md:m-0">
             <Image
               // {`https://1qd42xii.directus.app/assets/${landingData.aboutImg.id}`}
               src={AboutusImage}
               alt="AboutusImage"
-              className="object-cover object-center rounded-[50px]
-              border-4 h-[313px] w-[279px] border-white shadow-lg shadow-[#eee]"
+              className="h-[313px] w-[279px] rounded-[50px]
+              border-4 border-white object-cover object-center shadow-lg shadow-[#eee]"
             />
           </ImageContain>
         </Contain>

@@ -1,8 +1,9 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable react/display-name */
 /* eslint-disable react/require-default-props */
 // eslint-disable-next-line object-curly-newline
 import { ChangeEvent, FC, useCallback, useEffect } from 'react';
-import { useController, Controller } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 import { SmartInputType, PartialMethodsType } from 'react-hm-dynamic-form';
 import { Checkbox, CheckboxProps } from '@mantine/core';
 import { CheckCustomProps } from './types';

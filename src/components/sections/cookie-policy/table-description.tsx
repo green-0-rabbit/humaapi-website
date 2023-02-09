@@ -12,7 +12,7 @@ const TableDescription: FC<ITableDescription> = (props) => {
   const { cookiesData } = props;
 
   return (
-    <SectionTable className="overflow-auto mx-auto max-w-4xl h-[400px]">
+    <SectionTable className="mx-auto h-[400px] max-w-4xl overflow-auto">
       <Table
         horizontalSpacing="sm"
         verticalSpacing="md"

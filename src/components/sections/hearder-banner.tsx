@@ -30,7 +30,7 @@ const HeaderBanner: FC<IheaderBanner> = ({ ...props }) => {
         quality={40}
         className={` ${
           classes.root ? 'blur-[195px]' : 'blur-[220px]'
-        } object-center fixed`}
+        } fixed object-center`}
       />
       {children}
     </Box>

@@ -45,7 +45,7 @@ const Copywritting: FC<ICopywritting> = (props) => {
           </clipPath>
         </defs>
       </svg>
-      <span className={`${classes.textWrite} font-UbuntuRegular mx-1`}>
+      <span className={`${classes.textWrite} mx-1 font-UbuntuRegular`}>
         {text}
       </span>
     </div>

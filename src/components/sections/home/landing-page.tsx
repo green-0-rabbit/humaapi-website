@@ -18,8 +18,8 @@ const LandingPage: FC<ILandingPage> = (props) => {
   const { landingData } = props;
   return (
     <Box>
-      <HeaderBannerContain className="h-screen flex justify-center p-5">
-        <Contain className=" text-left flex space-x-5 items-center lg:max-w-[800px] md:mx-auto">
+      <HeaderBannerContain className="flex h-screen justify-center p-5">
+        <Contain className=" flex items-center space-x-5 text-left md:mx-auto lg:max-w-[800px]">
           <Box className="mx-auto space-y-8 p-2 md:p-0">
             <Description
               sx={{

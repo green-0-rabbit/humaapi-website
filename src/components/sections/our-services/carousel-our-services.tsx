@@ -81,7 +81,7 @@ const CarouselOursServices: FC<ICarouselOursServices> = (props) => {
             radius={20}
             style={{ width: 280, height: 173 }}>
             <Box
-              className="grid gap-1 grid-cols-1"
+              className="grid grid-cols-1 gap-1"
               sx={{ fontFamily: 'Ubuntu-Regular' }}>
               <Icon>{icons[index].icon}</Icon>
               <TitleCard

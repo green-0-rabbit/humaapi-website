@@ -39,18 +39,18 @@ const Weget: FC<IWeget> = ({ ...props }) => {
           />
         </HeadSection>
       </ContainDescription>
-      <ContainCards className="grid place-items-center mt-10">
-        <Container className="grid gap-4 grid-cols-1 md:grid-cols-2">
+      <ContainCards className="mt-10 grid place-items-center">
+        <Container className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {dataWeget.getList.map((el, index) => (
             <Paper
-              className="md:grid place-items-center"
+              className="place-items-center md:grid"
               key={el.title}
               p={14}
               radius={24}
               style={{ width: 296, height: 96 }}>
               <Box className="flex" sx={{ fontFamily: 'Ubuntu-Regular' }}>
                 <Text
-                  className="w-8 font-bold text-base mr-2"
+                  className="mr-2 w-8 text-base font-bold"
                   color="humaapi.0">
                   {`${index + 1 <= 9 ? '0' : ''}${index + 1}`}
                 </Text>

@@ -13,11 +13,11 @@ const HeaderCookie = styled.div``;
 const HeadCookie: FC<IHeadCookie> = ({ ...props }) => {
   const { title, content } = props;
   return (
-    <HeaderCookie className="h-[70vh] grid place-items-center px-9 xs:text-center md:text-left">
-      <TitleContain className="text-center max-w-xl mx-auto">
+    <HeaderCookie className="grid h-[70vh] place-items-center px-9 xs:text-center md:text-left">
+      <TitleContain className="mx-auto max-w-xl text-center">
         <Text
           color="humaapi.0"
-          className="font-bold text-xl"
+          className="text-xl font-bold"
           sx={{
             fontFamily: 'Ubuntu-Regular'
           }}>

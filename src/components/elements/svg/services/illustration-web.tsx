@@ -3,7 +3,7 @@ const IllustrationWeb = () => (
     viewBox="0 0 409 200"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    className=" w-[335px] h-[250px] md:w-[400px] md:h-[219px] lg:w-[456px] lg:h-[219px]">
+    className=" h-[250px] w-[335px] md:h-[219px] md:w-[400px] lg:h-[219px] lg:w-[456px]">
     <path
       d="M278.7 199.4H5.79999C2.79999 199.4 0.299988 196.9 0.299988 193.9V28.3C0.299988 25.3 2.79999 22.8 5.79999 22.8H278.7C281.7 22.8 284.2 25.3 284.2 28.3V194C284.2 197 281.7 199.4 278.7 199.4Z"
       fill="#DADADA"
