@@ -29,6 +29,20 @@ export default function App({ Component, pageProps }: AppProps) {
           .grecaptcha-badge {
             display: none;
           }
+          .cookie-though {
+            --ct-primary-400: #ea6f66;
+            --ct-text: #0e0e0e;
+            --ct-button-radius: 30px;
+            --ct-button-secondary: #cfcfcf;
+            --ct-button-secondary-color: #383838;
+            --ct-button-padding: 10px 14px 10px 14px;
+            --ct-policy-text: #000;
+            --ct-slider-secondary: #b1b1b1;
+            --ct-slider-primary: #747474;
+            --ct-slider-enabled-primary: #ffffff54;
+            --ct-slider-enabled-secondary: #ffffff;
+            --ct-policy-essential: #ffebea;
+          }
         `}
       />
       <ColorSchemeProvider

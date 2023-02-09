@@ -85,7 +85,7 @@ const useStyles = createStyles((theme) => ({
     textDecoration: 'none',
 
     [theme.fn.smallerThan('sm')]: {
-      borderRadius: 0,
+      borderRadius: 12,
       padding: theme.spacing.md
     },
     color:
