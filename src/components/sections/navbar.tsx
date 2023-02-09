@@ -154,7 +154,7 @@ const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
           <ActionButton />
         </div>
         <Burger
-          color="humaapi.0"
+          color="#EA6F66"
           opened={opened}
           onClick={toggle}
           className={classes.burger}
