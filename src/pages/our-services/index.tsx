@@ -28,15 +28,15 @@ const OurServices: FC<IOurServices> = ({ ...props }) => {
     navigationHeaderData,
     navigationFooterData
   } = props;
-  const title = { ...headerData[0] };
+  const [newHeaderData] = headerData;
 
   return (
     <Layout
-      pageTitle={title.titlePage}
+      pageTitle={newHeaderData.titlePage}
       navigationHeaderData={navigationHeaderData}
       navigationFooterData={navigationFooterData}>
       <Box className="w-full">
-        <HeadOurServices headerData={headerData[0]} />
+        <HeadOurServices headerData={newHeaderData} />
         <CardServices servicesData={serviceDesData} />
       </Box>
     </Layout>

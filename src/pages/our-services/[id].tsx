@@ -29,12 +29,10 @@ const IdOutService: FC<IIdOutService> = (props) => {
   const { serviceData, navigationHeaderData, navigationFooterData } = props;
   const getPath = useRouter();
   const { id } = getPath.query;
-  const getImage = DataService.serviceSvgIllustration.find(
+  const [getImage] = DataService.serviceSvgIllustration.filter(
     (el) => el.title === id
   );
-  const icons = DataService.processData
-    .filter((el) => el.service === id)
-    .map((el) => el.data);
+  const [icons] = DataService.processData.filter((el) => el.service === id);
 
   return (
     <Layout
@@ -48,13 +46,13 @@ const IdOutService: FC<IIdOutService> = (props) => {
             serviceTitle={serviceData.serviceTitle}
             serviceContent={serviceData.serviceContent}
             serviceLink="/contact-us"
-            serviceImg={getImage?.img}
+            serviceImg={getImage.img}
             nameEvent="Get in touch"
           />
         </HeaderBannerContain>
         <Box className="space-y-32">
           <TheRenders dataWeget={serviceData.whatget} />
-          <Process dataProcess={serviceData.process} icons={icons[0]} />
+          <Process dataProcess={serviceData.process} icons={icons.data} />
         </Box>
       </ContainService>
     </Layout>

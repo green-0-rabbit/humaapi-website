@@ -1,7 +1,7 @@
 /* eslint-disable import/no-named-as-default */
 import styled from '@emotion/styled';
 import { Button, createStyles, Text } from '@mantine/core';
-import { IconCheck, IconX } from '@tabler/icons';
+import { IconCheck } from '@tabler/icons';
 import { fieldRegex } from 'react-hm-dynamic-form';
 import { useForm } from 'react-hook-form';
 import customNotification from 'src/components/features/notification';
@@ -12,7 +12,7 @@ import {
 import contactService from 'src/services/contact-service';
 import navigation from 'src/components/features/navigation-hook';
 import Link from 'next/link';
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useState } from 'react';
 
 const useStyles = createStyles((theme) => ({
   input: {

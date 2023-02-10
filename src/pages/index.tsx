@@ -41,19 +41,22 @@ const Home: FC<Ihome> = ({ ...props }) => {
     navigationFooterData,
     pageTitle
   } = props;
-  const title = { ...pageTitle[0] };
+  const [title] = pageTitle;
+  const [newlandingData] = landingData;
+  const [newserviceData] = serviceData;
+  const [newdomaineData] = domaineData;
   return (
     <Layout
       navigationHeaderData={navigationHeaderData}
       navigationFooterData={navigationFooterData}
       pageTitle={title.pageTitle}>
       <Box className="w-full space-y-[72px]">
-        <LandingPage landingData={landingData[0]} />
+        <LandingPage landingData={newlandingData} />
         <OursService
-          serviceData={serviceData[0]}
+          serviceData={newserviceData}
           serviceCardData={serviceCardData}
         />
-        <DomaineActivity domaineData={domaineData[0]} />
+        <DomaineActivity domaineData={newdomaineData} />
       </Box>
     </Layout>
   );
@@ -64,7 +67,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const serviceData = await HomeService.getService();
   const domaineData = await HomeService.getDomaine();
   const landingData = await HomeService.getLanding();
-  const pageTitle = await HomeService.getTitle();
+  const pageTitle = await HomeService.getPageTitle();
   const serviceCardData = await OurServicesService.getServiceCard();
   const navigationHeaderData = await navigationService.getHeader();
   const navigationFooterData = await navigationService.getFooter();

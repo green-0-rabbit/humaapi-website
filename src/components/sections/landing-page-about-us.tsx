@@ -47,17 +47,21 @@ const LandingAboutUs: FC<ILandingAboutUs> = (props) => {
             />
           </Box>
           <ImageContain className="relative order-first mb-12 mt-20 flex justify-center md:order-last md:m-0">
-            {imgsLoaded ? null : (
+            {/* {imgsLoaded ? null : (
               <Skeleton height={200} circle mb="xl" visible={!imgsLoaded} />
-            )}
+            )} */}
             <Image
               // {`https://1qd42xii.directus.app/assets/${landingData.aboutImg.id}`}
-              style={imgsLoaded ? {} : { display: 'none' }}
+              // style={imgsLoaded ? {} : { display: 'none' }}
               src={AboutusImage}
               alt="AboutusImage"
               className={`h-[313px] w-[279px] rounded-[50px]
              object-cover object-center ${classes.root}`}
-              onLoad={() => setImgsLoaded(true)}
+              // onLoad={() =>
+              //   setTimeout(() => {
+              //     setImgsLoaded(true);
+              //   }, 3000)
+              // }
             />
           </ImageContain>
         </Contain>

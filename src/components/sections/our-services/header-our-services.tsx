@@ -14,7 +14,7 @@ const HeadOurServices: FC<IHeadOurServices> = (props) => {
   const { headerData } = props;
 
   return (
-    <HeaderBannerContain className=" grid h-[70vh] place-items-center px-9 xs:text-center md:text-left lg:h-[73vh]">
+    <HeaderBannerContain className=" grid h-[70vh] place-items-center  xs:text-center md:text-left lg:h-[73vh]">
       <TitleContain className="text-center">
         <Text
           color="humaapi.0"
@@ -31,6 +31,7 @@ const HeadOurServices: FC<IHeadOurServices> = (props) => {
               fontWeight: 700,
               lineHeight: '36px'
             }}
+            sxdesc="px-4"
             size={32}
             space={12}
           />

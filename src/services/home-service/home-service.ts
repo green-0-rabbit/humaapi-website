@@ -9,6 +9,7 @@ import { CamelCasedPropertiesDeep } from 'type-fest';
 interface IDomaineActivity {
   id: number;
   title_domaine: string;
+  sub_title: string;
   content_domaine: string;
 }
 interface ILandingPage {
@@ -36,7 +37,7 @@ export type IDataOurService = NonUndefined<
   Required<ReturnTypeAsync<typeof HomeService.getService>>
 >;
 export type IDataTitle = NonUndefined<
-  Required<ReturnTypeAsync<typeof HomeService.getTitle>>
+  Required<ReturnTypeAsync<typeof HomeService.getPageTitle>>
 >;
 
 export const HomeService = {
@@ -46,6 +47,7 @@ export const HomeService = {
         fields: `#graphql
               {      
                 title_domaine,
+                sub_title
                 content_domaine
               }
             `,
@@ -126,7 +128,7 @@ export const HomeService = {
       throw new Error(error.message);
     }
   },
-  getTitle: async () => {
+  getPageTitle: async () => {
     try {
       const { data } = await hmDirectus.readSingleton<IPageTitle>({
         fields: `#graphql
