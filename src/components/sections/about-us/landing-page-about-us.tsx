@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Box, createStyles, Skeleton } from '@mantine/core';
 import { ILandingAboutUsData } from 'src/services/about-us-service';
 import { FC, useState } from 'react';
-import AboutusImage from '../../../public/assets/img/pexels-diva-plavalaguna-6147029.jpg';
+import AboutusImage from '../../../../public/assets/img/pexels-diva-plavalaguna-6147029.jpg';
 
 const useStyles = createStyles((theme) => ({
   root: {
