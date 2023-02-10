@@ -31,16 +31,17 @@ const DomaineActivity: FC<IDomaineActivity> = (props) => {
           size="xl"
           color="humaapi.0"
           className="mb-1">
-          Domains activity
+          {domaineData.titleDomaine}
         </Text>
         <Description
+          sxdesc="px-4"
           sx={{
             fontFamily: 'Ubuntu-Bold',
             fontWeight: 700,
             lineHeight: '36px'
           }}
           size={32}
-          title={domaineData.titleDomaine}
+          title={domaineData.subTitle}
           content={domaineData.contentDomaine}
           space={4}
         />
@@ -53,7 +54,7 @@ const DomaineActivity: FC<IDomaineActivity> = (props) => {
               radius={18}
               style={{ width: 262, height: 51 }}
               className="flex place-items-center space-x-3">
-              <Icon className="">{el.icon}</Icon>
+              <Icon>{el.icon}</Icon>
               <Text
                 className={`${classes.textColor}`}
                 sx={{ fontFamily: 'Ubuntu-Regular' }}>

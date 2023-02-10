@@ -12,10 +12,10 @@ interface ILandingPage {
 const ContentImage = styled.div``;
 const HeaderBannerContain = styled.div``;
 const Contain = styled.div``;
-const landingIllustration = DataService.serviceSvgIllustration[4].img;
 
 const LandingPage: FC<ILandingPage> = (props) => {
   const { landingData } = props;
+  const landingIllustration = DataService.serviceSvgIllustration[4].img;
   return (
     <Box>
       <HeaderBannerContain className="flex h-screen justify-center p-5">

@@ -45,16 +45,17 @@ const AboutUs: FC<IAboutUs> = ({ ...props }) => {
     navigationFooterData,
     pageTitle
   } = props;
-  const filterTeamData = { ...teamData[0] };
   const { classes } = useStyles();
-  const title = { ...pageTitle[0] };
+  const [filterTeamData] = teamData;
+  const [title] = pageTitle;
+  const [newLandingData] = landingData;
   return (
     <Layout
       pageTitle={title.pageTitle}
       navigationHeaderData={navigationHeaderData}
       navigationFooterData={navigationFooterData}>
       <ContainService>
-        <LandingAboutUs landingData={landingData[0]} />
+        <LandingAboutUs landingData={newLandingData} />
 
         <Ourteam className="mx-4">
           <ContainDescription>

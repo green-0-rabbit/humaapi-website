@@ -32,7 +32,8 @@ const Cookie: FC<ICookie> = ({ ...props }) => {
     navigationFooterData,
     pageTitle
   } = props;
-  const title = { ...pageTitle[0] };
+  const [title] = pageTitle;
+  const [newcookiePolicyContent] = cookiePolicyContent;
   return (
     <Layout
       pageTitle={title.pageTitle}
@@ -41,7 +42,7 @@ const Cookie: FC<ICookie> = ({ ...props }) => {
       <Box className="mx-auto">
         <CookiePolicyContent
           cookiesData={cookiesData}
-          cookiePolicyContent={cookiePolicyContent[0]}
+          cookiePolicyContent={newcookiePolicyContent}
         />
       </Box>
     </Layout>

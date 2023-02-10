@@ -7,13 +7,12 @@ import {
 } from '@mantine/core';
 import type { AppProps } from 'next/app';
 import appTheme from 'src/commons/app.theming';
-import { FC, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { css, Global } from '@emotion/react';
 import { NotificationsProvider } from '@mantine/notifications';
 import CookieConsent from 'src/components/modules/cookie-consent';
 import CustomFonts from 'src/commons/app.fonts';
-import Layout from '../layouts/layout';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [colorScheme, setColorScheme] = useState<ColorScheme>(
@@ -33,7 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
             --ct-primary-400: #ea6f66;
             --ct-text: #0e0e0e;
             --ct-button-radius: 30px;
-            --ct-button-secondary: #cfcfcf;
+            --ct-button-secondary: #e0e0e0;
             --ct-button-secondary-color: #383838;
             --ct-button-padding: 10px 14px 10px 14px;
             --ct-policy-text: #000;

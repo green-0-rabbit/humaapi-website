@@ -1,10 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import styled from '@emotion/styled';
-import { Carousel } from '@mantine/carousel';
 import { Text, Container, Paper, createStyles, Box } from '@mantine/core';
-import { useRouter } from 'next/router';
 import { FC } from 'react';
-import DataService from 'src/components/content/content-data';
 import Description from 'src/components/modules/description';
 import CarouselOursServices from '../carousel-our-services';
 
@@ -20,12 +17,10 @@ interface IProcess {
   };
   icons: { icon: JSX.Element }[];
 }
-// icon: JSX.Element; text: string;
 const Section = styled('div')``;
 const HeadSection = styled('div')``;
 const ContainDescription = styled('div')``;
 const ContainCards = styled('div')``;
-const Contain = styled('div')``;
 const Icon = styled('div')``;
 const TitleCard = styled('div')``;
 
@@ -76,7 +71,6 @@ const Process: FC<IProcess> = ({ ...props }) => {
           ))}
         </Container>
       </ContainCards>
-
       <CarouselOursServices data={dataProcess.processList} icons={icons} />
     </Section>
   );

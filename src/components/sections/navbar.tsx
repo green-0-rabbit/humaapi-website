@@ -141,16 +141,18 @@ const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
   return (
     <Header height={HEADER_HEIGHT} className={`${classes.root}`}>
       <Container className={classes.header}>
-        <Link href="/">
+        <Link href="/" className="order-last md:order-first">
           <LogoHumaapi />
         </Link>
-        <Group spacing={4} className={`${classes.itemNavLink} header-style`}>
+        <Group
+          spacing={4}
+          className={`${classes.itemNavLink} header-style order-first md:order-last`}>
           {items}
           <Box className="ml-8">
             <ActionButton />
           </Box>
         </Group>
-        <div className="block md:hidden">
+        <div className="order-last block md:hidden">
           <ActionButton />
         </div>
         <Burger

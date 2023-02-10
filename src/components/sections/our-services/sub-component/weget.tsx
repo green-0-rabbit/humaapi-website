@@ -17,7 +17,6 @@ const Section = styled('div')``;
 const HeadSection = styled('div')``;
 const ContainDescription = styled('div')``;
 const ContainCards = styled('div')``;
-const Contain = styled('div')``;
 const TitleCard = styled('div')``;
 
 const Weget: FC<IWeget> = ({ ...props }) => {
@@ -54,7 +53,6 @@ const Weget: FC<IWeget> = ({ ...props }) => {
                   color="humaapi.0">
                   {`${index + 1 <= 9 ? '0' : ''}${index + 1}`}
                 </Text>
-
                 <Box className="flex flex-col">
                   <TitleCard
                     className={`${classes.titleColor} text-base font-semibold`}>
