@@ -1,0 +1,12 @@
+query acfCookiePolicy {
+  acfAcfPage(id: "cookie-policy", idType: SLUG) {
+    acfCookieFields {
+      title
+      subTitle
+      description
+      cookiePolicy
+      listCookies
+    }
+    id
+  }
+}

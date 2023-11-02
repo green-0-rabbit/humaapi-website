@@ -1,0 +1,35 @@
+query acfLanding {
+  acfAcfPage(id: "home", idType: SLUG) {
+    acfHomePageFields {
+      description
+      title
+    }
+    id
+  }
+}
+
+query acfDomain {
+  acfAcfPage(id: "home", idType: SLUG) {
+    acfHomePageFields {
+      domainContent {
+        title
+        subTitle
+        description
+      }
+    }
+    id
+  }
+}
+
+query acfService {
+  acfAcfPage(id: "home", idType: SLUG) {
+    acfHomePageFields {
+      serviceContent {
+        title
+        subTitle
+        description
+      }
+    }
+    id
+  }
+}

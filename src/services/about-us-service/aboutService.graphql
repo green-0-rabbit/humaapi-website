@@ -1,0 +1,12 @@
+query acfAboutUs {
+  acfAcfPage(id: "about-us", idType: SLUG) {
+    acfAboutUsFields {
+      title
+      description
+      aboutUsImage {
+        mediaItemUrl
+      }
+    }
+    id
+  }
+}

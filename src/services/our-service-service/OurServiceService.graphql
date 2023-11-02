@@ -1,0 +1,16 @@
+query acfServiceData {
+  acfServices {
+    nodes {
+      id
+      acfServicesFields {
+        title
+        description
+        imageName
+        image {
+          mediaItemUrl
+        }
+      }
+      id
+    }
+  }
+}
