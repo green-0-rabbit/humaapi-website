@@ -5,6 +5,7 @@ import { NonUndefined } from 'react-hook-form';
 import { ReturnTypeAsync } from 'src/commons/interface';
 import { hmDirectus } from 'src/utils';
 import { CamelCasedPropertiesDeep } from 'type-fest';
+import apolloClient from 'src/utils/wps/apollo-client';
 import { getFormatedOverview } from './helper-function';
 
 interface IGetServiceDesc {
@@ -25,9 +26,9 @@ interface IService {
   service_link: string;
 }
 interface IServiceCard {
-  id: number;
-  service_title: string;
-  service_link: string;
+  id: string;
+  title: string;
+  link: string;
 }
 export type IDataOurServiceView = NonUndefined<
   Required<ReturnTypeAsync<typeof OurServicesService.getAllServiceDes>>
@@ -150,26 +151,18 @@ export const OurServicesService = {
       return undefined;
     }
   },
+
   getServiceCard: async () => {
     try {
-      const { data } = await hmDirectus.readSingleton<IServiceCard>({
-        fields: `#graphql
-              {      
-                service_title,
-                service_link
-              }
-            `,
-        queryName: 'services'
-      });
-
-      if (data) {
-        const res = camelcaseKeys(
-          data as unknown as CamelCasedPropertiesDeep<IServiceCard>,
-          {
-            deep: true
-          }
-        );
-        return res;
+      const { acfServices } = await apolloClient.acfServiceData();
+      const res = acfServices?.nodes;
+      if (acfServices && res) {
+        const data = res.map((val) => ({
+          id: val.id as string,
+          title: val.acfServicesFields?.title as string,
+          link: val.slug as string
+        }));
+        return data.reverse() as IServiceCard[];
       }
       return undefined;
     } catch (err) {

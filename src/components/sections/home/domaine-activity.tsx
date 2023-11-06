@@ -31,7 +31,7 @@ const DomaineActivity: FC<IDomaineActivity> = (props) => {
           size="xl"
           color="humaapi.0"
           className="mb-1">
-          {domaineData.titleDomaine}
+          {domaineData.title}
         </Text>
         <Description
           sxdesc="px-4"
@@ -42,7 +42,7 @@ const DomaineActivity: FC<IDomaineActivity> = (props) => {
           }}
           size={32}
           title={domaineData.subTitle}
-          content={domaineData.contentDomaine}
+          content={domaineData.description}
           space={4}
         />
       </ContainDomainsActivity>

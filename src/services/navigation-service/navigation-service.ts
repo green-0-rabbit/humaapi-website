@@ -1,77 +1,29 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable consistent-return */
-import camelcaseKeys from 'camelcase-keys';
-import { DeepRequired } from 'react-hm-dynamic-form';
-import { ReturnTypeAsync } from 'src/commons/interface';
-import { hmDirectus } from 'src/utils';
-import { CamelCasedPropertiesDeep } from 'type-fest';
+import apolloClient from 'src/utils/wps/apollo-client';
 
-interface INavigationHeader {
+export interface INavigation {
   id: string;
-  navigation_link: string;
-  navigation_title: string;
+  navigationTitle: string;
+  navigationLink: string;
+  footerTitle: string | null;
 }
-interface IFooterSection {
-  id: string;
-  footer_section: string;
-}
-
-export type INavigationHeaderData = Required<
-  DeepRequired<ReturnTypeAsync<typeof navigationService.getHeader>>
->[0];
-export type INavigationFooterData = Required<
-  DeepRequired<ReturnTypeAsync<typeof navigationService.getFooter>>
->[0];
 
 export const navigationService = {
-  getHeader: async () => {
+  getAll: async () => {
     try {
-      const { data } = await hmDirectus.readByQuery<INavigationHeader>({
-        fields: `#graphql
-            {      
-              id
-              navigation_title
-              navigation_link
-              }
-          `,
-        queryName: 'navigation_header'
-      });
-
-      if (data) {
-        return camelcaseKeys(
-          data as unknown as CamelCasedPropertiesDeep<INavigationHeader[]>,
-          {
-            deep: true
-          }
-        );
+      const { acfNavigations } = await apolloClient.acfNavigations();
+      const res = acfNavigations?.nodes;
+      if (res) {
+        const data = res.map((val) => ({
+          id: val.id as string,
+          navigationTitle: val.acfNavigationsFields?.navigationTitle as string,
+          navigationLink: val.slug as string,
+          footerTitle: val.acfNavigationsFields?.footerTitle
+        }));
+        return data.reverse() as INavigation[];
       }
-      return [];
-    } catch (err) {
-      const error = <any>err;
-      throw new Error(error.message);
-    }
-  },
-  getFooter: async () => {
-    try {
-      const { data } = await hmDirectus.readByQuery<IFooterSection>({
-        fields: `#graphql
-            {      
-              id
-              footer_section
-            }
-          `,
-        queryName: 'navigation_footer'
-      });
-
-      if (data) {
-        return camelcaseKeys(
-          data as unknown as CamelCasedPropertiesDeep<IFooterSection[]>,
-          {
-            deep: true
-          }
-        );
-      }
-      return [];
+      return undefined;
     } catch (err) {
       const error = <any>err;
       throw new Error(error.message);

@@ -8,7 +8,10 @@ import {
   Box
 } from '@mantine/core';
 import Link from 'next/link';
-import { INavigationFooter } from 'src/commons/interface';
+import { FC } from 'react';
+import { IDataServiceCard } from 'src/services/our-service-service';
+import ParseFooter from 'src/services/navigation-service/helper-function';
+import { INavigation } from 'src/services/navigation-service';
 import Copywritting from '../elements/svg/icons/copywritting-icon';
 import LogoHumaapi from '../elements/svg/icons/logo-humaapi';
 import DataService from '../content/content-data';
@@ -108,31 +111,49 @@ const useStyles = createStyles((theme) => ({
   }
 }));
 
-interface FooterLinksProps {
-  itemFooter: INavigationFooter[];
+export interface IFooterLinksProps {
+  navigationData: INavigation[];
+  serviceData: IDataServiceCard;
 }
-const Footer = ({ itemFooter }: FooterLinksProps) => {
+const Footer: FC<IFooterLinksProps> = ({ ...props }) => {
   const { classes } = useStyles();
-  const descTitle = itemFooter.find((el) => el.title === 'Description');
-  const otherFooter = itemFooter.filter((el) => el.title !== 'Description');
+  const { navigationData, serviceData } = props;
+  const itemFooter = ParseFooter(navigationData);
 
-  const groups = otherFooter.map((group) => {
-    const links = (group.contentLinks as Array<any>).map((link, index) => (
-      <Link
-        key={link}
-        className={classes.link}
-        href={`${link.search('https://') !== -1 ? `${link}` : `/${link}`}`}>
-        {group.contentparag[index]}
-      </Link>
-    ));
+  const [homeValue] = navigationData.filter(
+    (value) => value.navigationLink === 'home'
+  );
 
-    return (
-      <div className={classes.wrapper} key={group.title}>
-        <Text className={classes.title}>{group.title}</Text>
-        {links}
-      </div>
-    );
-  });
+  const groups = Array.from(itemFooter)
+    .reverse()
+    .map(([value, key]) => {
+      const links = key.map((item) => {
+        if (!item.footerTitle) {
+          return serviceData.map((service) => (
+            <Link
+              key={service.id}
+              className={classes.link}
+              href={`/${item.navigationLink}/${service.link}`}>
+              {service.title}
+            </Link>
+          ));
+        }
+        return (
+          <Link
+            key={item.id}
+            className={classes.link}
+            href={`/${item.navigationLink}`}>
+            {item.navigationTitle}
+          </Link>
+        );
+      });
+      return (
+        <div className={classes.wrapper} key={value}>
+          <Text className={classes.title}>{value}</Text>
+          {links}
+        </div>
+      );
+    });
 
   return (
     <footer className={`${classes.footer} bg-transparent`}>
@@ -146,7 +167,7 @@ const Footer = ({ itemFooter }: FooterLinksProps) => {
             color="dimmed"
             className={`${classes.description}`}
             sx={{ fontFamily: 'Ubuntu-Regular' }}>
-            {descTitle?.contentparag}
+            {homeValue.footerTitle}
           </Text>
         </div>
         <Box

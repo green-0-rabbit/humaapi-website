@@ -6,7 +6,7 @@ import { Paper, Text } from '@mantine/core';
 import { IDataServiceCard } from 'src/services/our-service-service';
 
 interface ICarouselHome {
-  data: IDataServiceCard[];
+  data: IDataServiceCard;
   icons: { icon: JSX.Element }[];
 }
 const CarouselHome: FC<ICarouselHome> = (props) => {
@@ -65,13 +65,13 @@ const CarouselHome: FC<ICarouselHome> = (props) => {
         }
       }}>
       {data.map((el, index) => (
-        <Carousel.Slide key={el.serviceLink}>
-          <Link href={`our-services/${el.serviceLink}`}>
+        <Carousel.Slide key={el.id}>
+          <Link href={`our-services/${el.link}`}>
             <Paper
               className="flex flex-col items-center justify-center space-y-4"
               style={{ width: 205, height: 150 }}>
               {icons[index].icon}
-              <Text color="humaapi.0">{el.serviceTitle}</Text>
+              <Text color="humaapi.0">{el.title}</Text>
             </Paper>
           </Link>
         </Carousel.Slide>

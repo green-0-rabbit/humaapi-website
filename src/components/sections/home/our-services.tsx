@@ -10,7 +10,7 @@ import OurServiceCard from './sub-component/our-service-card';
 
 interface IOurServices {
   serviceData: IDataOurService;
-  serviceCardData: IDataServiceCard[];
+  serviceCardData: IDataServiceCard;
 }
 const ContainDescription = styled.div``;
 const ContainCards = styled.div``;
@@ -30,11 +30,11 @@ const OurServices: FC<IOurServices> = (props) => {
           size="xl"
           color="humaapi.0"
           className="mb-1">
-          {serviceData.titlePage}
+          {serviceData.title}
         </Text>
         <Description
-          title={serviceData.titleService}
-          content={serviceData.contentService}
+          title={serviceData.subTitle}
+          content={serviceData.description}
           sx={{
             fontFamily: 'Ubuntu-Bold',
             fontWeight: 700,

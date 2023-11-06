@@ -3,8 +3,13 @@ query acfLanding {
     acfHomePageFields {
       description
       title
-    }
+      image {
+        mediaItemUrl
+      }
+      imageName
+    } 
     id
+    title
   }
 }
 
@@ -18,6 +23,7 @@ query acfDomain {
       }
     }
     id
+    title
   }
 }
 
@@ -31,5 +37,6 @@ query acfService {
       }
     }
     id
+    title
   }
 }

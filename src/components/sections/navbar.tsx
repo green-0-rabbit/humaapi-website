@@ -16,6 +16,7 @@ import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import ActionButton from 'src/components/modules/action-button';
+import { INavigation } from 'src/services/navigation-service';
 import LogoHumaapi from '../elements/svg/icons/logo-humaapi';
 
 const HEADER_HEIGHT = 60;
@@ -109,25 +110,28 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface IHeaderResponsiveProps {
-  itemNavLink: { navigationLink: string; navigationTitle: string }[];
+  itemNavLink: INavigation[];
 }
 
 const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
   const router = useRouter();
   const [opened, { toggle, close }] = useDisclosure(false);
   const [active, setActive] = useState(router.pathname);
-
+  // .replace('/', '')
   const { classes, cx } = useStyles();
-  const items = itemNavLink.map((el, index) => (
+  const items = itemNavLink.filter(
+    (val) => val.navigationLink !== 'cookie-policy'
+  );
+  const newitems = items.map((el, index) => (
     <Link
-      href={`/${el.navigationLink.replace('/', '')}`}
+      href={`/${el.navigationLink.replace('home', '')}`}
       legacyBehavior
       key={el.navigationTitle}>
       <a
         key={el.navigationTitle}
         className={`${cx(classes.link, {
           [classes.linkActive]:
-            router.pathname === `/${el.navigationLink.replace('/', '')}`
+            router.pathname === `/${el.navigationLink.replace('home', '')}`
         })}`}
         onClick={() => {
           setActive(router.pathname);
@@ -147,7 +151,7 @@ const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
         <Group
           spacing={4}
           className={`${classes.itemNavLink} header-style order-first md:order-last`}>
-          {items}
+          {newitems}
           <Box className="ml-8">
             <ActionButton />
           </Box>
@@ -166,7 +170,7 @@ const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
         <Transition transition="pop-top-right" duration={420} mounted={opened}>
           {(styles) => (
             <Paper className={classes.dropdown} style={styles}>
-              {items}
+              {newitems}
             </Paper>
           )}
         </Transition>

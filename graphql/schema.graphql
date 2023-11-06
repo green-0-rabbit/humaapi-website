@@ -4274,6 +4274,9 @@ type AcfNavigation_Acfnavigationsfields implements AcfFieldGroup {
   fieldGroupName: String
 
   """"""
+  footerTitle: String
+
+  """"""
   navigationTitle: String
 }
 
@@ -10126,6 +10129,12 @@ type AcfAcfPage_Acfhomepagefields implements AcfFieldGroup {
   fieldGroupName: String
 
   """"""
+  image: MediaItem
+
+  """"""
+  imageName: String
+
+  """"""
   serviceContent: AcfAcfPage_Acfhomepagefields_ServiceContent
 
   """"""
@@ -10154,6 +10163,9 @@ type AcfAcfPage_Acfhomepagefields_ServiceContent implements AcfFieldGroup {
 
   """The name of the ACF Field Group"""
   fieldGroupName: String
+
+  """"""
+  image: MediaItem
 
   """"""
   subTitle: String

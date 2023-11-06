@@ -1,0 +1,12 @@
+query acfNavigations {
+   acfNavigations {
+    nodes {
+      acfNavigationsFields {
+        navigationTitle
+        footerTitle
+      }
+      id
+      slug
+    }
+  }
+}

@@ -222,6 +222,8 @@ export type AcfAcfPage_Acfhomepagefields = AcfFieldGroup & {
   domainContent?: Maybe<AcfAcfPage_Acfhomepagefields_DomainContent>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<MediaItem>;
+  imageName?: Maybe<Scalars['String']['output']>;
   serviceContent?: Maybe<AcfAcfPage_Acfhomepagefields_ServiceContent>;
   title?: Maybe<Scalars['String']['output']>;
 };
@@ -242,6 +244,7 @@ export type AcfAcfPage_Acfhomepagefields_ServiceContent = AcfFieldGroup & {
   description?: Maybe<Scalars['String']['output']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<MediaItem>;
   subTitle?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
 };
@@ -441,6 +444,7 @@ export type AcfNavigation_Acfnavigationsfields = AcfFieldGroup & {
   __typename?: 'AcfNavigation_Acfnavigationsfields';
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  footerTitle?: Maybe<Scalars['String']['output']>;
   navigationTitle?: Maybe<Scalars['String']['output']>;
 };
 
@@ -11155,10 +11159,13 @@ export type AcfLandingQuery = {
   acfAcfPage?: {
     __typename?: 'AcfAcfPage';
     id: string;
+    title?: string | null;
     acfHomePageFields?: {
       __typename?: 'AcfAcfPage_Acfhomepagefields';
       description?: string | null;
       title?: string | null;
+      imageName?: string | null;
+      image?: { __typename?: 'MediaItem'; mediaItemUrl?: string | null } | null;
     } | null;
   } | null;
 };
@@ -11170,6 +11177,7 @@ export type AcfDomainQuery = {
   acfAcfPage?: {
     __typename?: 'AcfAcfPage';
     id: string;
+    title?: string | null;
     acfHomePageFields?: {
       __typename?: 'AcfAcfPage_Acfhomepagefields';
       domainContent?: {
@@ -11189,6 +11197,7 @@ export type AcfServiceQuery = {
   acfAcfPage?: {
     __typename?: 'AcfAcfPage';
     id: string;
+    title?: string | null;
     acfHomePageFields?: {
       __typename?: 'AcfAcfPage_Acfhomepagefields';
       serviceContent?: {
@@ -11201,6 +11210,25 @@ export type AcfServiceQuery = {
   } | null;
 };
 
+export type AcfNavigationsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type AcfNavigationsQuery = {
+  __typename?: 'RootQuery';
+  acfNavigations?: {
+    __typename?: 'RootQueryToAcfNavigationConnection';
+    nodes: Array<{
+      __typename?: 'AcfNavigation';
+      id: string;
+      slug?: string | null;
+      acfNavigationsFields?: {
+        __typename?: 'AcfNavigation_Acfnavigationsfields';
+        navigationTitle?: string | null;
+        footerTitle?: string | null;
+      } | null;
+    }>;
+  } | null;
+};
+
 export type AcfServiceDataQueryVariables = Exact<{ [key: string]: never }>;
 
 export type AcfServiceDataQuery = {
@@ -11210,6 +11238,7 @@ export type AcfServiceDataQuery = {
     nodes: Array<{
       __typename?: 'AcfService';
       id: string;
+      slug?: string | null;
       acfServicesFields?: {
         __typename?: 'AcfService_Acfservicesfields';
         title?: string | null;
@@ -11258,8 +11287,13 @@ export const AcfLandingDocument = gql`
       acfHomePageFields {
         description
         title
+        image {
+          mediaItemUrl
+        }
+        imageName
       }
       id
+      title
     }
   }
 `;
@@ -11274,6 +11308,7 @@ export const AcfDomainDocument = gql`
         }
       }
       id
+      title
     }
   }
 `;
@@ -11288,6 +11323,21 @@ export const AcfServiceDocument = gql`
         }
       }
       id
+      title
+    }
+  }
+`;
+export const AcfNavigationsDocument = gql`
+  query acfNavigations {
+    acfNavigations {
+      nodes {
+        acfNavigationsFields {
+          navigationTitle
+          footerTitle
+        }
+        id
+        slug
+      }
     }
   }
 `;
@@ -11305,6 +11355,7 @@ export const AcfServiceDataDocument = gql`
           }
         }
         id
+        slug
       }
     }
   }
@@ -11365,6 +11416,16 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
         variables,
         options
       ) as Promise<AcfServiceQuery>;
+    },
+    acfNavigations(
+      variables?: AcfNavigationsQueryVariables,
+      options?: C
+    ): Promise<AcfNavigationsQuery> {
+      return requester<AcfNavigationsQuery, AcfNavigationsQueryVariables>(
+        AcfNavigationsDocument,
+        variables,
+        options
+      ) as Promise<AcfNavigationsQuery>;
     },
     acfServiceData(
       variables?: AcfServiceDataQueryVariables,

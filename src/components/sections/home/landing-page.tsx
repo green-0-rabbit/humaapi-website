@@ -28,8 +28,8 @@ const LandingPage: FC<ILandingPage> = (props) => {
                 lineHeight: '40px'
               }}
               size={40}
-              title={landingData.titleLanding}
-              content={landingData.contentLanding}
+              title={landingData.title}
+              content={landingData.description}
               space={12}
             />
             <Box className="mt-4">
