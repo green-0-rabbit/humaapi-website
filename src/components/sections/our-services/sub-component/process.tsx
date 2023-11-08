@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { Text, Container, Paper, createStyles, Box } from '@mantine/core';
 import { FC } from 'react';
 import Description from 'src/components/modules/description';
+import { ProcessType } from 'src/services/our-service-service';
 import CarouselOursServices from '../carousel-our-services';
 
 const useStyles = createStyles((theme) => ({
@@ -11,10 +12,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface IProcess {
-  dataProcess: {
-    processTitle: string;
-    processList: { title: string; content: string }[];
-  };
+  process: { title: string; array: ProcessType };
   icons: { icon: JSX.Element }[];
 }
 const Section = styled('div')``;
@@ -25,7 +23,7 @@ const Icon = styled('div')``;
 const TitleCard = styled('div')``;
 
 const Process: FC<IProcess> = ({ ...props }) => {
-  const { dataProcess, icons } = props;
+  const { process, icons } = props;
   const { classes } = useStyles();
 
   return (
@@ -33,7 +31,7 @@ const Process: FC<IProcess> = ({ ...props }) => {
       <ContainDescription className="mx-auto">
         <HeadSection className="text-center">
           <Description
-            title={dataProcess.processTitle}
+            title={process.title}
             sx={{
               fontFamily: 'Ubuntu-Bold',
               fontWeight: 700,
@@ -45,7 +43,7 @@ const Process: FC<IProcess> = ({ ...props }) => {
       </ContainDescription>
       <ContainCards className="mt-10 hidden md:flex md:justify-center">
         <Container className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {dataProcess.processList.map((el, index) => (
+          {process.array.map((el, index) => (
             <Paper
               className="place-items-start md:grid"
               radius={20}
@@ -64,14 +62,14 @@ const Process: FC<IProcess> = ({ ...props }) => {
                   size="xs"
                   className={` mt-1 ${classes.textColor}`}
                   lineClamp={4}>
-                  {el.content}
+                  {el.description}
                 </Text>
               </Box>
             </Paper>
           ))}
         </Container>
       </ContainCards>
-      <CarouselOursServices data={dataProcess.processList} icons={icons} />
+      <CarouselOursServices data={process} icons={icons} />
     </Section>
   );
 };

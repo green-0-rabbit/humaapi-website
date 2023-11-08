@@ -1,24 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable import/prefer-default-export */
-import camelcaseKeys from 'camelcase-keys';
 import { NonUndefined } from 'react-hook-form';
 import { ReturnTypeAsync } from 'src/commons/interface';
-import { hmDirectus } from 'src/utils';
-import { CamelCasedPropertiesDeep } from 'type-fest';
 import apolloClient from 'src/utils/wps/apollo-client';
-import { getFormatedOverview } from './helper-function';
-
-interface IServicesOverview {
-  id: string;
-  page_title: string;
-  service_title: string;
-  service_description: string;
-  service_link: string;
-  get_title: string;
-  get_list: string;
-  process_title: string;
-  process_list: string;
-}
 
 interface IServiceCard {
   id: string;
@@ -29,12 +13,15 @@ interface IServiceCard {
   imageName: string;
 }
 
-interface IService {
-  id: string;
-  title: string;
-  subTitle: string;
-  description: string;
+export type OffersType = Array<
+  Omit<IServiceCard, 'image' | 'imageName' | 'link'>
+>;
+export type ProcessType = Array<Omit<IServiceCard, 'link'>>;
+interface IServicesOverview extends IServiceCard {
+  process: { title: string; array: ProcessType };
+  offers: { title: string; array: OffersType };
 }
+
 export type IDataDetailsService = NonUndefined<
   Required<ReturnTypeAsync<typeof OurServicesService.getByLink>>
 >;
@@ -49,12 +36,41 @@ export type IServiceData = NonUndefined<
 export const OurServicesService = {
   getByLink: async (serviceLink: string) => {
     try {
-      const serviceData = await OurServicesService.getServiceCard();
-      if (serviceLink && serviceData) {
-        const [newServiceData] = serviceData.filter(
-          (val) => val.link === serviceLink
-        );
-        return newServiceData;
+      const { acfService } = await apolloClient.acfServiceById({
+        id: serviceLink
+      });
+      const resOffers = acfService?.acfOffers?.nodes;
+      const resProcess = acfService?.acfProcess?.nodes;
+      if (acfService && resOffers && resProcess) {
+        const dataOffers = resOffers.map((valOffer) => ({
+          id: valOffer.id as string,
+          title: valOffer.name as string,
+          description: valOffer.description as string
+        }));
+        const dataProcess = resProcess.map((valProcess) => ({
+          id: valProcess.id as string,
+          title: valProcess.name as string,
+          description: valProcess.description as string,
+          image: valProcess.acfProcessFields?.image?.mediaItemUrl as string,
+          imageName: valProcess.acfProcessFields?.image?.altText as string
+        }));
+        const data = {
+          id: acfService.id,
+          title: acfService.acfServicesFields?.title as string,
+          link: acfService.slug as string,
+          description: acfService.acfServicesFields?.description as string,
+          image: acfService.acfServicesFields?.image?.mediaItemUrl as string,
+          imageName: acfService.acfServicesFields?.image?.altText as string,
+          process: {
+            title: acfService.acfServicesFields?.titleProcess,
+            array: dataProcess
+          },
+          offers: {
+            title: acfService.acfServicesFields?.titleOffer,
+            array: dataOffers
+          }
+        };
+        return data as IServicesOverview;
       }
       throw new Error(
         `page ${serviceLink} was not found, please check the backend request`
@@ -93,7 +109,7 @@ export const OurServicesService = {
           link: val.slug as string,
           description: val.acfServicesFields?.description as string,
           image: val.acfServicesFields?.image?.mediaItemUrl as string,
-          imageName: val.acfServicesFields?.imageName as string
+          imageName: val.acfServicesFields?.image?.altText as string
         }));
         return data.reverse() as IServiceCard[];
       }

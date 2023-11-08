@@ -53,7 +53,7 @@ export const HomeService = {
           title: res.title as string,
           description: res.description as string,
           image: res.image?.mediaItemUrl as string,
-          imageName: res.imageName as string
+          imageName: res.image?.altText as string
         };
         return data as ILandingPage;
       }

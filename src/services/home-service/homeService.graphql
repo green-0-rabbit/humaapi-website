@@ -5,8 +5,8 @@ query acfLanding {
       title
       image {
         mediaItemUrl
+        altText
       }
-      imageName
     }
     id
     title

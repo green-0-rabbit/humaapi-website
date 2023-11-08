@@ -2,16 +2,14 @@ import styled from '@emotion/styled';
 import { Text, Container, Box, Paper, createStyles } from '@mantine/core';
 import { FC } from 'react';
 import Description from 'src/components/modules/description';
+import { OffersType } from 'src/services/our-service-service';
 
 const useStyles = createStyles((theme) => ({
   titleColor: { color: theme.colorScheme === 'dark' ? 'white' : '#2b2b2b' },
   textColor: { color: theme.colorScheme === 'dark' ? '#afaaaa' : '#6B7280' }
 }));
 interface IWeget {
-  dataWeget: {
-    getTitle: string;
-    getList: { title: string; content: string }[];
-  };
+  offers: { title: string; array: OffersType };
 }
 const Section = styled('div')``;
 const HeadSection = styled('div')``;
@@ -21,14 +19,14 @@ const TitleCard = styled('div')``;
 
 const Weget: FC<IWeget> = ({ ...props }) => {
   const { classes } = useStyles();
-  const { dataWeget } = props;
+  const { offers } = props;
 
   return (
     <Section className="mx-4">
       <ContainDescription>
         <HeadSection className="text-center">
           <Description
-            title={dataWeget.getTitle}
+            title={offers.title}
             sx={{
               fontFamily: 'Ubuntu-Bold',
               fontWeight: 700,
@@ -40,10 +38,10 @@ const Weget: FC<IWeget> = ({ ...props }) => {
       </ContainDescription>
       <ContainCards className="mt-10 grid place-items-center">
         <Container className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {dataWeget.getList.map((el, index) => (
+          {offers.array.map((el, index) => (
             <Paper
               className="place-items-center md:grid"
-              key={el.title}
+              key={el.id}
               p={14}
               radius={24}
               style={{ width: 296, height: 96 }}>
@@ -66,7 +64,7 @@ const Weget: FC<IWeget> = ({ ...props }) => {
                     size="xs"
                     lineClamp={3}
                     className={`${classes.textColor} mt-1`}>
-                    {el.content}
+                    {el.description}
                   </Text>
                 </Box>
               </Box>

@@ -12,8 +12,7 @@ import DataService from 'src/components/content/content-data';
 import { useRouter } from 'next/router';
 
 interface IIdContent {
-  // serviceData: IDataDetailsService;
-  serviceData: IServiceData;
+  serviceData: IDataDetailsService;
 }
 const ContainService = styled.div``;
 const HeaderBannerContain = styled.div``;
@@ -42,8 +41,8 @@ const IdContent: FC<IIdContent> = (props) => {
         />
       </HeaderBannerContain>
       <Box className="space-y-32">
-        {/* <TheRenders dataWeget={serviceData.whatget} /> */}
-        {/* <Process dataProcess={serviceData.process} icons={icons.data} /> */}
+        <TheRenders offers={serviceData.offers} />
+        <Process process={serviceData.process} icons={icons.data} />
       </Box>
     </ContainService>
   );

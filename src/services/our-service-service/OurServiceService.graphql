@@ -5,9 +5,10 @@ query acfServiceData {
       acfServicesFields {
         title
         description
-        imageName
+
         image {
           mediaItemUrl
+          altText
         }
       }
       id
@@ -27,5 +28,42 @@ query acfService {
     }
     id
     title
+  }
+}
+
+query acfServiceById($id: ID!) {
+  acfService(id: $id, idType: URI) {
+    acfServicesFields {
+      description
+      title
+      titleOffer
+      titleProcess
+      image {
+        mediaItemUrl
+        altText
+      }
+    }
+    slug
+    id
+    acfOffers {
+      nodes {
+        name
+        description
+        id
+      }
+    }
+    acfProcess {
+      nodes {
+        name
+        description
+        id
+        acfProcessFields {
+          image {
+            mediaItemUrl
+            altText
+          }
+        }
+      }
+    }
   }
 }

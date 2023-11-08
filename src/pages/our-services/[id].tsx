@@ -17,7 +17,7 @@ import IdContent from 'src/components/sections/our-services/sub-component/id-con
 interface IIdOutService {
   navigationData: INavigation[];
   serviceCardData: IDataServiceCard;
-  serviceData: IServiceData;
+  serviceData: IDataDetailsService;
 }
 
 const IdOutService: FC<IIdOutService> = (props) => {
