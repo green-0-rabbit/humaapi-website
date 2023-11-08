@@ -4,56 +4,54 @@ import { FC } from 'react';
 import CardServices from 'src/components/sections/our-services/card-services';
 import HeadOurServices from 'src/components/sections/our-services/header-our-services';
 import {
-  IDataOurServiceView,
+  IDataServiceCard,
+  IServiceData,
   OurServicesService
 } from 'src/services/our-service-service';
-import { HomeService, IDataOurService } from 'src/services/home-service';
 import {
-  INavigationFooterData,
-  INavigationHeaderData,
+  INavigation,
   navigationService
 } from 'src/services/navigation-service';
 import Layout from 'src/layouts/layout';
+import path from 'path';
 
 interface IOurServices {
-  serviceDesData: IDataOurServiceView[];
-  headerData: IDataOurService[];
-  navigationHeaderData: INavigationHeaderData[];
-  navigationFooterData: INavigationFooterData[];
+  serviceCardData: IDataServiceCard;
+  pageData: IServiceData;
+  navigationData: INavigation[];
+  parentUrl: string;
 }
 const OurServices: FC<IOurServices> = ({ ...props }) => {
-  const {
-    serviceDesData,
-    headerData,
-    navigationHeaderData,
-    navigationFooterData
-  } = props;
-  const [newHeaderData] = headerData;
-
+  const { serviceCardData, pageData, navigationData } = props;
+  const [ourServiceNavigation] = navigationData.filter(
+    (val) => val.footerTitle === null
+  );
   return (
     <Layout
-      pageTitle={newHeaderData.titlePage}
-      navigationHeaderData={navigationHeaderData}
-      navigationFooterData={navigationFooterData}>
+      pageTitle={pageData.title}
+      navigationData={navigationData}
+      serviceData={serviceCardData}>
       <Box className="w-full">
-        <HeadOurServices headerData={newHeaderData} />
-        <CardServices servicesData={serviceDesData} />
+        <HeadOurServices pageData={pageData} />
+        <CardServices
+          servicesData={serviceCardData}
+          parentUrl={ourServiceNavigation.navigationLink}
+        />
       </Box>
     </Layout>
   );
 };
 export const getStaticProps: GetStaticProps = async () => {
-  const headerData = await HomeService.getService();
-  const serviceDesData = await OurServicesService.getAllServiceDes();
-  const navigationHeaderData = await navigationService.getHeader();
-  const navigationFooterData = await navigationService.getFooter();
+  const fileName = path.basename(__filename, '.js');
+  const serviceCardData = await OurServicesService.getServiceCard();
+  const navigationData = await navigationService.getAll();
+  const pageData = await OurServicesService.getServiceData(fileName);
 
   return {
     props: {
-      serviceDesData,
-      headerData,
-      navigationHeaderData,
-      navigationFooterData
+      serviceCardData,
+      navigationData,
+      pageData
     }
   };
 };

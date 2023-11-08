@@ -11,12 +11,13 @@ import OurServiceCard from './sub-component/our-service-card';
 interface IOurServices {
   serviceData: IDataOurService;
   serviceCardData: IDataServiceCard;
+  parentUrl: string;
 }
 const ContainDescription = styled.div``;
 const ContainCards = styled.div``;
 const Icons = DataService.serviceSvgIcon;
 const OurServices: FC<IOurServices> = (props) => {
-  const { serviceData, serviceCardData } = props;
+  const { serviceData, serviceCardData, parentUrl } = props;
 
   return (
     <Box className="flex flex-col md:space-y-16">
@@ -46,7 +47,10 @@ const OurServices: FC<IOurServices> = (props) => {
         />
       </ContainDescription>
       <ContainCards className="hidden md:flex md:justify-center">
-        <OurServiceCard serviceCardData={serviceCardData} />
+        <OurServiceCard
+          serviceCardData={serviceCardData}
+          parentUrl={parentUrl}
+        />
       </ContainCards>
       <CarouselHome data={serviceCardData} icons={Icons} />
     </Box>

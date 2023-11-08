@@ -37,7 +37,9 @@ const Home: FC<Ihome> = ({ ...props }) => {
     navigationData,
     pageTitle
   } = props;
-
+  const [ourServiceNavigation] = navigationData.filter(
+    (val) => val.footerTitle === null
+  );
   return (
     <Layout
       navigationData={navigationData}
@@ -48,6 +50,7 @@ const Home: FC<Ihome> = ({ ...props }) => {
         <OursService
           serviceData={serviceData}
           serviceCardData={serviceCardData}
+          parentUrl={ourServiceNavigation.navigationLink}
         />
         <DomaineActivity domaineData={domaineData} />
       </Box>

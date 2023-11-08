@@ -11190,26 +11190,6 @@ export type AcfDomainQuery = {
   } | null;
 };
 
-export type AcfServiceQueryVariables = Exact<{ [key: string]: never }>;
-
-export type AcfServiceQuery = {
-  __typename?: 'RootQuery';
-  acfAcfPage?: {
-    __typename?: 'AcfAcfPage';
-    id: string;
-    title?: string | null;
-    acfHomePageFields?: {
-      __typename?: 'AcfAcfPage_Acfhomepagefields';
-      serviceContent?: {
-        __typename?: 'AcfAcfPage_Acfhomepagefields_ServiceContent';
-        title?: string | null;
-        subTitle?: string | null;
-        description?: string | null;
-      } | null;
-    } | null;
-  } | null;
-};
-
 export type AcfNavigationsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type AcfNavigationsQuery = {
@@ -11250,6 +11230,26 @@ export type AcfServiceDataQuery = {
         } | null;
       } | null;
     }>;
+  } | null;
+};
+
+export type AcfServiceQueryVariables = Exact<{ [key: string]: never }>;
+
+export type AcfServiceQuery = {
+  __typename?: 'RootQuery';
+  acfAcfPage?: {
+    __typename?: 'AcfAcfPage';
+    id: string;
+    title?: string | null;
+    acfHomePageFields?: {
+      __typename?: 'AcfAcfPage_Acfhomepagefields';
+      serviceContent?: {
+        __typename?: 'AcfAcfPage_Acfhomepagefields_ServiceContent';
+        title?: string | null;
+        subTitle?: string | null;
+        description?: string | null;
+      } | null;
+    } | null;
   } | null;
 };
 
@@ -11312,21 +11312,6 @@ export const AcfDomainDocument = gql`
     }
   }
 `;
-export const AcfServiceDocument = gql`
-  query acfService {
-    acfAcfPage(id: "home", idType: SLUG) {
-      acfHomePageFields {
-        serviceContent {
-          title
-          subTitle
-          description
-        }
-      }
-      id
-      title
-    }
-  }
-`;
 export const AcfNavigationsDocument = gql`
   query acfNavigations {
     acfNavigations {
@@ -11357,6 +11342,21 @@ export const AcfServiceDataDocument = gql`
         id
         slug
       }
+    }
+  }
+`;
+export const AcfServiceDocument = gql`
+  query acfService {
+    acfAcfPage(id: "home", idType: SLUG) {
+      acfHomePageFields {
+        serviceContent {
+          title
+          subTitle
+          description
+        }
+      }
+      id
+      title
     }
   }
 `;
@@ -11407,16 +11407,6 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
         options
       ) as Promise<AcfDomainQuery>;
     },
-    acfService(
-      variables?: AcfServiceQueryVariables,
-      options?: C
-    ): Promise<AcfServiceQuery> {
-      return requester<AcfServiceQuery, AcfServiceQueryVariables>(
-        AcfServiceDocument,
-        variables,
-        options
-      ) as Promise<AcfServiceQuery>;
-    },
     acfNavigations(
       variables?: AcfNavigationsQueryVariables,
       options?: C
@@ -11436,6 +11426,16 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
         variables,
         options
       ) as Promise<AcfServiceDataQuery>;
+    },
+    acfService(
+      variables?: AcfServiceQueryVariables,
+      options?: C
+    ): Promise<AcfServiceQuery> {
+      return requester<AcfServiceQuery, AcfServiceQueryVariables>(
+        AcfServiceDocument,
+        variables,
+        options
+      ) as Promise<AcfServiceQuery>;
     }
   };
 }

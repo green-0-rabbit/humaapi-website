@@ -1,17 +1,18 @@
 import styled from '@emotion/styled';
 import { Box } from '@mantine/core';
 import { FC } from 'react';
-import { IDataOurServiceView } from 'src/services/our-service-service';
+import { IDataServiceCard } from 'src/services/our-service-service';
 import CardService from 'src/components/modules/card-service';
 import DataService from 'src/components/content/content-data';
 
 interface ICardServices {
-  servicesData: IDataOurServiceView[];
+  servicesData: IDataServiceCard;
+  parentUrl: string;
 }
 const Section = styled.section``;
 const Contain = styled.div``;
 const CardServices: FC<ICardServices> = (props) => {
-  const { servicesData } = props;
+  const { servicesData, parentUrl } = props;
   const illustration = DataService.serviceSvgIllustration;
 
   return (
@@ -20,10 +21,10 @@ const CardServices: FC<ICardServices> = (props) => {
         {servicesData.map((service, index) => (
           <Contain key={service.id}>
             <CardService
-              id={service.id}
-              serviceTitle={service.serviceTitle}
-              serviceContent={service.serviceContent}
-              serviceLink={`our-services/${service.serviceLink}`}
+              id={index + 1}
+              serviceTitle={service.title}
+              serviceDescription={service.description}
+              serviceLink={`${parentUrl}/${service.link}`}
               serviceImg={illustration[index].img}
             />
           </Contain>

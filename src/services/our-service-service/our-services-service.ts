@@ -8,31 +8,33 @@ import { CamelCasedPropertiesDeep } from 'type-fest';
 import apolloClient from 'src/utils/wps/apollo-client';
 import { getFormatedOverview } from './helper-function';
 
-interface IGetServiceDesc {
-  id: number;
+interface IServicesOverview {
+  id: string;
   page_title: string;
   service_title: string;
-  service_content: string;
+  service_description: string;
   service_link: string;
   get_title: string;
   get_list: string;
   process_title: string;
   process_list: string;
 }
-interface IService {
-  id: number;
-  service_title: string;
-  service_content: string;
-  service_link: string;
-}
+
 interface IServiceCard {
   id: string;
   title: string;
   link: string;
+  description: string;
+  image: string;
+  imageName: string;
 }
-export type IDataOurServiceView = NonUndefined<
-  Required<ReturnTypeAsync<typeof OurServicesService.getAllServiceDes>>
->;
+
+interface IService {
+  id: string;
+  title: string;
+  subTitle: string;
+  description: string;
+}
 export type IDataDetailsService = NonUndefined<
   Required<ReturnTypeAsync<typeof OurServicesService.getByLink>>
 >;
@@ -40,29 +42,39 @@ export type IDataServiceCard = NonUndefined<
   Required<ReturnTypeAsync<typeof OurServicesService.getServiceCard>>
 >;
 
-export const OurServicesService = {
-  getAllServiceDes: async () => {
-    try {
-      const { data } = await hmDirectus.readSingleton<IService>({
-        fields: `#graphql
-              {    
-                id      
-                service_title
-                service_content
-                service_link
-                             }
-            `,
-        queryName: 'services'
-      });
+export type IServiceData = NonUndefined<
+  Required<ReturnTypeAsync<typeof OurServicesService.getServiceData>>
+>;
 
-      if (data) {
-        const res = camelcaseKeys(
-          data as unknown as CamelCasedPropertiesDeep<IService>,
-          {
-            deep: true
-          }
+export const OurServicesService = {
+  getByLink: async (serviceLink: string) => {
+    try {
+      const serviceData = await OurServicesService.getServiceCard();
+      if (serviceLink && serviceData) {
+        const [newServiceData] = serviceData.filter(
+          (val) => val.link === serviceLink
         );
-        return res;
+        return newServiceData;
+      }
+      throw new Error(
+        `page ${serviceLink} was not found, please check the backend request`
+      );
+    } catch (err) {
+      return undefined;
+    }
+  },
+  getPaths: async () => {
+    try {
+      const { acfServices } = await apolloClient.acfServiceData();
+      const res = acfServices?.nodes;
+      if (res) {
+        const pathsConfig = res.map((value) => ({
+          params: {
+            id: String(value.slug)
+          }
+        }));
+
+        return pathsConfig;
       }
       return undefined;
     } catch (err) {
@@ -70,88 +82,6 @@ export const OurServicesService = {
       throw new Error(error.message);
     }
   },
-  getByLink: async (serviceLink: string) => {
-    try {
-      const { data } = await hmDirectus.readByQuery<IGetServiceDesc>({
-        fields: `#graphql
-            {      
-          id
-          page_title
-          service_title
-          service_content
-          service_link
-            get_title
-            get_list 
-            process_title
-            process_list
-                    }
-          `,
-        filter: {
-          service_link: { _eq: serviceLink }
-        },
-        queryName: 'services'
-      });
-
-      if (!data) {
-        return undefined;
-      }
-
-      const singleValue = { ...data[0] };
-      const finaleValue = {
-        id: singleValue.id,
-        page_title: singleValue.page_title,
-        service_title: singleValue.service_title,
-        service_content: singleValue.service_content,
-        service_link: singleValue.service_link,
-        whatget: {
-          get_title: singleValue.get_title,
-          get_list: getFormatedOverview(singleValue.get_list)
-        },
-        process: {
-          process_title: singleValue.process_title,
-          process_list: getFormatedOverview(singleValue.process_list)
-        }
-      };
-
-      return camelcaseKeys(
-        finaleValue as unknown as CamelCasedPropertiesDeep<typeof finaleValue>,
-        {
-          deep: true
-        }
-      );
-    } catch (err) {
-      return undefined;
-    }
-  },
-  getPaths: async () => {
-    type Path = Pick<IGetServiceDesc, 'service_link'>;
-    try {
-      const { data } = await hmDirectus.readByQuery<Path>({
-        fields: `#graphql
-            {      
-              service_link
-            }
-          `,
-
-        queryName: 'services'
-      });
-
-      if (!data) {
-        return undefined;
-      }
-
-      const pathsConfig = data.map((post) => ({
-        params: {
-          id: String(post.service_link)
-        }
-      }));
-
-      return pathsConfig;
-    } catch (err) {
-      return undefined;
-    }
-  },
-
   getServiceCard: async () => {
     try {
       const { acfServices } = await apolloClient.acfServiceData();
@@ -160,11 +90,39 @@ export const OurServicesService = {
         const data = res.map((val) => ({
           id: val.id as string,
           title: val.acfServicesFields?.title as string,
-          link: val.slug as string
+          link: val.slug as string,
+          description: val.acfServicesFields?.description as string,
+          image: val.acfServicesFields?.image?.mediaItemUrl as string,
+          imageName: val.acfServicesFields?.imageName as string
         }));
         return data.reverse() as IServiceCard[];
       }
       return undefined;
+    } catch (err) {
+      const error = <any>err;
+      throw new Error(error.message);
+    }
+  },
+  getServiceData: async (id: string) => {
+    try {
+      const { acfAcfPage } = await apolloClient.acfService();
+      if (
+        id === 'our-services' &&
+        acfAcfPage &&
+        acfAcfPage.acfHomePageFields &&
+        acfAcfPage.acfHomePageFields.serviceContent
+      ) {
+        const res = acfAcfPage.acfHomePageFields.serviceContent;
+        const data = {
+          title: res.title as string,
+          subTitle: res.subTitle as string,
+          description: res.description as string
+        };
+        return data;
+      }
+      throw new Error(
+        `page ${id} was not found, please check the backend request`
+      );
     } catch (err) {
       const error = <any>err;
       throw new Error(error.message);

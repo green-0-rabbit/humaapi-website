@@ -7,7 +7,7 @@ query acfLanding {
         mediaItemUrl
       }
       imageName
-    } 
+    }
     id
     title
   }
@@ -27,16 +27,4 @@ query acfDomain {
   }
 }
 
-query acfService {
-  acfAcfPage(id: "home", idType: SLUG) {
-    acfHomePageFields {
-      serviceContent {
-        title
-        subTitle
-        description
-      }
-    }
-    id
-    title
-  }
-}
+

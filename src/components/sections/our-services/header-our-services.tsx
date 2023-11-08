@@ -2,16 +2,16 @@ import styled from '@emotion/styled';
 import { Text } from '@mantine/core';
 import { FC } from 'react';
 import Description from 'src/components/modules/description';
-import { IDataOurService } from 'src/services/home-service';
+import { IServiceData } from 'src/services/our-service-service';
 
 interface IHeadOurServices {
-  headerData: IDataOurService;
+  pageData: IServiceData;
 }
 const Title = styled.div``;
 const TitleContain = styled.div``;
 const HeaderBannerContain = styled.div``;
 const HeadOurServices: FC<IHeadOurServices> = (props) => {
-  const { headerData } = props;
+  const { pageData } = props;
 
   return (
     <HeaderBannerContain className=" grid h-[70vh] place-items-center  xs:text-center md:text-left lg:h-[73vh]">
@@ -20,12 +20,12 @@ const HeadOurServices: FC<IHeadOurServices> = (props) => {
           color="humaapi.0"
           className="text-xl font-bold"
           sx={{ fontFamily: 'Ubuntu-Regular' }}>
-          {headerData.titlePage}
+          {pageData.title}
         </Text>
         <Title className="text-center">
           <Description
-            title={headerData.titleService}
-            content={headerData.contentService}
+            title={pageData.subTitle}
+            content={pageData.description}
             sx={{
               fontFamily: 'Ubuntu-Bold',
               fontWeight: 700,
