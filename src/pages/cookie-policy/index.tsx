@@ -2,47 +2,39 @@ import { Box } from '@mantine/core';
 import { GetStaticProps } from 'next';
 import { FC } from 'react';
 import CookiePolicyContent from 'src/components/sections/cookie-policy/cookie-content';
-import {
-  cookieService,
-  ICookieManagementData,
-  ICookieTitleData,
-  IDataCookiePolicy
-} from 'src/services/cookie-service';
+import { IDataCookiePolicy, cookieService } from 'src/services/cookie-service';
 
 import {
-  INavigationFooterData,
-  INavigationHeaderData,
+  INavigation,
   navigationService
 } from 'src/services/navigation-service';
 import Layout from 'src/layouts/layout';
+import { IDataOurService } from 'src/services/home-service';
+import {
+  IDataServiceCard,
+  OurServicesService
+} from 'src/services/our-service-service';
 
-interface ICookie {
-  cookiesData: ICookieManagementData[];
-  cookiePolicyContent: IDataCookiePolicy[];
-  navigationFooterData: INavigationFooterData[];
-  navigationHeaderData: INavigationHeaderData[];
-  pageTitle: ICookieTitleData[];
+interface ICookiePage {
+  cookiePolicyContent: IDataCookiePolicy;
+  pageTitle: string;
+  serviceData: IDataOurService;
+  serviceCardData: IDataServiceCard;
+  navigationData: INavigation[];
 }
 
-const Cookie: FC<ICookie> = ({ ...props }) => {
-  const {
-    cookiesData,
-    cookiePolicyContent,
-    navigationHeaderData,
-    navigationFooterData,
-    pageTitle
-  } = props;
-  const [title] = pageTitle;
-  const [newcookiePolicyContent] = cookiePolicyContent;
+const Cookie: FC<ICookiePage> = ({ ...props }) => {
+  const { cookiePolicyContent, pageTitle, navigationData, serviceCardData } =
+    props;
   return (
     <Layout
-      pageTitle={title.pageTitle}
-      navigationHeaderData={navigationHeaderData}
-      navigationFooterData={navigationFooterData}>
+      navigationData={navigationData}
+      pageTitle={cookiePolicyContent.title}
+      serviceData={serviceCardData}>
       <Box className="mx-auto">
         <CookiePolicyContent
-          cookiesData={cookiesData}
-          cookiePolicyContent={newcookiePolicyContent}
+          cookiePolicyContent={cookiePolicyContent}
+          // cookiePolicyContent={newcookiePolicyContent}
         />
       </Box>
     </Layout>
@@ -50,18 +42,18 @@ const Cookie: FC<ICookie> = ({ ...props }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const cookiesData = await cookieService.getCookies();
+  // const cookiesData = await cookieService.getCookies();
   const cookiePolicyContent = await cookieService.get();
-  const pageTitle = await cookieService.getTitle();
-  const navigationHeaderData = await navigationService.getHeader();
-  const navigationFooterData = await navigationService.getFooter();
+  // const pageTitle = await cookieService.getTitle();
+  const serviceCardData = await OurServicesService.getServiceCard();
+  const navigationData = await navigationService.getAll();
   return {
     props: {
-      cookiesData,
+      // cookiesData,
       cookiePolicyContent,
-      navigationHeaderData,
-      navigationFooterData,
-      pageTitle
+      serviceCardData,
+      navigationData
+      // pageTitle
     }
   };
 };
