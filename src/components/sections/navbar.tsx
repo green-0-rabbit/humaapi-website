@@ -117,7 +117,6 @@ const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
   const router = useRouter();
   const [opened, { toggle, close }] = useDisclosure(false);
   const [active, setActive] = useState(router.pathname);
-  // .replace('/', '')
   const { classes, cx } = useStyles();
   const items = itemNavLink.filter(
     (val) => val.navigationLink !== 'cookie-policy'

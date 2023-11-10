@@ -1,10 +1,8 @@
 import styled from '@emotion/styled';
 import { FC } from 'react';
 import CardService from 'src/components/modules/card-service';
-import {
-  IDataDetailsService,
-  IServiceData
-} from 'src/services/our-service-service';
+import { IDataDetailsService } from 'src/services/our-service-service';
+import Image from 'next/image';
 import { Box } from '@mantine/core';
 import TheRenders from 'src/components/sections/our-services/sub-component/weget';
 import Process from 'src/components/sections/our-services/sub-component/process';
@@ -36,7 +34,15 @@ const IdContent: FC<IIdContent> = (props) => {
           serviceTitle={serviceData.title}
           serviceDescription={serviceData.description}
           serviceLink="/contact-us"
-          serviceImg={getImage.img}
+          serviceImg={
+            <Image
+              src={serviceData.image}
+              alt={serviceData.imageName}
+              className="object-cover object-center"
+              height={342}
+              width={serviceData.link === 'web-development' ? 400 : 312}
+            />
+          }
           nameEvent="Get in touch"
         />
       </HeaderBannerContain>

@@ -2,6 +2,7 @@
 import styled from '@emotion/styled';
 import { Text, Container, Paper, createStyles, Box } from '@mantine/core';
 import { FC } from 'react';
+import Image from 'next/image';
 import Description from 'src/components/modules/description';
 import { ProcessType } from 'src/services/our-service-service';
 import CarouselOursServices from '../carousel-our-services';
@@ -52,7 +53,14 @@ const Process: FC<IProcess> = ({ ...props }) => {
               <Box
                 className="grid grid-cols-1 gap-1"
                 sx={{ fontFamily: 'Ubuntu-Regular' }}>
-                <Icon>{icons[index].icon}</Icon>
+                {/* <Icon>{icons[index].icon}</Icon> */}
+                <Image
+                  src={el.image}
+                  alt={el.imageName}
+                  className="object-cover object-center"
+                  width={36}
+                  height={36}
+                />
                 <TitleCard
                   className={`text-base font-semibold ${classes.titleColor}`}>
                   {el.title}

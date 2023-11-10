@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import { Box, createStyles, Text } from '@mantine/core';
 import { FC } from 'react';
-import DataService from 'src/components/content/content-data';
 import Description from 'src/components/modules/description';
 import { ArrayTeam } from 'src/services/about-us-service';
 import Image from 'next/image';

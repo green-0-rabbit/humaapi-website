@@ -5,6 +5,7 @@ import { Paper, Text } from '@mantine/core';
 import Image from 'next/image';
 import { IDataServiceCard } from 'src/services/our-service-service';
 import DataService from 'src/components/content/content-data';
+import { useLocalStorage } from '@mantine/hooks';
 
 interface IOurServiceCard {
   serviceCardData: IDataServiceCard;
@@ -16,6 +17,7 @@ const Container = styled.div``;
 const OurServiceCard: FC<IOurServiceCard> = (props) => {
   const { serviceCardData, parentUrl } = props;
   const Icons = DataService.serviceSvgIcon;
+  const [value, setValue] = useLocalStorage({ key: 'humaapi-color-scheme' });
 
   return (
     <Container className="grid grid-cols-3 gap-8">
@@ -26,8 +28,8 @@ const OurServiceCard: FC<IOurServiceCard> = (props) => {
             style={{ width: 205, height: 150 }}>
             {/* <DispalyIcons>{Icons[index].icon}</DispalyIcons> */}
             <Image
-              src={el.iconDark.icon}
-              alt={el.iconDark.name}
+              src={value === 'dark' ? el.iconLight.icon : el.iconDark.icon}
+              alt={value === 'dark' ? el.iconLight.name : el.iconDark.name}
               className="object-cover object-center"
               height={55}
               width={50}

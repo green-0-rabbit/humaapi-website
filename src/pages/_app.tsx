@@ -13,13 +13,17 @@ import { css, Global } from '@emotion/react';
 import { NotificationsProvider } from '@mantine/notifications';
 import CookieConsent from 'src/components/modules/cookie-consent';
 import CustomFonts from 'src/commons/app.fonts';
+import { useHotkeys, useLocalStorage } from '@mantine/hooks';
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [colorScheme, setColorScheme] = useState<ColorScheme>(
-    appTheme.colorScheme ?? 'light'
-  );
+  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+    key: 'humaapi-color-scheme',
+    defaultValue: appTheme.colorScheme ?? 'light',
+    getInitialValueInEffect: true
+  });
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+  useHotkeys([['mod+J', () => toggleColorScheme()]]);
   return (
     <GoogleReCaptchaProvider
       reCaptchaKey={`${process.env.NEXT_PUBLIC_GOOGLE_CAPTCHA_KEY}`}>
