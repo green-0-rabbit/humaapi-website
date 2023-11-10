@@ -64,6 +64,37 @@ type RootQuery {
     where: RootQueryToAcfAcfPageConnectionWhereArgs
   ): RootQueryToAcfAcfPageConnection
 
+  """A 0bject"""
+  acfCharacter(
+    """The globally unique identifier of the object."""
+    id: ID!
+
+    """Type of unique identifier to fetch by. Default is Global ID"""
+    idType: AcfCharacterIdType
+  ): AcfCharacter
+
+  """Connection between the RootQuery type and the acfCharacter type"""
+  acfCharacters(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """Arguments for filtering the connection"""
+    where: RootQueryToAcfCharacterConnectionWhereArgs
+  ): RootQueryToAcfCharacterConnection
+
   """An object of the acfNavigation Type. """
   acfNavigation(
     """The globally unique identifier of the object."""
@@ -930,6 +961,28 @@ type AcfAcfPage implements Node & ContentNode & UniformResourceIdentifiable & Da
   """The id field matches the WP_Post-&gt;ID field."""
   acfAcfPageId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
+  """Connection between the AcfAcfPage type and the acfCharacter type"""
+  acfCharacters(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """Arguments for filtering the connection"""
+    where: AcfAcfPageToAcfCharacterConnectionWhereArgs
+  ): AcfAcfPageToAcfCharacterConnection
+
   """
   Added to the GraphQL Schema because the ACF Field Group &quot;cookie fields&quot; was set to Show in GraphQL.
   """
@@ -1070,6 +1123,28 @@ type AcfAcfPage implements Node & ContentNode & UniformResourceIdentifiable & Da
 
   """The template assigned to the node"""
   template: ContentTemplate
+
+  """Connection between the AcfAcfPage type and the TermNode type"""
+  terms(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """Arguments for filtering the connection"""
+    where: AcfAcfPageToTermNodeConnectionWhereArgs
+  ): AcfAcfPageToTermNodeConnection
 
   """
   The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made.
@@ -7460,6 +7535,12 @@ type AcfService_Acfservicesfields implements AcfFieldGroup {
   fieldGroupName: String
 
   """"""
+  iconDark: MediaItem
+
+  """"""
+  iconLight: MediaItem
+
+  """"""
   image: MediaItem
 
   """"""
@@ -7576,6 +7657,9 @@ input AcfServiceToTermNodeConnectionWhereArgs {
 
 """Allowed taxonomies"""
 enum TaxonomyEnum {
+  """Taxonomy enum character"""
+  ACFCHARACTER
+
   """Taxonomy enum offer"""
   ACFOFFER
 
@@ -11861,7 +11945,551 @@ type AcfAcfPage_Acfaboutusfields implements AcfFieldGroup {
   fieldGroupName: String
 
   """"""
+  teamTitle: String
+
+  """"""
   title: String
+}
+
+"""
+Arguments for filtering the AcfAcfPageToAcfCharacterConnection connection
+"""
+input AcfAcfPageToAcfCharacterConnectionWhereArgs {
+  """
+  Unique cache key to be produced when this query is stored in an object cache. Default is 'core'.
+  """
+  cacheDomain: String
+
+  """
+  Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0.
+  """
+  childOf: Int
+
+  """
+  True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false.
+  """
+  childless: Boolean
+
+  """
+  Retrieve terms where the description is LIKE the input value. Default empty.
+  """
+  descriptionLike: String
+
+  """
+  Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array.
+  """
+  exclude: [ID]
+
+  """
+  Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array.
+  """
+  excludeTree: [ID]
+
+  """
+  Whether to hide terms not assigned to any posts. Accepts true or false. Default false
+  """
+  hideEmpty: Boolean
+
+  """
+  Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true.
+  """
+  hierarchical: Boolean
+
+  """Array of term ids to include. Default empty array."""
+  include: [ID]
+
+  """Array of names to return term(s) for. Default empty."""
+  name: [String]
+
+  """Retrieve terms where the name is LIKE the input value. Default empty."""
+  nameLike: String
+
+  """
+  Array of object IDs. Results will be limited to terms associated with these objects.
+  """
+  objectIds: [ID]
+
+  """Direction the connection should be ordered in"""
+  order: OrderEnum
+
+  """Field(s) to order terms by. Defaults to 'name'."""
+  orderby: TermObjectsConnectionOrderbyEnum
+
+  """
+  Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false.
+  """
+  padCounts: Boolean
+
+  """Parent term ID to retrieve direct-child terms of. Default empty."""
+  parent: Int
+
+  """
+  Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty.
+  """
+  search: String
+
+  """Array of slugs to return term(s) for. Default empty."""
+  slug: [String]
+
+  """Array of term taxonomy IDs, to match when querying terms."""
+  termTaxonomId: [ID]
+
+  """Array of term taxonomy IDs, to match when querying terms."""
+  termTaxonomyId: [ID]
+
+  """Whether to prime meta caches for matched terms. Default true."""
+  updateTermMetaCache: Boolean
+}
+
+"""Connection between the AcfAcfPage type and the acfCharacter type"""
+type AcfAcfPageToAcfCharacterConnection implements AcfCharacterConnection & Connection {
+  """Edges for the AcfAcfPageToAcfCharacterConnection connection"""
+  edges: [AcfAcfPageToAcfCharacterConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [AcfCharacter!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: AcfAcfPageToAcfCharacterConnectionPageInfo!
+}
+
+"""Connection to acfCharacter Nodes"""
+interface AcfCharacterConnection implements Connection {
+  """
+  A list of edges (relational context) between RootQuery and connected acfCharacter Nodes
+  """
+  edges: [AcfCharacterConnectionEdge!]!
+
+  """A list of connected acfCharacter Nodes"""
+  nodes: [AcfCharacter!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: AcfCharacterConnectionPageInfo!
+}
+
+"""Edge between a Node and a connected acfCharacter"""
+interface AcfCharacterConnectionEdge implements Edge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The connected acfCharacter Node"""
+  node: AcfCharacter!
+}
+
+"""The acfCharacter type"""
+type AcfCharacter implements Node & TermNode & UniformResourceIdentifiable & DatabaseIdentifier & MenuItemLinkable {
+  """Connection between the AcfCharacter type and the acfAcfPage type"""
+  acfAcfPages(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """Arguments for filtering the connection"""
+    where: AcfCharacterToAcfAcfPageConnectionWhereArgs
+  ): AcfCharacterToAcfAcfPageConnection
+
+  """
+  Added to the GraphQL Schema because the ACF Field Group &quot;charater fields&quot; was set to Show in GraphQL.
+  """
+  acfCharacterFields: AcfCharacter_Acfcharacterfields
+
+  """The id field matches the WP_Post-&gt;ID field."""
+  acfCharacterId: Int @deprecated(reason: "Deprecated in favor of databaseId")
+
+  """Connection between the AcfCharacter type and the ContentNode type"""
+  contentNodes(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """Arguments for filtering the connection"""
+    where: AcfCharacterToContentNodeConnectionWhereArgs
+  ): AcfCharacterToContentNodeConnection
+
+  """The number of objects connected to the object"""
+  count: Int
+
+  """The unique identifier stored in the database"""
+  databaseId: Int!
+
+  """The description of the object"""
+  description: String
+
+  """Connection between the TermNode type and the EnqueuedScript type"""
+  enqueuedScripts(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+  ): TermNodeToEnqueuedScriptConnection
+
+  """Connection between the TermNode type and the EnqueuedStylesheet type"""
+  enqueuedStylesheets(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+  ): TermNodeToEnqueuedStylesheetConnection
+
+  """The unique resource identifier path"""
+  id: ID!
+
+  """Whether the node is a Content Node"""
+  isContentNode: Boolean!
+
+  """Whether the object is restricted from the current viewer"""
+  isRestricted: Boolean
+
+  """Whether the node is a Term"""
+  isTermNode: Boolean!
+
+  """The link to the term"""
+  link: String
+
+  """The human friendly name of the object."""
+  name: String
+
+  """An alphanumeric identifier for the object unique to its type."""
+  slug: String
+
+  """Connection between the AcfCharacter type and the Taxonomy type"""
+  taxonomy: AcfCharacterToTaxonomyConnectionEdge
+
+  """The name of the taxonomy that the object is associated with"""
+  taxonomyName: String
+
+  """The ID of the term group that this term object belongs to"""
+  termGroupId: Int
+
+  """The taxonomy ID that the object is associated with"""
+  termTaxonomyId: Int
+
+  """The unique resource identifier path"""
+  uri: String
+}
+
+"""
+Arguments for filtering the AcfCharacterToAcfAcfPageConnection connection
+"""
+input AcfCharacterToAcfAcfPageConnectionWhereArgs {
+  """
+  The user that's connected as the author of the object. Use the userId for the author object.
+  """
+  author: Int
+
+  """Find objects connected to author(s) in the array of author's userIds"""
+  authorIn: [ID]
+
+  """Find objects connected to the author by the author's nicename"""
+  authorName: String
+
+  """
+  Find objects NOT connected to author(s) in the array of author's userIds
+  """
+  authorNotIn: [ID]
+
+  """Filter the connection based on dates"""
+  dateQuery: DateQueryInput
+
+  """
+  True for objects with passwords; False for objects without passwords; null for all objects with or without passwords
+  """
+  hasPassword: Boolean
+
+  """Specific database ID of the object"""
+  id: Int
+
+  """Array of IDs for the objects to retrieve"""
+  in: [ID]
+
+  """Get objects with a specific mimeType property"""
+  mimeType: MimeTypeEnum
+
+  """Slug / post_name of the object"""
+  name: String
+
+  """Specify objects to retrieve. Use slugs"""
+  nameIn: [String]
+
+  """
+  Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored
+  """
+  notIn: [ID]
+
+  """What parameter to use to order the objects by."""
+  orderby: [PostObjectsConnectionOrderbyInput]
+
+  """Use ID to return only children. Use 0 to return only top-level items"""
+  parent: ID
+
+  """Specify objects whose parent is in an array"""
+  parentIn: [ID]
+
+  """Specify posts whose parent is not in an array"""
+  parentNotIn: [ID]
+
+  """Show posts with a specific password."""
+  password: String
+
+  """Show Posts based on a keyword search"""
+  search: String
+
+  """Retrieve posts where post status is in an array."""
+  stati: [PostStatusEnum]
+
+  """Show posts with a specific status."""
+  status: PostStatusEnum
+
+  """Title of the object"""
+  title: String
+}
+
+"""Connection between the AcfCharacter type and the acfAcfPage type"""
+type AcfCharacterToAcfAcfPageConnection implements AcfAcfPageConnection & Connection {
+  """Edges for the AcfCharacterToAcfAcfPageConnection connection"""
+  edges: [AcfCharacterToAcfAcfPageConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [AcfAcfPage!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: AcfCharacterToAcfAcfPageConnectionPageInfo!
+}
+
+"""An edge in a connection"""
+type AcfCharacterToAcfAcfPageConnectionEdge implements AcfAcfPageConnectionEdge & Edge {
+  """A cursor for use in pagination"""
+  cursor: String
+
+  """The item at the end of the edge"""
+  node: AcfAcfPage!
+}
+
+"""Page Info on the &quot;AcfCharacterToAcfAcfPageConnection&quot;"""
+type AcfCharacterToAcfAcfPageConnectionPageInfo implements AcfAcfPageConnectionPageInfo & WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""Field Group"""
+type AcfCharacter_Acfcharacterfields implements AcfFieldGroup {
+  """The name of the ACF Field Group"""
+  fieldGroupName: String
+
+  """"""
+  image: MediaItem
+}
+
+"""
+Arguments for filtering the AcfCharacterToContentNodeConnection connection
+"""
+input AcfCharacterToContentNodeConnectionWhereArgs {
+  """The Types of content to filter"""
+  contentTypes: [ContentTypesOfAcfCharacterEnum]
+
+  """Filter the connection based on dates"""
+  dateQuery: DateQueryInput
+
+  """
+  True for objects with passwords; False for objects without passwords; null for all objects with or without passwords
+  """
+  hasPassword: Boolean
+
+  """Specific database ID of the object"""
+  id: Int
+
+  """Array of IDs for the objects to retrieve"""
+  in: [ID]
+
+  """Get objects with a specific mimeType property"""
+  mimeType: MimeTypeEnum
+
+  """Slug / post_name of the object"""
+  name: String
+
+  """Specify objects to retrieve. Use slugs"""
+  nameIn: [String]
+
+  """
+  Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored
+  """
+  notIn: [ID]
+
+  """What parameter to use to order the objects by."""
+  orderby: [PostObjectsConnectionOrderbyInput]
+
+  """Use ID to return only children. Use 0 to return only top-level items"""
+  parent: ID
+
+  """Specify objects whose parent is in an array"""
+  parentIn: [ID]
+
+  """Specify posts whose parent is not in an array"""
+  parentNotIn: [ID]
+
+  """Show posts with a specific password."""
+  password: String
+
+  """Show Posts based on a keyword search"""
+  search: String
+
+  """Retrieve posts where post status is in an array."""
+  stati: [PostStatusEnum]
+
+  """Show posts with a specific status."""
+  status: PostStatusEnum
+
+  """Title of the object"""
+  title: String
+}
+
+"""Allowed Content Types of the AcfCharacter taxonomy."""
+enum ContentTypesOfAcfCharacterEnum {
+  """The Type of Content object"""
+  ACF_PAGE
+}
+
+"""Connection between the AcfCharacter type and the ContentNode type"""
+type AcfCharacterToContentNodeConnection implements ContentNodeConnection & Connection {
+  """Edges for the AcfCharacterToContentNodeConnection connection"""
+  edges: [AcfCharacterToContentNodeConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [ContentNode!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: AcfCharacterToContentNodeConnectionPageInfo!
+}
+
+"""An edge in a connection"""
+type AcfCharacterToContentNodeConnectionEdge implements ContentNodeConnectionEdge & Edge {
+  """A cursor for use in pagination"""
+  cursor: String
+
+  """The item at the end of the edge"""
+  node: ContentNode!
+}
+
+"""Page Info on the &quot;AcfCharacterToContentNodeConnection&quot;"""
+type AcfCharacterToContentNodeConnectionPageInfo implements ContentNodeConnectionPageInfo & WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""Connection between the AcfCharacter type and the Taxonomy type"""
+type AcfCharacterToTaxonomyConnectionEdge implements OneToOneConnection & Edge & TaxonomyConnectionEdge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The node of the connection, without the edges"""
+  node: Taxonomy!
+}
+
+"""Page Info on the connected AcfCharacterConnectionEdge"""
+interface AcfCharacterConnectionPageInfo implements WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""An edge in a connection"""
+type AcfAcfPageToAcfCharacterConnectionEdge implements AcfCharacterConnectionEdge & Edge {
+  """A cursor for use in pagination"""
+  cursor: String
+
+  """The item at the end of the edge"""
+  node: AcfCharacter!
+}
+
+"""Page Info on the &quot;AcfAcfPageToAcfCharacterConnection&quot;"""
+type AcfAcfPageToAcfCharacterConnectionPageInfo implements AcfCharacterConnectionPageInfo & WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
 }
 
 """Field Group"""
@@ -11948,6 +12576,133 @@ type AcfAcfPageToPreviewConnectionEdge implements OneToOneConnection & Edge & Ac
 
   """The node of the connection, without the edges"""
   node: AcfAcfPage!
+}
+
+"""Arguments for filtering the AcfAcfPageToTermNodeConnection connection"""
+input AcfAcfPageToTermNodeConnectionWhereArgs {
+  """
+  Unique cache key to be produced when this query is stored in an object cache. Default is 'core'.
+  """
+  cacheDomain: String
+
+  """
+  Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0.
+  """
+  childOf: Int
+
+  """
+  True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false.
+  """
+  childless: Boolean
+
+  """
+  Retrieve terms where the description is LIKE the input value. Default empty.
+  """
+  descriptionLike: String
+
+  """
+  Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array.
+  """
+  exclude: [ID]
+
+  """
+  Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array.
+  """
+  excludeTree: [ID]
+
+  """
+  Whether to hide terms not assigned to any posts. Accepts true or false. Default false
+  """
+  hideEmpty: Boolean
+
+  """
+  Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true.
+  """
+  hierarchical: Boolean
+
+  """Array of term ids to include. Default empty array."""
+  include: [ID]
+
+  """Array of names to return term(s) for. Default empty."""
+  name: [String]
+
+  """Retrieve terms where the name is LIKE the input value. Default empty."""
+  nameLike: String
+
+  """
+  Array of object IDs. Results will be limited to terms associated with these objects.
+  """
+  objectIds: [ID]
+
+  """Direction the connection should be ordered in"""
+  order: OrderEnum
+
+  """Field(s) to order terms by. Defaults to 'name'."""
+  orderby: TermObjectsConnectionOrderbyEnum
+
+  """
+  Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false.
+  """
+  padCounts: Boolean
+
+  """Parent term ID to retrieve direct-child terms of. Default empty."""
+  parent: Int
+
+  """
+  Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty.
+  """
+  search: String
+
+  """Array of slugs to return term(s) for. Default empty."""
+  slug: [String]
+
+  """The Taxonomy to filter terms by"""
+  taxonomies: [TaxonomyEnum]
+
+  """Array of term taxonomy IDs, to match when querying terms."""
+  termTaxonomId: [ID]
+
+  """Array of term taxonomy IDs, to match when querying terms."""
+  termTaxonomyId: [ID]
+
+  """Whether to prime meta caches for matched terms. Default true."""
+  updateTermMetaCache: Boolean
+}
+
+"""Connection between the AcfAcfPage type and the TermNode type"""
+type AcfAcfPageToTermNodeConnection implements TermNodeConnection & Connection {
+  """Edges for the AcfAcfPageToTermNodeConnection connection"""
+  edges: [AcfAcfPageToTermNodeConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [TermNode!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: AcfAcfPageToTermNodeConnectionPageInfo!
+}
+
+"""An edge in a connection"""
+type AcfAcfPageToTermNodeConnectionEdge implements TermNodeConnectionEdge & Edge {
+  """A cursor for use in pagination"""
+  cursor: String
+
+  """The item at the end of the edge"""
+  node: TermNode!
+}
+
+"""Page Info on the &quot;AcfAcfPageToTermNodeConnection&quot;"""
+type AcfAcfPageToTermNodeConnectionPageInfo implements TermNodeConnectionPageInfo & WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
 }
 
 """Arguments for filtering the RootQueryToAcfAcfPageConnection connection"""
@@ -12047,6 +12802,150 @@ type RootQueryToAcfAcfPageConnectionEdge implements AcfAcfPageConnectionEdge & E
 
 """Page Info on the &quot;RootQueryToAcfAcfPageConnection&quot;"""
 type RootQueryToAcfAcfPageConnectionPageInfo implements AcfAcfPageConnectionPageInfo & WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""The Type of Identifier used to fetch a single resource. Default is ID."""
+enum AcfCharacterIdType {
+  """The Database ID for the node"""
+  DATABASE_ID
+
+  """The hashed Global ID"""
+  ID
+
+  """The name of the node"""
+  NAME
+
+  """Url friendly name of the node"""
+  SLUG
+
+  """The URI for the node"""
+  URI
+}
+
+"""
+Arguments for filtering the RootQueryToAcfCharacterConnection connection
+"""
+input RootQueryToAcfCharacterConnectionWhereArgs {
+  """
+  Unique cache key to be produced when this query is stored in an object cache. Default is 'core'.
+  """
+  cacheDomain: String
+
+  """
+  Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0.
+  """
+  childOf: Int
+
+  """
+  True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false.
+  """
+  childless: Boolean
+
+  """
+  Retrieve terms where the description is LIKE the input value. Default empty.
+  """
+  descriptionLike: String
+
+  """
+  Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array.
+  """
+  exclude: [ID]
+
+  """
+  Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array.
+  """
+  excludeTree: [ID]
+
+  """
+  Whether to hide terms not assigned to any posts. Accepts true or false. Default false
+  """
+  hideEmpty: Boolean
+
+  """
+  Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true.
+  """
+  hierarchical: Boolean
+
+  """Array of term ids to include. Default empty array."""
+  include: [ID]
+
+  """Array of names to return term(s) for. Default empty."""
+  name: [String]
+
+  """Retrieve terms where the name is LIKE the input value. Default empty."""
+  nameLike: String
+
+  """
+  Array of object IDs. Results will be limited to terms associated with these objects.
+  """
+  objectIds: [ID]
+
+  """Direction the connection should be ordered in"""
+  order: OrderEnum
+
+  """Field(s) to order terms by. Defaults to 'name'."""
+  orderby: TermObjectsConnectionOrderbyEnum
+
+  """
+  Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false.
+  """
+  padCounts: Boolean
+
+  """Parent term ID to retrieve direct-child terms of. Default empty."""
+  parent: Int
+
+  """
+  Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty.
+  """
+  search: String
+
+  """Array of slugs to return term(s) for. Default empty."""
+  slug: [String]
+
+  """Array of term taxonomy IDs, to match when querying terms."""
+  termTaxonomId: [ID]
+
+  """Array of term taxonomy IDs, to match when querying terms."""
+  termTaxonomyId: [ID]
+
+  """Whether to prime meta caches for matched terms. Default true."""
+  updateTermMetaCache: Boolean
+}
+
+"""Connection between the RootQuery type and the acfCharacter type"""
+type RootQueryToAcfCharacterConnection implements AcfCharacterConnection & Connection {
+  """Edges for the RootQueryToAcfCharacterConnection connection"""
+  edges: [RootQueryToAcfCharacterConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [AcfCharacter!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: RootQueryToAcfCharacterConnectionPageInfo!
+}
+
+"""An edge in a connection"""
+type RootQueryToAcfCharacterConnectionEdge implements AcfCharacterConnectionEdge & Edge {
+  """A cursor for use in pagination"""
+  cursor: String
+
+  """The item at the end of the edge"""
+  node: AcfCharacter!
+}
+
+"""Page Info on the &quot;RootQueryToAcfCharacterConnection&quot;"""
+type RootQueryToAcfCharacterConnectionPageInfo implements AcfCharacterConnectionPageInfo & WPPageInfo & PageInfo {
   """When paginating forwards, the cursor to continue."""
   endCursor: String
 
@@ -13572,7 +14471,7 @@ interface MenuItemLinkableConnectionEdge implements Edge {
 }
 
 """Deprecated in favor of MenuItemLinkeable Interface"""
-union MenuItemObjectUnion = Post | Page | AcfAcfPage | AcfNavigation | AcfService | Category | Tag | AcfOffer | AcfProces
+union MenuItemObjectUnion = Post | Page | AcfAcfPage | AcfNavigation | AcfService | Category | Tag | AcfCharacter | AcfOffer | AcfProces
 
 """Connection between the MenuItem type and the Menu type"""
 type MenuItemToMenuConnectionEdge implements OneToOneConnection & Edge & MenuConnectionEdge {
@@ -15262,6 +16161,12 @@ type RootMutation {
     input: CreateAcfAcfPageInput!
   ): CreateAcfAcfPagePayload
 
+  """The createAcfCharacter mutation"""
+  createAcfCharacter(
+    """Input for the createAcfCharacter mutation"""
+    input: CreateAcfCharacterInput!
+  ): CreateAcfCharacterPayload
+
   """The createAcfNavigation mutation"""
   createAcfNavigation(
     """Input for the createAcfNavigation mutation"""
@@ -15339,6 +16244,12 @@ type RootMutation {
     """Input for the deleteAcfAcfPage mutation"""
     input: DeleteAcfAcfPageInput!
   ): DeleteAcfAcfPagePayload
+
+  """The deleteAcfCharacter mutation"""
+  deleteAcfCharacter(
+    """Input for the deleteAcfCharacter mutation"""
+    input: DeleteAcfCharacterInput!
+  ): DeleteAcfCharacterPayload
 
   """The deleteAcfNavigation mutation"""
   deleteAcfNavigation(
@@ -15448,6 +16359,12 @@ type RootMutation {
     input: UpdateAcfAcfPageInput!
   ): UpdateAcfAcfPagePayload
 
+  """The updateAcfCharacter mutation"""
+  updateAcfCharacter(
+    """Input for the updateAcfCharacter mutation"""
+    input: UpdateAcfCharacterInput!
+  ): UpdateAcfCharacterPayload
+
   """The updateAcfNavigation mutation"""
   updateAcfNavigation(
     """Input for the updateAcfNavigation mutation"""
@@ -15529,6 +16446,9 @@ type RootMutation {
 
 """Input for the createAcfAcfPage mutation."""
 input CreateAcfAcfPageInput {
+  """Set connections between the acfAcfPage and acfCharacters"""
+  acfCharacters: AcfAcfPageAcfCharactersInput
+
   """The userId to assign as the author of the object"""
   authorId: ID
 
@@ -15560,10 +16480,79 @@ input CreateAcfAcfPageInput {
   title: String
 }
 
+"""Set relationships between the acfAcfPage to acfCharacters"""
+input AcfAcfPageAcfCharactersInput {
+  """
+  If true, this will append the acfCharacter to existing related acfCharacters. If false, this will replace existing relationships. Default true.
+  """
+  append: Boolean
+
+  """The input list of items to set."""
+  nodes: [AcfAcfPageAcfCharactersNodeInput]
+}
+
+"""
+List of acfCharacters to connect the acfAcfPage to. If an ID is set, it will be used to create the connection. If not, it will look for a slug. If neither are valid existing terms, and the site is configured to allow terms to be created during post mutations, a term will be created using the Name if it exists in the input, then fallback to the slug if it exists.
+"""
+input AcfAcfPageAcfCharactersNodeInput {
+  """
+  The description of the acfCharacter. This field is used to set a description of the acfCharacter if a new one is created during the mutation.
+  """
+  description: String
+
+  """
+  The ID of the acfCharacter. If present, this will be used to connect to the acfAcfPage. If no existing acfCharacter exists with this ID, no connection will be made.
+  """
+  id: ID
+
+  """
+  The name of the acfCharacter. This field is used to create a new term, if term creation is enabled in nested mutations, and if one does not already exist with the provided slug or ID or if a slug or ID is not provided. If no name is included and a term is created, the creation will fallback to the slug field.
+  """
+  name: String
+
+  """
+  The slug of the acfCharacter. If no ID is present, this field will be used to make a connection. If no existing term exists with this slug, this field will be used as a fallback to the Name field when creating a new term to connect to, if term creation is enabled as a nested mutation.
+  """
+  slug: String
+}
+
 """The payload for the createAcfAcfPage mutation."""
 type CreateAcfAcfPagePayload {
   """The Post object mutation type."""
   acfAcfPage: AcfAcfPage
+
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+}
+
+"""Input for the createAcfCharacter mutation."""
+input CreateAcfCharacterInput {
+  """The slug that the character will be an alias of"""
+  aliasOf: String
+
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The description of the character object"""
+  description: String
+
+  """The name of the character object to mutate"""
+  name: String!
+
+  """
+  If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name.
+  """
+  slug: String
+}
+
+"""The payload for the createAcfCharacter mutation."""
+type CreateAcfCharacterPayload {
+  """The created character"""
+  acfCharacter: AcfCharacter
 
   """
   If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
@@ -16390,6 +17379,31 @@ type DeleteAcfAcfPagePayload {
   deletedId: ID
 }
 
+"""Input for the deleteAcfCharacter mutation."""
+input DeleteAcfCharacterInput {
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The ID of the acfCharacter to delete"""
+  id: ID!
+}
+
+"""The payload for the deleteAcfCharacter mutation."""
+type DeleteAcfCharacterPayload {
+  """The deleted term object"""
+  acfCharacter: AcfCharacter
+
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The ID of the deleted object"""
+  deletedId: ID
+}
+
 """Input for the deleteAcfNavigation mutation."""
 input DeleteAcfNavigationInput {
   """
@@ -16890,6 +17904,9 @@ type SendPasswordResetEmailPayload {
 
 """Input for the updateAcfAcfPage mutation."""
 input UpdateAcfAcfPageInput {
+  """Set connections between the acfAcfPage and acfCharacters"""
+  acfCharacters: AcfAcfPageAcfCharactersInput
+
   """The userId to assign as the author of the object"""
   authorId: ID
 
@@ -16931,6 +17948,42 @@ input UpdateAcfAcfPageInput {
 type UpdateAcfAcfPagePayload {
   """The Post object mutation type."""
   acfAcfPage: AcfAcfPage
+
+  """
+  If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+}
+
+"""Input for the updateAcfCharacter mutation."""
+input UpdateAcfCharacterInput {
+  """The slug that the character will be an alias of"""
+  aliasOf: String
+
+  """
+  This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions.
+  """
+  clientMutationId: String
+
+  """The description of the character object"""
+  description: String
+
+  """The ID of the acfCharacter object to update"""
+  id: ID!
+
+  """The name of the character object to mutate"""
+  name: String
+
+  """
+  If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name.
+  """
+  slug: String
+}
+
+"""The payload for the updateAcfCharacter mutation."""
+type UpdateAcfCharacterPayload {
+  """The created character"""
+  acfCharacter: AcfCharacter
 
   """
   If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions.

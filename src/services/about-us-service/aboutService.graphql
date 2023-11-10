@@ -2,11 +2,31 @@ query acfAboutUs {
   acfAcfPage(id: "about-us", idType: SLUG) {
     acfAboutUsFields {
       title
+      teamTitle
       description
       aboutUsImage {
         mediaItemUrl
+        altText
       }
     }
     id
+    title
+    slug
+  }
+}
+
+query AcfCharacters {
+  acfCharacters {
+    nodes {
+      name
+      description
+      acfCharacterFields {
+        image {
+          mediaItemUrl
+          altText
+        }
+      }
+      id
+    }
   }
 }

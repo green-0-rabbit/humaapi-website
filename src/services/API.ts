@@ -51,6 +51,8 @@ export type AcfAcfPage = ContentNode &
      * @deprecated Deprecated in favor of the databaseId field
      */
     acfAcfPageId: Scalars['Int']['output'];
+    /** Connection between the AcfAcfPage type and the acfCharacter type */
+    acfCharacters?: Maybe<AcfAcfPageToAcfCharacterConnection>;
     /** Added to the GraphQL Schema because the ACF Field Group &quot;cookie fields&quot; was set to Show in GraphQL. */
     acfCookieFields?: Maybe<AcfAcfPage_Acfcookiefields>;
     /** Added to the GraphQL Schema because the ACF Field Group &quot;home page fields&quot; was set to Show in GraphQL. */
@@ -113,11 +115,22 @@ export type AcfAcfPage = ContentNode &
     status?: Maybe<Scalars['String']['output']>;
     /** The template assigned to the node */
     template?: Maybe<ContentTemplate>;
+    /** Connection between the AcfAcfPage type and the TermNode type */
+    terms?: Maybe<AcfAcfPageToTermNodeConnection>;
     /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
     title?: Maybe<Scalars['String']['output']>;
     /** The unique resource identifier path */
     uri?: Maybe<Scalars['String']['output']>;
   };
+
+/** The acfAcfPage type */
+export type AcfAcfPageAcfCharactersArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<AcfAcfPageToAcfCharacterConnectionWhereArgs>;
+};
 
 /** The acfAcfPage type */
 export type AcfAcfPageEnqueuedScriptsArgs = {
@@ -136,8 +149,37 @@ export type AcfAcfPageEnqueuedStylesheetsArgs = {
 };
 
 /** The acfAcfPage type */
+export type AcfAcfPageTermsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<AcfAcfPageToTermNodeConnectionWhereArgs>;
+};
+
+/** The acfAcfPage type */
 export type AcfAcfPageTitleArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+/** Set relationships between the acfAcfPage to acfCharacters */
+export type AcfAcfPageAcfCharactersInput = {
+  /** If true, this will append the acfCharacter to existing related acfCharacters. If false, this will replace existing relationships. Default true. */
+  append?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The input list of items to set. */
+  nodes?: InputMaybe<Array<InputMaybe<AcfAcfPageAcfCharactersNodeInput>>>;
+};
+
+/** List of acfCharacters to connect the acfAcfPage to. If an ID is set, it will be used to create the connection. If not, it will look for a slug. If neither are valid existing terms, and the site is configured to allow terms to be created during post mutations, a term will be created using the Name if it exists in the input, then fallback to the slug if it exists. */
+export type AcfAcfPageAcfCharactersNodeInput = {
+  /** The description of the acfCharacter. This field is used to set a description of the acfCharacter if a new one is created during the mutation. */
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the acfCharacter. If present, this will be used to connect to the acfAcfPage. If no existing acfCharacter exists with this ID, no connection will be made. */
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** The name of the acfCharacter. This field is used to create a new term, if term creation is enabled in nested mutations, and if one does not already exist with the provided slug or ID or if a slug or ID is not provided. If no name is included and a term is created, the creation will fallback to the slug field. */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** The slug of the acfCharacter. If no ID is present, this field will be used to make a connection. If no existing term exists with this slug, this field will be used as a fallback to the Name field when creating a new term to connect to, if term creation is enabled as a nested mutation. */
+  slug?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Connection to acfAcfPage Nodes */
@@ -182,6 +224,91 @@ export enum AcfAcfPageIdType {
   URI = 'URI'
 }
 
+/** Connection between the AcfAcfPage type and the acfCharacter type */
+export type AcfAcfPageToAcfCharacterConnection = AcfCharacterConnection &
+  Connection & {
+    __typename?: 'AcfAcfPageToAcfCharacterConnection';
+    /** Edges for the AcfAcfPageToAcfCharacterConnection connection */
+    edges: Array<AcfAcfPageToAcfCharacterConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<AcfCharacter>;
+    /** Information about pagination in a connection. */
+    pageInfo: AcfAcfPageToAcfCharacterConnectionPageInfo;
+  };
+
+/** An edge in a connection */
+export type AcfAcfPageToAcfCharacterConnectionEdge =
+  AcfCharacterConnectionEdge &
+    Edge & {
+      __typename?: 'AcfAcfPageToAcfCharacterConnectionEdge';
+      /** A cursor for use in pagination */
+      cursor?: Maybe<Scalars['String']['output']>;
+      /** The item at the end of the edge */
+      node: AcfCharacter;
+    };
+
+/** Page Info on the &quot;AcfAcfPageToAcfCharacterConnection&quot; */
+export type AcfAcfPageToAcfCharacterConnectionPageInfo =
+  AcfCharacterConnectionPageInfo &
+    PageInfo &
+    WpPageInfo & {
+      __typename?: 'AcfAcfPageToAcfCharacterConnectionPageInfo';
+      /** When paginating forwards, the cursor to continue. */
+      endCursor?: Maybe<Scalars['String']['output']>;
+      /** When paginating forwards, are there more items? */
+      hasNextPage: Scalars['Boolean']['output'];
+      /** When paginating backwards, are there more items? */
+      hasPreviousPage: Scalars['Boolean']['output'];
+      /** When paginating backwards, the cursor to continue. */
+      startCursor?: Maybe<Scalars['String']['output']>;
+    };
+
+/** Arguments for filtering the AcfAcfPageToAcfCharacterConnection connection */
+export type AcfAcfPageToAcfCharacterConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars['String']['input']>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars['Int']['input']>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars['String']['input']>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars['String']['input']>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars['Int']['input']>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 /** Connection between the AcfAcfPage type and the acfAcfPage type */
 export type AcfAcfPageToPreviewConnectionEdge = AcfAcfPageConnectionEdge &
   Edge &
@@ -193,6 +320,91 @@ export type AcfAcfPageToPreviewConnectionEdge = AcfAcfPageConnectionEdge &
     node: AcfAcfPage;
   };
 
+/** Connection between the AcfAcfPage type and the TermNode type */
+export type AcfAcfPageToTermNodeConnection = Connection &
+  TermNodeConnection & {
+    __typename?: 'AcfAcfPageToTermNodeConnection';
+    /** Edges for the AcfAcfPageToTermNodeConnection connection */
+    edges: Array<AcfAcfPageToTermNodeConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<TermNode>;
+    /** Information about pagination in a connection. */
+    pageInfo: AcfAcfPageToTermNodeConnectionPageInfo;
+  };
+
+/** An edge in a connection */
+export type AcfAcfPageToTermNodeConnectionEdge = Edge &
+  TermNodeConnectionEdge & {
+    __typename?: 'AcfAcfPageToTermNodeConnectionEdge';
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars['String']['output']>;
+    /** The item at the end of the edge */
+    node: TermNode;
+  };
+
+/** Page Info on the &quot;AcfAcfPageToTermNodeConnection&quot; */
+export type AcfAcfPageToTermNodeConnectionPageInfo = PageInfo &
+  TermNodeConnectionPageInfo &
+  WpPageInfo & {
+    __typename?: 'AcfAcfPageToTermNodeConnectionPageInfo';
+    /** When paginating forwards, the cursor to continue. */
+    endCursor?: Maybe<Scalars['String']['output']>;
+    /** When paginating forwards, are there more items? */
+    hasNextPage: Scalars['Boolean']['output'];
+    /** When paginating backwards, are there more items? */
+    hasPreviousPage: Scalars['Boolean']['output'];
+    /** When paginating backwards, the cursor to continue. */
+    startCursor?: Maybe<Scalars['String']['output']>;
+  };
+
+/** Arguments for filtering the AcfAcfPageToTermNodeConnection connection */
+export type AcfAcfPageToTermNodeConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars['String']['input']>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars['Int']['input']>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars['String']['input']>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars['String']['input']>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars['Int']['input']>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** The Taxonomy to filter terms by */
+  taxonomies?: InputMaybe<Array<InputMaybe<TaxonomyEnum>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 /** Field Group */
 export type AcfAcfPage_Acfaboutusfields = AcfFieldGroup & {
   __typename?: 'AcfAcfPage_Acfaboutusfields';
@@ -200,6 +412,7 @@ export type AcfAcfPage_Acfaboutusfields = AcfFieldGroup & {
   description?: Maybe<Scalars['String']['output']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  teamTitle?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
 };
 
@@ -246,6 +459,320 @@ export type AcfAcfPage_Acfhomepagefields_ServiceContent = AcfFieldGroup & {
   image?: Maybe<MediaItem>;
   subTitle?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
+};
+
+/** The acfCharacter type */
+export type AcfCharacter = DatabaseIdentifier &
+  MenuItemLinkable &
+  Node &
+  TermNode &
+  UniformResourceIdentifiable & {
+    __typename?: 'AcfCharacter';
+    /** Connection between the AcfCharacter type and the acfAcfPage type */
+    acfAcfPages?: Maybe<AcfCharacterToAcfAcfPageConnection>;
+    /** Added to the GraphQL Schema because the ACF Field Group &quot;charater fields&quot; was set to Show in GraphQL. */
+    acfCharacterFields?: Maybe<AcfCharacter_Acfcharacterfields>;
+    /**
+     * The id field matches the WP_Post-&gt;ID field.
+     * @deprecated Deprecated in favor of databaseId
+     */
+    acfCharacterId?: Maybe<Scalars['Int']['output']>;
+    /** Connection between the AcfCharacter type and the ContentNode type */
+    contentNodes?: Maybe<AcfCharacterToContentNodeConnection>;
+    /** The number of objects connected to the object */
+    count?: Maybe<Scalars['Int']['output']>;
+    /** The unique identifier stored in the database */
+    databaseId: Scalars['Int']['output'];
+    /** The description of the object */
+    description?: Maybe<Scalars['String']['output']>;
+    /** Connection between the TermNode type and the EnqueuedScript type */
+    enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
+    /** Connection between the TermNode type and the EnqueuedStylesheet type */
+    enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
+    /** The unique resource identifier path */
+    id: Scalars['ID']['output'];
+    /** Whether the node is a Content Node */
+    isContentNode: Scalars['Boolean']['output'];
+    /** Whether the object is restricted from the current viewer */
+    isRestricted?: Maybe<Scalars['Boolean']['output']>;
+    /** Whether the node is a Term */
+    isTermNode: Scalars['Boolean']['output'];
+    /** The link to the term */
+    link?: Maybe<Scalars['String']['output']>;
+    /** The human friendly name of the object. */
+    name?: Maybe<Scalars['String']['output']>;
+    /** An alphanumeric identifier for the object unique to its type. */
+    slug?: Maybe<Scalars['String']['output']>;
+    /** Connection between the AcfCharacter type and the Taxonomy type */
+    taxonomy?: Maybe<AcfCharacterToTaxonomyConnectionEdge>;
+    /** The name of the taxonomy that the object is associated with */
+    taxonomyName?: Maybe<Scalars['String']['output']>;
+    /** The ID of the term group that this term object belongs to */
+    termGroupId?: Maybe<Scalars['Int']['output']>;
+    /** The taxonomy ID that the object is associated with */
+    termTaxonomyId?: Maybe<Scalars['Int']['output']>;
+    /** The unique resource identifier path */
+    uri?: Maybe<Scalars['String']['output']>;
+  };
+
+/** The acfCharacter type */
+export type AcfCharacterAcfAcfPagesArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<AcfCharacterToAcfAcfPageConnectionWhereArgs>;
+};
+
+/** The acfCharacter type */
+export type AcfCharacterContentNodesArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<AcfCharacterToContentNodeConnectionWhereArgs>;
+};
+
+/** The acfCharacter type */
+export type AcfCharacterEnqueuedScriptsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** The acfCharacter type */
+export type AcfCharacterEnqueuedStylesheetsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** Connection to acfCharacter Nodes */
+export type AcfCharacterConnection = {
+  /** A list of edges (relational context) between RootQuery and connected acfCharacter Nodes */
+  edges: Array<AcfCharacterConnectionEdge>;
+  /** A list of connected acfCharacter Nodes */
+  nodes: Array<AcfCharacter>;
+  /** Information about pagination in a connection. */
+  pageInfo: AcfCharacterConnectionPageInfo;
+};
+
+/** Edge between a Node and a connected acfCharacter */
+export type AcfCharacterConnectionEdge = {
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars['String']['output']>;
+  /** The connected acfCharacter Node */
+  node: AcfCharacter;
+};
+
+/** Page Info on the connected AcfCharacterConnectionEdge */
+export type AcfCharacterConnectionPageInfo = {
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']['output']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean']['output'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
+/** The Type of Identifier used to fetch a single resource. Default is ID. */
+export enum AcfCharacterIdType {
+  /** The Database ID for the node */
+  DATABASE_ID = 'DATABASE_ID',
+  /** The hashed Global ID */
+  ID = 'ID',
+  /** The name of the node */
+  NAME = 'NAME',
+  /** Url friendly name of the node */
+  SLUG = 'SLUG',
+  /** The URI for the node */
+  URI = 'URI'
+}
+
+/** Connection between the AcfCharacter type and the acfAcfPage type */
+export type AcfCharacterToAcfAcfPageConnection = AcfAcfPageConnection &
+  Connection & {
+    __typename?: 'AcfCharacterToAcfAcfPageConnection';
+    /** Edges for the AcfCharacterToAcfAcfPageConnection connection */
+    edges: Array<AcfCharacterToAcfAcfPageConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<AcfAcfPage>;
+    /** Information about pagination in a connection. */
+    pageInfo: AcfCharacterToAcfAcfPageConnectionPageInfo;
+  };
+
+/** An edge in a connection */
+export type AcfCharacterToAcfAcfPageConnectionEdge = AcfAcfPageConnectionEdge &
+  Edge & {
+    __typename?: 'AcfCharacterToAcfAcfPageConnectionEdge';
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars['String']['output']>;
+    /** The item at the end of the edge */
+    node: AcfAcfPage;
+  };
+
+/** Page Info on the &quot;AcfCharacterToAcfAcfPageConnection&quot; */
+export type AcfCharacterToAcfAcfPageConnectionPageInfo =
+  AcfAcfPageConnectionPageInfo &
+    PageInfo &
+    WpPageInfo & {
+      __typename?: 'AcfCharacterToAcfAcfPageConnectionPageInfo';
+      /** When paginating forwards, the cursor to continue. */
+      endCursor?: Maybe<Scalars['String']['output']>;
+      /** When paginating forwards, are there more items? */
+      hasNextPage: Scalars['Boolean']['output'];
+      /** When paginating backwards, are there more items? */
+      hasPreviousPage: Scalars['Boolean']['output'];
+      /** When paginating backwards, the cursor to continue. */
+      startCursor?: Maybe<Scalars['String']['output']>;
+    };
+
+/** Arguments for filtering the AcfCharacterToAcfAcfPageConnection connection */
+export type AcfCharacterToAcfAcfPageConnectionWhereArgs = {
+  /** The user that's connected as the author of the object. Use the userId for the author object. */
+  author?: InputMaybe<Scalars['Int']['input']>;
+  /** Find objects connected to author(s) in the array of author's userIds */
+  authorIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Find objects connected to the author by the author's nicename */
+  authorName?: InputMaybe<Scalars['String']['input']>;
+  /** Find objects NOT connected to author(s) in the array of author's userIds */
+  authorNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars['Int']['input']>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** What parameter to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars['ID']['input']>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Connection between the AcfCharacter type and the ContentNode type */
+export type AcfCharacterToContentNodeConnection = Connection &
+  ContentNodeConnection & {
+    __typename?: 'AcfCharacterToContentNodeConnection';
+    /** Edges for the AcfCharacterToContentNodeConnection connection */
+    edges: Array<AcfCharacterToContentNodeConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<ContentNode>;
+    /** Information about pagination in a connection. */
+    pageInfo: AcfCharacterToContentNodeConnectionPageInfo;
+  };
+
+/** An edge in a connection */
+export type AcfCharacterToContentNodeConnectionEdge =
+  ContentNodeConnectionEdge &
+    Edge & {
+      __typename?: 'AcfCharacterToContentNodeConnectionEdge';
+      /** A cursor for use in pagination */
+      cursor?: Maybe<Scalars['String']['output']>;
+      /** The item at the end of the edge */
+      node: ContentNode;
+    };
+
+/** Page Info on the &quot;AcfCharacterToContentNodeConnection&quot; */
+export type AcfCharacterToContentNodeConnectionPageInfo =
+  ContentNodeConnectionPageInfo &
+    PageInfo &
+    WpPageInfo & {
+      __typename?: 'AcfCharacterToContentNodeConnectionPageInfo';
+      /** When paginating forwards, the cursor to continue. */
+      endCursor?: Maybe<Scalars['String']['output']>;
+      /** When paginating forwards, are there more items? */
+      hasNextPage: Scalars['Boolean']['output'];
+      /** When paginating backwards, are there more items? */
+      hasPreviousPage: Scalars['Boolean']['output'];
+      /** When paginating backwards, the cursor to continue. */
+      startCursor?: Maybe<Scalars['String']['output']>;
+    };
+
+/** Arguments for filtering the AcfCharacterToContentNodeConnection connection */
+export type AcfCharacterToContentNodeConnectionWhereArgs = {
+  /** The Types of content to filter */
+  contentTypes?: InputMaybe<Array<InputMaybe<ContentTypesOfAcfCharacterEnum>>>;
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars['Int']['input']>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** What parameter to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars['ID']['input']>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars['String']['input']>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Connection between the AcfCharacter type and the Taxonomy type */
+export type AcfCharacterToTaxonomyConnectionEdge = Edge &
+  OneToOneConnection &
+  TaxonomyConnectionEdge & {
+    __typename?: 'AcfCharacterToTaxonomyConnectionEdge';
+    /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+    cursor?: Maybe<Scalars['String']['output']>;
+    /** The node of the connection, without the edges */
+    node: Taxonomy;
+  };
+
+/** Field Group */
+export type AcfCharacter_Acfcharacterfields = AcfFieldGroup & {
+  __typename?: 'AcfCharacter_Acfcharacterfields';
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<MediaItem>;
 };
 
 /** A Field Group registered by ACF */
@@ -1903,6 +2430,8 @@ export type AcfService_Acfservicesfields = AcfFieldGroup & {
   description?: Maybe<Scalars['String']['output']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
+  iconDark?: Maybe<MediaItem>;
+  iconLight?: Maybe<MediaItem>;
   image?: Maybe<MediaItem>;
   title?: Maybe<Scalars['String']['output']>;
   titleOffer?: Maybe<Scalars['String']['output']>;
@@ -3329,6 +3858,12 @@ export type ContentTypeToTaxonomyConnectionPageInfo = PageInfo &
     startCursor?: Maybe<Scalars['String']['output']>;
   };
 
+/** Allowed Content Types of the AcfCharacter taxonomy. */
+export enum ContentTypesOfAcfCharacterEnum {
+  /** The Type of Content object */
+  ACF_PAGE = 'ACF_PAGE'
+}
+
 /** Allowed Content Types of the AcfOffer taxonomy. */
 export enum ContentTypesOfAcfOfferEnum {
   /** The Type of Content object */
@@ -3361,6 +3896,8 @@ export enum ContentTypesOfTagEnum {
 
 /** Input for the createAcfAcfPage mutation. */
 export type CreateAcfAcfPageInput = {
+  /** Set connections between the acfAcfPage and acfCharacters */
+  acfCharacters?: InputMaybe<AcfAcfPageAcfCharactersInput>;
   /** The userId to assign as the author of the object */
   authorId?: InputMaybe<Scalars['ID']['input']>;
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -3384,6 +3921,29 @@ export type CreateAcfAcfPagePayload = {
   __typename?: 'CreateAcfAcfPagePayload';
   /** The Post object mutation type. */
   acfAcfPage?: Maybe<AcfAcfPage>;
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+};
+
+/** Input for the createAcfCharacter mutation. */
+export type CreateAcfCharacterInput = {
+  /** The slug that the character will be an alias of */
+  aliasOf?: InputMaybe<Scalars['String']['input']>;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The description of the character object */
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** The name of the character object to mutate */
+  name: Scalars['String']['input'];
+  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
+  slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** The payload for the createAcfCharacter mutation. */
+export type CreateAcfCharacterPayload = {
+  __typename?: 'CreateAcfCharacterPayload';
+  /** The created character */
+  acfCharacter?: Maybe<AcfCharacter>;
   /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: Maybe<Scalars['String']['output']>;
 };
@@ -3856,6 +4416,25 @@ export type DeleteAcfAcfPagePayload = {
   __typename?: 'DeleteAcfAcfPagePayload';
   /** The object before it was deleted */
   acfAcfPage?: Maybe<AcfAcfPage>;
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+  /** The ID of the deleted object */
+  deletedId?: Maybe<Scalars['ID']['output']>;
+};
+
+/** Input for the deleteAcfCharacter mutation. */
+export type DeleteAcfCharacterInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the acfCharacter to delete */
+  id: Scalars['ID']['input'];
+};
+
+/** The payload for the deleteAcfCharacter mutation. */
+export type DeleteAcfCharacterPayload = {
+  __typename?: 'DeleteAcfCharacterPayload';
+  /** The deleted term object */
+  acfCharacter?: Maybe<AcfCharacter>;
   /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: Maybe<Scalars['String']['output']>;
   /** The ID of the deleted object */
@@ -5237,6 +5816,7 @@ export enum MenuItemNodeIdTypeEnum {
 /** Deprecated in favor of MenuItemLinkeable Interface */
 export type MenuItemObjectUnion =
   | AcfAcfPage
+  | AcfCharacter
   | AcfNavigation
   | AcfOffer
   | AcfProces
@@ -7673,6 +8253,8 @@ export type RootMutation = {
   __typename?: 'RootMutation';
   /** The createAcfAcfPage mutation */
   createAcfAcfPage?: Maybe<CreateAcfAcfPagePayload>;
+  /** The createAcfCharacter mutation */
+  createAcfCharacter?: Maybe<CreateAcfCharacterPayload>;
   /** The createAcfNavigation mutation */
   createAcfNavigation?: Maybe<CreateAcfNavigationPayload>;
   /** The createAcfOffer mutation */
@@ -7699,6 +8281,8 @@ export type RootMutation = {
   createUser?: Maybe<CreateUserPayload>;
   /** The deleteAcfAcfPage mutation */
   deleteAcfAcfPage?: Maybe<DeleteAcfAcfPagePayload>;
+  /** The deleteAcfCharacter mutation */
+  deleteAcfCharacter?: Maybe<DeleteAcfCharacterPayload>;
   /** The deleteAcfNavigation mutation */
   deleteAcfNavigation?: Maybe<DeleteAcfNavigationPayload>;
   /** The deleteAcfOffer mutation */
@@ -7735,6 +8319,8 @@ export type RootMutation = {
   sendPasswordResetEmail?: Maybe<SendPasswordResetEmailPayload>;
   /** The updateAcfAcfPage mutation */
   updateAcfAcfPage?: Maybe<UpdateAcfAcfPagePayload>;
+  /** The updateAcfCharacter mutation */
+  updateAcfCharacter?: Maybe<UpdateAcfCharacterPayload>;
   /** The updateAcfNavigation mutation */
   updateAcfNavigation?: Maybe<UpdateAcfNavigationPayload>;
   /** The updateAcfOffer mutation */
@@ -7766,6 +8352,11 @@ export type RootMutation = {
 /** The root mutation */
 export type RootMutationCreateAcfAcfPageArgs = {
   input: CreateAcfAcfPageInput;
+};
+
+/** The root mutation */
+export type RootMutationCreateAcfCharacterArgs = {
+  input: CreateAcfCharacterInput;
 };
 
 /** The root mutation */
@@ -7831,6 +8422,11 @@ export type RootMutationCreateUserArgs = {
 /** The root mutation */
 export type RootMutationDeleteAcfAcfPageArgs = {
   input: DeleteAcfAcfPageInput;
+};
+
+/** The root mutation */
+export type RootMutationDeleteAcfCharacterArgs = {
+  input: DeleteAcfCharacterInput;
 };
 
 /** The root mutation */
@@ -7924,6 +8520,11 @@ export type RootMutationUpdateAcfAcfPageArgs = {
 };
 
 /** The root mutation */
+export type RootMutationUpdateAcfCharacterArgs = {
+  input: UpdateAcfCharacterInput;
+};
+
+/** The root mutation */
 export type RootMutationUpdateAcfNavigationArgs = {
   input: UpdateAcfNavigationInput;
 };
@@ -8000,6 +8601,10 @@ export type RootQuery = {
   acfAcfPageBy?: Maybe<AcfAcfPage>;
   /** Connection between the RootQuery type and the acfAcfPage type */
   acfAcfPages?: Maybe<RootQueryToAcfAcfPageConnection>;
+  /** A 0bject */
+  acfCharacter?: Maybe<AcfCharacter>;
+  /** Connection between the RootQuery type and the acfCharacter type */
+  acfCharacters?: Maybe<RootQueryToAcfCharacterConnection>;
   /** An object of the acfNavigation Type.  */
   acfNavigation?: Maybe<AcfNavigation>;
   /**
@@ -8155,6 +8760,21 @@ export type RootQueryAcfAcfPagesArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<RootQueryToAcfAcfPageConnectionWhereArgs>;
+};
+
+/** The root entry point into the Graph */
+export type RootQueryAcfCharacterArgs = {
+  id: Scalars['ID']['input'];
+  idType?: InputMaybe<AcfCharacterIdType>;
+};
+
+/** The root entry point into the Graph */
+export type RootQueryAcfCharactersArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<RootQueryToAcfCharacterConnectionWhereArgs>;
 };
 
 /** The root entry point into the Graph */
@@ -8627,6 +9247,90 @@ export type RootQueryToAcfAcfPageConnectionWhereArgs = {
   status?: InputMaybe<PostStatusEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Connection between the RootQuery type and the acfCharacter type */
+export type RootQueryToAcfCharacterConnection = AcfCharacterConnection &
+  Connection & {
+    __typename?: 'RootQueryToAcfCharacterConnection';
+    /** Edges for the RootQueryToAcfCharacterConnection connection */
+    edges: Array<RootQueryToAcfCharacterConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<AcfCharacter>;
+    /** Information about pagination in a connection. */
+    pageInfo: RootQueryToAcfCharacterConnectionPageInfo;
+  };
+
+/** An edge in a connection */
+export type RootQueryToAcfCharacterConnectionEdge = AcfCharacterConnectionEdge &
+  Edge & {
+    __typename?: 'RootQueryToAcfCharacterConnectionEdge';
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars['String']['output']>;
+    /** The item at the end of the edge */
+    node: AcfCharacter;
+  };
+
+/** Page Info on the &quot;RootQueryToAcfCharacterConnection&quot; */
+export type RootQueryToAcfCharacterConnectionPageInfo =
+  AcfCharacterConnectionPageInfo &
+    PageInfo &
+    WpPageInfo & {
+      __typename?: 'RootQueryToAcfCharacterConnectionPageInfo';
+      /** When paginating forwards, the cursor to continue. */
+      endCursor?: Maybe<Scalars['String']['output']>;
+      /** When paginating forwards, are there more items? */
+      hasNextPage: Scalars['Boolean']['output'];
+      /** When paginating backwards, are there more items? */
+      hasPreviousPage: Scalars['Boolean']['output'];
+      /** When paginating backwards, the cursor to continue. */
+      startCursor?: Maybe<Scalars['String']['output']>;
+    };
+
+/** Arguments for filtering the RootQueryToAcfCharacterConnection connection */
+export type RootQueryToAcfCharacterConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars['String']['input']>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars['Int']['input']>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars['String']['input']>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars['String']['input']>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars['Int']['input']>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars['String']['input']>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Connection between the RootQuery type and the acfNavigation type */
@@ -10744,6 +11448,8 @@ export type TaxonomyConnectionPageInfo = {
 
 /** Allowed taxonomies */
 export enum TaxonomyEnum {
+  /** Taxonomy enum character */
+  ACFCHARACTER = 'ACFCHARACTER',
   /** Taxonomy enum offer */
   ACFOFFER = 'ACFOFFER',
   /** Taxonomy enum proces */
@@ -11114,6 +11820,8 @@ export type UniformResourceIdentifiable = {
 
 /** Input for the updateAcfAcfPage mutation. */
 export type UpdateAcfAcfPageInput = {
+  /** Set connections between the acfAcfPage and acfCharacters */
+  acfCharacters?: InputMaybe<AcfAcfPageAcfCharactersInput>;
   /** The userId to assign as the author of the object */
   authorId?: InputMaybe<Scalars['ID']['input']>;
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -11141,6 +11849,31 @@ export type UpdateAcfAcfPagePayload = {
   __typename?: 'UpdateAcfAcfPagePayload';
   /** The Post object mutation type. */
   acfAcfPage?: Maybe<AcfAcfPage>;
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars['String']['output']>;
+};
+
+/** Input for the updateAcfCharacter mutation. */
+export type UpdateAcfCharacterInput = {
+  /** The slug that the character will be an alias of */
+  aliasOf?: InputMaybe<Scalars['String']['input']>;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** The description of the character object */
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** The ID of the acfCharacter object to update */
+  id: Scalars['ID']['input'];
+  /** The name of the character object to mutate */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
+  slug?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** The payload for the updateAcfCharacter mutation. */
+export type UpdateAcfCharacterPayload = {
+  __typename?: 'UpdateAcfCharacterPayload';
+  /** The created character */
+  acfCharacter?: Maybe<AcfCharacter>;
   /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: Maybe<Scalars['String']['output']>;
 };
@@ -12803,15 +13536,42 @@ export type AcfAboutUsQuery = {
   acfAcfPage?: {
     __typename?: 'AcfAcfPage';
     id: string;
+    title?: string | null;
+    slug?: string | null;
     acfAboutUsFields?: {
       __typename?: 'AcfAcfPage_Acfaboutusfields';
       title?: string | null;
+      teamTitle?: string | null;
       description?: string | null;
       aboutUsImage?: {
         __typename?: 'MediaItem';
         mediaItemUrl?: string | null;
+        altText?: string | null;
       } | null;
     } | null;
+  } | null;
+};
+
+export type AcfCharactersQueryVariables = Exact<{ [key: string]: never }>;
+
+export type AcfCharactersQuery = {
+  __typename?: 'RootQuery';
+  acfCharacters?: {
+    __typename?: 'RootQueryToAcfCharacterConnection';
+    nodes: Array<{
+      __typename?: 'AcfCharacter';
+      name?: string | null;
+      description?: string | null;
+      id: string;
+      acfCharacterFields?: {
+        __typename?: 'AcfCharacter_Acfcharacterfields';
+        image?: {
+          __typename?: 'MediaItem';
+          mediaItemUrl?: string | null;
+          altText?: string | null;
+        } | null;
+      } | null;
+    }>;
   } | null;
 };
 
@@ -12912,6 +13672,16 @@ export type AcfServiceDataQuery = {
           mediaItemUrl?: string | null;
           altText?: string | null;
         } | null;
+        iconLight?: {
+          __typename?: 'MediaItem';
+          mediaItemUrl?: string | null;
+          altText?: string | null;
+        } | null;
+        iconDark?: {
+          __typename?: 'MediaItem';
+          mediaItemUrl?: string | null;
+          altText?: string | null;
+        } | null;
       } | null;
     }>;
   } | null;
@@ -12993,12 +13763,33 @@ export const AcfAboutUsDocument = gql`
     acfAcfPage(id: "about-us", idType: SLUG) {
       acfAboutUsFields {
         title
+        teamTitle
         description
         aboutUsImage {
           mediaItemUrl
+          altText
         }
       }
       id
+      title
+      slug
+    }
+  }
+`;
+export const AcfCharactersDocument = gql`
+  query AcfCharacters {
+    acfCharacters {
+      nodes {
+        name
+        description
+        acfCharacterFields {
+          image {
+            mediaItemUrl
+            altText
+          }
+        }
+        id
+      }
     }
   }
 `;
@@ -13070,6 +13861,14 @@ export const AcfServiceDataDocument = gql`
           title
           description
           image {
+            mediaItemUrl
+            altText
+          }
+          iconLight {
+            mediaItemUrl
+            altText
+          }
+          iconDark {
             mediaItemUrl
             altText
           }
@@ -13149,6 +13948,16 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
         variables,
         options
       ) as Promise<AcfAboutUsQuery>;
+    },
+    AcfCharacters(
+      variables?: AcfCharactersQueryVariables,
+      options?: C
+    ): Promise<AcfCharactersQuery> {
+      return requester<AcfCharactersQuery, AcfCharactersQueryVariables>(
+        AcfCharactersDocument,
+        variables,
+        options
+      ) as Promise<AcfCharactersQuery>;
     },
     acfCookiePolicy(
       variables?: AcfCookiePolicyQueryVariables,

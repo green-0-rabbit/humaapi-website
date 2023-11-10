@@ -3,64 +3,58 @@ import LandingAboutUs from 'src/components/sections/about-us/landing-page-about-
 import { GetStaticProps } from 'next';
 import {
   aboutUsService,
-  ILandingAboutUsData,
-  IDataOurTeam
+  ILandingAboutUsData
 } from 'src/services/about-us-service';
 import { FC } from 'react';
 import {
-  INavigationFooterData,
-  INavigationHeaderData,
+  INavigation,
   navigationService
 } from 'src/services/navigation-service';
 import Layout from 'src/layouts/layout';
-import { IDataTitle } from 'src/services/home-service';
 import OurTeam from 'src/components/sections/about-us/our-team';
+import {
+  IDataServiceCard,
+  OurServicesService
+} from 'src/services/our-service-service';
 
 interface IAboutUs {
-  landingData: ILandingAboutUsData[];
-  teamData: IDataOurTeam[];
-  navigationHeaderData: INavigationHeaderData[];
-  navigationFooterData: INavigationFooterData[];
-  pageTitle: IDataTitle[];
+  landingData: ILandingAboutUsData;
+  serviceCardData: IDataServiceCard;
+  navigationData: INavigation[];
+  pageTitle: string;
 }
 
 const ContainService = styled.div``;
 const AboutUs: FC<IAboutUs> = ({ ...props }) => {
-  const {
-    landingData,
-    teamData,
-    navigationHeaderData,
-    navigationFooterData,
-    pageTitle
-  } = props;
-  const [filterTeamData] = teamData;
-  const [title] = pageTitle;
-  const [newLandingData] = landingData;
+  const { landingData, pageTitle, serviceCardData, navigationData } = props;
   return (
     <Layout
-      pageTitle={title.pageTitle}
-      navigationHeaderData={navigationHeaderData}
-      navigationFooterData={navigationFooterData}>
+      pageTitle={pageTitle}
+      navigationData={navigationData}
+      serviceData={serviceCardData}>
       <ContainService>
-        <LandingAboutUs landingData={newLandingData} />
-        <OurTeam teamTitle={filterTeamData.titleTeam} />
+        <LandingAboutUs landingData={landingData} />
+        <OurTeam
+          teamData={landingData.team}
+          teamTitle={landingData.teamTitle}
+        />
       </ContainService>
     </Layout>
   );
 };
 export const getStaticProps: GetStaticProps = async () => {
-  const landingData = await aboutUsService.getLanding();
+  const landingData = await aboutUsService.getAll();
   const teamData = await aboutUsService.getTeam();
-  const navigationHeaderData = await navigationService.getHeader();
-  const navigationFooterData = await navigationService.getFooter();
+  const serviceCardData = await OurServicesService.getServiceCard();
+  const navigationData = await navigationService.getAll();
   const pageTitle = await aboutUsService.getPageTitle();
 
   return {
     props: {
       landingData,
       teamData,
-      navigationHeaderData,
-      navigationFooterData,
+      serviceCardData,
+      navigationData,
       pageTitle
     }
   };

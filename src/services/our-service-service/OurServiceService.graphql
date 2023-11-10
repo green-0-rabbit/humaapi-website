@@ -10,6 +10,14 @@ query acfServiceData {
           mediaItemUrl
           altText
         }
+        iconLight {
+          mediaItemUrl
+          altText
+        }
+        iconDark {
+          mediaItemUrl
+          altText
+        }
       }
       id
       slug

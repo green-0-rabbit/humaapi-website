@@ -3,37 +3,40 @@ import { FC } from 'react';
 import ContactForm from 'src/components/sections/contact-us/contact-form';
 import Layout from 'src/layouts/layout';
 import {
-  INavigationFooterData,
-  INavigationHeaderData,
+  INavigation,
   navigationService
 } from 'src/services/navigation-service';
+import {
+  IDataServiceCard,
+  OurServicesService
+} from 'src/services/our-service-service';
 
 interface IContactUs {
-  navigationHeaderData: INavigationHeaderData[];
-  navigationFooterData: INavigationFooterData[];
+  serviceCardData: IDataServiceCard;
+  navigationData: INavigation[];
 }
 
 const ContactUs: FC<IContactUs> = (props) => {
-  const { navigationHeaderData, navigationFooterData } = props;
+  const { serviceCardData, navigationData } = props;
 
   return (
     <Layout
       pageTitle="Contact Us"
-      navigationHeaderData={navigationHeaderData}
-      navigationFooterData={navigationFooterData}>
+      serviceData={serviceCardData}
+      navigationData={navigationData}>
       <ContactForm />
     </Layout>
   );
 };
 export default ContactUs;
 export const getStaticProps: GetStaticProps = async () => {
-  const navigationHeaderData = await navigationService.getHeader();
-  const navigationFooterData = await navigationService.getFooter();
+  const serviceCardData = await OurServicesService.getServiceCard();
+  const navigationData = await navigationService.getAll();
 
   return {
     props: {
-      navigationHeaderData,
-      navigationFooterData
+      serviceCardData,
+      navigationData
     }
   };
 };

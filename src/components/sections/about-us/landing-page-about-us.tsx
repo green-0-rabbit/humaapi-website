@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { Box, createStyles, Skeleton } from '@mantine/core';
 import { ILandingAboutUsData } from 'src/services/about-us-service';
 import { FC, useState } from 'react';
-import AboutusImage from '../../../../public/assets/img/pexels-diva-plavalaguna-6147029.jpg';
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -42,26 +41,18 @@ const LandingAboutUs: FC<ILandingAboutUs> = (props) => {
               }}
               size={32}
               space={12}
-              title={landingData.titleAboutUs}
-              content={landingData.contentAboutUs}
+              title={landingData.title}
+              content={landingData.description}
             />
           </Box>
           <ImageContain className="relative order-first mb-12 mt-20 flex justify-center md:order-last md:m-0">
-            {/* {imgsLoaded ? null : (
-              <Skeleton height={200} circle mb="xl" visible={!imgsLoaded} />
-            )} */}
             <Image
-              // {`https://1qd42xii.directus.app/assets/${landingData.aboutImg.id}`}
-              // style={imgsLoaded ? {} : { display: 'none' }}
-              src={AboutusImage}
-              alt="AboutusImage"
+              src={landingData.image}
+              alt={landingData.imageName}
               className={`h-[313px] w-[279px] rounded-[50px]
              object-cover object-center ${classes.root}`}
-              // onLoad={() =>
-              //   setTimeout(() => {
-              //     setImgsLoaded(true);
-              //   }, 3000)
-              // }
+              height={313}
+              width={279}
             />
           </ImageContain>
         </Contain>

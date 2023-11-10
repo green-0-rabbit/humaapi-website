@@ -1,11 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable import/prefer-default-export */
-import camelcaseKeys from 'camelcase-keys';
 import { NonUndefined } from 'react-hook-form';
 import { ReturnTypeAsync } from 'src/commons/interface';
-import { hmDirectus } from 'src/utils';
 import apolloClient from 'src/utils/wps/apollo-client';
-import { CamelCasedPropertiesDeep } from 'type-fest';
 
 interface IDomaineActivity {
   id: string;
@@ -26,9 +23,7 @@ interface IOurService {
   subTitle: string;
   description: string;
 }
-interface IPageTitle {
-  page_title: string;
-}
+
 export type IDataDomaineActivity = NonUndefined<
   Required<ReturnTypeAsync<typeof HomeService.getDomaine>>
 >;
@@ -37,9 +32,6 @@ export type IDataLandingPage = NonUndefined<
 >;
 export type IDataOurService = NonUndefined<
   Required<ReturnTypeAsync<typeof HomeService.getService>>
->;
-export type IDataTitle = NonUndefined<
-  Required<ReturnTypeAsync<typeof HomeService.getPageTitle>>
 >;
 
 export const HomeService = {

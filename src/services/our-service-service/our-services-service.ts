@@ -4,7 +4,7 @@ import { NonUndefined } from 'react-hook-form';
 import { ReturnTypeAsync } from 'src/commons/interface';
 import apolloClient from 'src/utils/wps/apollo-client';
 
-interface IServiceCard {
+interface IService {
   id: string;
   title: string;
   link: string;
@@ -13,11 +13,14 @@ interface IServiceCard {
   imageName: string;
 }
 
-export type OffersType = Array<
-  Omit<IServiceCard, 'image' | 'imageName' | 'link'>
->;
-export type ProcessType = Array<Omit<IServiceCard, 'link'>>;
-interface IServicesOverview extends IServiceCard {
+interface IServiceCard extends IService {
+  iconLight: { icon: string; name: string };
+  iconDark: { icon: string; name: string };
+}
+
+export type OffersType = Array<Omit<IService, 'image' | 'imageName' | 'link'>>;
+export type ProcessType = Array<Omit<IService, 'link'>>;
+interface IServicesOverview extends IService {
   process: { title: string; array: ProcessType };
   offers: { title: string; array: OffersType };
 }
@@ -62,11 +65,11 @@ export const OurServicesService = {
           image: acfService.acfServicesFields?.image?.mediaItemUrl as string,
           imageName: acfService.acfServicesFields?.image?.altText as string,
           process: {
-            title: acfService.acfServicesFields?.titleProcess,
+            title: acfService.acfServicesFields?.titleProcess as string,
             array: dataProcess
           },
           offers: {
-            title: acfService.acfServicesFields?.titleOffer,
+            title: acfService.acfServicesFields?.titleOffer as string,
             array: dataOffers
           }
         };
@@ -109,7 +112,15 @@ export const OurServicesService = {
           link: val.slug as string,
           description: val.acfServicesFields?.description as string,
           image: val.acfServicesFields?.image?.mediaItemUrl as string,
-          imageName: val.acfServicesFields?.image?.altText as string
+          imageName: val.acfServicesFields?.image?.altText as string,
+          iconLight: {
+            icon: val.acfServicesFields?.iconLight?.mediaItemUrl as string,
+            name: val.acfServicesFields?.iconLight?.altText as string
+          },
+          iconDark: {
+            icon: val.acfServicesFields?.iconDark?.mediaItemUrl as string,
+            name: val.acfServicesFields?.iconDark?.altText as string
+          }
         }));
         return data.reverse() as IServiceCard[];
       }

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Box } from '@mantine/core';
 import { FC } from 'react';
+import Image from 'next/image';
 import DataService from 'src/components/content/content-data';
 import { IDataLandingPage } from 'src/services/home-service';
 import Description from '../../modules/description';
@@ -37,7 +38,14 @@ const LandingPage: FC<ILandingPage> = (props) => {
             </Box>
           </Box>
           <ContentImage className="hidden md:block">
-            {landingIllustration}
+            {/* {landingIllustration} */}
+            <Image
+              src={landingData.image}
+              alt={landingData.imageName}
+              className=" object-cover object-center"
+              height={248}
+              width={800}
+            />
           </ContentImage>
         </Contain>
       </HeaderBannerContain>
