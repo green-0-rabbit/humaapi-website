@@ -21,7 +21,7 @@ const Content = styled.div`
     font-size: 14px;
   }
 
-  h2 {
+  div > h2 {
     font-size: 36px;
     line-height: 36px;
     font-family: 'Ubuntu-Bold';
@@ -35,6 +35,7 @@ const Content = styled.div`
 const DescriptionField: FC<IDescriptionField> = ({ ...props }) => {
   const { classes } = useStyles();
   const { content } = props;
+
   return (
     <Content
       className={`${classes.root} mx-auto max-w-xl px-4 text-left md:text-center`}

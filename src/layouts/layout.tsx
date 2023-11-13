@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { createStyles } from '@mantine/core';
 import Navbar from 'src/components/sections/navbar';
 import Footer from 'src/components/sections/footer';
-import { INavigation } from 'src/services/navigation-service';
+import { IDataNetwork, INavigation } from 'src/services/navigation-service';
 import Head from 'next/head';
 import { IDataServiceCard } from 'src/services/our-service-service';
 import bgImage from '../../public/assets/img/gradientcircleglassmorphism.png';
@@ -21,11 +21,13 @@ interface ILayout {
   navigationData: INavigation[];
   serviceData: IDataServiceCard;
   pageTitle: string;
+  networkData: IDataNetwork;
 }
 const Container = styled.div``;
 
 const Layout: FC<ILayout> = ({ ...props }) => {
-  const { children, navigationData, pageTitle, serviceData } = props;
+  const { children, navigationData, pageTitle, serviceData, networkData } =
+    props;
   const { classes } = useStyles();
 
   return (
@@ -44,7 +46,11 @@ const Layout: FC<ILayout> = ({ ...props }) => {
           } absolute object-center`}
         />
         {children}
-        <Footer navigationData={navigationData} serviceData={serviceData} />
+        <Footer
+          navigationData={navigationData}
+          serviceData={serviceData}
+          networkData={networkData}
+        />
         <ScrollTop />
       </Container>
     </>

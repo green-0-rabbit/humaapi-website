@@ -13,7 +13,8 @@ import {
   OurServicesService
 } from 'src/services/our-service-service';
 import {
-  INavigation,
+  IDataNavigation,
+  IDataNetwork,
   navigationService
 } from 'src/services/navigation-service/navigation-service';
 import Layout from 'src/layouts/layout';
@@ -25,8 +26,9 @@ interface Ihome {
   landingData: IDataLandingPage;
   serviceData: IDataOurService;
   serviceCardData: IDataServiceCard;
-  navigationData: INavigation[];
+  navigationData: IDataNavigation;
   pageTitle: string;
+  networkData: IDataNetwork;
 }
 const Home: FC<Ihome> = ({ ...props }) => {
   const {
@@ -35,7 +37,8 @@ const Home: FC<Ihome> = ({ ...props }) => {
     landingData,
     serviceCardData,
     navigationData,
-    pageTitle
+    pageTitle,
+    networkData
   } = props;
   const [ourServiceNavigation] = navigationData.filter(
     (val) => val.footerTitle === null
@@ -44,7 +47,8 @@ const Home: FC<Ihome> = ({ ...props }) => {
     <Layout
       navigationData={navigationData}
       pageTitle={pageTitle}
-      serviceData={serviceCardData}>
+      serviceData={serviceCardData}
+      networkData={networkData}>
       <Box className="w-full space-y-[72px]">
         <LandingPage landingData={landingData} />
         <OursService
@@ -66,6 +70,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const pageTitle = await HomeService.getPageTitle();
   const serviceCardData = await OurServicesService.getServiceCard();
   const navigationData = await navigationService.getAll();
+  const networkData = await navigationService.getNetwork();
   return {
     props: {
       serviceData,
@@ -73,7 +78,8 @@ export const getStaticProps: GetStaticProps = async () => {
       landingData,
       serviceCardData,
       navigationData,
-      pageTitle
+      pageTitle,
+      networkData
     }
   };
 };

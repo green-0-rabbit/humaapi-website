@@ -10,3 +10,27 @@ query acfNavigations {
     }
   }
 }
+
+query acfSocialNetworks {
+  acfSocialNetworks {
+    nodes {
+      name
+      acfSocialNetworkFields {
+        url {
+          url
+        }
+        iconLight {
+          altText
+          mediaItemUrl
+          id
+        }
+        iconDark {
+          altText
+          mediaItemUrl
+          id
+        }
+      }
+      id
+    }
+  }
+}

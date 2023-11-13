@@ -9,7 +9,8 @@ import {
   OurServicesService
 } from 'src/services/our-service-service';
 import {
-  INavigation,
+  IDataNavigation,
+  IDataNetwork,
   navigationService
 } from 'src/services/navigation-service';
 import Layout from 'src/layouts/layout';
@@ -18,11 +19,12 @@ import path from 'path';
 interface IOurServices {
   serviceCardData: IDataServiceCard;
   pageData: IServiceData;
-  navigationData: INavigation[];
+  navigationData: IDataNavigation;
   parentUrl: string;
+  networkData: IDataNetwork;
 }
 const OurServices: FC<IOurServices> = ({ ...props }) => {
-  const { serviceCardData, pageData, navigationData } = props;
+  const { serviceCardData, pageData, navigationData, networkData } = props;
   const [ourServiceNavigation] = navigationData.filter(
     (val) => val.footerTitle === null
   );
@@ -30,7 +32,8 @@ const OurServices: FC<IOurServices> = ({ ...props }) => {
     <Layout
       pageTitle={pageData.title}
       navigationData={navigationData}
-      serviceData={serviceCardData}>
+      serviceData={serviceCardData}
+      networkData={networkData}>
       <Box className="w-full">
         <HeadOurServices pageData={pageData} />
         <CardServices
@@ -46,12 +49,14 @@ export const getStaticProps: GetStaticProps = async () => {
   const serviceCardData = await OurServicesService.getServiceCard();
   const navigationData = await navigationService.getAll();
   const pageData = await OurServicesService.getServiceData(fileName);
+  const networkData = await navigationService.getNetwork();
 
   return {
     props: {
       serviceCardData,
       navigationData,
-      pageData
+      pageData,
+      networkData
     }
   };
 };

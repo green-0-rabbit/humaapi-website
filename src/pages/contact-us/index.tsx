@@ -3,7 +3,8 @@ import { FC } from 'react';
 import ContactForm from 'src/components/sections/contact-us/contact-form';
 import Layout from 'src/layouts/layout';
 import {
-  INavigation,
+  IDataNavigation,
+  IDataNetwork,
   navigationService
 } from 'src/services/navigation-service';
 import {
@@ -13,17 +14,20 @@ import {
 
 interface IContactUs {
   serviceCardData: IDataServiceCard;
-  navigationData: INavigation[];
+  navigationData: IDataNavigation;
+
+  networkData: IDataNetwork;
 }
 
 const ContactUs: FC<IContactUs> = (props) => {
-  const { serviceCardData, navigationData } = props;
+  const { serviceCardData, navigationData, networkData } = props;
 
   return (
     <Layout
       pageTitle="Contact Us"
       serviceData={serviceCardData}
-      navigationData={navigationData}>
+      navigationData={navigationData}
+      networkData={networkData}>
       <ContactForm />
     </Layout>
   );
@@ -32,11 +36,13 @@ export default ContactUs;
 export const getStaticProps: GetStaticProps = async () => {
   const serviceCardData = await OurServicesService.getServiceCard();
   const navigationData = await navigationService.getAll();
+  const networkData = await navigationService.getNetwork();
 
   return {
     props: {
       serviceCardData,
-      navigationData
+      navigationData,
+      networkData
     }
   };
 };

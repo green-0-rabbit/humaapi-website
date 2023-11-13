@@ -11,7 +11,9 @@ import Link from 'next/link';
 import { FC } from 'react';
 import { IDataServiceCard } from 'src/services/our-service-service';
 import ParseFooter from 'src/services/navigation-service/helper-function';
-import { INavigation } from 'src/services/navigation-service';
+import { IDataNavigation, IDataNetwork } from 'src/services/navigation-service';
+import Image from 'next/image';
+import { useLocalStorage } from '@mantine/hooks';
 import Copywritting from '../elements/svg/icons/copywritting-icon';
 import LogoHumaapi from '../elements/svg/icons/logo-humaapi';
 import DataService from '../content/content-data';
@@ -112,12 +114,16 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export interface IFooterLinksProps {
-  navigationData: INavigation[];
+  navigationData: IDataNavigation;
   serviceData: IDataServiceCard;
+  networkData: IDataNetwork;
 }
 const Footer: FC<IFooterLinksProps> = ({ ...props }) => {
   const { classes } = useStyles();
-  const { navigationData, serviceData } = props;
+  const [localValue, setLocalValue] = useLocalStorage({
+    key: 'humaapi-color-scheme'
+  });
+  const { navigationData, serviceData, networkData } = props;
   const itemFooter = ParseFooter(navigationData);
 
   const [homeValue] = navigationData.filter(
@@ -179,10 +185,24 @@ const Footer: FC<IFooterLinksProps> = ({ ...props }) => {
       <Container className={classes.afterFooter}>
         <Copywritting text="2022 humaapi" />
         <Group spacing={4} className={classes.social} position="right" noWrap>
-          {DataService.iconFooter.map((icon) => (
-            <Link href={icon.link} key={icon.title} target="_blank">
-              <ActionIcon size="lg" key={icon.title}>
-                {icon.icon}
+          {networkData.map((icon) => (
+            <Link href={icon.link} key={icon.id} target="_blank">
+              <ActionIcon size="lg" key={icon.id}>
+                <Image
+                  src={
+                    localValue === 'dark'
+                      ? icon.imageLight.icon
+                      : icon.imageDark.icon
+                  }
+                  alt={
+                    localValue === 'dark'
+                      ? icon.imageLight.name
+                      : icon.imageDark.name
+                  }
+                  className="object-cover object-center"
+                  height={25}
+                  width={25}
+                />
               </ActionIcon>
             </Link>
           ))}

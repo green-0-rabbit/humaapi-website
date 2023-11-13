@@ -5,7 +5,8 @@ import CookiePolicyContent from 'src/components/sections/cookie-policy/cookie-co
 import { IDataCookiePolicy, cookieService } from 'src/services/cookie-service';
 
 import {
-  INavigation,
+  IDataNavigation,
+  IDataNetwork,
   navigationService
 } from 'src/services/navigation-service';
 import Layout from 'src/layouts/layout';
@@ -20,17 +21,24 @@ interface ICookiePage {
   pageTitle: string;
   serviceData: IDataOurService;
   serviceCardData: IDataServiceCard;
-  navigationData: INavigation[];
+  navigationData: IDataNavigation;
+  networkData: IDataNetwork;
 }
 
 const Cookie: FC<ICookiePage> = ({ ...props }) => {
-  const { cookiePolicyContent, pageTitle, navigationData, serviceCardData } =
-    props;
+  const {
+    cookiePolicyContent,
+    pageTitle,
+    navigationData,
+    serviceCardData,
+    networkData
+  } = props;
   return (
     <Layout
       navigationData={navigationData}
       pageTitle={cookiePolicyContent.title}
-      serviceData={serviceCardData}>
+      serviceData={serviceCardData}
+      networkData={networkData}>
       <Box className="mx-auto">
         <CookiePolicyContent
           cookiePolicyContent={cookiePolicyContent}
@@ -47,13 +55,14 @@ export const getStaticProps: GetStaticProps = async () => {
   // const pageTitle = await cookieService.getTitle();
   const serviceCardData = await OurServicesService.getServiceCard();
   const navigationData = await navigationService.getAll();
+  const networkData = await navigationService.getNetwork();
   return {
     props: {
       // cookiesData,
       cookiePolicyContent,
       serviceCardData,
-      navigationData
-      // pageTitle
+      navigationData,
+      networkData
     }
   };
 };
