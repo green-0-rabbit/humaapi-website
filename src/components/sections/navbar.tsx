@@ -16,7 +16,7 @@ import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import ActionButton from 'src/components/modules/action-button';
-import { INavigation } from 'src/services/navigation-service';
+import { IDataNavigation } from 'src/services/navigation-service';
 import LogoHumaapi from '../elements/svg/icons/logo-humaapi';
 
 const HEADER_HEIGHT = 60;
@@ -110,7 +110,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface IHeaderResponsiveProps {
-  itemNavLink: INavigation[];
+  itemNavLink: IDataNavigation;
 }
 
 const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {

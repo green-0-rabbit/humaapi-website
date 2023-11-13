@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { createStyles } from '@mantine/core';
 import Navbar from 'src/components/sections/navbar';
 import Footer from 'src/components/sections/footer';
-import { IDataNetwork, INavigation } from 'src/services/navigation-service';
+import { IDataNavigation, IDataNetwork } from 'src/services/navigation-service';
 import Head from 'next/head';
 import { IDataServiceCard } from 'src/services/our-service-service';
 import bgImage from '../../public/assets/img/gradientcircleglassmorphism.png';
@@ -18,7 +18,7 @@ const useStyles = createStyles((theme) => ({
 
 interface ILayout {
   children: ReactNode;
-  navigationData: INavigation[];
+  navigationData: IDataNavigation;
   serviceData: IDataServiceCard;
   pageTitle: string;
   networkData: IDataNetwork;

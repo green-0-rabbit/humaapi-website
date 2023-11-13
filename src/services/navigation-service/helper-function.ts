@@ -1,6 +1,6 @@
-import { INavigation } from '.';
+import { IDataNavigation } from '.';
 
-const ParseFooter = (navigationData: INavigation[]) => {
+const ParseFooter = (navigationData: IDataNavigation) => {
   // get only Elements that have footerTitle except  Home and  Our service
   const getNavigationFooterTitleValues = navigationData.filter(
     (value) => value.footerTitle !== null && value.navigationLink !== 'home'
@@ -11,7 +11,7 @@ const ParseFooter = (navigationData: INavigation[]) => {
   );
   const [service] = serviceElement;
   // Create a map to store elements by footerTitle
-  const elementsByFooterTitle = new Map<string | null, INavigation[]>();
+  const elementsByFooterTitle = new Map<string | null, IDataNavigation>();
 
   getNavigationFooterTitleValues.forEach((item) => {
     const { footerTitle } = item;
