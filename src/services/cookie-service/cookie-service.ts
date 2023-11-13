@@ -10,10 +10,21 @@ interface ICookie {
   subTitle: string;
   description: string;
   cookiePolicy: string;
-  listCookies: string;
+}
+
+interface IListCookie {
+  id: string;
+  name: string;
+  category: string;
+  domain: string;
+  purpose: string;
+  storage: string;
 }
 export type IDataCookiePolicy = NonUndefined<
   Required<ReturnTypeAsync<typeof cookieService.get>>
+>;
+export type IDataListCookie = NonUndefined<
+  Required<ReturnTypeAsync<typeof cookieService.getList>>
 >;
 
 export const cookieService = {
@@ -27,10 +38,31 @@ export const cookieService = {
           title: res.title as string,
           subTitle: res.subTitle as string,
           description: res.description as string,
-          cookiePolicy: res.cookiePolicy as string,
-          listCookies: res.listCookies as string
+          cookiePolicy: res.cookiePolicy as string
         };
         return data as ICookie;
+      }
+      return undefined;
+    } catch (err) {
+      const error = <any>err;
+      throw new Error(error.message);
+    }
+  },
+  getList: async () => {
+    try {
+      const { acfListCookies } = await apolloClient.acfListCookiesList();
+      const res = acfListCookies?.nodes;
+      if (acfListCookies && res) {
+        const data = res.map((val) => ({
+          id: val.id,
+          name: val.name,
+          category: val.description,
+          domain: val.acfListCookieFields?.domain,
+          purpose: val.acfListCookieFields?.purpose,
+          storage: val.acfListCookieFields?.storage
+        }));
+
+        return data as IListCookie[];
       }
       return undefined;
     } catch (err) {

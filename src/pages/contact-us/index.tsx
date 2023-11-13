@@ -15,7 +15,6 @@ import {
 interface IContactUs {
   serviceCardData: IDataServiceCard;
   navigationData: IDataNavigation;
-
   networkData: IDataNetwork;
 }
 

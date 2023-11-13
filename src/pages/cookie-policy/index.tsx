@@ -2,7 +2,11 @@ import { Box } from '@mantine/core';
 import { GetStaticProps } from 'next';
 import { FC } from 'react';
 import CookiePolicyContent from 'src/components/sections/cookie-policy/cookie-content';
-import { IDataCookiePolicy, cookieService } from 'src/services/cookie-service';
+import {
+  IDataCookiePolicy,
+  IDataListCookie,
+  cookieService
+} from 'src/services/cookie-service';
 
 import {
   IDataNavigation,
@@ -23,15 +27,16 @@ interface ICookiePage {
   serviceCardData: IDataServiceCard;
   navigationData: IDataNavigation;
   networkData: IDataNetwork;
+  listCookie: IDataListCookie;
 }
 
 const Cookie: FC<ICookiePage> = ({ ...props }) => {
   const {
     cookiePolicyContent,
-    pageTitle,
     navigationData,
     serviceCardData,
-    networkData
+    networkData,
+    listCookie
   } = props;
   return (
     <Layout
@@ -42,7 +47,7 @@ const Cookie: FC<ICookiePage> = ({ ...props }) => {
       <Box className="mx-auto">
         <CookiePolicyContent
           cookiePolicyContent={cookiePolicyContent}
-          // cookiePolicyContent={newcookiePolicyContent}
+          cookieList={listCookie}
         />
       </Box>
     </Layout>
@@ -50,19 +55,19 @@ const Cookie: FC<ICookiePage> = ({ ...props }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  // const cookiesData = await cookieService.getCookies();
   const cookiePolicyContent = await cookieService.get();
-  // const pageTitle = await cookieService.getTitle();
   const serviceCardData = await OurServicesService.getServiceCard();
   const navigationData = await navigationService.getAll();
   const networkData = await navigationService.getNetwork();
+  const listCookie = await cookieService.getList();
+
   return {
     props: {
-      // cookiesData,
       cookiePolicyContent,
       serviceCardData,
       navigationData,
-      networkData
+      networkData,
+      listCookie
     }
   };
 };

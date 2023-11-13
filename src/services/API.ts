@@ -1027,8 +1027,6 @@ export type AcfLink = {
 
 /** The acfListCookie type */
 export type AcfListCookie = DatabaseIdentifier &
-  HierarchicalNode &
-  HierarchicalTermNode &
   MenuItemLinkable &
   Node &
   TermNode &
@@ -1043,10 +1041,6 @@ export type AcfListCookie = DatabaseIdentifier &
      * @deprecated Deprecated in favor of databaseId
      */
     acfListCookieId?: Maybe<Scalars['Int']['output']>;
-    /** The ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
-    ancestors?: Maybe<AcfListCookieToAncestorsAcfListCookieConnection>;
-    /** Connection between the acfListCookie type and its children acfListCookies. */
-    children?: Maybe<AcfListCookieToAcfListCookieConnection>;
     /** Connection between the AcfListCookie type and the ContentNode type */
     contentNodes?: Maybe<AcfListCookieToContentNodeConnection>;
     /** The number of objects connected to the object */
@@ -1071,12 +1065,6 @@ export type AcfListCookie = DatabaseIdentifier &
     link?: Maybe<Scalars['String']['output']>;
     /** The human friendly name of the object. */
     name?: Maybe<Scalars['String']['output']>;
-    /** Connection between the acfListCookie type and its parent acfListCookie. */
-    parent?: Maybe<AcfListCookieToParentAcfListCookieConnectionEdge>;
-    /** Database id of the parent node */
-    parentDatabaseId?: Maybe<Scalars['Int']['output']>;
-    /** The globally unique identifier of the parent node. */
-    parentId?: Maybe<Scalars['ID']['output']>;
     /** An alphanumeric identifier for the object unique to its type. */
     slug?: Maybe<Scalars['String']['output']>;
     /** Connection between the AcfListCookie type and the Taxonomy type */
@@ -1098,23 +1086,6 @@ export type AcfListCookieAcfAcfPagesArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<AcfListCookieToAcfAcfPageConnectionWhereArgs>;
-};
-
-/** The acfListCookie type */
-export type AcfListCookieAncestorsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
-
-/** The acfListCookie type */
-export type AcfListCookieChildrenArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<AcfListCookieToAcfListCookieConnectionWhereArgs>;
 };
 
 /** The acfListCookie type */
@@ -1270,131 +1241,6 @@ export type AcfListCookieToAcfAcfPageConnectionWhereArgs = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** Connection between the AcfListCookie type and the acfListCookie type */
-export type AcfListCookieToAcfListCookieConnection = AcfListCookieConnection &
-  Connection & {
-    __typename?: 'AcfListCookieToAcfListCookieConnection';
-    /** Edges for the AcfListCookieToAcfListCookieConnection connection */
-    edges: Array<AcfListCookieToAcfListCookieConnectionEdge>;
-    /** The nodes of the connection, without the edges */
-    nodes: Array<AcfListCookie>;
-    /** Information about pagination in a connection. */
-    pageInfo: AcfListCookieToAcfListCookieConnectionPageInfo;
-  };
-
-/** An edge in a connection */
-export type AcfListCookieToAcfListCookieConnectionEdge =
-  AcfListCookieConnectionEdge &
-    Edge & {
-      __typename?: 'AcfListCookieToAcfListCookieConnectionEdge';
-      /** A cursor for use in pagination */
-      cursor?: Maybe<Scalars['String']['output']>;
-      /** The item at the end of the edge */
-      node: AcfListCookie;
-    };
-
-/** Page Info on the &quot;AcfListCookieToAcfListCookieConnection&quot; */
-export type AcfListCookieToAcfListCookieConnectionPageInfo =
-  AcfListCookieConnectionPageInfo &
-    PageInfo &
-    WpPageInfo & {
-      __typename?: 'AcfListCookieToAcfListCookieConnectionPageInfo';
-      /** When paginating forwards, the cursor to continue. */
-      endCursor?: Maybe<Scalars['String']['output']>;
-      /** When paginating forwards, are there more items? */
-      hasNextPage: Scalars['Boolean']['output'];
-      /** When paginating backwards, are there more items? */
-      hasPreviousPage: Scalars['Boolean']['output'];
-      /** When paginating backwards, the cursor to continue. */
-      startCursor?: Maybe<Scalars['String']['output']>;
-    };
-
-/** Arguments for filtering the AcfListCookieToAcfListCookieConnection connection */
-export type AcfListCookieToAcfListCookieConnectionWhereArgs = {
-  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
-  cacheDomain?: InputMaybe<Scalars['String']['input']>;
-  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
-  childOf?: InputMaybe<Scalars['Int']['input']>;
-  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
-  childless?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Retrieve terms where the description is LIKE the input value. Default empty. */
-  descriptionLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
-  exclude?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
-  excludeTree?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
-  hideEmpty?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
-  hierarchical?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Array of term ids to include. Default empty array. */
-  include?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of names to return term(s) for. Default empty. */
-  name?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Retrieve terms where the name is LIKE the input value. Default empty. */
-  nameLike?: InputMaybe<Scalars['String']['input']>;
-  /** Array of object IDs. Results will be limited to terms associated with these objects. */
-  objectIds?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Direction the connection should be ordered in */
-  order?: InputMaybe<OrderEnum>;
-  /** Field(s) to order terms by. Defaults to 'name'. */
-  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
-  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
-  padCounts?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Parent term ID to retrieve direct-child terms of. Default empty. */
-  parent?: InputMaybe<Scalars['Int']['input']>;
-  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
-  search?: InputMaybe<Scalars['String']['input']>;
-  /** Array of slugs to return term(s) for. Default empty. */
-  slug?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Array of term taxonomy IDs, to match when querying terms. */
-  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Whether to prime meta caches for matched terms. Default true. */
-  updateTermMetaCache?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Connection between the AcfListCookie type and the acfListCookie type */
-export type AcfListCookieToAncestorsAcfListCookieConnection =
-  AcfListCookieConnection &
-    Connection & {
-      __typename?: 'AcfListCookieToAncestorsAcfListCookieConnection';
-      /** Edges for the AcfListCookieToAncestorsAcfListCookieConnection connection */
-      edges: Array<AcfListCookieToAncestorsAcfListCookieConnectionEdge>;
-      /** The nodes of the connection, without the edges */
-      nodes: Array<AcfListCookie>;
-      /** Information about pagination in a connection. */
-      pageInfo: AcfListCookieToAncestorsAcfListCookieConnectionPageInfo;
-    };
-
-/** An edge in a connection */
-export type AcfListCookieToAncestorsAcfListCookieConnectionEdge =
-  AcfListCookieConnectionEdge &
-    Edge & {
-      __typename?: 'AcfListCookieToAncestorsAcfListCookieConnectionEdge';
-      /** A cursor for use in pagination */
-      cursor?: Maybe<Scalars['String']['output']>;
-      /** The item at the end of the edge */
-      node: AcfListCookie;
-    };
-
-/** Page Info on the &quot;AcfListCookieToAncestorsAcfListCookieConnection&quot; */
-export type AcfListCookieToAncestorsAcfListCookieConnectionPageInfo =
-  AcfListCookieConnectionPageInfo &
-    PageInfo &
-    WpPageInfo & {
-      __typename?: 'AcfListCookieToAncestorsAcfListCookieConnectionPageInfo';
-      /** When paginating forwards, the cursor to continue. */
-      endCursor?: Maybe<Scalars['String']['output']>;
-      /** When paginating forwards, are there more items? */
-      hasNextPage: Scalars['Boolean']['output'];
-      /** When paginating backwards, are there more items? */
-      hasPreviousPage: Scalars['Boolean']['output'];
-      /** When paginating backwards, the cursor to continue. */
-      startCursor?: Maybe<Scalars['String']['output']>;
-    };
-
 /** Connection between the AcfListCookie type and the ContentNode type */
 export type AcfListCookieToContentNodeConnection = Connection &
   ContentNodeConnection & {
@@ -1474,18 +1320,6 @@ export type AcfListCookieToContentNodeConnectionWhereArgs = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** Connection between the AcfListCookie type and the acfListCookie type */
-export type AcfListCookieToParentAcfListCookieConnectionEdge =
-  AcfListCookieConnectionEdge &
-    Edge &
-    OneToOneConnection & {
-      __typename?: 'AcfListCookieToParentAcfListCookieConnectionEdge';
-      /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
-      cursor?: Maybe<Scalars['String']['output']>;
-      /** The node of the connection, without the edges */
-      node: AcfListCookie;
-    };
-
 /** Connection between the AcfListCookie type and the Taxonomy type */
 export type AcfListCookieToTaxonomyConnectionEdge = Edge &
   OneToOneConnection &
@@ -1500,9 +1334,11 @@ export type AcfListCookieToTaxonomyConnectionEdge = Edge &
 /** Field Group */
 export type AcfListCookie_Acflistcookiefields = AcfFieldGroup & {
   __typename?: 'AcfListCookie_Acflistcookiefields';
+  domain?: Maybe<Scalars['String']['output']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
+  purpose?: Maybe<Scalars['String']['output']>;
+  storage?: Maybe<Scalars['String']['output']>;
 };
 
 /** The acfNavigation type */
@@ -5184,8 +5020,6 @@ export type CreateAcfListCookieInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   /** The name of the list_cookies object to mutate */
   name: Scalars['String']['input'];
-  /** The ID of the list_cookies that should be set as the parent */
-  parentId?: InputMaybe<Scalars['ID']['input']>;
   /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
   slug?: InputMaybe<Scalars['String']['input']>;
 };
@@ -13464,8 +13298,6 @@ export type UpdateAcfListCookieInput = {
   id: Scalars['ID']['input'];
   /** The name of the list_cookies object to mutate */
   name?: InputMaybe<Scalars['String']['input']>;
-  /** The ID of the list_cookies that should be set as the parent */
-  parentId?: InputMaybe<Scalars['ID']['input']>;
   /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
   slug?: InputMaybe<Scalars['String']['input']>;
 };
@@ -15221,6 +15053,27 @@ export type AcfCookiePolicyQuery = {
   } | null;
 };
 
+export type AcfListCookiesListQueryVariables = Exact<{ [key: string]: never }>;
+
+export type AcfListCookiesListQuery = {
+  __typename?: 'RootQuery';
+  acfListCookies?: {
+    __typename?: 'RootQueryToAcfListCookieConnection';
+    nodes: Array<{
+      __typename?: 'AcfListCookie';
+      name?: string | null;
+      description?: string | null;
+      id: string;
+      acfListCookieFields?: {
+        __typename?: 'AcfListCookie_Acflistcookiefields';
+        domain?: string | null;
+        purpose?: string | null;
+        storage?: string | null;
+      } | null;
+    }>;
+  } | null;
+};
+
 export type AcfLandingQueryVariables = Exact<{ [key: string]: never }>;
 
 export type AcfLandingQuery = {
@@ -15465,6 +15318,22 @@ export const AcfCookiePolicyDocument = gql`
     }
   }
 `;
+export const AcfListCookiesListDocument = gql`
+  query acfListCookiesList {
+    acfListCookies {
+      nodes {
+        name
+        description
+        id
+        acfListCookieFields {
+          domain
+          purpose
+          storage
+        }
+      }
+    }
+  }
+`;
 export const AcfLandingDocument = gql`
   query acfLanding {
     acfAcfPage(id: "home", idType: SLUG) {
@@ -15651,6 +15520,19 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
         variables,
         options
       ) as Promise<AcfCookiePolicyQuery>;
+    },
+    acfListCookiesList(
+      variables?: AcfListCookiesListQueryVariables,
+      options?: C
+    ): Promise<AcfListCookiesListQuery> {
+      return requester<
+        AcfListCookiesListQuery,
+        AcfListCookiesListQueryVariables
+      >(
+        AcfListCookiesListDocument,
+        variables,
+        options
+      ) as Promise<AcfListCookiesListQuery>;
     },
     acfLanding(
       variables?: AcfLandingQueryVariables,

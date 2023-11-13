@@ -7,7 +7,8 @@ import {
 } from 'src/services/about-us-service';
 import { FC } from 'react';
 import {
-  INavigation,
+  IDataNavigation,
+  IDataNetwork,
   navigationService
 } from 'src/services/navigation-service';
 import Layout from 'src/layouts/layout';
@@ -20,18 +21,27 @@ import {
 interface IAboutUs {
   landingData: ILandingAboutUsData;
   serviceCardData: IDataServiceCard;
-  navigationData: INavigation[];
+  navigationData: IDataNavigation;
   pageTitle: string;
+  networkData: IDataNetwork;
 }
 
 const ContainService = styled.div``;
 const AboutUs: FC<IAboutUs> = ({ ...props }) => {
-  const { landingData, pageTitle, serviceCardData, navigationData } = props;
+  const {
+    landingData,
+    pageTitle,
+    serviceCardData,
+    navigationData,
+    networkData
+  } = props;
+
   return (
     <Layout
       pageTitle={pageTitle}
       navigationData={navigationData}
-      serviceData={serviceCardData}>
+      serviceData={serviceCardData}
+      networkData={networkData}>
       <ContainService>
         <LandingAboutUs landingData={landingData} />
         <OurTeam
@@ -48,6 +58,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const serviceCardData = await OurServicesService.getServiceCard();
   const navigationData = await navigationService.getAll();
   const pageTitle = await aboutUsService.getPageTitle();
+  const networkData = await navigationService.getNetwork();
 
   return {
     props: {
@@ -55,7 +66,8 @@ export const getStaticProps: GetStaticProps = async () => {
       teamData,
       serviceCardData,
       navigationData,
-      pageTitle
+      pageTitle,
+      networkData
     }
   };
 };

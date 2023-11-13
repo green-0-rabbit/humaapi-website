@@ -10,3 +10,18 @@ query acfCookiePolicy {
     id
   }
 }
+
+query acfListCookiesList {
+  acfListCookies {
+    nodes {
+      name
+      description
+      id
+      acfListCookieFields {
+        domain
+        purpose
+        storage
+      }
+    }
+  }
+}
