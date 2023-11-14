@@ -1959,6 +1959,8 @@ export type AcfNavigation_Acfnavigationsfields = AcfFieldGroup & {
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   footerTitle?: Maybe<Scalars['String']['output']>;
+  imageDark?: Maybe<MediaItem>;
+  imageLight?: Maybe<MediaItem>;
   navigationTitle?: Maybe<Scalars['String']['output']>;
 };
 
@@ -15798,6 +15800,7 @@ export type AcfSocialNetworksQuery = {
       __typename?: 'AcfSocialNetwork';
       name?: string | null;
       id: string;
+      slug?: string | null;
       acfSocialNetworkFields?: {
         __typename?: 'AcfSocialNetwork_Acfsocialnetworkfields';
         url?: { __typename?: 'AcfLink'; url?: string | null } | null;
@@ -16070,6 +16073,7 @@ export const AcfSocialNetworksDocument = gql`
           }
         }
         id
+        slug
       }
     }
   }

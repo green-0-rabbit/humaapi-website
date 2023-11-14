@@ -14,6 +14,7 @@ interface INetwork {
   id: string;
   title: string;
   link: string;
+  slug: string;
   imageLight: { icon: string; name: string };
   imageDark: { icon: string; name: string };
 }
@@ -53,13 +54,14 @@ export const navigationService = {
           id: val.id as string,
           title: val.name as string,
           link: val.acfSocialNetworkFields?.url?.url as string,
+          slug: val.slug as string,
           imageLight: {
             icon: val.acfSocialNetworkFields?.iconLight?.mediaItemUrl as string,
             name: val.acfSocialNetworkFields?.iconLight?.altText as string
           },
           imageDark: {
             icon: val.acfSocialNetworkFields?.iconDark?.mediaItemUrl as string,
-            name: val.acfSocialNetworkFields?.iconLight?.altText as string
+            name: val.acfSocialNetworkFields?.iconDark?.altText as string
           }
         }));
         return data as INetwork[];

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import {
   createStyles,
   Header,
@@ -12,11 +12,12 @@ import {
   Transition,
   Box
 } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure, useLocalStorage } from '@mantine/hooks';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import ActionButton from 'src/components/modules/action-button';
-import { IDataNavigation } from 'src/services/navigation-service';
+import { IDataNavigation, IDataNetwork } from 'src/services/navigation-service';
 import LogoHumaapi from '../elements/svg/icons/logo-humaapi';
 
 const HEADER_HEIGHT = 60;
@@ -111,16 +112,24 @@ const useStyles = createStyles((theme) => ({
 
 interface IHeaderResponsiveProps {
   itemNavLink: IDataNavigation;
+  networkData: IDataNetwork;
 }
 
-const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
+const Navbar: FC<IHeaderResponsiveProps> = ({ ...props }) => {
   const router = useRouter();
   const [opened, { toggle, close }] = useDisclosure(false);
   const [active, setActive] = useState(router.pathname);
   const { classes, cx } = useStyles();
+  const [localValue, setLocalValue] = useLocalStorage({
+    key: 'humaapi-color-scheme'
+  });
+  const { itemNavLink, networkData } = props;
+
   const items = itemNavLink.filter(
     (val) => val.navigationLink !== 'cookie-policy'
   );
+  const [logoHome] = networkData.filter((val) => val.slug === 'humaapi');
+
   const newitems = items.map((el, index) => (
     <Link
       href={`/${el.navigationLink.replace('home', '')}`}
@@ -145,7 +154,22 @@ const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
     <Header height={HEADER_HEIGHT} className={`${classes.root}`}>
       <Container className={classes.header}>
         <Link href="/" className="order-last md:order-first">
-          <LogoHumaapi />
+          <Image
+            src={
+              localValue === 'dark'
+                ? logoHome.imageLight.icon
+                : logoHome.imageDark.icon
+            }
+            alt={
+              localValue === 'dark'
+                ? logoHome.imageLight.icon
+                : logoHome.imageDark.icon
+            }
+            className=" object-cover object-center"
+            height={38}
+            width={112}
+          />
+          {/* <LogoHumaapi /> */}
         </Link>
         <Group
           spacing={4}

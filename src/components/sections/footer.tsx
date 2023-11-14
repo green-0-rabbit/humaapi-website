@@ -129,7 +129,8 @@ const Footer: FC<IFooterLinksProps> = ({ ...props }) => {
   const [homeValue] = navigationData.filter(
     (value) => value.navigationLink === 'home'
   );
-
+  const newNetworkData = networkData.filter((val) => val.slug !== 'humaapi');
+  const [logoHome] = networkData.filter((val) => val.slug === 'humaapi');
   const groups = Array.from(itemFooter)
     .reverse()
     .map(([value, key]) => {
@@ -166,7 +167,22 @@ const Footer: FC<IFooterLinksProps> = ({ ...props }) => {
       <Container className={`${classes.inner}`}>
         <div className={classes.logo}>
           <Link href="/">
-            <LogoHumaapi />
+            <Image
+              src={
+                localValue === 'dark'
+                  ? logoHome.imageLight.icon
+                  : logoHome.imageDark.icon
+              }
+              alt={
+                localValue === 'dark'
+                  ? logoHome.imageLight.icon
+                  : logoHome.imageDark.icon
+              }
+              className=" object-cover object-center"
+              height={38}
+              width={112}
+            />
+            {/* <LogoHumaapi /> */}
           </Link>
           <Text
             size="xs"
@@ -185,7 +201,7 @@ const Footer: FC<IFooterLinksProps> = ({ ...props }) => {
       <Container className={classes.afterFooter}>
         <Copywritting text="2022 humaapi" />
         <Group spacing={4} className={classes.social} position="right" noWrap>
-          {networkData.map((icon) => (
+          {newNetworkData.map((icon) => (
             <Link href={icon.link} key={icon.id} target="_blank">
               <ActionIcon size="lg" key={icon.id}>
                 <Image

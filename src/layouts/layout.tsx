@@ -36,7 +36,7 @@ const Layout: FC<ILayout> = ({ ...props }) => {
         <title>{pageTitle}</title>
       </Head>
       <Container>
-        <Navbar itemNavLink={navigationData} />
+        <Navbar itemNavLink={navigationData} networkData={networkData} />
         <Image
           src={bgImage}
           alt="backgroundImage"

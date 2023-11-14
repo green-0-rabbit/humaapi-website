@@ -4573,6 +4573,12 @@ type AcfNavigation_Acfnavigationsfields implements AcfFieldGroup {
   footerTitle: String
 
   """"""
+  imageDark: MediaItem
+
+  """"""
+  imageLight: MediaItem
+
+  """"""
   navigationTitle: String
 }
 
@@ -4580,6 +4586,1040 @@ type AcfNavigation_Acfnavigationsfields implements AcfFieldGroup {
 interface AcfFieldGroup {
   """The name of the ACF Field Group"""
   fieldGroupName: String
+}
+
+"""The mediaItem type"""
+type MediaItem implements Node & ContentNode & UniformResourceIdentifiable & DatabaseIdentifier & NodeWithTemplate & NodeWithTitle & NodeWithAuthor & NodeWithComments & HierarchicalContentNode & HierarchicalNode {
+  """Alternative text to display when resource is not displayed"""
+  altText: String
+
+  """
+  Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root).
+  """
+  ancestors(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """Arguments for filtering the connection"""
+    where: HierarchicalContentNodeToContentNodeAncestorsConnectionWhereArgs
+  ): HierarchicalContentNodeToContentNodeAncestorsConnection
+
+  """Connection between the NodeWithAuthor type and the User type"""
+  author: NodeWithAuthorToUserConnectionEdge
+
+  """The database identifier of the author of the node"""
+  authorDatabaseId: Int
+
+  """The globally unique identifier of the author of the node"""
+  authorId: ID
+
+  """The caption for the resource"""
+  caption(
+    """Format of the field output"""
+    format: PostObjectFieldFormatEnum
+  ): String
+
+  """
+  Connection between the HierarchicalContentNode type and the ContentNode type
+  """
+  children(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """Arguments for filtering the connection"""
+    where: HierarchicalContentNodeToContentNodeChildrenConnectionWhereArgs
+  ): HierarchicalContentNodeToContentNodeChildrenConnection
+
+  """
+  The number of comments. Even though WPGraphQL denotes this field as an integer, in WordPress this field should be saved as a numeric string for compatibility.
+  """
+  commentCount: Int
+
+  """Whether the comments are open or closed for this particular post."""
+  commentStatus: String
+
+  """Connection between the MediaItem type and the Comment type"""
+  comments(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """Arguments for filtering the connection"""
+    where: MediaItemToCommentConnectionWhereArgs
+  ): MediaItemToCommentConnection
+
+  """Connection between the ContentNode type and the ContentType type"""
+  contentType: ContentNodeToContentTypeConnectionEdge
+
+  """The name of the Content Type the node belongs to"""
+  contentTypeName: String!
+
+  """The unique identifier stored in the database"""
+  databaseId: Int!
+
+  """Post publishing date."""
+  date: String
+
+  """The publishing date set in GMT."""
+  dateGmt: String
+
+  """Description of the image (stored as post_content)"""
+  description(
+    """Format of the field output"""
+    format: PostObjectFieldFormatEnum
+  ): String
+
+  """The desired slug of the post"""
+  desiredSlug: String
+
+  """
+  If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds
+  """
+  editingLockedBy: ContentNodeToEditLockConnectionEdge
+
+  """The RSS enclosure for the object"""
+  enclosure: String
+
+  """Connection between the ContentNode type and the EnqueuedScript type"""
+  enqueuedScripts(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+  ): ContentNodeToEnqueuedScriptConnection
+
+  """
+  Connection between the ContentNode type and the EnqueuedStylesheet type
+  """
+  enqueuedStylesheets(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+  ): ContentNodeToEnqueuedStylesheetConnection
+
+  """The filesize in bytes of the resource"""
+  fileSize(
+    """Size of the MediaItem to return"""
+    size: MediaItemSizeEnum
+  ): Int
+
+  """
+  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
+  """
+  guid: String
+
+  """The globally unique identifier of the attachment object."""
+  id: ID!
+
+  """Whether the node is a Content Node"""
+  isContentNode: Boolean!
+
+  """Whether the object is a node in the preview state"""
+  isPreview: Boolean
+
+  """Whether the object is restricted from the current viewer"""
+  isRestricted: Boolean
+
+  """Whether the node is a Term"""
+  isTermNode: Boolean!
+
+  """The user that most recently edited the node"""
+  lastEditedBy: ContentNodeToEditLastConnectionEdge
+
+  """The permalink of the post"""
+  link: String
+
+  """Details about the mediaItem"""
+  mediaDetails: MediaDetails
+
+  """The id field matches the WP_Post-&gt;ID field."""
+  mediaItemId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
+
+  """Url of the mediaItem"""
+  mediaItemUrl: String
+
+  """Type of resource"""
+  mediaType: String
+
+  """The mime type of the mediaItem"""
+  mimeType: String
+
+  """
+  The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time.
+  """
+  modified: String
+
+  """
+  The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT.
+  """
+  modifiedGmt: String
+
+  """The parent of the node. The parent object can be of various types"""
+  parent: HierarchicalContentNodeToParentContentNodeConnectionEdge
+
+  """Database id of the parent node"""
+  parentDatabaseId: Int
+
+  """The globally unique identifier of the parent node."""
+  parentId: ID
+
+  """The database id of the preview node"""
+  previewRevisionDatabaseId: Int
+
+  """Whether the object is a node in the preview state"""
+  previewRevisionId: ID
+
+  """The sizes attribute value for an image."""
+  sizes(
+    """Size of the MediaItem to calculate sizes with"""
+    size: MediaItemSizeEnum
+  ): String
+
+  """
+  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
+  """
+  slug: String
+
+  """Url of the mediaItem"""
+  sourceUrl(
+    """Size of the MediaItem to return"""
+    size: MediaItemSizeEnum
+  ): String
+
+  """
+  The srcset attribute specifies the URL of the image to use in different situations. It is a comma separated string of urls and their widths.
+  """
+  srcSet(
+    """Size of the MediaItem to calculate srcSet with"""
+    size: MediaItemSizeEnum
+  ): String
+
+  """The current status of the object"""
+  status: String
+
+  """The template assigned to a node of content"""
+  template: ContentTemplate
+
+  """
+  The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made.
+  """
+  title(
+    """Format of the field output"""
+    format: PostObjectFieldFormatEnum
+  ): String
+
+  """The unique resource identifier path"""
+  uri: String
+}
+
+"""A node that can have comments associated with it"""
+interface NodeWithComments implements Node {
+  """
+  The number of comments. Even though WPGraphQL denotes this field as an integer, in WordPress this field should be saved as a numeric string for compatibility.
+  """
+  commentCount: Int
+
+  """Whether the comments are open or closed for this particular post."""
+  commentStatus: String
+
+  """The globally unique ID for the object"""
+  id: ID!
+}
+
+"""Arguments for filtering the MediaItemToCommentConnection connection"""
+input MediaItemToCommentConnectionWhereArgs {
+  """Comment author email address."""
+  authorEmail: String
+
+  """Array of author IDs to include comments for."""
+  authorIn: [ID]
+
+  """Array of author IDs to exclude comments for."""
+  authorNotIn: [ID]
+
+  """Comment author URL."""
+  authorUrl: String
+
+  """Array of comment IDs to include."""
+  commentIn: [ID]
+
+  """
+  Array of IDs of users whose unapproved comments will be returned by the query regardless of status.
+  """
+  commentNotIn: [ID]
+
+  """Include comments of a given type."""
+  commentType: String
+
+  """Include comments from a given array of comment types."""
+  commentTypeIn: [String]
+
+  """Exclude comments from a given array of comment types."""
+  commentTypeNotIn: String
+
+  """Content object author ID to limit results by."""
+  contentAuthor: [ID]
+
+  """Array of author IDs to retrieve comments for."""
+  contentAuthorIn: [ID]
+
+  """Array of author IDs *not* to retrieve comments for."""
+  contentAuthorNotIn: [ID]
+
+  """Limit results to those affiliated with a given content object ID."""
+  contentId: ID
+
+  """Array of content object IDs to include affiliated comments for."""
+  contentIdIn: [ID]
+
+  """Array of content object IDs to exclude affiliated comments for."""
+  contentIdNotIn: [ID]
+
+  """Content object name (i.e. slug ) to retrieve affiliated comments for."""
+  contentName: String
+
+  """Content Object parent ID to retrieve affiliated comments for."""
+  contentParent: Int
+
+  """
+  Array of content object statuses to retrieve affiliated comments for. Pass 'any' to match any value.
+  """
+  contentStatus: [PostStatusEnum]
+
+  """
+  Content object type or array of types to retrieve affiliated comments for. Pass 'any' to match any value.
+  """
+  contentType: [ContentTypeEnum]
+
+  """
+  Array of IDs or email addresses of users whose unapproved comments will be returned by the query regardless of $status. Default empty
+  """
+  includeUnapproved: [ID]
+
+  """Karma score to retrieve matching comments for."""
+  karma: Int
+
+  """The cardinality of the order of the connection"""
+  order: OrderEnum
+
+  """Field to order the comments by."""
+  orderby: CommentsConnectionOrderbyEnum
+
+  """Parent ID of comment to retrieve children of."""
+  parent: Int
+
+  """Array of parent IDs of comments to retrieve children for."""
+  parentIn: [ID]
+
+  """Array of parent IDs of comments *not* to retrieve children for."""
+  parentNotIn: [ID]
+
+  """Search term(s) to retrieve matching comments for."""
+  search: String
+
+  """Comment status to limit results by."""
+  status: String
+
+  """Include comments for a specific user ID."""
+  userId: ID
+}
+
+"""Options for ordering the connection"""
+enum CommentsConnectionOrderbyEnum {
+  """Order by browser user agent of the commenter."""
+  COMMENT_AGENT
+
+  """Order by approval status of the comment."""
+  COMMENT_APPROVED
+
+  """Order by name of the comment author."""
+  COMMENT_AUTHOR
+
+  """Order by e-mail of the comment author."""
+  COMMENT_AUTHOR_EMAIL
+
+  """Order by IP address of the comment author."""
+  COMMENT_AUTHOR_IP
+
+  """Order by URL address of the comment author."""
+  COMMENT_AUTHOR_URL
+
+  """Order by the comment contents."""
+  COMMENT_CONTENT
+
+  """Order by date/time timestamp of the comment."""
+  COMMENT_DATE
+
+  """Order by GMT timezone date/time timestamp of the comment."""
+  COMMENT_DATE_GMT
+
+  """Order by the globally unique identifier for the comment object"""
+  COMMENT_ID
+
+  """Order by the array list of comment IDs listed in the where clause."""
+  COMMENT_IN
+
+  """Order by the comment karma score."""
+  COMMENT_KARMA
+
+  """Order by the comment parent ID."""
+  COMMENT_PARENT
+
+  """Order by the post object ID."""
+  COMMENT_POST_ID
+
+  """
+  Order by the the type of comment, such as 'comment', 'pingback', or 'trackback'.
+  """
+  COMMENT_TYPE
+
+  """Order by the user ID."""
+  USER_ID
+}
+
+"""Connection between the MediaItem type and the Comment type"""
+type MediaItemToCommentConnection implements CommentConnection & Connection {
+  """Edges for the MediaItemToCommentConnection connection"""
+  edges: [MediaItemToCommentConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [Comment!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: MediaItemToCommentConnectionPageInfo!
+}
+
+"""Connection to Comment Nodes"""
+interface CommentConnection implements Connection {
+  """
+  A list of edges (relational context) between RootQuery and connected Comment Nodes
+  """
+  edges: [CommentConnectionEdge!]!
+
+  """A list of connected Comment Nodes"""
+  nodes: [Comment!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: CommentConnectionPageInfo!
+}
+
+"""Edge between a Node and a connected Comment"""
+interface CommentConnectionEdge implements Edge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The connected Comment Node"""
+  node: Comment!
+}
+
+"""A Comment object"""
+type Comment implements Node & DatabaseIdentifier {
+  """
+  User agent used to post the comment. This field is equivalent to WP_Comment-&gt;comment_agent and the value matching the &quot;comment_agent&quot; column in SQL.
+  """
+  agent: String
+
+  """
+  The approval status of the comment. This field is equivalent to WP_Comment-&gt;comment_approved and the value matching the &quot;comment_approved&quot; column in SQL.
+  """
+  approved: Boolean @deprecated(reason: "Deprecated in favor of the `status` field")
+
+  """The author of the comment"""
+  author: CommentToCommenterConnectionEdge
+
+  """
+  IP address for the author. This field is equivalent to WP_Comment-&gt;comment_author_IP and the value matching the &quot;comment_author_IP&quot; column in SQL.
+  """
+  authorIp: String
+
+  """ID for the comment, unique among comments."""
+  commentId: Int @deprecated(reason: "Deprecated in favor of databaseId")
+
+  """Connection between the Comment type and the ContentNode type"""
+  commentedOn: CommentToContentNodeConnectionEdge
+
+  """
+  Content of the comment. This field is equivalent to WP_Comment-&gt;comment_content and the value matching the &quot;comment_content&quot; column in SQL.
+  """
+  content(
+    """Format of the field output"""
+    format: PostObjectFieldFormatEnum
+  ): String
+
+  """The unique identifier stored in the database"""
+  databaseId: Int!
+
+  """
+  Date the comment was posted in local time. This field is equivalent to WP_Comment-&gt;date and the value matching the &quot;date&quot; column in SQL.
+  """
+  date: String
+
+  """
+  Date the comment was posted in GMT. This field is equivalent to WP_Comment-&gt;date_gmt and the value matching the &quot;date_gmt&quot; column in SQL.
+  """
+  dateGmt: String
+
+  """The globally unique identifier for the comment object"""
+  id: ID!
+
+  """Whether the object is restricted from the current viewer"""
+  isRestricted: Boolean
+
+  """
+  Karma value for the comment. This field is equivalent to WP_Comment-&gt;comment_karma and the value matching the &quot;comment_karma&quot; column in SQL.
+  """
+  karma: Int
+
+  """Connection between the Comment type and the Comment type"""
+  parent(
+    """Arguments for filtering the connection"""
+    where: CommentToParentCommentConnectionWhereArgs
+  ): CommentToParentCommentConnectionEdge
+
+  """
+  The database id of the parent comment node or null if it is the root comment
+  """
+  parentDatabaseId: Int
+
+  """The globally unique identifier of the parent comment node."""
+  parentId: ID
+
+  """Connection between the Comment type and the Comment type"""
+  replies(
+    """The number of items to return after the referenced "after" cursor"""
+    first: Int
+
+    """The number of items to return before the referenced "before" cursor"""
+    last: Int
+
+    """
+    Cursor used along with the "first" argument to reference where in the dataset to get data
+    """
+    after: String
+
+    """
+    Cursor used along with the "last" argument to reference where in the dataset to get data
+    """
+    before: String
+
+    """Arguments for filtering the connection"""
+    where: CommentToCommentConnectionWhereArgs
+  ): CommentToCommentConnection
+
+  """
+  The approval status of the comment. This field is equivalent to WP_Comment-&gt;comment_approved and the value matching the &quot;comment_approved&quot; column in SQL.
+  """
+  status: CommentStatusEnum
+
+  """
+  Type of comment. This field is equivalent to WP_Comment-&gt;comment_type and the value matching the &quot;comment_type&quot; column in SQL.
+  """
+  type: String
+}
+
+"""Connection between the Comment type and the Commenter type"""
+type CommentToCommenterConnectionEdge implements OneToOneConnection & Edge & CommenterConnectionEdge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The node of the connection, without the edges"""
+  node: Commenter!
+}
+
+"""Edge between a Node and a connected Commenter"""
+interface CommenterConnectionEdge implements Edge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The connected Commenter Node"""
+  node: Commenter!
+}
+
+"""Connection between the Comment type and the ContentNode type"""
+type CommentToContentNodeConnectionEdge implements OneToOneConnection & Edge & ContentNodeConnectionEdge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The node of the connection, without the edges"""
+  node: ContentNode!
+}
+
+"""
+Arguments for filtering the CommentToParentCommentConnection connection
+"""
+input CommentToParentCommentConnectionWhereArgs {
+  """Comment author email address."""
+  authorEmail: String
+
+  """Array of author IDs to include comments for."""
+  authorIn: [ID]
+
+  """Array of author IDs to exclude comments for."""
+  authorNotIn: [ID]
+
+  """Comment author URL."""
+  authorUrl: String
+
+  """Array of comment IDs to include."""
+  commentIn: [ID]
+
+  """
+  Array of IDs of users whose unapproved comments will be returned by the query regardless of status.
+  """
+  commentNotIn: [ID]
+
+  """Include comments of a given type."""
+  commentType: String
+
+  """Include comments from a given array of comment types."""
+  commentTypeIn: [String]
+
+  """Exclude comments from a given array of comment types."""
+  commentTypeNotIn: String
+
+  """Content object author ID to limit results by."""
+  contentAuthor: [ID]
+
+  """Array of author IDs to retrieve comments for."""
+  contentAuthorIn: [ID]
+
+  """Array of author IDs *not* to retrieve comments for."""
+  contentAuthorNotIn: [ID]
+
+  """Limit results to those affiliated with a given content object ID."""
+  contentId: ID
+
+  """Array of content object IDs to include affiliated comments for."""
+  contentIdIn: [ID]
+
+  """Array of content object IDs to exclude affiliated comments for."""
+  contentIdNotIn: [ID]
+
+  """Content object name (i.e. slug ) to retrieve affiliated comments for."""
+  contentName: String
+
+  """Content Object parent ID to retrieve affiliated comments for."""
+  contentParent: Int
+
+  """
+  Array of content object statuses to retrieve affiliated comments for. Pass 'any' to match any value.
+  """
+  contentStatus: [PostStatusEnum]
+
+  """
+  Content object type or array of types to retrieve affiliated comments for. Pass 'any' to match any value.
+  """
+  contentType: [ContentTypeEnum]
+
+  """
+  Array of IDs or email addresses of users whose unapproved comments will be returned by the query regardless of $status. Default empty
+  """
+  includeUnapproved: [ID]
+
+  """Karma score to retrieve matching comments for."""
+  karma: Int
+
+  """The cardinality of the order of the connection"""
+  order: OrderEnum
+
+  """Field to order the comments by."""
+  orderby: CommentsConnectionOrderbyEnum
+
+  """Parent ID of comment to retrieve children of."""
+  parent: Int
+
+  """Array of parent IDs of comments to retrieve children for."""
+  parentIn: [ID]
+
+  """Array of parent IDs of comments *not* to retrieve children for."""
+  parentNotIn: [ID]
+
+  """Search term(s) to retrieve matching comments for."""
+  search: String
+
+  """Comment status to limit results by."""
+  status: String
+
+  """Include comments for a specific user ID."""
+  userId: ID
+}
+
+"""Connection between the Comment type and the Comment type"""
+type CommentToParentCommentConnectionEdge implements OneToOneConnection & Edge & CommentConnectionEdge {
+  """
+  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
+  """
+  cursor: String
+
+  """The node of the connection, without the edges"""
+  node: Comment!
+}
+
+"""Arguments for filtering the CommentToCommentConnection connection"""
+input CommentToCommentConnectionWhereArgs {
+  """Comment author email address."""
+  authorEmail: String
+
+  """Array of author IDs to include comments for."""
+  authorIn: [ID]
+
+  """Array of author IDs to exclude comments for."""
+  authorNotIn: [ID]
+
+  """Comment author URL."""
+  authorUrl: String
+
+  """Array of comment IDs to include."""
+  commentIn: [ID]
+
+  """
+  Array of IDs of users whose unapproved comments will be returned by the query regardless of status.
+  """
+  commentNotIn: [ID]
+
+  """Include comments of a given type."""
+  commentType: String
+
+  """Include comments from a given array of comment types."""
+  commentTypeIn: [String]
+
+  """Exclude comments from a given array of comment types."""
+  commentTypeNotIn: String
+
+  """Content object author ID to limit results by."""
+  contentAuthor: [ID]
+
+  """Array of author IDs to retrieve comments for."""
+  contentAuthorIn: [ID]
+
+  """Array of author IDs *not* to retrieve comments for."""
+  contentAuthorNotIn: [ID]
+
+  """Limit results to those affiliated with a given content object ID."""
+  contentId: ID
+
+  """Array of content object IDs to include affiliated comments for."""
+  contentIdIn: [ID]
+
+  """Array of content object IDs to exclude affiliated comments for."""
+  contentIdNotIn: [ID]
+
+  """Content object name (i.e. slug ) to retrieve affiliated comments for."""
+  contentName: String
+
+  """Content Object parent ID to retrieve affiliated comments for."""
+  contentParent: Int
+
+  """
+  Array of content object statuses to retrieve affiliated comments for. Pass 'any' to match any value.
+  """
+  contentStatus: [PostStatusEnum]
+
+  """
+  Content object type or array of types to retrieve affiliated comments for. Pass 'any' to match any value.
+  """
+  contentType: [ContentTypeEnum]
+
+  """
+  Array of IDs or email addresses of users whose unapproved comments will be returned by the query regardless of $status. Default empty
+  """
+  includeUnapproved: [ID]
+
+  """Karma score to retrieve matching comments for."""
+  karma: Int
+
+  """The cardinality of the order of the connection"""
+  order: OrderEnum
+
+  """Field to order the comments by."""
+  orderby: CommentsConnectionOrderbyEnum
+
+  """Parent ID of comment to retrieve children of."""
+  parent: Int
+
+  """Array of parent IDs of comments to retrieve children for."""
+  parentIn: [ID]
+
+  """Array of parent IDs of comments *not* to retrieve children for."""
+  parentNotIn: [ID]
+
+  """Search term(s) to retrieve matching comments for."""
+  search: String
+
+  """Comment status to limit results by."""
+  status: String
+
+  """Include comments for a specific user ID."""
+  userId: ID
+}
+
+"""Connection between the Comment type and the Comment type"""
+type CommentToCommentConnection implements CommentConnection & Connection {
+  """Edges for the CommentToCommentConnection connection"""
+  edges: [CommentToCommentConnectionEdge!]!
+
+  """The nodes of the connection, without the edges"""
+  nodes: [Comment!]!
+
+  """Information about pagination in a connection."""
+  pageInfo: CommentToCommentConnectionPageInfo!
+}
+
+"""An edge in a connection"""
+type CommentToCommentConnectionEdge implements CommentConnectionEdge & Edge {
+  """A cursor for use in pagination"""
+  cursor: String
+
+  """The item at the end of the edge"""
+  node: Comment!
+}
+
+"""Page Info on the &quot;CommentToCommentConnection&quot;"""
+type CommentToCommentConnectionPageInfo implements CommentConnectionPageInfo & WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""Page Info on the connected CommentConnectionEdge"""
+interface CommentConnectionPageInfo implements WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""The status of the comment object."""
+enum CommentStatusEnum {
+  """Comments with the Approved status"""
+  APPROVE
+
+  """Comments with the Unapproved status"""
+  HOLD
+
+  """Comments with the Spam status"""
+  SPAM
+
+  """Comments with the Trash status"""
+  TRASH
+}
+
+"""An edge in a connection"""
+type MediaItemToCommentConnectionEdge implements CommentConnectionEdge & Edge {
+  """A cursor for use in pagination"""
+  cursor: String
+
+  """The item at the end of the edge"""
+  node: Comment!
+}
+
+"""Page Info on the &quot;MediaItemToCommentConnection&quot;"""
+type MediaItemToCommentConnectionPageInfo implements CommentConnectionPageInfo & WPPageInfo & PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+"""The size of the media item object."""
+enum MediaItemSizeEnum {
+  """MediaItem with the large size"""
+  LARGE
+
+  """MediaItem with the medium size"""
+  MEDIUM
+
+  """MediaItem with the medium_large size"""
+  MEDIUM_LARGE
+
+  """MediaItem with the thumbnail size"""
+  THUMBNAIL
+
+  """MediaItem with the 1536x1536 size"""
+  _1536X1536
+
+  """MediaItem with the 2048x2048 size"""
+  _2048X2048
+}
+
+"""File details for a Media Item"""
+type MediaDetails {
+  """The filename of the mediaItem"""
+  file: String
+
+  """The height of the mediaItem"""
+  height: Int
+
+  """Meta information associated with the mediaItem"""
+  meta: MediaItemMeta
+
+  """The available sizes of the mediaItem"""
+  sizes(
+    """The sizes to exclude. Will take precedence over `include`."""
+    exclude: [MediaItemSizeEnum]
+
+    """The sizes to include. Can be overridden by `exclude`."""
+    include: [MediaItemSizeEnum]
+  ): [MediaSize]
+
+  """The width of the mediaItem"""
+  width: Int
+}
+
+"""Meta connected to a MediaItem"""
+type MediaItemMeta {
+  """Aperture measurement of the media item."""
+  aperture: Float
+
+  """Information about the camera used to create the media item."""
+  camera: String
+
+  """The text string description associated with the media item."""
+  caption: String
+
+  """Copyright information associated with the media item."""
+  copyright: String
+
+  """The date/time when the media was created."""
+  createdTimestamp: Int
+
+  """The original creator of the media item."""
+  credit: String
+
+  """The focal length value of the media item."""
+  focalLength: Float
+
+  """
+  The ISO (International Organization for Standardization) value of the media item.
+  """
+  iso: Int
+
+  """List of keywords used to describe or identfy the media item."""
+  keywords: [String]
+
+  """The vertical or horizontal aspect of the media item."""
+  orientation: String
+
+  """The shutter speed information of the media item."""
+  shutterSpeed: Float
+
+  """A useful title for the media item."""
+  title: String
+}
+
+"""Details of an available size for a media item"""
+type MediaSize {
+  """The filename of the referenced size"""
+  file: String
+
+  """The filesize of the resource"""
+  fileSize: Int
+
+  """The height of the referenced size"""
+  height: String
+
+  """The mime type of the referenced size"""
+  mimeType: String
+
+  """The referenced size name"""
+  name: String
+
+  """The url of the referenced size"""
+  sourceUrl: String
+
+  """The width of the referenced size"""
+  width: String
 }
 
 """Connection between the AcfNavigation type and the acfNavigation type"""
@@ -6213,1040 +7253,6 @@ type AcfProces_Acfprocessfields implements AcfFieldGroup {
 
   """"""
   image: MediaItem
-}
-
-"""The mediaItem type"""
-type MediaItem implements Node & ContentNode & UniformResourceIdentifiable & DatabaseIdentifier & NodeWithTemplate & NodeWithTitle & NodeWithAuthor & NodeWithComments & HierarchicalContentNode & HierarchicalNode {
-  """Alternative text to display when resource is not displayed"""
-  altText: String
-
-  """
-  Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root).
-  """
-  ancestors(
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-
-    """Arguments for filtering the connection"""
-    where: HierarchicalContentNodeToContentNodeAncestorsConnectionWhereArgs
-  ): HierarchicalContentNodeToContentNodeAncestorsConnection
-
-  """Connection between the NodeWithAuthor type and the User type"""
-  author: NodeWithAuthorToUserConnectionEdge
-
-  """The database identifier of the author of the node"""
-  authorDatabaseId: Int
-
-  """The globally unique identifier of the author of the node"""
-  authorId: ID
-
-  """The caption for the resource"""
-  caption(
-    """Format of the field output"""
-    format: PostObjectFieldFormatEnum
-  ): String
-
-  """
-  Connection between the HierarchicalContentNode type and the ContentNode type
-  """
-  children(
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-
-    """Arguments for filtering the connection"""
-    where: HierarchicalContentNodeToContentNodeChildrenConnectionWhereArgs
-  ): HierarchicalContentNodeToContentNodeChildrenConnection
-
-  """
-  The number of comments. Even though WPGraphQL denotes this field as an integer, in WordPress this field should be saved as a numeric string for compatibility.
-  """
-  commentCount: Int
-
-  """Whether the comments are open or closed for this particular post."""
-  commentStatus: String
-
-  """Connection between the MediaItem type and the Comment type"""
-  comments(
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-
-    """Arguments for filtering the connection"""
-    where: MediaItemToCommentConnectionWhereArgs
-  ): MediaItemToCommentConnection
-
-  """Connection between the ContentNode type and the ContentType type"""
-  contentType: ContentNodeToContentTypeConnectionEdge
-
-  """The name of the Content Type the node belongs to"""
-  contentTypeName: String!
-
-  """The unique identifier stored in the database"""
-  databaseId: Int!
-
-  """Post publishing date."""
-  date: String
-
-  """The publishing date set in GMT."""
-  dateGmt: String
-
-  """Description of the image (stored as post_content)"""
-  description(
-    """Format of the field output"""
-    format: PostObjectFieldFormatEnum
-  ): String
-
-  """The desired slug of the post"""
-  desiredSlug: String
-
-  """
-  If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds
-  """
-  editingLockedBy: ContentNodeToEditLockConnectionEdge
-
-  """The RSS enclosure for the object"""
-  enclosure: String
-
-  """Connection between the ContentNode type and the EnqueuedScript type"""
-  enqueuedScripts(
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-  ): ContentNodeToEnqueuedScriptConnection
-
-  """
-  Connection between the ContentNode type and the EnqueuedStylesheet type
-  """
-  enqueuedStylesheets(
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-  ): ContentNodeToEnqueuedStylesheetConnection
-
-  """The filesize in bytes of the resource"""
-  fileSize(
-    """Size of the MediaItem to return"""
-    size: MediaItemSizeEnum
-  ): Int
-
-  """
-  The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table.
-  """
-  guid: String
-
-  """The globally unique identifier of the attachment object."""
-  id: ID!
-
-  """Whether the node is a Content Node"""
-  isContentNode: Boolean!
-
-  """Whether the object is a node in the preview state"""
-  isPreview: Boolean
-
-  """Whether the object is restricted from the current viewer"""
-  isRestricted: Boolean
-
-  """Whether the node is a Term"""
-  isTermNode: Boolean!
-
-  """The user that most recently edited the node"""
-  lastEditedBy: ContentNodeToEditLastConnectionEdge
-
-  """The permalink of the post"""
-  link: String
-
-  """Details about the mediaItem"""
-  mediaDetails: MediaDetails
-
-  """The id field matches the WP_Post-&gt;ID field."""
-  mediaItemId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
-
-  """Url of the mediaItem"""
-  mediaItemUrl: String
-
-  """Type of resource"""
-  mediaType: String
-
-  """The mime type of the mediaItem"""
-  mimeType: String
-
-  """
-  The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time.
-  """
-  modified: String
-
-  """
-  The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT.
-  """
-  modifiedGmt: String
-
-  """The parent of the node. The parent object can be of various types"""
-  parent: HierarchicalContentNodeToParentContentNodeConnectionEdge
-
-  """Database id of the parent node"""
-  parentDatabaseId: Int
-
-  """The globally unique identifier of the parent node."""
-  parentId: ID
-
-  """The database id of the preview node"""
-  previewRevisionDatabaseId: Int
-
-  """Whether the object is a node in the preview state"""
-  previewRevisionId: ID
-
-  """The sizes attribute value for an image."""
-  sizes(
-    """Size of the MediaItem to calculate sizes with"""
-    size: MediaItemSizeEnum
-  ): String
-
-  """
-  The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table.
-  """
-  slug: String
-
-  """Url of the mediaItem"""
-  sourceUrl(
-    """Size of the MediaItem to return"""
-    size: MediaItemSizeEnum
-  ): String
-
-  """
-  The srcset attribute specifies the URL of the image to use in different situations. It is a comma separated string of urls and their widths.
-  """
-  srcSet(
-    """Size of the MediaItem to calculate srcSet with"""
-    size: MediaItemSizeEnum
-  ): String
-
-  """The current status of the object"""
-  status: String
-
-  """The template assigned to a node of content"""
-  template: ContentTemplate
-
-  """
-  The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made.
-  """
-  title(
-    """Format of the field output"""
-    format: PostObjectFieldFormatEnum
-  ): String
-
-  """The unique resource identifier path"""
-  uri: String
-}
-
-"""A node that can have comments associated with it"""
-interface NodeWithComments implements Node {
-  """
-  The number of comments. Even though WPGraphQL denotes this field as an integer, in WordPress this field should be saved as a numeric string for compatibility.
-  """
-  commentCount: Int
-
-  """Whether the comments are open or closed for this particular post."""
-  commentStatus: String
-
-  """The globally unique ID for the object"""
-  id: ID!
-}
-
-"""Arguments for filtering the MediaItemToCommentConnection connection"""
-input MediaItemToCommentConnectionWhereArgs {
-  """Comment author email address."""
-  authorEmail: String
-
-  """Array of author IDs to include comments for."""
-  authorIn: [ID]
-
-  """Array of author IDs to exclude comments for."""
-  authorNotIn: [ID]
-
-  """Comment author URL."""
-  authorUrl: String
-
-  """Array of comment IDs to include."""
-  commentIn: [ID]
-
-  """
-  Array of IDs of users whose unapproved comments will be returned by the query regardless of status.
-  """
-  commentNotIn: [ID]
-
-  """Include comments of a given type."""
-  commentType: String
-
-  """Include comments from a given array of comment types."""
-  commentTypeIn: [String]
-
-  """Exclude comments from a given array of comment types."""
-  commentTypeNotIn: String
-
-  """Content object author ID to limit results by."""
-  contentAuthor: [ID]
-
-  """Array of author IDs to retrieve comments for."""
-  contentAuthorIn: [ID]
-
-  """Array of author IDs *not* to retrieve comments for."""
-  contentAuthorNotIn: [ID]
-
-  """Limit results to those affiliated with a given content object ID."""
-  contentId: ID
-
-  """Array of content object IDs to include affiliated comments for."""
-  contentIdIn: [ID]
-
-  """Array of content object IDs to exclude affiliated comments for."""
-  contentIdNotIn: [ID]
-
-  """Content object name (i.e. slug ) to retrieve affiliated comments for."""
-  contentName: String
-
-  """Content Object parent ID to retrieve affiliated comments for."""
-  contentParent: Int
-
-  """
-  Array of content object statuses to retrieve affiliated comments for. Pass 'any' to match any value.
-  """
-  contentStatus: [PostStatusEnum]
-
-  """
-  Content object type or array of types to retrieve affiliated comments for. Pass 'any' to match any value.
-  """
-  contentType: [ContentTypeEnum]
-
-  """
-  Array of IDs or email addresses of users whose unapproved comments will be returned by the query regardless of $status. Default empty
-  """
-  includeUnapproved: [ID]
-
-  """Karma score to retrieve matching comments for."""
-  karma: Int
-
-  """The cardinality of the order of the connection"""
-  order: OrderEnum
-
-  """Field to order the comments by."""
-  orderby: CommentsConnectionOrderbyEnum
-
-  """Parent ID of comment to retrieve children of."""
-  parent: Int
-
-  """Array of parent IDs of comments to retrieve children for."""
-  parentIn: [ID]
-
-  """Array of parent IDs of comments *not* to retrieve children for."""
-  parentNotIn: [ID]
-
-  """Search term(s) to retrieve matching comments for."""
-  search: String
-
-  """Comment status to limit results by."""
-  status: String
-
-  """Include comments for a specific user ID."""
-  userId: ID
-}
-
-"""Options for ordering the connection"""
-enum CommentsConnectionOrderbyEnum {
-  """Order by browser user agent of the commenter."""
-  COMMENT_AGENT
-
-  """Order by approval status of the comment."""
-  COMMENT_APPROVED
-
-  """Order by name of the comment author."""
-  COMMENT_AUTHOR
-
-  """Order by e-mail of the comment author."""
-  COMMENT_AUTHOR_EMAIL
-
-  """Order by IP address of the comment author."""
-  COMMENT_AUTHOR_IP
-
-  """Order by URL address of the comment author."""
-  COMMENT_AUTHOR_URL
-
-  """Order by the comment contents."""
-  COMMENT_CONTENT
-
-  """Order by date/time timestamp of the comment."""
-  COMMENT_DATE
-
-  """Order by GMT timezone date/time timestamp of the comment."""
-  COMMENT_DATE_GMT
-
-  """Order by the globally unique identifier for the comment object"""
-  COMMENT_ID
-
-  """Order by the array list of comment IDs listed in the where clause."""
-  COMMENT_IN
-
-  """Order by the comment karma score."""
-  COMMENT_KARMA
-
-  """Order by the comment parent ID."""
-  COMMENT_PARENT
-
-  """Order by the post object ID."""
-  COMMENT_POST_ID
-
-  """
-  Order by the the type of comment, such as 'comment', 'pingback', or 'trackback'.
-  """
-  COMMENT_TYPE
-
-  """Order by the user ID."""
-  USER_ID
-}
-
-"""Connection between the MediaItem type and the Comment type"""
-type MediaItemToCommentConnection implements CommentConnection & Connection {
-  """Edges for the MediaItemToCommentConnection connection"""
-  edges: [MediaItemToCommentConnectionEdge!]!
-
-  """The nodes of the connection, without the edges"""
-  nodes: [Comment!]!
-
-  """Information about pagination in a connection."""
-  pageInfo: MediaItemToCommentConnectionPageInfo!
-}
-
-"""Connection to Comment Nodes"""
-interface CommentConnection implements Connection {
-  """
-  A list of edges (relational context) between RootQuery and connected Comment Nodes
-  """
-  edges: [CommentConnectionEdge!]!
-
-  """A list of connected Comment Nodes"""
-  nodes: [Comment!]!
-
-  """Information about pagination in a connection."""
-  pageInfo: CommentConnectionPageInfo!
-}
-
-"""Edge between a Node and a connected Comment"""
-interface CommentConnectionEdge implements Edge {
-  """
-  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
-  """
-  cursor: String
-
-  """The connected Comment Node"""
-  node: Comment!
-}
-
-"""A Comment object"""
-type Comment implements Node & DatabaseIdentifier {
-  """
-  User agent used to post the comment. This field is equivalent to WP_Comment-&gt;comment_agent and the value matching the &quot;comment_agent&quot; column in SQL.
-  """
-  agent: String
-
-  """
-  The approval status of the comment. This field is equivalent to WP_Comment-&gt;comment_approved and the value matching the &quot;comment_approved&quot; column in SQL.
-  """
-  approved: Boolean @deprecated(reason: "Deprecated in favor of the `status` field")
-
-  """The author of the comment"""
-  author: CommentToCommenterConnectionEdge
-
-  """
-  IP address for the author. This field is equivalent to WP_Comment-&gt;comment_author_IP and the value matching the &quot;comment_author_IP&quot; column in SQL.
-  """
-  authorIp: String
-
-  """ID for the comment, unique among comments."""
-  commentId: Int @deprecated(reason: "Deprecated in favor of databaseId")
-
-  """Connection between the Comment type and the ContentNode type"""
-  commentedOn: CommentToContentNodeConnectionEdge
-
-  """
-  Content of the comment. This field is equivalent to WP_Comment-&gt;comment_content and the value matching the &quot;comment_content&quot; column in SQL.
-  """
-  content(
-    """Format of the field output"""
-    format: PostObjectFieldFormatEnum
-  ): String
-
-  """The unique identifier stored in the database"""
-  databaseId: Int!
-
-  """
-  Date the comment was posted in local time. This field is equivalent to WP_Comment-&gt;date and the value matching the &quot;date&quot; column in SQL.
-  """
-  date: String
-
-  """
-  Date the comment was posted in GMT. This field is equivalent to WP_Comment-&gt;date_gmt and the value matching the &quot;date_gmt&quot; column in SQL.
-  """
-  dateGmt: String
-
-  """The globally unique identifier for the comment object"""
-  id: ID!
-
-  """Whether the object is restricted from the current viewer"""
-  isRestricted: Boolean
-
-  """
-  Karma value for the comment. This field is equivalent to WP_Comment-&gt;comment_karma and the value matching the &quot;comment_karma&quot; column in SQL.
-  """
-  karma: Int
-
-  """Connection between the Comment type and the Comment type"""
-  parent(
-    """Arguments for filtering the connection"""
-    where: CommentToParentCommentConnectionWhereArgs
-  ): CommentToParentCommentConnectionEdge
-
-  """
-  The database id of the parent comment node or null if it is the root comment
-  """
-  parentDatabaseId: Int
-
-  """The globally unique identifier of the parent comment node."""
-  parentId: ID
-
-  """Connection between the Comment type and the Comment type"""
-  replies(
-    """The number of items to return after the referenced "after" cursor"""
-    first: Int
-
-    """The number of items to return before the referenced "before" cursor"""
-    last: Int
-
-    """
-    Cursor used along with the "first" argument to reference where in the dataset to get data
-    """
-    after: String
-
-    """
-    Cursor used along with the "last" argument to reference where in the dataset to get data
-    """
-    before: String
-
-    """Arguments for filtering the connection"""
-    where: CommentToCommentConnectionWhereArgs
-  ): CommentToCommentConnection
-
-  """
-  The approval status of the comment. This field is equivalent to WP_Comment-&gt;comment_approved and the value matching the &quot;comment_approved&quot; column in SQL.
-  """
-  status: CommentStatusEnum
-
-  """
-  Type of comment. This field is equivalent to WP_Comment-&gt;comment_type and the value matching the &quot;comment_type&quot; column in SQL.
-  """
-  type: String
-}
-
-"""Connection between the Comment type and the Commenter type"""
-type CommentToCommenterConnectionEdge implements OneToOneConnection & Edge & CommenterConnectionEdge {
-  """
-  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
-  """
-  cursor: String
-
-  """The node of the connection, without the edges"""
-  node: Commenter!
-}
-
-"""Edge between a Node and a connected Commenter"""
-interface CommenterConnectionEdge implements Edge {
-  """
-  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
-  """
-  cursor: String
-
-  """The connected Commenter Node"""
-  node: Commenter!
-}
-
-"""Connection between the Comment type and the ContentNode type"""
-type CommentToContentNodeConnectionEdge implements OneToOneConnection & Edge & ContentNodeConnectionEdge {
-  """
-  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
-  """
-  cursor: String
-
-  """The node of the connection, without the edges"""
-  node: ContentNode!
-}
-
-"""
-Arguments for filtering the CommentToParentCommentConnection connection
-"""
-input CommentToParentCommentConnectionWhereArgs {
-  """Comment author email address."""
-  authorEmail: String
-
-  """Array of author IDs to include comments for."""
-  authorIn: [ID]
-
-  """Array of author IDs to exclude comments for."""
-  authorNotIn: [ID]
-
-  """Comment author URL."""
-  authorUrl: String
-
-  """Array of comment IDs to include."""
-  commentIn: [ID]
-
-  """
-  Array of IDs of users whose unapproved comments will be returned by the query regardless of status.
-  """
-  commentNotIn: [ID]
-
-  """Include comments of a given type."""
-  commentType: String
-
-  """Include comments from a given array of comment types."""
-  commentTypeIn: [String]
-
-  """Exclude comments from a given array of comment types."""
-  commentTypeNotIn: String
-
-  """Content object author ID to limit results by."""
-  contentAuthor: [ID]
-
-  """Array of author IDs to retrieve comments for."""
-  contentAuthorIn: [ID]
-
-  """Array of author IDs *not* to retrieve comments for."""
-  contentAuthorNotIn: [ID]
-
-  """Limit results to those affiliated with a given content object ID."""
-  contentId: ID
-
-  """Array of content object IDs to include affiliated comments for."""
-  contentIdIn: [ID]
-
-  """Array of content object IDs to exclude affiliated comments for."""
-  contentIdNotIn: [ID]
-
-  """Content object name (i.e. slug ) to retrieve affiliated comments for."""
-  contentName: String
-
-  """Content Object parent ID to retrieve affiliated comments for."""
-  contentParent: Int
-
-  """
-  Array of content object statuses to retrieve affiliated comments for. Pass 'any' to match any value.
-  """
-  contentStatus: [PostStatusEnum]
-
-  """
-  Content object type or array of types to retrieve affiliated comments for. Pass 'any' to match any value.
-  """
-  contentType: [ContentTypeEnum]
-
-  """
-  Array of IDs or email addresses of users whose unapproved comments will be returned by the query regardless of $status. Default empty
-  """
-  includeUnapproved: [ID]
-
-  """Karma score to retrieve matching comments for."""
-  karma: Int
-
-  """The cardinality of the order of the connection"""
-  order: OrderEnum
-
-  """Field to order the comments by."""
-  orderby: CommentsConnectionOrderbyEnum
-
-  """Parent ID of comment to retrieve children of."""
-  parent: Int
-
-  """Array of parent IDs of comments to retrieve children for."""
-  parentIn: [ID]
-
-  """Array of parent IDs of comments *not* to retrieve children for."""
-  parentNotIn: [ID]
-
-  """Search term(s) to retrieve matching comments for."""
-  search: String
-
-  """Comment status to limit results by."""
-  status: String
-
-  """Include comments for a specific user ID."""
-  userId: ID
-}
-
-"""Connection between the Comment type and the Comment type"""
-type CommentToParentCommentConnectionEdge implements OneToOneConnection & Edge & CommentConnectionEdge {
-  """
-  Opaque reference to the nodes position in the connection. Value can be used with pagination args.
-  """
-  cursor: String
-
-  """The node of the connection, without the edges"""
-  node: Comment!
-}
-
-"""Arguments for filtering the CommentToCommentConnection connection"""
-input CommentToCommentConnectionWhereArgs {
-  """Comment author email address."""
-  authorEmail: String
-
-  """Array of author IDs to include comments for."""
-  authorIn: [ID]
-
-  """Array of author IDs to exclude comments for."""
-  authorNotIn: [ID]
-
-  """Comment author URL."""
-  authorUrl: String
-
-  """Array of comment IDs to include."""
-  commentIn: [ID]
-
-  """
-  Array of IDs of users whose unapproved comments will be returned by the query regardless of status.
-  """
-  commentNotIn: [ID]
-
-  """Include comments of a given type."""
-  commentType: String
-
-  """Include comments from a given array of comment types."""
-  commentTypeIn: [String]
-
-  """Exclude comments from a given array of comment types."""
-  commentTypeNotIn: String
-
-  """Content object author ID to limit results by."""
-  contentAuthor: [ID]
-
-  """Array of author IDs to retrieve comments for."""
-  contentAuthorIn: [ID]
-
-  """Array of author IDs *not* to retrieve comments for."""
-  contentAuthorNotIn: [ID]
-
-  """Limit results to those affiliated with a given content object ID."""
-  contentId: ID
-
-  """Array of content object IDs to include affiliated comments for."""
-  contentIdIn: [ID]
-
-  """Array of content object IDs to exclude affiliated comments for."""
-  contentIdNotIn: [ID]
-
-  """Content object name (i.e. slug ) to retrieve affiliated comments for."""
-  contentName: String
-
-  """Content Object parent ID to retrieve affiliated comments for."""
-  contentParent: Int
-
-  """
-  Array of content object statuses to retrieve affiliated comments for. Pass 'any' to match any value.
-  """
-  contentStatus: [PostStatusEnum]
-
-  """
-  Content object type or array of types to retrieve affiliated comments for. Pass 'any' to match any value.
-  """
-  contentType: [ContentTypeEnum]
-
-  """
-  Array of IDs or email addresses of users whose unapproved comments will be returned by the query regardless of $status. Default empty
-  """
-  includeUnapproved: [ID]
-
-  """Karma score to retrieve matching comments for."""
-  karma: Int
-
-  """The cardinality of the order of the connection"""
-  order: OrderEnum
-
-  """Field to order the comments by."""
-  orderby: CommentsConnectionOrderbyEnum
-
-  """Parent ID of comment to retrieve children of."""
-  parent: Int
-
-  """Array of parent IDs of comments to retrieve children for."""
-  parentIn: [ID]
-
-  """Array of parent IDs of comments *not* to retrieve children for."""
-  parentNotIn: [ID]
-
-  """Search term(s) to retrieve matching comments for."""
-  search: String
-
-  """Comment status to limit results by."""
-  status: String
-
-  """Include comments for a specific user ID."""
-  userId: ID
-}
-
-"""Connection between the Comment type and the Comment type"""
-type CommentToCommentConnection implements CommentConnection & Connection {
-  """Edges for the CommentToCommentConnection connection"""
-  edges: [CommentToCommentConnectionEdge!]!
-
-  """The nodes of the connection, without the edges"""
-  nodes: [Comment!]!
-
-  """Information about pagination in a connection."""
-  pageInfo: CommentToCommentConnectionPageInfo!
-}
-
-"""An edge in a connection"""
-type CommentToCommentConnectionEdge implements CommentConnectionEdge & Edge {
-  """A cursor for use in pagination"""
-  cursor: String
-
-  """The item at the end of the edge"""
-  node: Comment!
-}
-
-"""Page Info on the &quot;CommentToCommentConnection&quot;"""
-type CommentToCommentConnectionPageInfo implements CommentConnectionPageInfo & WPPageInfo & PageInfo {
-  """When paginating forwards, the cursor to continue."""
-  endCursor: String
-
-  """When paginating forwards, are there more items?"""
-  hasNextPage: Boolean!
-
-  """When paginating backwards, are there more items?"""
-  hasPreviousPage: Boolean!
-
-  """When paginating backwards, the cursor to continue."""
-  startCursor: String
-}
-
-"""Page Info on the connected CommentConnectionEdge"""
-interface CommentConnectionPageInfo implements WPPageInfo & PageInfo {
-  """When paginating forwards, the cursor to continue."""
-  endCursor: String
-
-  """When paginating forwards, are there more items?"""
-  hasNextPage: Boolean!
-
-  """When paginating backwards, are there more items?"""
-  hasPreviousPage: Boolean!
-
-  """When paginating backwards, the cursor to continue."""
-  startCursor: String
-}
-
-"""The status of the comment object."""
-enum CommentStatusEnum {
-  """Comments with the Approved status"""
-  APPROVE
-
-  """Comments with the Unapproved status"""
-  HOLD
-
-  """Comments with the Spam status"""
-  SPAM
-
-  """Comments with the Trash status"""
-  TRASH
-}
-
-"""An edge in a connection"""
-type MediaItemToCommentConnectionEdge implements CommentConnectionEdge & Edge {
-  """A cursor for use in pagination"""
-  cursor: String
-
-  """The item at the end of the edge"""
-  node: Comment!
-}
-
-"""Page Info on the &quot;MediaItemToCommentConnection&quot;"""
-type MediaItemToCommentConnectionPageInfo implements CommentConnectionPageInfo & WPPageInfo & PageInfo {
-  """When paginating forwards, the cursor to continue."""
-  endCursor: String
-
-  """When paginating forwards, are there more items?"""
-  hasNextPage: Boolean!
-
-  """When paginating backwards, are there more items?"""
-  hasPreviousPage: Boolean!
-
-  """When paginating backwards, the cursor to continue."""
-  startCursor: String
-}
-
-"""The size of the media item object."""
-enum MediaItemSizeEnum {
-  """MediaItem with the large size"""
-  LARGE
-
-  """MediaItem with the medium size"""
-  MEDIUM
-
-  """MediaItem with the medium_large size"""
-  MEDIUM_LARGE
-
-  """MediaItem with the thumbnail size"""
-  THUMBNAIL
-
-  """MediaItem with the 1536x1536 size"""
-  _1536X1536
-
-  """MediaItem with the 2048x2048 size"""
-  _2048X2048
-}
-
-"""File details for a Media Item"""
-type MediaDetails {
-  """The filename of the mediaItem"""
-  file: String
-
-  """The height of the mediaItem"""
-  height: Int
-
-  """Meta information associated with the mediaItem"""
-  meta: MediaItemMeta
-
-  """The available sizes of the mediaItem"""
-  sizes(
-    """The sizes to exclude. Will take precedence over `include`."""
-    exclude: [MediaItemSizeEnum]
-
-    """The sizes to include. Can be overridden by `exclude`."""
-    include: [MediaItemSizeEnum]
-  ): [MediaSize]
-
-  """The width of the mediaItem"""
-  width: Int
-}
-
-"""Meta connected to a MediaItem"""
-type MediaItemMeta {
-  """Aperture measurement of the media item."""
-  aperture: Float
-
-  """Information about the camera used to create the media item."""
-  camera: String
-
-  """The text string description associated with the media item."""
-  caption: String
-
-  """Copyright information associated with the media item."""
-  copyright: String
-
-  """The date/time when the media was created."""
-  createdTimestamp: Int
-
-  """The original creator of the media item."""
-  credit: String
-
-  """The focal length value of the media item."""
-  focalLength: Float
-
-  """
-  The ISO (International Organization for Standardization) value of the media item.
-  """
-  iso: Int
-
-  """List of keywords used to describe or identfy the media item."""
-  keywords: [String]
-
-  """The vertical or horizontal aspect of the media item."""
-  orientation: String
-
-  """The shutter speed information of the media item."""
-  shutterSpeed: Float
-
-  """A useful title for the media item."""
-  title: String
-}
-
-"""Details of an available size for a media item"""
-type MediaSize {
-  """The filename of the referenced size"""
-  file: String
-
-  """The filesize of the resource"""
-  fileSize: Int
-
-  """The height of the referenced size"""
-  height: String
-
-  """The mime type of the referenced size"""
-  mimeType: String
-
-  """The referenced size name"""
-  name: String
-
-  """The url of the referenced size"""
-  sourceUrl: String
-
-  """The width of the referenced size"""
-  width: String
 }
 
 """Arguments for filtering the AcfProcesToAcfServiceConnection connection"""

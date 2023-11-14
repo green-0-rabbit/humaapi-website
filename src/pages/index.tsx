@@ -46,6 +46,8 @@ const Home: FC<Ihome> = ({ ...props }) => {
   const [ourServiceNavigation] = navigationData.filter(
     (val) => val.footerTitle === null
   );
+  console.log({ navigationData });
+
   return (
     <Layout
       navigationData={navigationData}
@@ -78,6 +80,8 @@ export const getStaticProps: GetStaticProps = async () => {
   const navigationData = await navigationService.getAll();
   const networkData = await navigationService.getNetwork();
   const domaineNodeData = await HomeService.getDomaineNode();
+  console.log(navigationData);
+
   return {
     props: {
       serviceData,
