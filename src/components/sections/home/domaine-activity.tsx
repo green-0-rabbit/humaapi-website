@@ -1,12 +1,17 @@
 import styled from '@emotion/styled';
 import { Box, Paper, Text, createStyles } from '@mantine/core';
 import { FC } from 'react';
+import Image from 'next/image';
 import DataService from 'src/components/content/content-data';
-import { IDataDomaineActivity } from 'src/services/home-service';
+import {
+  IDataDomainNodeService,
+  IDataDomaineActivity
+} from 'src/services/home-service';
 import Description from '../../modules/description';
 
 interface IDomaineActivity {
   domaineData: IDataDomaineActivity;
+  domaineNodeData: IDataDomainNodeService;
 }
 const useStyles = createStyles((theme) => ({
   textColor: { color: theme.colorScheme === 'dark' ? 'white' : '' }
@@ -17,7 +22,7 @@ const Container = styled.div``;
 const Icon = styled.div``;
 const DomaineActivity: FC<IDomaineActivity> = (props) => {
   const { classes } = useStyles();
-  const { domaineData } = props;
+  const { domaineData, domaineNodeData } = props;
 
   return (
     <Box className="flex flex-col space-y-16">
@@ -48,17 +53,24 @@ const DomaineActivity: FC<IDomaineActivity> = (props) => {
       </ContainDomainsActivity>
       <ContainCards className="mt-2 flex justify-center">
         <Container className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {DataService.cardDomainData.map((el) => (
+          {domaineNodeData.map((el) => (
             <Paper
-              key={el.text}
+              key={el.id}
               radius={18}
               style={{ width: 262, height: 51 }}
               className="flex place-items-center space-x-3">
-              <Icon>{el.icon}</Icon>
+              {/* <Icon>{el.icon}</Icon> */}
+              <Image
+                src={el.image}
+                alt={el.imageName}
+                className=" object-cover object-center"
+                height={24}
+                width={24}
+              />
               <Text
                 className={`${classes.textColor}`}
                 sx={{ fontFamily: 'Ubuntu-Regular' }}>
-                {el.text}
+                {el.title}
               </Text>
             </Paper>
           ))}

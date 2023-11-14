@@ -27,4 +27,19 @@ query acfDomain {
   }
 }
 
+query acfDomainNodes {
+  acfDomaines {
+    nodes {
+      name
+      id
+      acfDomaineField {
+        image {
+          altText
+          mediaItemUrl
+        }
+      }
+    }
+  }
+}
+
 

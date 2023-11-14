@@ -3,6 +3,7 @@ import LandingPage from 'src/components/sections/home/landing-page';
 import { GetStaticProps } from 'next';
 import {
   HomeService,
+  IDataDomainNodeService,
   IDataDomaineActivity,
   IDataLandingPage,
   IDataOurService
@@ -29,6 +30,7 @@ interface Ihome {
   navigationData: IDataNavigation;
   pageTitle: string;
   networkData: IDataNetwork;
+  domaineNodeData: IDataDomainNodeService;
 }
 const Home: FC<Ihome> = ({ ...props }) => {
   const {
@@ -38,7 +40,8 @@ const Home: FC<Ihome> = ({ ...props }) => {
     serviceCardData,
     navigationData,
     pageTitle,
-    networkData
+    networkData,
+    domaineNodeData
   } = props;
   const [ourServiceNavigation] = navigationData.filter(
     (val) => val.footerTitle === null
@@ -56,7 +59,10 @@ const Home: FC<Ihome> = ({ ...props }) => {
           serviceCardData={serviceCardData}
           parentUrl={ourServiceNavigation.navigationLink}
         />
-        <DomaineActivity domaineData={domaineData} />
+        <DomaineActivity
+          domaineData={domaineData}
+          domaineNodeData={domaineNodeData}
+        />
       </Box>
     </Layout>
   );
@@ -71,6 +77,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const serviceCardData = await OurServicesService.getServiceCard();
   const navigationData = await navigationService.getAll();
   const networkData = await navigationService.getNetwork();
+  const domaineNodeData = await HomeService.getDomaineNode();
   return {
     props: {
       serviceData,
@@ -79,7 +86,8 @@ export const getStaticProps: GetStaticProps = async () => {
       serviceCardData,
       navigationData,
       pageTitle,
-      networkData
+      networkData,
+      domaineNodeData
     }
   };
 };

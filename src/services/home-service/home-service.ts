@@ -23,7 +23,7 @@ interface IOurService {
   subTitle: string;
   description: string;
 }
-
+type DomaineNodeType = Omit<ILandingPage, 'description'>;
 export type IDataDomaineActivity = NonUndefined<
   Required<ReturnTypeAsync<typeof HomeService.getDomaine>>
 >;
@@ -32,6 +32,10 @@ export type IDataLandingPage = NonUndefined<
 >;
 export type IDataOurService = NonUndefined<
   Required<ReturnTypeAsync<typeof HomeService.getService>>
+>;
+
+export type IDataDomainNodeService = NonUndefined<
+  Required<ReturnTypeAsync<typeof HomeService.getDomaineNode>>
 >;
 
 export const HomeService = {
@@ -101,6 +105,25 @@ export const HomeService = {
       const { acfAcfPage } = await apolloClient.acfLanding();
       const res = acfAcfPage?.title as string;
       return res || undefined;
+    } catch (err) {
+      const error = <any>err;
+      throw new Error(error.message);
+    }
+  },
+  getDomaineNode: async () => {
+    try {
+      const { acfDomaines } = await apolloClient.acfDomainNodes();
+      const res = acfDomaines?.nodes;
+      if (acfDomaines && res) {
+        const data = res.map((val) => ({
+          id: val.id as string,
+          title: val.name as string,
+          image: val.acfDomaineField?.image?.mediaItemUrl as string,
+          imageName: val.acfDomaineField?.image?.altText
+        }));
+        return data as DomaineNodeType[];
+      }
+      return undefined;
     } catch (err) {
       const error = <any>err;
       throw new Error(error.message);

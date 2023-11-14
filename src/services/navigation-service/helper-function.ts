@@ -15,6 +15,7 @@ const ParseFooter = (navigationData: IDataNavigation) => {
 
   getNavigationFooterTitleValues.forEach((item) => {
     const { footerTitle } = item;
+
     if (!elementsByFooterTitle.has(footerTitle)) {
       elementsByFooterTitle.set(footerTitle, []);
     }
