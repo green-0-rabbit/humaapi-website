@@ -31,9 +31,3 @@ export interface INavigationFooter {
   contentparag: string | string[];
   contentLinks: string | string[];
 }
-interface IDataFooter {
-  data: {
-    title: string;
-    links: { label: string; link: string }[];
-  }[];
-}

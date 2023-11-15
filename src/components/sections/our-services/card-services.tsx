@@ -1,18 +1,18 @@
 import styled from '@emotion/styled';
 import { Box } from '@mantine/core';
 import { FC } from 'react';
-import { IDataOurServiceView } from 'src/services/our-service-service';
+import Image from 'next/image';
+import { IServiceCard } from 'src/services/our-service-service';
 import CardService from 'src/components/modules/card-service';
-import DataService from 'src/components/content/content-data';
 
 interface ICardServices {
-  servicesData: IDataOurServiceView[];
+  servicesData: IServiceCard[];
+  parentUrl: string;
 }
 const Section = styled.section``;
 const Contain = styled.div``;
 const CardServices: FC<ICardServices> = (props) => {
-  const { servicesData } = props;
-  const illustration = DataService.serviceSvgIllustration;
+  const { servicesData, parentUrl } = props;
 
   return (
     <Section className="flex flex-col justify-center xs:text-center md:text-left">
@@ -20,11 +20,19 @@ const CardServices: FC<ICardServices> = (props) => {
         {servicesData.map((service, index) => (
           <Contain key={service.id}>
             <CardService
-              id={service.id}
-              serviceTitle={service.serviceTitle}
-              serviceContent={service.serviceContent}
-              serviceLink={`our-services/${service.serviceLink}`}
-              serviceImg={illustration[index].img}
+              id={index + 1}
+              serviceTitle={service.title}
+              serviceDescription={service.description}
+              serviceLink={`${parentUrl}/${service.link}`}
+              serviceImg={
+                <Image
+                  src={service.image}
+                  alt={service.imageName}
+                  className="object-cover object-center"
+                  height={252}
+                  width={service.link === 'web-development' ? 400 : 299}
+                />
+              }
             />
           </Contain>
         ))}

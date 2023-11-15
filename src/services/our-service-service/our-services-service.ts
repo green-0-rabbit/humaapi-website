@@ -1,67 +1,92 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable import/prefer-default-export */
-import camelcaseKeys from 'camelcase-keys';
-import { NonUndefined } from 'react-hook-form';
-import { ReturnTypeAsync } from 'src/commons/interface';
-import { hmDirectus } from 'src/utils';
-import { CamelCasedPropertiesDeep } from 'type-fest';
-import { getFormatedOverview } from './helper-function';
+import apolloClient from 'src/utils/wps/apollo-client';
 
-interface IGetServiceDesc {
-  id: number;
-  page_title: string;
-  service_title: string;
-  service_content: string;
-  service_link: string;
-  get_title: string;
-  get_list: string;
-  process_title: string;
-  process_list: string;
-}
 interface IService {
-  id: number;
-  service_title: string;
-  service_content: string;
-  service_link: string;
+  id: string;
+  title: string;
+  link: string;
+  description: string;
+  image: string;
+  imageName: string;
 }
-interface IServiceCard {
-  id: number;
-  service_title: string;
-  service_link: string;
+
+export interface IServiceCard extends IService {
+  iconLight: { icon: string; name: string };
+  iconDark: { icon: string; name: string };
 }
-export type IDataOurServiceView = NonUndefined<
-  Required<ReturnTypeAsync<typeof OurServicesService.getAllServiceDes>>
->;
-export type IDataDetailsService = NonUndefined<
-  Required<ReturnTypeAsync<typeof OurServicesService.getByLink>>
->;
-export type IDataServiceCard = NonUndefined<
-  Required<ReturnTypeAsync<typeof OurServicesService.getServiceCard>>
->;
+
+export interface IServiceData {
+  title: string;
+  subTitle: string;
+  description: string;
+}
+
+export type OffersType = Array<Omit<IService, 'image' | 'imageName' | 'link'>>;
+export type ProcessType = Array<Omit<IService, 'link'>>;
+export interface IServicesOverview extends IService {
+  process: { title: string; array: ProcessType };
+  offers: { title: string; array: OffersType };
+}
 
 export const OurServicesService = {
-  getAllServiceDes: async () => {
+  getByLink: async (serviceLink: string) => {
     try {
-      const { data } = await hmDirectus.readSingleton<IService>({
-        fields: `#graphql
-              {    
-                id      
-                service_title
-                service_content
-                service_link
-                             }
-            `,
-        queryName: 'services'
+      const { acfService } = await apolloClient.acfServiceById({
+        id: serviceLink
       });
-
-      if (data) {
-        const res = camelcaseKeys(
-          data as unknown as CamelCasedPropertiesDeep<IService>,
-          {
-            deep: true
+      const resOffers = acfService?.acfOffers?.nodes;
+      const resProcess = acfService?.acfProcess?.nodes;
+      if (acfService && resOffers && resProcess) {
+        const dataOffers = resOffers.map((valOffer) => ({
+          id: valOffer.id as string,
+          title: valOffer.name as string,
+          description: valOffer.description as string
+        }));
+        const dataProcess = resProcess.map((valProcess) => ({
+          id: valProcess.id as string,
+          title: valProcess.name as string,
+          description: valProcess.description as string,
+          image: valProcess.acfProcessFields?.image?.mediaItemUrl as string,
+          imageName: valProcess.acfProcessFields?.image?.altText as string
+        }));
+        const data = {
+          id: acfService.id,
+          title: acfService.acfServicesFields?.title as string,
+          link: acfService.slug as string,
+          description: acfService.acfServicesFields?.description as string,
+          image: acfService.acfServicesFields?.image?.mediaItemUrl as string,
+          imageName: acfService.acfServicesFields?.image?.altText as string,
+          process: {
+            title: acfService.acfServicesFields?.titleProcess as string,
+            array: dataProcess
+          },
+          offers: {
+            title: acfService.acfServicesFields?.titleOffer as string,
+            array: dataOffers
           }
-        );
-        return res;
+        };
+        return data as IServicesOverview;
+      }
+      throw new Error(
+        `page ${serviceLink} was not found, please check the backend request`
+      );
+    } catch (err) {
+      return undefined;
+    }
+  },
+  getPaths: async () => {
+    try {
+      const { acfServices } = await apolloClient.acfServiceData();
+      const res = acfServices?.nodes;
+      if (res) {
+        const pathsConfig = res.map((value) => ({
+          params: {
+            id: String(value.slug)
+          }
+        }));
+
+        return pathsConfig;
       }
       return undefined;
     } catch (err) {
@@ -69,109 +94,55 @@ export const OurServicesService = {
       throw new Error(error.message);
     }
   },
-  getByLink: async (serviceLink: string) => {
-    try {
-      const { data } = await hmDirectus.readByQuery<IGetServiceDesc>({
-        fields: `#graphql
-            {      
-          id
-          page_title
-          service_title
-          service_content
-          service_link
-            get_title
-            get_list 
-            process_title
-            process_list
-                    }
-          `,
-        filter: {
-          service_link: { _eq: serviceLink }
-        },
-        queryName: 'services'
-      });
-
-      if (!data) {
-        return undefined;
-      }
-
-      const singleValue = { ...data[0] };
-      const finaleValue = {
-        id: singleValue.id,
-        page_title: singleValue.page_title,
-        service_title: singleValue.service_title,
-        service_content: singleValue.service_content,
-        service_link: singleValue.service_link,
-        whatget: {
-          get_title: singleValue.get_title,
-          get_list: getFormatedOverview(singleValue.get_list)
-        },
-        process: {
-          process_title: singleValue.process_title,
-          process_list: getFormatedOverview(singleValue.process_list)
-        }
-      };
-
-      return camelcaseKeys(
-        finaleValue as unknown as CamelCasedPropertiesDeep<typeof finaleValue>,
-        {
-          deep: true
-        }
-      );
-    } catch (err) {
-      return undefined;
-    }
-  },
-  getPaths: async () => {
-    type Path = Pick<IGetServiceDesc, 'service_link'>;
-    try {
-      const { data } = await hmDirectus.readByQuery<Path>({
-        fields: `#graphql
-            {      
-              service_link
-            }
-          `,
-
-        queryName: 'services'
-      });
-
-      if (!data) {
-        return undefined;
-      }
-
-      const pathsConfig = data.map((post) => ({
-        params: {
-          id: String(post.service_link)
-        }
-      }));
-
-      return pathsConfig;
-    } catch (err) {
-      return undefined;
-    }
-  },
   getServiceCard: async () => {
     try {
-      const { data } = await hmDirectus.readSingleton<IServiceCard>({
-        fields: `#graphql
-              {      
-                service_title,
-                service_link
-              }
-            `,
-        queryName: 'services'
-      });
-
-      if (data) {
-        const res = camelcaseKeys(
-          data as unknown as CamelCasedPropertiesDeep<IServiceCard>,
-          {
-            deep: true
+      const { acfServices } = await apolloClient.acfServiceData();
+      const res = acfServices?.nodes;
+      if (acfServices && res) {
+        const data = res.map((val) => ({
+          id: val.id as string,
+          title: val.acfServicesFields?.title as string,
+          link: val.slug as string,
+          description: val.acfServicesFields?.description as string,
+          image: val.acfServicesFields?.image?.mediaItemUrl as string,
+          imageName: val.acfServicesFields?.image?.altText as string,
+          iconLight: {
+            icon: val.acfServicesFields?.iconLight?.mediaItemUrl as string,
+            name: val.acfServicesFields?.iconLight?.altText as string
+          },
+          iconDark: {
+            icon: val.acfServicesFields?.iconDark?.mediaItemUrl as string,
+            name: val.acfServicesFields?.iconDark?.altText as string
           }
-        );
-        return res;
+        }));
+        return data.reverse() as IServiceCard[];
       }
       return undefined;
+    } catch (err) {
+      const error = <any>err;
+      throw new Error(error.message);
+    }
+  },
+  getServiceData: async (id: string) => {
+    try {
+      const { acfAcfPage } = await apolloClient.acfService();
+      if (
+        id === 'our-services' &&
+        acfAcfPage &&
+        acfAcfPage.acfHomePageFields &&
+        acfAcfPage.acfHomePageFields.serviceContent
+      ) {
+        const res = acfAcfPage.acfHomePageFields.serviceContent;
+        const data = {
+          title: res.title as string,
+          subTitle: res.subTitle as string,
+          description: res.description as string
+        };
+        return data as IServiceData;
+      }
+      throw new Error(
+        `page ${id} was not found, please check the backend request`
+      );
     } catch (err) {
       const error = <any>err;
       throw new Error(error.message);

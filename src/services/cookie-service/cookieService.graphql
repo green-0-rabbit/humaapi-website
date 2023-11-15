@@ -1,0 +1,27 @@
+query acfCookiePolicy {
+  acfAcfPage(id: "cookie-policy", idType: SLUG) {
+    acfCookieFields {
+      title
+      subTitle
+      description
+      cookiePolicy
+      listCookies
+    }
+    id
+  }
+}
+
+query acfListCookiesList {
+  acfListCookies {
+    nodes {
+      name
+      description
+      id
+      acfListCookieFields {
+        domain
+        purpose
+        storage
+      }
+    }
+  }
+}

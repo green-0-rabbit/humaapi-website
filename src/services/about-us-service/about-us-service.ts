@@ -1,57 +1,34 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable import/prefer-default-export */
-import camelcaseKeys from 'camelcase-keys';
-import { NonUndefined } from 'react-hook-form';
-import { ReturnTypeAsync } from 'src/commons/interface';
-import { hmDirectus } from 'src/utils';
-import { CamelCasedPropertiesDeep } from 'type-fest';
+import apolloClient from 'src/utils/wps/apollo-client';
 
-interface ILandingAboutUs {
-  id: number;
-  title_about_us: string;
-  content_about_us: string;
-  about_img: {
-    id: string;
-  };
+export interface ILandingAboutUs {
+  id: string;
+  title: string;
+  teamTitle: string;
+  description: string;
+  image: string;
+  imageName: string;
 }
-interface IOurTeam {
-  id: number;
-  title_team: string;
-  content_team: string;
+export type ArrayTeam = Array<Omit<ILandingAboutUs, 'teamTitle'>>;
+export interface IAboutUS extends ILandingAboutUs {
+  team: ArrayTeam;
 }
-interface IPageTitle {
-  page_title: string;
-}
-export type ILandingAboutUsData = NonUndefined<
-  Required<ReturnTypeAsync<typeof aboutUsService.getLanding>>
->;
-export type IDataOurTeam = NonUndefined<
-  Required<ReturnTypeAsync<typeof aboutUsService.getTeam>>
->;
 
 export const aboutUsService = {
-  getLanding: async () => {
+  getTeam: async () => {
     try {
-      const { data } = await hmDirectus.readSingleton<ILandingAboutUs>({
-        fields: `#graphql
-              {      
-                title_about_us,
-                content_about_us,
-                about_img{
-                  id
-                },
-                page_title
-              }
-            `,
-        queryName: 'about_us'
-      });
-      if (data) {
-        return camelcaseKeys(
-          data as unknown as CamelCasedPropertiesDeep<ILandingAboutUs>,
-          {
-            deep: true
-          }
-        );
+      const { acfCharacters } = await apolloClient.AcfCharacters();
+      const res = acfCharacters?.nodes;
+      if (acfCharacters && res) {
+        const data = res.map((val) => ({
+          id: val.id as string,
+          title: val.name as string,
+          description: val.description as string,
+          image: val.acfCharacterFields?.image?.mediaItemUrl as string,
+          imageName: val.acfCharacterFields?.image?.altText as string
+        }));
+        return data as ArrayTeam;
       }
       return undefined;
     } catch (err) {
@@ -59,25 +36,22 @@ export const aboutUsService = {
       throw new Error(error.message);
     }
   },
-  getTeam: async () => {
+  getAll: async () => {
     try {
-      const { data } = await hmDirectus.readByQuery<IOurTeam>({
-        fields: `#graphql
-              {      
-                
-                title_team
-                content_team
-              }
-            `,
-        queryName: 'about_us'
-      });
-      if (data) {
-        return camelcaseKeys(
-          data as unknown as CamelCasedPropertiesDeep<IOurTeam>,
-          {
-            deep: true
-          }
-        );
+      const { acfAcfPage } = await apolloClient.acfAboutUs();
+      const res = acfAcfPage?.acfAboutUsFields;
+      const teamData = await aboutUsService.getTeam();
+      if (acfAcfPage && res && teamData) {
+        const data = {
+          id: acfAcfPage.id as string,
+          title: res.title as string,
+          teamTitle: res.teamTitle as string,
+          description: res.description as string,
+          image: res.aboutUsImage?.mediaItemUrl as string,
+          imageName: res.aboutUsImage?.altText as string,
+          team: teamData
+        };
+        return data as IAboutUS;
       }
       return undefined;
     } catch (err) {
@@ -87,26 +61,9 @@ export const aboutUsService = {
   },
   getPageTitle: async () => {
     try {
-      const { data } = await hmDirectus.readByQuery<IPageTitle>({
-        fields: `#graphql
-              {      
-                
-                page_title
-              
-              }
-            `,
-        queryName: 'about_us'
-      });
-
-      if (data) {
-        return camelcaseKeys(
-          data as unknown as CamelCasedPropertiesDeep<IPageTitle>,
-          {
-            deep: true
-          }
-        );
-      }
-      return undefined;
+      const { acfAcfPage } = await apolloClient.acfAboutUs();
+      const title = acfAcfPage?.title as string;
+      return title || undefined;
     } catch (err) {
       const error = <any>err;
       throw new Error(error.message);

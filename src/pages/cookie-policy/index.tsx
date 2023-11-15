@@ -3,46 +3,51 @@ import { GetStaticProps } from 'next';
 import { FC } from 'react';
 import CookiePolicyContent from 'src/components/sections/cookie-policy/cookie-content';
 import {
-  cookieService,
-  ICookieManagementData,
-  ICookieTitleData,
-  IDataCookiePolicy
+  ICookie,
+  IListCookie,
+  cookieService
 } from 'src/services/cookie-service';
 
 import {
-  INavigationFooterData,
-  INavigationHeaderData,
+  INavigation,
+  INetwork,
   navigationService
 } from 'src/services/navigation-service';
 import Layout from 'src/layouts/layout';
+import { IOurService } from 'src/services/home-service';
+import {
+  IServiceCard,
+  OurServicesService
+} from 'src/services/our-service-service';
 
-interface ICookie {
-  cookiesData: ICookieManagementData[];
-  cookiePolicyContent: IDataCookiePolicy[];
-  navigationFooterData: INavigationFooterData[];
-  navigationHeaderData: INavigationHeaderData[];
-  pageTitle: ICookieTitleData[];
+interface ICookiePage {
+  cookiePolicyContent: ICookie;
+  pageTitle: string;
+  serviceData: IOurService;
+  serviceCardData: IServiceCard[];
+  navigationData: INavigation[];
+  networkData: INetwork[];
+  listCookie: IListCookie[];
 }
 
-const Cookie: FC<ICookie> = ({ ...props }) => {
+const Cookie: FC<ICookiePage> = ({ ...props }) => {
   const {
-    cookiesData,
     cookiePolicyContent,
-    navigationHeaderData,
-    navigationFooterData,
-    pageTitle
+    navigationData,
+    serviceCardData,
+    networkData,
+    listCookie
   } = props;
-  const [title] = pageTitle;
-  const [newcookiePolicyContent] = cookiePolicyContent;
   return (
     <Layout
-      pageTitle={title.pageTitle}
-      navigationHeaderData={navigationHeaderData}
-      navigationFooterData={navigationFooterData}>
+      navigationData={navigationData}
+      pageTitle={cookiePolicyContent.title}
+      serviceData={serviceCardData}
+      networkData={networkData}>
       <Box className="mx-auto">
         <CookiePolicyContent
-          cookiesData={cookiesData}
-          cookiePolicyContent={newcookiePolicyContent}
+          cookiePolicyContent={cookiePolicyContent}
+          cookieList={listCookie}
         />
       </Box>
     </Layout>
@@ -50,18 +55,19 @@ const Cookie: FC<ICookie> = ({ ...props }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const cookiesData = await cookieService.getCookies();
   const cookiePolicyContent = await cookieService.get();
-  const pageTitle = await cookieService.getTitle();
-  const navigationHeaderData = await navigationService.getHeader();
-  const navigationFooterData = await navigationService.getFooter();
+  const serviceCardData = await OurServicesService.getServiceCard();
+  const navigationData = await navigationService.getAll();
+  const networkData = await navigationService.getNetwork();
+  const listCookie = await cookieService.getList();
+
   return {
     props: {
-      cookiesData,
       cookiePolicyContent,
-      navigationHeaderData,
-      navigationFooterData,
-      pageTitle
+      serviceCardData,
+      navigationData,
+      networkData,
+      listCookie
     }
   };
 };

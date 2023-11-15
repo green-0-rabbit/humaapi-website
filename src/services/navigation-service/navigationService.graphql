@@ -1,0 +1,37 @@
+query acfNavigations {
+   acfNavigations {
+    nodes {
+      acfNavigationsFields {
+        navigationTitle
+        footerTitle
+      }
+      id
+      slug
+    }
+  }
+}
+
+query acfSocialNetworks {
+  acfSocialNetworks {
+    nodes {
+      name
+      acfSocialNetworkFields {
+        url {
+          url
+        }
+        iconLight {
+          altText
+          mediaItemUrl
+          id
+        }
+        iconDark {
+          altText
+          mediaItemUrl
+          id
+        }
+      }
+      id
+      slug
+    }
+  }
+}

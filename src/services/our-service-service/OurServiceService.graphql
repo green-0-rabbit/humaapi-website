@@ -1,0 +1,77 @@
+query acfServiceData {
+  acfServices {
+    nodes {
+      id
+      acfServicesFields {
+        title
+        description
+
+        image {
+          mediaItemUrl
+          altText
+        }
+        iconLight {
+          mediaItemUrl
+          altText
+        }
+        iconDark {
+          mediaItemUrl
+          altText
+        }
+      }
+      id
+      slug
+    }
+  }
+}
+
+query acfService {
+  acfAcfPage(id: "home", idType: SLUG) {
+    acfHomePageFields {
+      serviceContent {
+        title
+        subTitle
+        description
+      }
+    }
+    id
+    title
+  }
+}
+
+query acfServiceById($id: ID!) {
+  acfService(id: $id, idType: URI) {
+    acfServicesFields {
+      description
+      title
+      titleOffer
+      titleProcess
+      image {
+        mediaItemUrl
+        altText
+      }
+    }
+    slug
+    id
+    acfOffers {
+      nodes {
+        name
+        description
+        id
+      }
+    }
+    acfProcess {
+      nodes {
+        name
+        description
+        id
+        acfProcessFields {
+          image {
+            mediaItemUrl
+            altText
+          }
+        }
+      }
+    }
+  }
+}

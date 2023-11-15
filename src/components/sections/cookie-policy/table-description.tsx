@@ -1,15 +1,19 @@
 import styled from '@emotion/styled';
 import { Table } from '@mantine/core';
-import { ICookieManagementData } from 'src/services/cookie-service';
 import { FC } from 'react';
+import { IListCookie } from 'src/services/cookie-service';
 
 interface ITableDescription {
-  cookiesData: ICookieManagementData[];
+  cookieList: IListCookie[];
 }
 const SectionTable = styled.section``;
 
 const TableDescription: FC<ITableDescription> = (props) => {
-  const { cookiesData } = props;
+  const { cookieList } = props;
+  const { id, ...rest } = cookieList[0];
+  const title = Object.keys(rest);
+  const capitalizeFirstLetter = (str: string) =>
+    str.charAt(0).toUpperCase() + str.slice(1);
 
   return (
     <SectionTable className="mx-auto h-[400px] max-w-4xl overflow-auto">
@@ -22,21 +26,19 @@ const TableDescription: FC<ITableDescription> = (props) => {
         sx={{ fontFamily: 'Ubuntu-Regular' }}>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Purpose</th>
-            <th>Domain</th>
-            <th>Strorage Period</th>
+            {title.map((item) => (
+              <th key={item}>{capitalizeFirstLetter(item)}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
-          {cookiesData.map((element) => (
+          {cookieList.map((element) => (
             <tr key={element.id}>
               <td>{element.name}</td>
               <td>{element.category}</td>
               <td>{element.purpose}</td>
               <td>{element.domain}</td>
-              <td>{element.stroragePeriod}</td>
+              <td>{element.storage}</td>
             </tr>
           ))}
         </tbody>

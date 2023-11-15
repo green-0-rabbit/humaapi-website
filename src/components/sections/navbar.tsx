@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import {
   createStyles,
   Header,
@@ -12,11 +12,12 @@ import {
   Transition,
   Box
 } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure, useLocalStorage } from '@mantine/hooks';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import ActionButton from 'src/components/modules/action-button';
-import LogoHumaapi from '../elements/svg/icons/logo-humaapi';
+import { INavigation, INetwork } from 'src/services/navigation-service';
 
 const HEADER_HEIGHT = 60;
 
@@ -109,25 +110,35 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface IHeaderResponsiveProps {
-  itemNavLink: { navigationLink: string; navigationTitle: string }[];
+  itemNavLink: INavigation[];
+  networkData: INetwork[];
 }
 
-const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
+const Navbar: FC<IHeaderResponsiveProps> = ({ ...props }) => {
   const router = useRouter();
   const [opened, { toggle, close }] = useDisclosure(false);
   const [active, setActive] = useState(router.pathname);
-
   const { classes, cx } = useStyles();
-  const items = itemNavLink.map((el, index) => (
+  const [localValue, setLocalValue] = useLocalStorage({
+    key: 'humaapi-color-scheme'
+  });
+  const { itemNavLink, networkData } = props;
+
+  const items = itemNavLink.filter(
+    (val) => val.navigationLink !== 'cookie-policy'
+  );
+  const [logoHome] = networkData.filter((val) => val.slug === 'humaapi');
+
+  const newitems = items.map((el, index) => (
     <Link
-      href={`/${el.navigationLink.replace('/', '')}`}
+      href={`/${el.navigationLink.replace('home', '')}`}
       legacyBehavior
       key={el.navigationTitle}>
       <a
         key={el.navigationTitle}
         className={`${cx(classes.link, {
           [classes.linkActive]:
-            router.pathname === `/${el.navigationLink.replace('/', '')}`
+            router.pathname === `/${el.navigationLink.replace('home', '')}`
         })}`}
         onClick={() => {
           setActive(router.pathname);
@@ -142,12 +153,26 @@ const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
     <Header height={HEADER_HEIGHT} className={`${classes.root}`}>
       <Container className={classes.header}>
         <Link href="/" className="order-last md:order-first">
-          <LogoHumaapi />
+          <Image
+            src={
+              localValue === 'dark'
+                ? logoHome.imageLight.icon
+                : logoHome.imageDark.icon
+            }
+            alt={
+              localValue === 'dark'
+                ? logoHome.imageLight.icon
+                : logoHome.imageDark.icon
+            }
+            className=" object-cover object-center"
+            height={38}
+            width={112}
+          />
         </Link>
         <Group
           spacing={4}
           className={`${classes.itemNavLink} header-style order-first md:order-last`}>
-          {items}
+          {newitems}
           <Box className="ml-8">
             <ActionButton />
           </Box>
@@ -166,7 +191,7 @@ const Navbar = ({ itemNavLink }: IHeaderResponsiveProps) => {
         <Transition transition="pop-top-right" duration={420} mounted={opened}>
           {(styles) => (
             <Paper className={classes.dropdown} style={styles}>
-              {items}
+              {newitems}
             </Paper>
           )}
         </Transition>

@@ -2,20 +2,20 @@ import { Box } from '@mantine/core';
 import LandingPage from 'src/components/sections/home/landing-page';
 import { GetStaticProps } from 'next';
 import {
+  IDomaineNodeType,
   HomeService,
-  IDataDomaineActivity,
-  IDataLandingPage,
-  IDataOurService,
-  IDataTitle
+  IDomaineActivity,
+  ILandingPage,
+  IOurService
 } from 'src/services/home-service';
 import { FC } from 'react';
 import {
-  IDataServiceCard,
+  IServiceCard,
   OurServicesService
 } from 'src/services/our-service-service';
 import {
-  INavigationFooterData,
-  INavigationHeaderData,
+  INavigation,
+  INetwork,
   navigationService
 } from 'src/services/navigation-service/navigation-service';
 import Layout from 'src/layouts/layout';
@@ -23,13 +23,14 @@ import OursService from '../components/sections/home/our-services';
 import DomaineActivity from '../components/sections/home/domaine-activity';
 
 interface Ihome {
-  domaineData: IDataDomaineActivity[];
-  landingData: IDataLandingPage[];
-  serviceData: IDataOurService[];
-  serviceCardData: IDataServiceCard[];
-  navigationHeaderData: INavigationHeaderData[];
-  navigationFooterData: INavigationFooterData[];
-  pageTitle: IDataTitle[];
+  domaineData: IDomaineActivity;
+  landingData: ILandingPage;
+  serviceData: IOurService;
+  serviceCardData: IServiceCard[];
+  navigationData: INavigation[];
+  pageTitle: string;
+  networkData: INetwork[];
+  domaineNodeData: IDomaineNodeType[];
 }
 const Home: FC<Ihome> = ({ ...props }) => {
   const {
@@ -37,26 +38,32 @@ const Home: FC<Ihome> = ({ ...props }) => {
     domaineData,
     landingData,
     serviceCardData,
-    navigationHeaderData,
-    navigationFooterData,
-    pageTitle
+    navigationData,
+    pageTitle,
+    networkData,
+    domaineNodeData
   } = props;
-  const [title] = pageTitle;
-  const [newlandingData] = landingData;
-  const [newserviceData] = serviceData;
-  const [newdomaineData] = domaineData;
+  const [ourServiceNavigation] = navigationData.filter(
+    (val) => val.footerTitle === null
+  );
+
   return (
     <Layout
-      navigationHeaderData={navigationHeaderData}
-      navigationFooterData={navigationFooterData}
-      pageTitle={title.pageTitle}>
+      navigationData={navigationData}
+      pageTitle={pageTitle}
+      serviceData={serviceCardData}
+      networkData={networkData}>
       <Box className="w-full space-y-[72px]">
-        <LandingPage landingData={newlandingData} />
+        <LandingPage landingData={landingData} />
         <OursService
-          serviceData={newserviceData}
+          serviceData={serviceData}
           serviceCardData={serviceCardData}
+          parentUrl={ourServiceNavigation.navigationLink}
         />
-        <DomaineActivity domaineData={newdomaineData} />
+        <DomaineActivity
+          domaineData={domaineData}
+          domaineNodeData={domaineNodeData}
+        />
       </Box>
     </Layout>
   );
@@ -69,8 +76,9 @@ export const getStaticProps: GetStaticProps = async () => {
   const landingData = await HomeService.getLanding();
   const pageTitle = await HomeService.getPageTitle();
   const serviceCardData = await OurServicesService.getServiceCard();
-  const navigationHeaderData = await navigationService.getHeader();
-  const navigationFooterData = await navigationService.getFooter();
+  const navigationData = await navigationService.getAll();
+  const networkData = await navigationService.getNetwork();
+  const domaineNodeData = await HomeService.getDomaineNode();
 
   return {
     props: {
@@ -78,9 +86,10 @@ export const getStaticProps: GetStaticProps = async () => {
       domaineData,
       landingData,
       serviceCardData,
-      navigationHeaderData,
-      navigationFooterData,
-      pageTitle
+      navigationData,
+      pageTitle,
+      networkData,
+      domaineNodeData
     }
   };
 };

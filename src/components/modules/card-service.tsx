@@ -9,7 +9,7 @@ import Description from './description';
 interface ICardService {
   id: number;
   serviceTitle: string;
-  serviceContent: string;
+  serviceDescription: string;
   serviceLink: string;
   serviceImg?: JSX.Element;
   nameEvent?: string;
@@ -19,7 +19,7 @@ const CardService: FC<ICardService> = ({ ...props }) => {
   const {
     id,
     serviceTitle,
-    serviceContent,
+    serviceDescription,
     serviceLink,
     serviceImg,
     nameEvent
@@ -38,7 +38,7 @@ const CardService: FC<ICardService> = ({ ...props }) => {
         }`}>
         <Description
           title={serviceTitle}
-          content={serviceContent}
+          content={serviceDescription}
           sx={{
             fontFamily: 'Ubuntu-Bold',
             fontWeight: 700,

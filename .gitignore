@@ -4,6 +4,9 @@
 
 # https://yarnpkg.com/getting-started/qa/#which-files-should-be-gitignored
 
+pinned-files.json
+graphql
+.yarn/cache
 .yarn/*
 
 !.yarn/cache

@@ -1,12 +1,14 @@
 import styled from '@emotion/styled';
 import { Box, Paper, Text, createStyles } from '@mantine/core';
 import { FC } from 'react';
+import Image from 'next/image';
 import DataService from 'src/components/content/content-data';
-import { IDataDomaineActivity } from 'src/services/home-service';
+import { IDomaineNodeType, IDomaineActivity } from 'src/services/home-service';
 import Description from '../../modules/description';
 
-interface IDomaineActivity {
-  domaineData: IDataDomaineActivity;
+interface IDtaDomaineActivity {
+  domaineData: IDomaineActivity;
+  domaineNodeData: IDomaineNodeType[];
 }
 const useStyles = createStyles((theme) => ({
   textColor: { color: theme.colorScheme === 'dark' ? 'white' : '' }
@@ -15,9 +17,9 @@ const ContainDomainsActivity = styled.div``;
 const ContainCards = styled.div``;
 const Container = styled.div``;
 const Icon = styled.div``;
-const DomaineActivity: FC<IDomaineActivity> = (props) => {
+const DomaineActivity: FC<IDtaDomaineActivity> = (props) => {
   const { classes } = useStyles();
-  const { domaineData } = props;
+  const { domaineData, domaineNodeData } = props;
 
   return (
     <Box className="flex flex-col space-y-16">
@@ -31,7 +33,7 @@ const DomaineActivity: FC<IDomaineActivity> = (props) => {
           size="xl"
           color="humaapi.0"
           className="mb-1">
-          {domaineData.titleDomaine}
+          {domaineData.title}
         </Text>
         <Description
           sxdesc="px-4"
@@ -42,23 +44,30 @@ const DomaineActivity: FC<IDomaineActivity> = (props) => {
           }}
           size={32}
           title={domaineData.subTitle}
-          content={domaineData.contentDomaine}
+          content={domaineData.description}
           space={4}
         />
       </ContainDomainsActivity>
       <ContainCards className="mt-2 flex justify-center">
         <Container className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {DataService.cardDomainData.map((el) => (
+          {domaineNodeData.map((el) => (
             <Paper
-              key={el.text}
+              key={el.id}
               radius={18}
               style={{ width: 262, height: 51 }}
               className="flex place-items-center space-x-3">
-              <Icon>{el.icon}</Icon>
+              {/* <Icon>{el.icon}</Icon> */}
+              <Image
+                src={el.image}
+                alt={el.imageName}
+                className=" object-cover object-center"
+                height={24}
+                width={24}
+              />
               <Text
                 className={`${classes.textColor}`}
                 sx={{ fontFamily: 'Ubuntu-Regular' }}>
-                {el.text}
+                {el.title}
               </Text>
             </Paper>
           ))}

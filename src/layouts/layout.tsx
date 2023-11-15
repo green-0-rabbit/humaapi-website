@@ -1,15 +1,12 @@
 import Image from 'next/image';
-import { FC, ReactNode, useEffect, useState } from 'react';
+import { FC, ReactNode } from 'react';
 import styled from '@emotion/styled';
 import { createStyles } from '@mantine/core';
 import Navbar from 'src/components/sections/navbar';
 import Footer from 'src/components/sections/footer';
-import {
-  INavigationFooterData,
-  INavigationHeaderData
-} from 'src/services/navigation-service';
-import { parseFooter } from 'src/services/navigation-service/helper-function';
+import { INavigation, INetwork } from 'src/services/navigation-service';
 import Head from 'next/head';
+import { IServiceCard } from 'src/services/our-service-service';
 import bgImage from '../../public/assets/img/gradientcircleglassmorphism.png';
 import ScrollTop from '../components/modules/scroll-to-up';
 
@@ -21,24 +18,25 @@ const useStyles = createStyles((theme) => ({
 
 interface ILayout {
   children: ReactNode;
-  navigationHeaderData: INavigationHeaderData[];
-  navigationFooterData: INavigationFooterData[];
+  navigationData: INavigation[];
+  serviceData: IServiceCard[];
   pageTitle: string;
+  networkData: INetwork[];
 }
 const Container = styled.div``;
 
 const Layout: FC<ILayout> = ({ ...props }) => {
-  const { children, navigationHeaderData, navigationFooterData, pageTitle } =
+  const { children, navigationData, pageTitle, serviceData, networkData } =
     props;
   const { classes } = useStyles();
-  const itemFooter = parseFooter(navigationFooterData);
+
   return (
     <>
       <Head>
         <title>{pageTitle}</title>
       </Head>
       <Container>
-        <Navbar itemNavLink={navigationHeaderData} />
+        <Navbar itemNavLink={navigationData} networkData={networkData} />
         <Image
           src={bgImage}
           alt="backgroundImage"
@@ -48,7 +46,11 @@ const Layout: FC<ILayout> = ({ ...props }) => {
           } absolute object-center`}
         />
         {children}
-        <Footer itemFooter={itemFooter} />
+        <Footer
+          navigationData={navigationData}
+          serviceData={serviceData}
+          networkData={networkData}
+        />
         <ScrollTop />
       </Container>
     </>

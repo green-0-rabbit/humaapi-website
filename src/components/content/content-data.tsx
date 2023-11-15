@@ -57,16 +57,6 @@ const DataService = {
   ],
   processData: [
     {
-      service: 'web-development',
-      data: [
-        { icon: <GatheringIcon /> },
-        { icon: <UxUiIcon /> },
-        { icon: <DevelopementIcon /> },
-        { icon: <QualityAssuranceIcon /> },
-        { icon: <DeploymentIcon /> }
-      ]
-    },
-    {
       service: 'mobile-development',
       data: [
         { icon: <GatheringIcon /> },
@@ -76,6 +66,17 @@ const DataService = {
         { icon: <DeploymentIcon /> }
       ]
     },
+    {
+      service: 'web-development',
+      data: [
+        { icon: <GatheringIcon /> },
+        { icon: <UxUiIcon /> },
+        { icon: <DevelopementIcon /> },
+        { icon: <QualityAssuranceIcon /> },
+        { icon: <DeploymentIcon /> }
+      ]
+    },
+
     {
       service: 'devops',
       data: [

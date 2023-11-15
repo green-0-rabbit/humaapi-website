@@ -142,7 +142,7 @@ const Contact = async (req: NextApiRequest, res: NextApiResponse) => {
       }
     );
     // send to Humaapi
-    transporter.sendMail({
+    await transporter.sendMail({
       from: senderEmail,
       sender: senderEmail,
       to: data.email,
@@ -150,7 +150,7 @@ const Contact = async (req: NextApiRequest, res: NextApiResponse) => {
       html: aknowledgeOutputMJML.html
     });
     // send to Humaapi
-    transporter.sendMail({
+    await transporter.sendMail({
       from: senderEmail,
       sender: data.email,
       to: senderEmail,

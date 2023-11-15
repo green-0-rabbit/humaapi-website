@@ -1,60 +1,37 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable import/prefer-default-export */
-import camelcaseKeys from 'camelcase-keys';
-import { NonUndefined } from 'react-hook-form';
-import { ReturnTypeAsync } from 'src/commons/interface';
-import { hmDirectus } from 'src/utils';
-import { CamelCasedPropertiesDeep } from 'type-fest';
+import apolloClient from 'src/utils/wps/apollo-client';
 
-interface ICookiePolicy {
-  id: number;
+export interface ICookie {
+  id: string;
   title: string;
-  content: string;
-  description_field: string;
+  subTitle: string;
+  description: string;
+  cookiePolicy: string;
 }
-interface ICookieTitle {
-  page_title: string;
-}
-interface ICookie {
-  id: number;
+
+export interface IListCookie {
+  id: string;
   name: string;
-  purpose: string;
-  strorage_period: string;
-  domain: string;
   category: string;
+  domain: string;
+  purpose: string;
+  storage: string;
 }
-export type IDataCookiePolicy = NonUndefined<
-  Required<ReturnTypeAsync<typeof cookieService.get>>
->;
-export type ICookieManagementData = NonUndefined<
-  Required<ReturnTypeAsync<typeof cookieService.getCookies>>
->;
-export type ICookieTitleData = NonUndefined<
-  Required<ReturnTypeAsync<typeof cookieService.getTitle>>
->;
 
 export const cookieService = {
   get: async () => {
     try {
-      const { data } = await hmDirectus.readSingleton<ICookiePolicy>({
-        fields: `#graphql
-              {      
-                title
-                content
-                description_field
-              }
-            `,
-        queryName: 'cookie_policy'
-      });
-
-      if (data) {
-        const res = camelcaseKeys(
-          data as unknown as CamelCasedPropertiesDeep<ICookiePolicy>,
-          {
-            deep: true
-          }
-        );
-        return res;
+      const { acfAcfPage } = await apolloClient.acfCookiePolicy();
+      const res = acfAcfPage?.acfCookieFields;
+      if (acfAcfPage && res) {
+        const data = {
+          id: acfAcfPage.id as string,
+          title: res.title as string,
+          subTitle: res.subTitle as string,
+          description: res.description as string,
+          cookiePolicy: res.cookiePolicy as string
+        };
+        return data as ICookie;
       }
       return undefined;
     } catch (err) {
@@ -62,55 +39,21 @@ export const cookieService = {
       throw new Error(error.message);
     }
   },
-  getTitle: async () => {
+  getList: async () => {
     try {
-      const { data } = await hmDirectus.readSingleton<ICookieTitle>({
-        fields: `#graphql
-              {      
-                page_title
-               
-              }
-            `,
-        queryName: 'cookie'
-      });
+      const { acfListCookies } = await apolloClient.acfListCookiesList();
+      const res = acfListCookies?.nodes;
+      if (acfListCookies && res) {
+        const data = res.map((val) => ({
+          id: val.id,
+          name: val.name,
+          category: val.description,
+          domain: val.acfListCookieFields?.domain,
+          purpose: val.acfListCookieFields?.purpose,
+          storage: val.acfListCookieFields?.storage
+        }));
 
-      if (data) {
-        const res = camelcaseKeys(
-          data as unknown as CamelCasedPropertiesDeep<ICookieTitle>,
-          {
-            deep: true
-          }
-        );
-        return res;
-      }
-      return undefined;
-    } catch (err) {
-      const error = <any>err;
-      throw new Error(error.message);
-    }
-  },
-  getCookies: async () => {
-    try {
-      const { data } = await hmDirectus.readByQuery<ICookie>({
-        fields: `#graphql
-              {      
-                id
-                name
-                purpose
-                strorage_period
-                domain
-                category
-              }
-            `,
-        queryName: 'cookie_management'
-      });
-      if (data) {
-        return camelcaseKeys(
-          data as unknown as CamelCasedPropertiesDeep<ICookie>,
-          {
-            deep: true
-          }
-        );
+        return data as IListCookie[];
       }
       return undefined;
     } catch (err) {

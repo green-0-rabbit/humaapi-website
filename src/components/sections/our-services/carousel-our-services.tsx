@@ -4,16 +4,14 @@ import { FC, ReactNode, useCallback, useEffect, useState } from 'react';
 import { Carousel, Embla } from '@mantine/carousel';
 import { Box, createStyles, Paper, Text } from '@mantine/core';
 import styled from '@emotion/styled';
+import { ProcessType } from 'src/services/our-service-service';
 
 const useStyles = createStyles((theme) => ({
   titleColor: { color: theme.colorScheme === 'dark' ? 'white' : '#2b2b2b' },
   textColor: { color: theme.colorScheme === 'dark' ? '#afaaaa' : '#6B7280' }
 }));
 interface ICarouselOursServices {
-  data: {
-    title: string;
-    content: string;
-  }[];
+  data: { title: string; array: ProcessType };
   icons: { icon: JSX.Element }[];
 }
 const Icon = styled('div')``;
@@ -74,7 +72,7 @@ const CarouselOursServices: FC<ICarouselOursServices> = (props) => {
           transition: 'width 250ms ease'
         }
       }}>
-      {data.map((el, index) => (
+      {data.array.map((el, index) => (
         <Carousel.Slide key={el.title}>
           <Paper
             className="grid place-items-start"
@@ -93,7 +91,7 @@ const CarouselOursServices: FC<ICarouselOursServices> = (props) => {
                 size="xs"
                 className={`mt-1 ${classes.textColor}`}
                 lineClamp={4}>
-                {el.content}
+                {el.description}
               </Text>
             </Box>
           </Paper>

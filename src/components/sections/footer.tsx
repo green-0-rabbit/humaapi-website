@@ -8,10 +8,13 @@ import {
   Box
 } from '@mantine/core';
 import Link from 'next/link';
-import { INavigationFooter } from 'src/commons/interface';
+import { FC } from 'react';
+import ParseFooter from 'src/services/navigation-service/helper-function';
+import { INavigation, INetwork } from 'src/services/navigation-service';
+import Image from 'next/image';
+import { useLocalStorage } from '@mantine/hooks';
+import { IServiceCard } from 'src/services/our-service-service';
 import Copywritting from '../elements/svg/icons/copywritting-icon';
-import LogoHumaapi from '../elements/svg/icons/logo-humaapi';
-import DataService from '../content/content-data';
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -108,45 +111,82 @@ const useStyles = createStyles((theme) => ({
   }
 }));
 
-interface FooterLinksProps {
-  itemFooter: INavigationFooter[];
+export interface IFooterLinksProps {
+  navigationData: INavigation[];
+  serviceData: IServiceCard[];
+  networkData: INetwork[];
 }
-const Footer = ({ itemFooter }: FooterLinksProps) => {
+const Footer: FC<IFooterLinksProps> = ({ ...props }) => {
   const { classes } = useStyles();
-  const descTitle = itemFooter.find((el) => el.title === 'Description');
-  const otherFooter = itemFooter.filter((el) => el.title !== 'Description');
-
-  const groups = otherFooter.map((group) => {
-    const links = (group.contentLinks as Array<any>).map((link, index) => (
-      <Link
-        key={link}
-        className={classes.link}
-        href={`${link.search('https://') !== -1 ? `${link}` : `/${link}`}`}>
-        {group.contentparag[index]}
-      </Link>
-    ));
-
-    return (
-      <div className={classes.wrapper} key={group.title}>
-        <Text className={classes.title}>{group.title}</Text>
-        {links}
-      </div>
-    );
+  const [localValue, setLocalValue] = useLocalStorage({
+    key: 'humaapi-color-scheme'
   });
+  const { navigationData, serviceData, networkData } = props;
+  const itemFooter = ParseFooter(navigationData);
+
+  const [homeValue] = navigationData.filter(
+    (value) => value.navigationLink === 'home'
+  );
+  const newNetworkData = networkData.filter((val) => val.slug !== 'humaapi');
+  const [logoHome] = networkData.filter((val) => val.slug === 'humaapi');
+  const groups = Array.from(itemFooter)
+    .reverse()
+    .map(([value, key]) => {
+      const links = key.map((item) => {
+        if (!item.footerTitle) {
+          return serviceData.map((service) => (
+            <Link
+              key={service.id}
+              className={classes.link}
+              href={`/${item.navigationLink}/${service.link}`}>
+              {service.title}
+            </Link>
+          ));
+        }
+        return (
+          <Link
+            key={item.id}
+            className={classes.link}
+            href={`/${item.navigationLink}`}>
+            {item.navigationTitle}
+          </Link>
+        );
+      });
+      return (
+        <div className={classes.wrapper} key={value}>
+          <Text className={classes.title}>{value}</Text>
+          {links}
+        </div>
+      );
+    });
 
   return (
     <footer className={`${classes.footer} bg-transparent`}>
       <Container className={`${classes.inner}`}>
         <div className={classes.logo}>
           <Link href="/">
-            <LogoHumaapi />
+            <Image
+              src={
+                localValue === 'dark'
+                  ? logoHome.imageLight.icon
+                  : logoHome.imageDark.icon
+              }
+              alt={
+                localValue === 'dark'
+                  ? logoHome.imageLight.icon
+                  : logoHome.imageDark.icon
+              }
+              className=" object-cover object-center"
+              height={38}
+              width={112}
+            />
           </Link>
           <Text
             size="xs"
             color="dimmed"
             className={`${classes.description}`}
             sx={{ fontFamily: 'Ubuntu-Regular' }}>
-            {descTitle?.contentparag}
+            {homeValue.footerTitle}
           </Text>
         </div>
         <Box
@@ -158,10 +198,24 @@ const Footer = ({ itemFooter }: FooterLinksProps) => {
       <Container className={classes.afterFooter}>
         <Copywritting text="2022 humaapi" />
         <Group spacing={4} className={classes.social} position="right" noWrap>
-          {DataService.iconFooter.map((icon) => (
-            <Link href={icon.link} key={icon.title} target="_blank">
-              <ActionIcon size="lg" key={icon.title}>
-                {icon.icon}
+          {newNetworkData.map((icon) => (
+            <Link href={icon.link} key={icon.id} target="_blank">
+              <ActionIcon size="lg" key={icon.id}>
+                <Image
+                  src={
+                    localValue === 'dark'
+                      ? icon.imageLight.icon
+                      : icon.imageDark.icon
+                  }
+                  alt={
+                    localValue === 'dark'
+                      ? icon.imageLight.name
+                      : icon.imageDark.name
+                  }
+                  className="object-cover object-center"
+                  height={25}
+                  width={25}
+                />
               </ActionIcon>
             </Link>
           ))}
