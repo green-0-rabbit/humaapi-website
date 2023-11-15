@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { FC } from 'react';
 import CardService from 'src/components/modules/card-service';
-import { IDataDetailsService } from 'src/services/our-service-service';
+import { IServicesOverview } from 'src/services/our-service-service';
 import Image from 'next/image';
 import { Box } from '@mantine/core';
 import TheRenders from 'src/components/sections/our-services/sub-component/weget';
@@ -10,7 +10,7 @@ import DataService from 'src/components/content/content-data';
 import { useRouter } from 'next/router';
 
 interface IIdContent {
-  serviceData: IDataDetailsService;
+  serviceData: IServicesOverview;
 }
 const ContainService = styled.div``;
 const HeaderBannerContain = styled.div``;

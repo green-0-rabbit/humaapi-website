@@ -3,31 +3,31 @@ import { GetStaticProps } from 'next';
 import { FC } from 'react';
 import CookiePolicyContent from 'src/components/sections/cookie-policy/cookie-content';
 import {
-  IDataCookiePolicy,
-  IDataListCookie,
+  ICookie,
+  IListCookie,
   cookieService
 } from 'src/services/cookie-service';
 
 import {
-  IDataNavigation,
-  IDataNetwork,
+  INavigation,
+  INetwork,
   navigationService
 } from 'src/services/navigation-service';
 import Layout from 'src/layouts/layout';
-import { IDataOurService } from 'src/services/home-service';
+import { IOurService } from 'src/services/home-service';
 import {
-  IDataServiceCard,
+  IServiceCard,
   OurServicesService
 } from 'src/services/our-service-service';
 
 interface ICookiePage {
-  cookiePolicyContent: IDataCookiePolicy;
+  cookiePolicyContent: ICookie;
   pageTitle: string;
-  serviceData: IDataOurService;
-  serviceCardData: IDataServiceCard;
-  navigationData: IDataNavigation;
-  networkData: IDataNetwork;
-  listCookie: IDataListCookie;
+  serviceData: IOurService;
+  serviceCardData: IServiceCard[];
+  navigationData: INavigation[];
+  networkData: INetwork[];
+  listCookie: IListCookie;
 }
 
 const Cookie: FC<ICookiePage> = ({ ...props }) => {

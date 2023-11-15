@@ -2,15 +2,15 @@ import styled from '@emotion/styled';
 import { Box, Text } from '@mantine/core';
 import { FC } from 'react';
 import DataService from 'src/components/content/content-data';
-import { IDataOurService } from 'src/services/home-service';
-import { IDataServiceCard } from 'src/services/our-service-service';
+import { IOurService } from 'src/services/home-service';
+import { IServiceCard } from 'src/services/our-service-service';
 import Description from '../../modules/description';
 import CarouselHome from './carousel-home';
 import OurServiceCard from './sub-component/our-service-card';
 
 interface IOurServices {
-  serviceData: IDataOurService;
-  serviceCardData: IDataServiceCard;
+  serviceData: IOurService;
+  serviceCardData: IServiceCard[];
   parentUrl: string;
 }
 const ContainDescription = styled.div``;

@@ -3,19 +3,19 @@ import { FC } from 'react';
 import ContactForm from 'src/components/sections/contact-us/contact-form';
 import Layout from 'src/layouts/layout';
 import {
-  IDataNavigation,
-  IDataNetwork,
+  INavigation,
+  INetwork,
   navigationService
 } from 'src/services/navigation-service';
 import {
-  IDataServiceCard,
+  IServiceCard,
   OurServicesService
 } from 'src/services/our-service-service';
 
 interface IContactUs {
-  serviceCardData: IDataServiceCard;
-  navigationData: IDataNavigation;
-  networkData: IDataNetwork;
+  serviceCardData: IServiceCard[];
+  navigationData: INavigation[];
+  networkData: INetwork[];
 }
 
 const ContactUs: FC<IContactUs> = (props) => {

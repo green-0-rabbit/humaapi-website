@@ -4,24 +4,24 @@ import { FC } from 'react';
 import CardServices from 'src/components/sections/our-services/card-services';
 import HeadOurServices from 'src/components/sections/our-services/header-our-services';
 import {
-  IDataServiceCard,
+  IServiceCard,
   IServiceData,
   OurServicesService
 } from 'src/services/our-service-service';
 import {
-  IDataNavigation,
-  IDataNetwork,
+  INavigation,
+  INetwork,
   navigationService
 } from 'src/services/navigation-service';
 import Layout from 'src/layouts/layout';
 import path from 'path';
 
 interface IOurServices {
-  serviceCardData: IDataServiceCard;
+  serviceCardData: IServiceCard[];
   pageData: IServiceData;
-  navigationData: IDataNavigation;
+  navigationData: INavigation[];
   parentUrl: string;
-  networkData: IDataNetwork;
+  networkData: INetwork[];
 }
 const OurServices: FC<IOurServices> = ({ ...props }) => {
   const { serviceCardData, pageData, navigationData, networkData } = props;

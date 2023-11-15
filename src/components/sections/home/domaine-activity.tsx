@@ -3,15 +3,12 @@ import { Box, Paper, Text, createStyles } from '@mantine/core';
 import { FC } from 'react';
 import Image from 'next/image';
 import DataService from 'src/components/content/content-data';
-import {
-  IDataDomainNodeService,
-  IDataDomaineActivity
-} from 'src/services/home-service';
+import { IDomaineNodeType, IDomaineActivity } from 'src/services/home-service';
 import Description from '../../modules/description';
 
-interface IDomaineActivity {
-  domaineData: IDataDomaineActivity;
-  domaineNodeData: IDataDomainNodeService;
+interface IDtaDomaineActivity {
+  domaineData: IDomaineActivity;
+  domaineNodeData: IDomaineNodeType[];
 }
 const useStyles = createStyles((theme) => ({
   textColor: { color: theme.colorScheme === 'dark' ? 'white' : '' }
@@ -20,7 +17,7 @@ const ContainDomainsActivity = styled.div``;
 const ContainCards = styled.div``;
 const Container = styled.div``;
 const Icon = styled.div``;
-const DomaineActivity: FC<IDomaineActivity> = (props) => {
+const DomaineActivity: FC<IDtaDomaineActivity> = (props) => {
   const { classes } = useStyles();
   const { domaineData, domaineNodeData } = props;
 

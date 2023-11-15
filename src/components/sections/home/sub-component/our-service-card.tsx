@@ -3,12 +3,12 @@ import Link from 'next/link';
 import { FC } from 'react';
 import { Paper, Text } from '@mantine/core';
 import Image from 'next/image';
-import { IDataServiceCard } from 'src/services/our-service-service';
+import { IServiceCard } from 'src/services/our-service-service';
 import DataService from 'src/components/content/content-data';
 import { useLocalStorage } from '@mantine/hooks';
 
 interface IOurServiceCard {
-  serviceCardData: IDataServiceCard;
+  serviceCardData: IServiceCard[];
   parentUrl: string;
 }
 const DispalyIcons = styled.div``;

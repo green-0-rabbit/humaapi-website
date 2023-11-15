@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable import/prefer-default-export */
-import { NonUndefined } from 'react-hook-form';
-import { ReturnTypeAsync } from 'src/commons/interface';
 import apolloClient from 'src/utils/wps/apollo-client';
 
 interface IService {
@@ -13,28 +11,23 @@ interface IService {
   imageName: string;
 }
 
-interface IServiceCard extends IService {
+export interface IServiceCard extends IService {
   iconLight: { icon: string; name: string };
   iconDark: { icon: string; name: string };
 }
 
+export interface IServiceData {
+  title: string;
+  subTitle: string;
+  description: string;
+}
+
 export type OffersType = Array<Omit<IService, 'image' | 'imageName' | 'link'>>;
 export type ProcessType = Array<Omit<IService, 'link'>>;
-interface IServicesOverview extends IService {
+export interface IServicesOverview extends IService {
   process: { title: string; array: ProcessType };
   offers: { title: string; array: OffersType };
 }
-
-export type IDataDetailsService = NonUndefined<
-  Required<ReturnTypeAsync<typeof OurServicesService.getByLink>>
->;
-export type IDataServiceCard = NonUndefined<
-  Required<ReturnTypeAsync<typeof OurServicesService.getServiceCard>>
->;
-
-export type IServiceData = NonUndefined<
-  Required<ReturnTypeAsync<typeof OurServicesService.getServiceData>>
->;
 
 export const OurServicesService = {
   getByLink: async (serviceLink: string) => {
@@ -145,7 +138,7 @@ export const OurServicesService = {
           subTitle: res.subTitle as string,
           description: res.description as string
         };
-        return data;
+        return data as IServiceData;
       }
       throw new Error(
         `page ${id} was not found, please check the backend request`

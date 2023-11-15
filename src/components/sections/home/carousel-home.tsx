@@ -3,10 +3,10 @@ import { FC, ReactNode, useCallback, useEffect, useState } from 'react';
 import { Carousel, Embla } from '@mantine/carousel';
 import Link from 'next/link';
 import { Paper, Text } from '@mantine/core';
-import { IDataServiceCard } from 'src/services/our-service-service';
+import { IServiceCard } from 'src/services/our-service-service';
 
 interface ICarouselHome {
-  data: IDataServiceCard;
+  data: IServiceCard[];
   icons: { icon: JSX.Element }[];
 }
 const CarouselHome: FC<ICarouselHome> = (props) => {

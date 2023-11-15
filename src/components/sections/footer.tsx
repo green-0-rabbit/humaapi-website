@@ -9,14 +9,12 @@ import {
 } from '@mantine/core';
 import Link from 'next/link';
 import { FC } from 'react';
-import { IDataServiceCard } from 'src/services/our-service-service';
 import ParseFooter from 'src/services/navigation-service/helper-function';
-import { IDataNavigation, IDataNetwork } from 'src/services/navigation-service';
+import { INavigation, INetwork } from 'src/services/navigation-service';
 import Image from 'next/image';
 import { useLocalStorage } from '@mantine/hooks';
+import { IServiceCard } from 'src/services/our-service-service';
 import Copywritting from '../elements/svg/icons/copywritting-icon';
-import LogoHumaapi from '../elements/svg/icons/logo-humaapi';
-import DataService from '../content/content-data';
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -114,9 +112,9 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export interface IFooterLinksProps {
-  navigationData: IDataNavigation;
-  serviceData: IDataServiceCard;
-  networkData: IDataNetwork;
+  navigationData: INavigation[];
+  serviceData: IServiceCard[];
+  networkData: INetwork[];
 }
 const Footer: FC<IFooterLinksProps> = ({ ...props }) => {
   const { classes } = useStyles();
@@ -182,7 +180,6 @@ const Footer: FC<IFooterLinksProps> = ({ ...props }) => {
               height={38}
               width={112}
             />
-            {/* <LogoHumaapi /> */}
           </Link>
           <Text
             size="xs"

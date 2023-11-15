@@ -1,42 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable import/prefer-default-export */
-import { NonUndefined } from 'react-hook-form';
-import { ReturnTypeAsync } from 'src/commons/interface';
 import apolloClient from 'src/utils/wps/apollo-client';
 
-interface IDomaineActivity {
+export interface IDomaineActivity {
   id: string;
   title: string;
   subTitle: string;
   description: string;
 }
-interface ILandingPage {
+export interface ILandingPage {
   id: string;
   title: string;
   description: string;
   image: string;
   imageName: string;
 }
-interface IOurService {
+export interface IOurService {
   id: string;
   title: string;
   subTitle: string;
   description: string;
 }
-type DomaineNodeType = Omit<ILandingPage, 'description'>;
-export type IDataDomaineActivity = NonUndefined<
-  Required<ReturnTypeAsync<typeof HomeService.getDomaine>>
->;
-export type IDataLandingPage = NonUndefined<
-  Required<ReturnTypeAsync<typeof HomeService.getLanding>>
->;
-export type IDataOurService = NonUndefined<
-  Required<ReturnTypeAsync<typeof HomeService.getService>>
->;
-
-export type IDataDomainNodeService = NonUndefined<
-  Required<ReturnTypeAsync<typeof HomeService.getDomaineNode>>
->;
+export type IDomaineNodeType = Omit<ILandingPage, 'description'>;
 
 export const HomeService = {
   getLanding: async () => {
@@ -121,7 +105,7 @@ export const HomeService = {
           image: val.acfDomaineField?.image?.mediaItemUrl as string,
           imageName: val.acfDomaineField?.image?.altText
         }));
-        return data as DomaineNodeType[];
+        return data as IDomaineNodeType[];
       }
       return undefined;
     } catch (err) {

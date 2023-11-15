@@ -1,10 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable import/prefer-default-export */
-import { NonUndefined } from 'react-hook-form';
-import { ReturnTypeAsync } from 'src/commons/interface';
 import apolloClient from 'src/utils/wps/apollo-client';
 
-interface ICookie {
+export interface ICookie {
   id: string;
   title: string;
   subTitle: string;
@@ -12,7 +9,7 @@ interface ICookie {
   cookiePolicy: string;
 }
 
-interface IListCookie {
+export interface IListCookie {
   id: string;
   name: string;
   category: string;
@@ -20,12 +17,6 @@ interface IListCookie {
   purpose: string;
   storage: string;
 }
-export type IDataCookiePolicy = NonUndefined<
-  Required<ReturnTypeAsync<typeof cookieService.get>>
->;
-export type IDataListCookie = NonUndefined<
-  Required<ReturnTypeAsync<typeof cookieService.getList>>
->;
 
 export const cookieService = {
   get: async () => {

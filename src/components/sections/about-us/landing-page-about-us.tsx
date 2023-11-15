@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Description from 'src/components/modules/description';
 import Image from 'next/image';
 import { Box, createStyles, Skeleton } from '@mantine/core';
-import { ILandingAboutUsData } from 'src/services/about-us-service';
+import { ILandingAboutUs } from 'src/services/about-us-service';
 import { FC, useState } from 'react';
 
 const useStyles = createStyles((theme) => ({
@@ -15,15 +15,15 @@ const useStyles = createStyles((theme) => ({
   }
 }));
 
-interface ILandingAboutUs {
-  landingData: ILandingAboutUsData;
+interface IDataLandingAboutUs {
+  landingData: ILandingAboutUs;
 }
 const Contain = styled.div``;
 const Section = styled.section``;
 const ImageContain = styled.div``;
 const HeaderBannerContain = styled.div``;
 
-const LandingAboutUs: FC<ILandingAboutUs> = (props) => {
+const LandingAboutUs: FC<IDataLandingAboutUs> = (props) => {
   const [imgsLoaded, setImgsLoaded] = useState(false);
   const { landingData } = props;
   const { classes } = useStyles();

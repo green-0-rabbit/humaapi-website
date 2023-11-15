@@ -7,7 +7,6 @@ import {
 } from '@mantine/core';
 import type { AppProps } from 'next/app';
 import appTheme from 'src/commons/app.theming';
-import { useState } from 'react';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { css, Global } from '@emotion/react';
 import { NotificationsProvider } from '@mantine/notifications';

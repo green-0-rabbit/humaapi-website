@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 import { Table } from '@mantine/core';
 import { FC } from 'react';
-import { IDataListCookie } from 'src/services/cookie-service';
+import { IListCookie } from 'src/services/cookie-service';
 
 interface ITableDescription {
-  cookieList: IDataListCookie;
+  cookieList: IListCookie;
 }
 const SectionTable = styled.section``;
 

@@ -1,16 +1,14 @@
 /* eslint-disable @typescript-eslint/no-shadow */
-/* eslint-disable consistent-return */
-import { NonUndefined } from 'react-hook-form';
-import { ReturnTypeAsync } from 'src/commons/interface';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import apolloClient from 'src/utils/wps/apollo-client';
 
-interface INavigation {
+export interface INavigation {
   id: string;
   navigationTitle: string;
   navigationLink: string;
   footerTitle: string | null;
 }
-interface INetwork {
+export interface INetwork {
   id: string;
   title: string;
   link: string;
@@ -18,12 +16,6 @@ interface INetwork {
   imageLight: { icon: string; name: string };
   imageDark: { icon: string; name: string };
 }
-export type IDataNavigation = NonUndefined<
-  Required<ReturnTypeAsync<typeof navigationService.getAll>>
->;
-export type IDataNetwork = NonUndefined<
-  Required<ReturnTypeAsync<typeof navigationService.getNetwork>>
->;
 
 export const navigationService = {
   getAll: async () => {

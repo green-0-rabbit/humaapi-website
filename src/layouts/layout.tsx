@@ -4,9 +4,9 @@ import styled from '@emotion/styled';
 import { createStyles } from '@mantine/core';
 import Navbar from 'src/components/sections/navbar';
 import Footer from 'src/components/sections/footer';
-import { IDataNavigation, IDataNetwork } from 'src/services/navigation-service';
+import { INavigation, INetwork } from 'src/services/navigation-service';
 import Head from 'next/head';
-import { IDataServiceCard } from 'src/services/our-service-service';
+import { IServiceCard } from 'src/services/our-service-service';
 import bgImage from '../../public/assets/img/gradientcircleglassmorphism.png';
 import ScrollTop from '../components/modules/scroll-to-up';
 
@@ -18,10 +18,10 @@ const useStyles = createStyles((theme) => ({
 
 interface ILayout {
   children: ReactNode;
-  navigationData: IDataNavigation;
-  serviceData: IDataServiceCard;
+  navigationData: INavigation[];
+  serviceData: IServiceCard[];
   pageTitle: string;
-  networkData: IDataNetwork;
+  networkData: INetwork[];
 }
 const Container = styled.div``;
 

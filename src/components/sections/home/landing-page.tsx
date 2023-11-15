@@ -2,21 +2,19 @@ import styled from '@emotion/styled';
 import { Box } from '@mantine/core';
 import { FC } from 'react';
 import Image from 'next/image';
-import DataService from 'src/components/content/content-data';
-import { IDataLandingPage } from 'src/services/home-service';
+import { ILandingPage } from 'src/services/home-service';
 import Description from '../../modules/description';
 import SearchBar from '../../modules/search-bar';
 
-interface ILandingPage {
-  landingData: IDataLandingPage;
+interface IDataLandingPage {
+  landingData: ILandingPage;
 }
 const ContentImage = styled.div``;
 const HeaderBannerContain = styled.div``;
 const Contain = styled.div``;
 
-const LandingPage: FC<ILandingPage> = (props) => {
+const LandingPage: FC<IDataLandingPage> = (props) => {
   const { landingData } = props;
-  const landingIllustration = DataService.serviceSvgIllustration[4].img;
   return (
     <Box>
       <HeaderBannerContain className="flex h-screen justify-center p-5">
@@ -38,7 +36,6 @@ const LandingPage: FC<ILandingPage> = (props) => {
             </Box>
           </Box>
           <ContentImage className="hidden md:block">
-            {/* {landingIllustration} */}
             <Image
               src={landingData.image}
               alt={landingData.imageName}

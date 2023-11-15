@@ -1,29 +1,26 @@
 import styled from '@emotion/styled';
 import LandingAboutUs from 'src/components/sections/about-us/landing-page-about-us';
 import { GetStaticProps } from 'next';
-import {
-  aboutUsService,
-  ILandingAboutUsData
-} from 'src/services/about-us-service';
+import { aboutUsService, IAboutUS } from 'src/services/about-us-service';
 import { FC } from 'react';
 import {
-  IDataNavigation,
-  IDataNetwork,
+  INavigation,
+  INetwork,
   navigationService
 } from 'src/services/navigation-service';
 import Layout from 'src/layouts/layout';
 import OurTeam from 'src/components/sections/about-us/our-team';
 import {
-  IDataServiceCard,
+  IServiceCard,
   OurServicesService
 } from 'src/services/our-service-service';
 
 interface IAboutUs {
-  landingData: ILandingAboutUsData;
-  serviceCardData: IDataServiceCard;
-  navigationData: IDataNavigation;
+  landingData: IAboutUS;
+  serviceCardData: IServiceCard[];
+  navigationData: INavigation[];
   pageTitle: string;
-  networkData: IDataNetwork;
+  networkData: INetwork[];
 }
 
 const ContainService = styled.div``;

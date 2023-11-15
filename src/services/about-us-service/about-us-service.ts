@@ -1,10 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable import/prefer-default-export */
-import { NonUndefined } from 'react-hook-form';
-import { ReturnTypeAsync } from 'src/commons/interface';
 import apolloClient from 'src/utils/wps/apollo-client';
 
-interface ILandingAboutUs {
+export interface ILandingAboutUs {
   id: string;
   title: string;
   teamTitle: string;
@@ -13,12 +11,9 @@ interface ILandingAboutUs {
   imageName: string;
 }
 export type ArrayTeam = Array<Omit<ILandingAboutUs, 'teamTitle'>>;
-interface IAboutUS extends ILandingAboutUs {
+export interface IAboutUS extends ILandingAboutUs {
   team: ArrayTeam;
 }
-export type ILandingAboutUsData = NonUndefined<
-  Required<ReturnTypeAsync<typeof aboutUsService.getAll>>
->;
 
 export const aboutUsService = {
   getTeam: async () => {

@@ -1,17 +1,14 @@
 import { Box } from '@mantine/core';
 import styled from '@emotion/styled';
-import {
-  IDataCookiePolicy,
-  IDataListCookie
-} from 'src/services/cookie-service';
+import { ICookie, IListCookie } from 'src/services/cookie-service';
 import { FC } from 'react';
 import HeadCookie from './header-cookies';
 import TableDescription from './table-description';
 import DescriptionField from './description-field';
 
 interface ICookiePolicyContent {
-  cookiePolicyContent: IDataCookiePolicy;
-  cookieList: IDataListCookie;
+  cookiePolicyContent: ICookie;
+  cookieList: IListCookie;
 }
 const Container = styled.div``;
 

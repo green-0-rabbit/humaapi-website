@@ -1,25 +1,24 @@
 import { FC } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import {
-  IDataDetailsService,
-  IDataServiceCard,
-  IServiceData,
+  IServicesOverview,
+  IServiceCard,
   OurServicesService
 } from 'src/services/our-service-service';
 
 import {
-  IDataNavigation,
-  IDataNetwork,
+  INavigation,
+  INetwork,
   navigationService
 } from 'src/services/navigation-service';
 import Layout from 'src/layouts/layout';
 import IdContent from 'src/components/sections/our-services/sub-component/id-content';
 
 interface IIdOutService {
-  navigationData: IDataNavigation;
-  serviceCardData: IDataServiceCard;
-  serviceData: IDataDetailsService;
-  networkData: IDataNetwork;
+  navigationData: INavigation[];
+  serviceCardData: IServiceCard[];
+  serviceData: IServicesOverview;
+  networkData: INetwork[];
 }
 
 const IdOutService: FC<IIdOutService> = (props) => {

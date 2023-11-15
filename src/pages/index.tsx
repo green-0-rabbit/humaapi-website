@@ -2,20 +2,20 @@ import { Box } from '@mantine/core';
 import LandingPage from 'src/components/sections/home/landing-page';
 import { GetStaticProps } from 'next';
 import {
+  IDomaineNodeType,
   HomeService,
-  IDataDomainNodeService,
-  IDataDomaineActivity,
-  IDataLandingPage,
-  IDataOurService
+  IDomaineActivity,
+  ILandingPage,
+  IOurService
 } from 'src/services/home-service';
 import { FC } from 'react';
 import {
-  IDataServiceCard,
+  IServiceCard,
   OurServicesService
 } from 'src/services/our-service-service';
 import {
-  IDataNavigation,
-  IDataNetwork,
+  INavigation,
+  INetwork,
   navigationService
 } from 'src/services/navigation-service/navigation-service';
 import Layout from 'src/layouts/layout';
@@ -23,14 +23,14 @@ import OursService from '../components/sections/home/our-services';
 import DomaineActivity from '../components/sections/home/domaine-activity';
 
 interface Ihome {
-  domaineData: IDataDomaineActivity;
-  landingData: IDataLandingPage;
-  serviceData: IDataOurService;
-  serviceCardData: IDataServiceCard;
-  navigationData: IDataNavigation;
+  domaineData: IDomaineActivity;
+  landingData: ILandingPage;
+  serviceData: IOurService;
+  serviceCardData: IServiceCard[];
+  navigationData: INavigation[];
   pageTitle: string;
-  networkData: IDataNetwork;
-  domaineNodeData: IDataDomainNodeService;
+  networkData: INetwork[];
+  domaineNodeData: IDomaineNodeType[];
 }
 const Home: FC<Ihome> = ({ ...props }) => {
   const {
@@ -46,7 +46,6 @@ const Home: FC<Ihome> = ({ ...props }) => {
   const [ourServiceNavigation] = navigationData.filter(
     (val) => val.footerTitle === null
   );
-  console.log({ navigationData });
 
   return (
     <Layout
@@ -80,7 +79,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const navigationData = await navigationService.getAll();
   const networkData = await navigationService.getNetwork();
   const domaineNodeData = await HomeService.getDomaineNode();
-  console.log(navigationData);
 
   return {
     props: {

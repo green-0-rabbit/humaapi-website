@@ -17,8 +17,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import ActionButton from 'src/components/modules/action-button';
-import { IDataNavigation, IDataNetwork } from 'src/services/navigation-service';
-import LogoHumaapi from '../elements/svg/icons/logo-humaapi';
+import { INavigation, INetwork } from 'src/services/navigation-service';
 
 const HEADER_HEIGHT = 60;
 
@@ -111,8 +110,8 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface IHeaderResponsiveProps {
-  itemNavLink: IDataNavigation;
-  networkData: IDataNetwork;
+  itemNavLink: INavigation[];
+  networkData: INetwork[];
 }
 
 const Navbar: FC<IHeaderResponsiveProps> = ({ ...props }) => {
@@ -169,7 +168,6 @@ const Navbar: FC<IHeaderResponsiveProps> = ({ ...props }) => {
             height={38}
             width={112}
           />
-          {/* <LogoHumaapi /> */}
         </Link>
         <Group
           spacing={4}
