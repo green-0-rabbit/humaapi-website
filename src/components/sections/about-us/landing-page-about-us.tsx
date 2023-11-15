@@ -2,7 +2,7 @@
 import styled from '@emotion/styled';
 import Description from 'src/components/modules/description';
 import Image from 'next/image';
-import { Box, createStyles, Skeleton } from '@mantine/core';
+import { Box, createStyles } from '@mantine/core';
 import { ILandingAboutUs } from 'src/services/about-us-service';
 import { FC, useState } from 'react';
 
@@ -24,7 +24,6 @@ const ImageContain = styled.div``;
 const HeaderBannerContain = styled.div``;
 
 const LandingAboutUs: FC<IDataLandingAboutUs> = (props) => {
-  const [imgsLoaded, setImgsLoaded] = useState(false);
   const { landingData } = props;
   const { classes } = useStyles();
 

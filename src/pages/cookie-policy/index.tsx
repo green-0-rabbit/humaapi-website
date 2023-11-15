@@ -27,7 +27,7 @@ interface ICookiePage {
   serviceCardData: IServiceCard[];
   navigationData: INavigation[];
   networkData: INetwork[];
-  listCookie: IListCookie;
+  listCookie: IListCookie[];
 }
 
 const Cookie: FC<ICookiePage> = ({ ...props }) => {

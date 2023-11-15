@@ -14,7 +14,6 @@ const useStyles = createStyles((theme) => ({
   roleColor: { color: theme.colorScheme === 'dark' ? '#afaaaa' : '#6B7280' }
 }));
 const Title = styled.div``;
-const Icon = styled.div``;
 const ContainDescription = styled.div``;
 const ContainCards = styled.div``;
 const Container = styled.div``;
@@ -47,7 +46,6 @@ const OurTeam: FC<IOurTeam> = (props) => {
             <Container
               key={el.id}
               className="grid  grid-cols-1 place-items-center">
-              {/* <Icon className="h-36">{el.icon}</Icon> */}
               <Image
                 src={el.image}
                 alt={el.imageName}

@@ -8,7 +8,7 @@ import DescriptionField from './description-field';
 
 interface ICookiePolicyContent {
   cookiePolicyContent: ICookie;
-  cookieList: IListCookie;
+  cookieList: IListCookie[];
 }
 const Container = styled.div``;
 

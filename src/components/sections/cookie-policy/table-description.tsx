@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { IListCookie } from 'src/services/cookie-service';
 
 interface ITableDescription {
-  cookieList: IListCookie;
+  cookieList: IListCookie[];
 }
 const SectionTable = styled.section``;
 
