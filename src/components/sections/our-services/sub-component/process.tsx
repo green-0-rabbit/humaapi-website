@@ -20,7 +20,6 @@ const Section = styled('div')``;
 const HeadSection = styled('div')``;
 const ContainDescription = styled('div')``;
 const ContainCards = styled('div')``;
-const Icon = styled('div')``;
 const TitleCard = styled('div')``;
 
 const Process: FC<IProcess> = ({ ...props }) => {

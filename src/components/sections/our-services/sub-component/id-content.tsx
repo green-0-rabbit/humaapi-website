@@ -20,9 +20,6 @@ const IdContent: FC<IIdContent> = (props) => {
   const getPath = useRouter();
   const { id } = getPath.query;
 
-  const [getImage] = DataService.serviceSvgIllustration.filter(
-    (el) => el.title === id
-  );
   const [icons] = DataService.processData.filter((el) => el.service === id);
   const index = DataService.processData.findIndex((el) => el.service === id);
 
