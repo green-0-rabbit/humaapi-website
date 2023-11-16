@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { Box, Paper, Text, createStyles } from '@mantine/core';
 import { FC } from 'react';
 import Image from 'next/image';
-import DataService from 'src/components/content/content-data';
 import { IDomaineNodeType, IDomaineActivity } from 'src/services/home-service';
 import Description from '../../modules/description';
 
@@ -16,7 +15,6 @@ const useStyles = createStyles((theme) => ({
 const ContainDomainsActivity = styled.div``;
 const ContainCards = styled.div``;
 const Container = styled.div``;
-const Icon = styled.div``;
 const DomaineActivity: FC<IDtaDomaineActivity> = (props) => {
   const { classes } = useStyles();
   const { domaineData, domaineNodeData } = props;
@@ -56,7 +54,6 @@ const DomaineActivity: FC<IDtaDomaineActivity> = (props) => {
               radius={18}
               style={{ width: 262, height: 51 }}
               className="flex place-items-center space-x-3">
-              {/* <Icon>{el.icon}</Icon> */}
               <Image
                 src={el.image}
                 alt={el.imageName}

@@ -1,6 +1,6 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { FC, ReactNode, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { Carousel, Embla } from '@mantine/carousel';
 import { Box, createStyles, Paper, Text } from '@mantine/core';
 import styled from '@emotion/styled';

@@ -48,17 +48,17 @@ export const HomeService = {
   },
   getDomaine: async () => {
     try {
-      const { acfAcfPage } = await apolloClient.acfLanding();
+      const { acfAcfPage } = await apolloClient.acfDomain();
+
       const res = acfAcfPage?.acfHomePageFields;
       if (acfAcfPage && res) {
         const data = {
           id: acfAcfPage.id as string,
-          title: res.title as string,
-          description: res.description as string,
-          image: res.image?.mediaItemUrl as string,
-          imageName: res.image?.altText as string
+          title: res.domainContent?.title as string,
+          subTitle: res.domainContent?.subTitle as string,
+          description: res.domainContent?.description as string
         };
-        return data as ILandingPage;
+        return data as IDomaineActivity;
       }
       return undefined;
     } catch (err) {

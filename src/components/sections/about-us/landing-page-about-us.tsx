@@ -4,7 +4,7 @@ import Description from 'src/components/modules/description';
 import Image from 'next/image';
 import { Box, createStyles } from '@mantine/core';
 import { ILandingAboutUs } from 'src/services/about-us-service';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
 const useStyles = createStyles((theme) => ({
   root: {
