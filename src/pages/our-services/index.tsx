@@ -20,7 +20,6 @@ interface IOurServices {
   serviceCardData: IServiceCard[];
   pageData: IServiceData;
   navigationData: INavigation[];
-  parentUrl: string;
   networkData: INetwork[];
 }
 const OurServices: FC<IOurServices> = ({ ...props }) => {
@@ -28,9 +27,12 @@ const OurServices: FC<IOurServices> = ({ ...props }) => {
   const [ourServiceNavigation] = navigationData.filter(
     (val) => val.footerTitle === null
   );
+  const pageSlug = ourServiceNavigation.navigationLink;
+
   return (
     <Layout
       pageTitle={pageData.title}
+      pageSlug={pageSlug}
       navigationData={navigationData}
       serviceData={serviceCardData}
       networkData={networkData}>
@@ -50,7 +52,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const navigationData = await navigationService.getAll();
   const pageData = await OurServicesService.getServiceData(fileName);
   const networkData = await navigationService.getNetwork();
-
   return {
     props: {
       serviceCardData,

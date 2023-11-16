@@ -7,6 +7,7 @@ export interface ICookie {
   subTitle: string;
   description: string;
   cookiePolicy: string;
+  slug: string;
 }
 
 export interface IListCookie {
@@ -29,7 +30,8 @@ export const cookieService = {
           title: res.title as string,
           subTitle: res.subTitle as string,
           description: res.description as string,
-          cookiePolicy: res.cookiePolicy as string
+          cookiePolicy: res.cookiePolicy as string,
+          slug: acfAcfPage.slug as string
         };
         return data as ICookie;
       }

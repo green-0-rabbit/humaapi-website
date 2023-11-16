@@ -36,6 +36,7 @@ query acfService {
     }
     id
     title
+    slug
   }
 }
 

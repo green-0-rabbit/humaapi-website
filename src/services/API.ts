@@ -1959,10 +1959,36 @@ export type AcfNavigation_Acfnavigationsfields = AcfFieldGroup & {
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']['output']>;
   footerTitle?: Maybe<Scalars['String']['output']>;
-  imageDark?: Maybe<MediaItem>;
-  imageLight?: Maybe<MediaItem>;
+  metaField?: Maybe<AcfNavigation_Acfnavigationsfields_MetaField>;
   navigationTitle?: Maybe<Scalars['String']['output']>;
 };
+
+/** Field Group */
+export type AcfNavigation_Acfnavigationsfields_MetaField = AcfFieldGroup & {
+  __typename?: 'AcfNavigation_Acfnavigationsfields_MetaField';
+  description?: Maybe<AcfNavigation_Acfnavigationsfields_MetaField_Description>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']['output']>;
+  imageUrl?: Maybe<AcfNavigation_Acfnavigationsfields_MetaField_ImageUrl>;
+};
+
+/** Field Group */
+export type AcfNavigation_Acfnavigationsfields_MetaField_Description =
+  AcfFieldGroup & {
+    __typename?: 'AcfNavigation_Acfnavigationsfields_MetaField_Description';
+    content?: Maybe<Scalars['String']['output']>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars['String']['output']>;
+  };
+
+/** Field Group */
+export type AcfNavigation_Acfnavigationsfields_MetaField_ImageUrl =
+  AcfFieldGroup & {
+    __typename?: 'AcfNavigation_Acfnavigationsfields_MetaField_ImageUrl';
+    content?: Maybe<Scalars['String']['output']>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars['String']['output']>;
+  };
 
 /** The acfOffer type */
 export type AcfOffer = DatabaseIdentifier &
@@ -15676,6 +15702,7 @@ export type AcfCookiePolicyQuery = {
   acfAcfPage?: {
     __typename?: 'AcfAcfPage';
     id: string;
+    slug?: string | null;
     acfCookieFields?: {
       __typename?: 'AcfAcfPage_Acfcookiefields';
       title?: string | null;
@@ -15716,6 +15743,7 @@ export type AcfLandingQuery = {
     __typename?: 'AcfAcfPage';
     id: string;
     title?: string | null;
+    slug?: string | null;
     acfHomePageFields?: {
       __typename?: 'AcfAcfPage_Acfhomepagefields';
       description?: string | null;
@@ -15737,6 +15765,7 @@ export type AcfDomainQuery = {
     __typename?: 'AcfAcfPage';
     id: string;
     title?: string | null;
+    slug?: string | null;
     acfHomePageFields?: {
       __typename?: 'AcfAcfPage_Acfhomepagefields';
       domainContent?: {
@@ -15759,6 +15788,7 @@ export type AcfDomainNodesQuery = {
       __typename?: 'AcfDomaine';
       name?: string | null;
       id: string;
+      slug?: string | null;
       acfDomaineField?: {
         __typename?: 'AcfDomaine_Acfdomainefield';
         image?: {
@@ -15785,6 +15815,17 @@ export type AcfNavigationsQuery = {
         __typename?: 'AcfNavigation_Acfnavigationsfields';
         navigationTitle?: string | null;
         footerTitle?: string | null;
+        metaField?: {
+          __typename?: 'AcfNavigation_Acfnavigationsfields_MetaField';
+          description?: {
+            __typename?: 'AcfNavigation_Acfnavigationsfields_MetaField_Description';
+            content?: string | null;
+          } | null;
+          imageUrl?: {
+            __typename?: 'AcfNavigation_Acfnavigationsfields_MetaField_ImageUrl';
+            content?: string | null;
+          } | null;
+        } | null;
       } | null;
     }>;
   } | null;
@@ -15863,6 +15904,7 @@ export type AcfServiceQuery = {
     __typename?: 'AcfAcfPage';
     id: string;
     title?: string | null;
+    slug?: string | null;
     acfHomePageFields?: {
       __typename?: 'AcfAcfPage_Acfhomepagefields';
       serviceContent?: {
@@ -15972,6 +16014,7 @@ export const AcfCookiePolicyDocument = gql`
         listCookies
       }
       id
+      slug
     }
   }
 `;
@@ -16004,6 +16047,7 @@ export const AcfLandingDocument = gql`
       }
       id
       title
+      slug
     }
   }
 `;
@@ -16019,6 +16063,7 @@ export const AcfDomainDocument = gql`
       }
       id
       title
+      slug
     }
   }
 `;
@@ -16028,6 +16073,7 @@ export const AcfDomainNodesDocument = gql`
       nodes {
         name
         id
+        slug
         acfDomaineField {
           image {
             altText
@@ -16045,6 +16091,14 @@ export const AcfNavigationsDocument = gql`
         acfNavigationsFields {
           navigationTitle
           footerTitle
+          metaField {
+            description {
+              content
+            }
+            imageUrl {
+              content
+            }
+          }
         }
         id
         slug
@@ -16117,6 +16171,7 @@ export const AcfServiceDocument = gql`
       }
       id
       title
+      slug
     }
   }
 `;

@@ -1,9 +1,17 @@
 query acfNavigations {
-   acfNavigations {
+  acfNavigations {
     nodes {
       acfNavigationsFields {
         navigationTitle
         footerTitle
+        metaField {
+          description {
+            content
+          }
+          imageUrl {
+            content
+          }
+        }
       }
       id
       slug

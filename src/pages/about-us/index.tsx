@@ -14,12 +14,13 @@ import {
   IServiceCard,
   OurServicesService
 } from 'src/services/our-service-service';
+import { IPageData } from 'src/services/home-service';
 
 interface IAboutUs {
   landingData: IAboutUS;
   serviceCardData: IServiceCard[];
   navigationData: INavigation[];
-  pageTitle: string;
+  pageData: IPageData;
   networkData: INetwork[];
 }
 
@@ -27,7 +28,7 @@ const ContainService = styled.div``;
 const AboutUs: FC<IAboutUs> = ({ ...props }) => {
   const {
     landingData,
-    pageTitle,
+    pageData,
     serviceCardData,
     navigationData,
     networkData
@@ -35,10 +36,11 @@ const AboutUs: FC<IAboutUs> = ({ ...props }) => {
 
   return (
     <Layout
-      pageTitle={pageTitle}
+      pageTitle={pageData.title}
       navigationData={navigationData}
       serviceData={serviceCardData}
-      networkData={networkData}>
+      networkData={networkData}
+      pageSlug={pageData.slug}>
       <ContainService>
         <LandingAboutUs landingData={landingData} />
         <OurTeam
@@ -54,7 +56,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const teamData = await aboutUsService.getTeam();
   const serviceCardData = await OurServicesService.getServiceCard();
   const navigationData = await navigationService.getAll();
-  const pageTitle = await aboutUsService.getPageTitle();
+  const pageData = await aboutUsService.getPageData();
   const networkData = await navigationService.getNetwork();
 
   return {
@@ -63,7 +65,7 @@ export const getStaticProps: GetStaticProps = async () => {
       teamData,
       serviceCardData,
       navigationData,
-      pageTitle,
+      pageData,
       networkData
     }
   };
