@@ -11,12 +11,10 @@ interface IOurServiceCard {
   serviceCardData: IServiceCard[];
   parentUrl: string;
 }
-const DispalyIcons = styled.div``;
 const Container = styled.div``;
 
 const OurServiceCard: FC<IOurServiceCard> = (props) => {
   const { serviceCardData, parentUrl } = props;
-  const Icons = DataService.serviceSvgIcon;
   const [value, setValue] = useLocalStorage({ key: 'humaapi-color-scheme' });
 
   return (
@@ -26,7 +24,6 @@ const OurServiceCard: FC<IOurServiceCard> = (props) => {
           <Paper
             className="flex flex-col items-center justify-center space-y-4"
             style={{ width: 205, height: 150 }}>
-            {/* <DispalyIcons>{Icons[index].icon}</DispalyIcons> */}
             <Image
               src={value === 'dark' ? el.iconLight.icon : el.iconDark.icon}
               alt={value === 'dark' ? el.iconLight.name : el.iconDark.name}

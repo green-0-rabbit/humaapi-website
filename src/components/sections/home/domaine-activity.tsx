@@ -18,7 +18,6 @@ const Container = styled.div``;
 const DomaineActivity: FC<IDtaDomaineActivity> = (props) => {
   const { classes } = useStyles();
   const { domaineData, domaineNodeData } = props;
-  console.log({ domaineData });
 
   return (
     <Box className="flex flex-col space-y-16">

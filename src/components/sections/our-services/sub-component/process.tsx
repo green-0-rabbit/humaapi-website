@@ -52,7 +52,6 @@ const Process: FC<IProcess> = ({ ...props }) => {
               <Box
                 className="grid grid-cols-1 gap-1"
                 sx={{ fontFamily: 'Ubuntu-Regular' }}>
-                {/* <Icon>{icons[index].icon}</Icon> */}
                 <Image
                   src={el.image}
                   alt={el.imageName}
