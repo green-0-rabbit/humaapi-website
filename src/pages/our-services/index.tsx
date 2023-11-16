@@ -52,7 +52,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const navigationData = await navigationService.getAll();
   const pageData = await OurServicesService.getServiceData(fileName);
   const networkData = await navigationService.getNetwork();
-
   return {
     props: {
       serviceCardData,

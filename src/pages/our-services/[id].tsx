@@ -11,8 +11,8 @@ import {
   INetwork,
   navigationService
 } from 'src/services/navigation-service';
-import Layout from 'src/layouts/layout';
 import IdContent from 'src/components/sections/our-services/sub-component/id-content';
+import Layout from 'src/layouts/layout';
 
 interface IIdOutService {
   navigationData: INavigation[];
@@ -49,9 +49,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const id = params?.id as string;
   const navigationData = await navigationService.getAll();
+
   const serviceData = await OurServicesService.getByLink(id);
-  const serviceCardData = await OurServicesService.getServiceCard();
+
   const networkData = await navigationService.getNetwork();
+
+  const serviceCardData = await OurServicesService.getServiceCard();
 
   if (!serviceData) {
     throw new Error(
