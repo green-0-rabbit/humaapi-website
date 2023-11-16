@@ -3,13 +3,13 @@ const nextConfig = {
   reactStrictMode: true,
    swcMinify: true,
   images: {
-    //  domains: ['wp.humaapi.com']
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'wp.humaapi.com',
-      },
-    ],
+     domains: ['wp.humaapi.com']
+    // remotePatterns: [
+    //   {
+    //     protocol: 'https',
+    //     hostname: 'wp.humaapi.com',
+    //   },
+    // ],
   }
 };
 
