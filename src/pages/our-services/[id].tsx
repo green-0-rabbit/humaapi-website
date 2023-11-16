@@ -23,13 +23,14 @@ interface IIdOutService {
 
 const IdOutService: FC<IIdOutService> = (props) => {
   const { serviceData, navigationData, serviceCardData, networkData } = props;
-
+  const [parentData] = navigationData.filter((val) => val.footerTitle === null);
   return (
     <Layout
       pageTitle={serviceData.title}
       navigationData={navigationData}
       serviceData={serviceCardData}
-      networkData={networkData}>
+      networkData={networkData}
+      pageSlug={parentData.navigationLink}>
       <IdContent serviceData={serviceData} />
     </Layout>
   );

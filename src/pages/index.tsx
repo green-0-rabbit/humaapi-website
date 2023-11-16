@@ -6,7 +6,8 @@ import {
   HomeService,
   IDomaineActivity,
   ILandingPage,
-  IOurService
+  IOurService,
+  IPageData
 } from 'src/services/home-service';
 import { FC } from 'react';
 import {
@@ -28,7 +29,7 @@ interface Ihome {
   serviceData: IOurService;
   serviceCardData: IServiceCard[];
   navigationData: INavigation[];
-  pageTitle: string;
+  pageData: IPageData;
   networkData: INetwork[];
   domaineNodeData: IDomaineNodeType[];
 }
@@ -39,7 +40,7 @@ const Home: FC<Ihome> = ({ ...props }) => {
     landingData,
     serviceCardData,
     navigationData,
-    pageTitle,
+    pageData,
     networkData,
     domaineNodeData
   } = props;
@@ -50,7 +51,8 @@ const Home: FC<Ihome> = ({ ...props }) => {
   return (
     <Layout
       navigationData={navigationData}
-      pageTitle={pageTitle}
+      pageTitle={pageData.title}
+      pageSlug={pageData.slug}
       serviceData={serviceCardData}
       networkData={networkData}>
       <Box className="w-full space-y-[72px]">
@@ -74,7 +76,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const serviceData = await HomeService.getService();
   const domaineData = await HomeService.getDomaine();
   const landingData = await HomeService.getLanding();
-  const pageTitle = await HomeService.getPageTitle();
+  const pageData = await HomeService.getPageData();
   const serviceCardData = await OurServicesService.getServiceCard();
   const navigationData = await navigationService.getAll();
   const networkData = await navigationService.getNetwork();
@@ -87,7 +89,7 @@ export const getStaticProps: GetStaticProps = async () => {
       landingData,
       serviceCardData,
       navigationData,
-      pageTitle,
+      pageData,
       networkData,
       domaineNodeData
     }

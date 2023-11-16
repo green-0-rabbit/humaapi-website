@@ -43,7 +43,8 @@ const Cookie: FC<ICookiePage> = ({ ...props }) => {
       navigationData={navigationData}
       pageTitle={cookiePolicyContent.title}
       serviceData={serviceCardData}
-      networkData={networkData}>
+      networkData={networkData}
+      pageSlug={cookiePolicyContent.slug}>
       <Box className="mx-auto">
         <CookiePolicyContent
           cookiePolicyContent={cookiePolicyContent}

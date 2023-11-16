@@ -21,19 +21,35 @@ interface ILayout {
   navigationData: INavigation[];
   serviceData: IServiceCard[];
   pageTitle: string;
+  pageSlug: string;
   networkData: INetwork[];
 }
 const Container = styled.div``;
 
 const Layout: FC<ILayout> = ({ ...props }) => {
-  const { children, navigationData, pageTitle, serviceData, networkData } =
-    props;
+  const {
+    children,
+    navigationData,
+    pageTitle,
+    pageSlug,
+    serviceData,
+    networkData
+  } = props;
+
   const { classes } = useStyles();
+  const [navigationBySlug] = navigationData.filter(
+    (val) => val.navigationLink === pageSlug
+  );
+  const [metaData] = navigationBySlug.metaField;
 
   return (
     <>
       <Head>
         <title>{pageTitle}</title>
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={metaData.description} />
+
+        <meta property="og:image" content={metaData.imageContent} />
       </Head>
       <Container>
         <Navbar itemNavLink={navigationData} networkData={networkData} />

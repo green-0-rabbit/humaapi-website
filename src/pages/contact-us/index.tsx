@@ -20,13 +20,16 @@ interface IContactUs {
 
 const ContactUs: FC<IContactUs> = (props) => {
   const { serviceCardData, navigationData, networkData } = props;
-
+  const [navigationBySlug] = navigationData.filter(
+    (val) => val.navigationLink === 'contact-us'
+  );
   return (
     <Layout
-      pageTitle="Contact Us"
+      pageTitle={navigationBySlug.navigationTitle}
       serviceData={serviceCardData}
       navigationData={navigationData}
-      networkData={networkData}>
+      networkData={networkData}
+      pageSlug={navigationBySlug.navigationLink}>
       <ContactForm />
     </Layout>
   );
@@ -36,6 +39,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const serviceCardData = await OurServicesService.getServiceCard();
   const navigationData = await navigationService.getAll();
   const networkData = await navigationService.getNetwork();
+  console.log({ serviceCardData });
 
   return {
     props: {

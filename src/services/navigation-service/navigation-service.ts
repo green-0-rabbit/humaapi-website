@@ -2,11 +2,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import apolloClient from 'src/utils/wps/apollo-client';
 
+export type MetaType = Array<{
+  description: string;
+  imageContent: string;
+}>;
 export interface INavigation {
   id: string;
   navigationTitle: string;
   navigationLink: string;
   footerTitle: string | null;
+  metaField: MetaType;
 }
 export interface INetwork {
   id: string;
@@ -22,12 +27,21 @@ export const navigationService = {
     try {
       const { acfNavigations } = await apolloClient.acfNavigations();
       const res = acfNavigations?.nodes;
+
       if (res) {
         const data = res.map((val) => ({
           id: val.id as string,
           navigationTitle: val.acfNavigationsFields?.navigationTitle as string,
           navigationLink: val.slug as string,
-          footerTitle: val.acfNavigationsFields?.footerTitle as string
+          footerTitle: val.acfNavigationsFields?.footerTitle as string,
+          metaField: [
+            {
+              description: val.acfNavigationsFields?.metaField?.description
+                ?.content as string,
+              imageContent: val.acfNavigationsFields?.metaField?.imageUrl
+                ?.content as string
+            }
+          ] as MetaType
         }));
         return data.reverse() as INavigation[];
       }
@@ -37,6 +51,7 @@ export const navigationService = {
       throw new Error(error.message);
     }
   },
+
   getNetwork: async () => {
     try {
       const { acfSocialNetworks } = await apolloClient.acfSocialNetworks();

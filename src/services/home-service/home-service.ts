@@ -10,6 +10,7 @@ export interface IDomaineActivity {
 export interface ILandingPage {
   id: string;
   title: string;
+  slug: string;
   description: string;
   image: string;
   imageName: string;
@@ -20,6 +21,8 @@ export interface IOurService {
   subTitle: string;
   description: string;
 }
+
+export type IPageData = Pick<ILandingPage, 'title' | 'slug'>;
 export type IDomaineNodeType = Omit<ILandingPage, 'description'>;
 
 export const HomeService = {
@@ -84,10 +87,14 @@ export const HomeService = {
     }
   },
 
-  getPageTitle: async () => {
+  getPageData: async () => {
     try {
       const { acfAcfPage } = await apolloClient.acfLanding();
-      const res = acfAcfPage?.title as string;
+      const res = {
+        title: acfAcfPage?.title as string,
+        slug: acfAcfPage?.slug as string
+      } as IPageData;
+
       return res || undefined;
     } catch (err) {
       const error = <any>err;
