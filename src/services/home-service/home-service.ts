@@ -49,6 +49,7 @@ export const HomeService = {
   getDomaine: async () => {
     try {
       const { acfAcfPage } = await apolloClient.acfDomain();
+
       const res = acfAcfPage?.acfHomePageFields;
       if (acfAcfPage && res) {
         const data = {
@@ -58,6 +59,7 @@ export const HomeService = {
           description: res.domainContent?.description as string
         };
         return data as IDomaineActivity;
+
       }
       return undefined;
     } catch (err) {
